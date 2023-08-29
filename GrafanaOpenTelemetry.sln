@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0687CB8-95E1-4372-9444-70676DE3A34A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafana.OpenTelemetry", "src\Grafana.OpenTelemetry\Grafana.OpenTelemetry.csproj", "{B4761520-2B6F-4605-BC3B-66710F7439EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4761520-2B6F-4605-BC3B-66710F7439EA} = {F0687CB8-95E1-4372-9444-70676DE3A34A}
+	EndGlobalSection
+EndGlobal
