@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Metrics;
@@ -7,9 +8,24 @@ namespace Grafana.OpenTelemetry;
 
 public class CloudExporter : ExporterSettings
 {
+  internal const string ZoneEnvVarName = "GRAFANA_OTLP_CLOUD_ZONE";
+  internal const string InstanceIdEnvVarName = "GRAFANA_OTLP_CLOUD_INSTANCE_ID";
+  internal const string ApiKeyEnvVarName = "GRAFANA_OTLP_CLOUD_API_KEY";
+
   public string Zone { get; set; } = string.Empty;
   public string InstanceId { get; set; } = string.Empty;
   public string ApiKey { get; set; } = string.Empty;
+
+  public CloudExporter()
+    : this(new ConfigurationBuilder().AddEnvironmentVariables().Build())
+  {}
+
+  internal CloudExporter(IConfiguration configuration)
+  {
+    this.Zone = configuration[ZoneEnvVarName] ?? string.Empty;
+    this.InstanceId = configuration[InstanceIdEnvVarName] ?? string.Empty;
+    this.ApiKey = configuration[ApiKeyEnvVarName] ?? string.Empty;
+  }
 
   public void Apply(TracerProviderBuilder builder)
   {
