@@ -15,7 +15,12 @@ public static class TracerProviderBuilderExtensions
         configure?.Invoke(settings);
     }
 
-    settings.ExporterSettings?.Apply(builder);
+    return builder.AddGrafanaExporter(settings?.ExporterSettings);
+  }
+
+  internal static TracerProviderBuilder AddGrafanaExporter(this TracerProviderBuilder builder, ExporterSettings? settings)
+  {
+    settings?.Apply(builder);
 
     return builder;
   }
