@@ -1,27 +1,35 @@
-﻿using System;
+using System;
 using OpenTelemetry.Trace;
-using OpenTelemetry.Exporter.OpenTelemetryProtocol;
 
 namespace Grafana.OpenTelemetry;
 
+/// <summary>
+/// Tracing-related extension provided by the OpenTelemetry .NET distribution for Grafana.
+/// </summary>
 public static class TracerProviderBuilderExtensions
 {
-  public static TracerProviderBuilder UseGrafana(this TracerProviderBuilder builder, Action<GrafanaOTelSettings>? configure = default)
-  {
-    GrafanaOTelSettings settings = new();
-
-    if (configure != null)
+    /// <summary>
+    /// Sets up tracing with the OpenTelemetry .NET distribution for Grafana.
+    /// </summary>
+    /// <param name="builder">A <see cref="TracerProviderBuilder"/></param>
+    /// <param name="configure">A callback for customizing default Grafana OpenTelemetry settings</param>
+    /// <returns>A modified <see cref="TracerProviderBuilder"/> </returns>
+    public static TracerProviderBuilder UseGrafana(this TracerProviderBuilder builder, Action<GrafanaOpenTelemetrySettings>? configure = default)
     {
-        configure?.Invoke(settings);
+        GrafanaOpenTelemetrySettings settings = new();
+
+        if (configure != null)
+        {
+            configure?.Invoke(settings);
+        }
+
+        return builder.AddGrafanaExporter(settings?.ExporterSettings);
     }
 
-    return builder.AddGrafanaExporter(settings?.ExporterSettings);
-  }
+    internal static TracerProviderBuilder AddGrafanaExporter(this TracerProviderBuilder builder, ExporterSettings? settings)
+    {
+        settings?.Apply(builder);
 
-  internal static TracerProviderBuilder AddGrafanaExporter(this TracerProviderBuilder builder, ExporterSettings? settings)
-  {
-    settings?.Apply(builder);
-
-    return builder;
-  }
+        return builder;
+    }
 }

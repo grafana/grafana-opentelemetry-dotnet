@@ -9,8 +9,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="[3.1.0,)" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="[3.1.0,)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="[3.1.0,)" />
     <PackageReference Include="OpenTelemetry" Version="1.5.1" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.5.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol.Logs" Version="1.5.0-rc.1" />
   </ItemGroup>
 
 </Project>
