@@ -10,8 +10,16 @@ public class GrafanaCloudConfigurationHelperTest
         var helper = new GrafanaCloudConfigurationHelper("prod-us-east-0", "", "");
 
         Assert.Equal(
-            new Uri($"https://otlp-gateway-prod-us-east-0.grafana.net/otlp"),
-            helper.OtlpEndpoint);
+            new Uri($"https://otlp-gateway-prod-us-east-0.grafana.net/otlp/v1/traces"),
+            helper.OtlpEndpointTraces);
+
+        Assert.Equal(
+            new Uri($"https://otlp-gateway-prod-us-east-0.grafana.net/otlp/v1/metrics"),
+            helper.OtlpEndpointMetrics);
+
+        Assert.Equal(
+            new Uri($"https://otlp-gateway-prod-us-east-0.grafana.net/otlp/v1/logs"),
+            helper.OtlpEndpointLogs);
     }
 
     [Fact]

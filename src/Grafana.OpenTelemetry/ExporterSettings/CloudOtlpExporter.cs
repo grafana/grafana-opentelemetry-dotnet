@@ -54,7 +54,14 @@ public class CloudOtlpExporter : ExporterSettings
             return;
         }
 
-        builder.AddOtlpExporter(config => ApplyToConfig(config));
+        builder.AddOtlpExporter(config =>
+        {
+            var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
+
+            config.Endpoint = configurationHelper.OtlpEndpointTraces;
+            config.Headers = configurationHelper.OtlpAuthorizationHeader;
+            config.Protocol = OtlpExportProtocol.HttpProtobuf;
+        });
     }
 
     /// <inheritdoc/>
@@ -65,7 +72,14 @@ public class CloudOtlpExporter : ExporterSettings
             return;
         }
 
-        builder.AddOtlpExporter(config => ApplyToConfig(config));
+        builder.AddOtlpExporter(config =>
+        {
+            var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
+
+            config.Endpoint = configurationHelper.OtlpEndpointMetrics;
+            config.Headers = configurationHelper.OtlpAuthorizationHeader;
+            config.Protocol = OtlpExportProtocol.HttpProtobuf;
+        });
     }
 
     /// <inheritdoc/>
@@ -78,15 +92,14 @@ public class CloudOtlpExporter : ExporterSettings
 
         builder.AddOpenTelemetry(options =>
         {
-            options.AddOtlpExporter(config => ApplyToConfig(config));
+            options.AddOtlpExporter(config =>
+            {
+                var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
+
+                config.Endpoint = configurationHelper.OtlpEndpointLogs;
+                config.Headers = configurationHelper.OtlpAuthorizationHeader;
+                config.Protocol = OtlpExportProtocol.HttpProtobuf;
+            });
         });
-    }
-
-    private void ApplyToConfig(OtlpExporterOptions options)
-    {
-        var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
-
-        options.Endpoint = configurationHelper.OtlpEndpoint;
-        options.Headers = configurationHelper.OtlpAuthorizationHeader;
     }
 }

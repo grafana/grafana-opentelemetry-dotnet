@@ -7,9 +7,13 @@ namespace Grafana.OpenTelemetry;
 /// </summary>
 internal class GrafanaCloudConfigurationHelper
 {
+    private const string PathExtensionTraces = "/v1/traces";
+    private const string PathExtensionMetrics = "/v1/metrics";
+    private const string PathExtensionLogs = "/v1/logs";
+
     private string _zone;
-    public string _instanceId;
-    public string _apiKey;
+    private string _instanceId;
+    private string _apiKey;
 
     public GrafanaCloudConfigurationHelper(string zone, string instanceId, string apiKey)
     {
@@ -18,9 +22,19 @@ internal class GrafanaCloudConfigurationHelper
         _apiKey = apiKey;
     }
 
-    public Uri OtlpEndpoint
+    public Uri OtlpEndpointTraces
     {
-        get => new Uri($"https://otlp-gateway-{_zone}.grafana.net/otlp");
+        get => new Uri($"{GetOtlpEndpointBase()}{PathExtensionTraces}");
+    }
+
+    public Uri OtlpEndpointMetrics
+    {
+        get => new Uri($"{GetOtlpEndpointBase()}{PathExtensionMetrics}");
+    }
+
+    public Uri OtlpEndpointLogs
+    {
+        get => new Uri($"{GetOtlpEndpointBase()}{PathExtensionLogs}");
     }
 
     public string OtlpAuthorizationHeader
@@ -34,4 +48,6 @@ internal class GrafanaCloudConfigurationHelper
             return $"Authorization=Basic {authorizationValue}";
         }
     }
+
+    private string GetOtlpEndpointBase() => $"https://otlp-gateway-{_zone}.grafana.net/otlp";
 }
