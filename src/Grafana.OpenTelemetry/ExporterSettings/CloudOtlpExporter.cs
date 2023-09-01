@@ -84,18 +84,9 @@ public class CloudOtlpExporter : ExporterSettings
 
     private void ApplyToConfig(OtlpExporterOptions options)
     {
-        options.Endpoint = GetEndpoint();
-        options.Headers = GetHeader();
-    }
+        var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
 
-    private Uri GetEndpoint() => new Uri($"https://otlp-gateway-{Zone}.grafana.net/otlp");
-
-    private string GetHeader()
-    {
-        var authorizationValue = Convert.ToBase64String(
-            System.Text.Encoding.UTF8.GetBytes($"{InstanceId}:{ApiKey}")
-        );
-
-        return $"Authorization=Basic {authorizationValue}";
+        options.Endpoint = configurationHelper.OtlpEndpoint;
+        options.Headers = configurationHelper.OtlpAuthorizationHeader;
     }
 }

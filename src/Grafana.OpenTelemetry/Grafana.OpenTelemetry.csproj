@@ -15,4 +15,10 @@
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol.Logs" Version="1.5.0-rc.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Grafana.OpenTelemetry.Tests</_Parameter1>
+    </AssemblyAttribute>
+</ItemGroup>
+
 </Project>
