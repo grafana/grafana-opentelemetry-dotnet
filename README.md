@@ -1,6 +1,7 @@
 # Grafana distribution of OpenTelemetry .NET instrumentation
 
-This is a pre-configured and pre-packaged bundle of OpenTelemetry .NET components, optimized for the Grafana Stack.
+This is a pre-configured and pre-packaged bundle of OpenTelemetry .NET
+components, optimized for the Grafana Stack.
 
 ## Getting Started
 
@@ -8,7 +9,10 @@ This is a pre-configured and pre-packaged bundle of OpenTelemetry .NET component
 
 ### Step 2: Enable the Grafana distribution at application startup
 
-The `UseGrafana` extension method on the `TracerProviderBuilder` or the `MetricProviderBuilder` can be used to set up the Grafana distribution. By default, telemetry data will be sent to a Grafana agent or an OTel collector that runs locally and listens to default OTLP ports:
+The `UseGrafana` extension method on the `TracerProviderBuilder` or the
+`MetricProviderBuilder` can be used to set up the Grafana distribution. By
+default, telemetry data will be sent to a Grafana agent or an OTel collector
+that runs locally and listens to default OTLP ports:
 
 ```csharp
 using OpenTelemetry;
@@ -26,7 +30,8 @@ public class Program
 }
 ```
 
-Given the zone, instance id, and API token, telemetry data can be sent directly to the Grafana Cloud without involving an agent or collector:
+Given the zone, instance id, and API token, telemetry data can be sent directly
+to the Grafana Cloud without involving an agent or collector:
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
