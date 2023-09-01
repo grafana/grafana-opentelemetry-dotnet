@@ -1,5 +1,5 @@
-namespace Grafana.OpenTelemetry;
-
+namespace Grafana.OpenTelemetry
+{
 /// <summary>
 /// Settings for configuring the OpenTelemetry .NET distribution for Grafana.
 /// </summary>
@@ -13,5 +13,6 @@ public class GrafanaOpenTelemetrySettings
     /// If set to `null`, no exporter will be initialized by the OpenTelemetry .NET
     /// distribution for Grafana.
     /// </summary>
-    public ExporterSettings? ExporterSettings { get; set; } = new AgentOtlpExporter();
+    public ExporterSettings ExporterSettings { get; set; } = new AgentOtlpExporter();
+}
 }

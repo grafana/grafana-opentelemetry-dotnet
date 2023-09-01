@@ -5,8 +5,8 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Grafana.OpenTelemetry;
-
+namespace Grafana.OpenTelemetry
+{
 /// <summary>
 /// Settings for exporting telemetry to a Grafana Agent or collector.
 /// </summary>
@@ -17,12 +17,12 @@ public class AgentOtlpExporter : ExporterSettings
     /// default is used (`http://localhost:4817` for http/protobuf, and `http://localhost:4818`
     /// for grpc).
     /// </summary>
-    public Uri? Endpoint { get; set; }
+    public Uri Endpoint { get; set; }
 
     /// <summary>
     /// The OTLP protocol to be used for exporting telemetry data.
     /// </summary>
-    public OtlpExportProtocol? Protocol { get; set; }
+    public OtlpExportProtocol Protocol { get; set; }
 
     /// <inheritdoc/>
     override internal void Apply(TracerProviderBuilder builder)
@@ -72,4 +72,5 @@ public class AgentOtlpExporter : ExporterSettings
             options.Protocol = (OtlpExportProtocol)Protocol;
         }
     }
+}
 }

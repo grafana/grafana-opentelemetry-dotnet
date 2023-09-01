@@ -5,8 +5,8 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Grafana.OpenTelemetry;
-
+namespace Grafana.OpenTelemetry
+{
 /// <summary>
 /// Settings for exporting telemetry directly to Grafana Agent via OTLP.
 /// </summary>
@@ -101,4 +101,5 @@ public class CloudOtlpExporter : ExporterSettings
             });
         });
     }
+}
 }

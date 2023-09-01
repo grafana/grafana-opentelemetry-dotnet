@@ -2,8 +2,8 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Grafana.OpenTelemetry;
-
+namespace Grafana.OpenTelemetry
+{
 /// <summary>
 /// All OpenTelemetry exporter settings supported by Grafana need to derive from this class.
 /// </summary>
@@ -44,4 +44,5 @@ public abstract class ExporterSettings
     /// </summary>
     /// <param name="builder">A <see cref="ILoggingBuilder"/></param>
     internal abstract void Apply(ILoggingBuilder builder);
+}
 }

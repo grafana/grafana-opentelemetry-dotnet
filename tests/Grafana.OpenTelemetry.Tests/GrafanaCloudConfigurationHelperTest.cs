@@ -1,5 +1,9 @@
-namespace Grafana.OpenTelemetry.Tests;
+using System;
+using Xunit;
+using Grafana.OpenTelemetry;
 
+namespace Grafana.OpenTelemetry.Tests
+{
 public class GrafanaCloudConfigurationHelperTest
 {
     [Fact]
@@ -29,4 +33,5 @@ public class GrafanaCloudConfigurationHelperTest
             "Authorization=Basic NzAxNjI4OmFfc2VjcmV0",
             helper.OtlpAuthorizationHeader);
     }
+}
 }

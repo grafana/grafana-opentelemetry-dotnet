@@ -1,7 +1,7 @@
 using System;
 
-namespace Grafana.OpenTelemetry;
-
+namespace Grafana.OpenTelemetry
+{
 /// <summary>
 /// Helper class for Grafana Cloud configuration.
 /// </summary>
@@ -50,4 +50,5 @@ internal class GrafanaCloudConfigurationHelper
     }
 
     private string GetOtlpEndpointBase() => $"https://otlp-gateway-{_zone}.grafana.net/otlp";
+}
 }
