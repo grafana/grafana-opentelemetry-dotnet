@@ -1,5 +1,3 @@
-using Grafana.OpenTelemetry;
-
 namespace Grafana.OpenTelemetry.Tests;
 
 public class GrafanaCloudConfigurationHelperTest
