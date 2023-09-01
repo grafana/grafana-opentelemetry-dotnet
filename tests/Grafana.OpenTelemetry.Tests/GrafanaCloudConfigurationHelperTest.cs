@@ -1,6 +1,6 @@
+using Grafana.OpenTelemetry;
 using System;
 using Xunit;
-using Grafana.OpenTelemetry;
 
 namespace Grafana.OpenTelemetry.Tests
 {
