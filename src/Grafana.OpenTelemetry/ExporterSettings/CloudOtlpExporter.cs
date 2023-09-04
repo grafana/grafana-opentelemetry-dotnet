@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
@@ -19,17 +20,17 @@ namespace Grafana.OpenTelemetry
         /// <summary>
         /// Gets or sets the zone of the Grafana Cloud stack.
         /// </summary>
-        public string Zone { get; set; } = string.Empty;
+        public string Zone { get; }
 
         /// <summary>
         /// Gets or sets the instance id of the Grafana Cloud stack.
         /// </summary>
-        public string InstanceId { get; set; } = string.Empty;
+        public string InstanceId { get; }
 
         /// <summary>
         /// Gets or sets the API key for sending data to the Grafana Cloud stack.
         /// </summary>
-        public string ApiKey { get; set; } = string.Empty;
+        public string ApiKey { get; }
 
         /// <summary>
         /// Initializes a new instance of <see cref="CloudOtlpExporter"/>.
@@ -38,12 +39,16 @@ namespace Grafana.OpenTelemetry
           : this(new ConfigurationBuilder().AddEnvironmentVariables().Build())
         { }
 
-        internal CloudOtlpExporter(IConfiguration configuration)
+        public CloudOtlpExporter(string zone, string instanceId, string apiKey)
         {
-            this.Zone = configuration[ZoneEnvVarName] ?? string.Empty;
-            this.InstanceId = configuration[InstanceIdEnvVarName] ?? string.Empty;
-            this.ApiKey = configuration[ApiKeyEnvVarName] ?? string.Empty;
+            this.Zone = zone ?? throw new ArgumentNullException(nameof(zone));
+            this.InstanceId = instanceId ?? throw new ArgumentNullException(nameof(instanceId));
+            this.ApiKey = apiKey ?? throw new ArgumentNullException(nameof(apiKey));
         }
+
+        internal CloudOtlpExporter(IConfiguration configuration)
+            : this(configuration[ZoneEnvVarName], configuration[InstanceIdEnvVarName], configuration[ApiKeyEnvVarName])
+        { }
 
         /// <inheritdoc/>
         override internal void Apply(TracerProviderBuilder builder)
