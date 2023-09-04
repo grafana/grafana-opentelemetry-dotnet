@@ -34,11 +34,21 @@ namespace Grafana.OpenTelemetry
 
         /// <summary>
         /// Initializes a new instance of <see cref="CloudOtlpExporter"/>.
+        ///
+        /// Parameters are set from environment variables.
         /// </summary>
         public CloudOtlpExporter()
           : this(new ConfigurationBuilder().AddEnvironmentVariables().Build())
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="CloudOtlpExporter"/> with given
+        /// parameters.
+        /// </summary>
+        /// <param name="zone">The zone of the Grafana cloud stack</param>
+        /// <param name="instanceId">The instance id of the Grafana cloud stack</param>
+        /// <param name="apiKey">The API token for sending data to the Grafana cloud stack</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public CloudOtlpExporter(string zone, string instanceId, string apiKey)
         {
             this.Zone = zone ?? throw new ArgumentNullException(nameof(zone));
