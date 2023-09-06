@@ -1,20 +1,21 @@
 using System;
 using Xunit;
 
-namespace Grafana.OpenTelemetry.Tests;
-
-public class CloudOtlpExporterTest
+namespace Grafana.OpenTelemetry.Tests
 {
-    [Fact]
-    public void CloudOtlpExporterEnvVars()
+    public class CloudOtlpExporterTest
     {
-        Environment.SetEnvironmentVariable(CloudOtlpExporter.ApiKeyEnvVarName, "a_secret");
-        Environment.SetEnvironmentVariable(CloudOtlpExporter.InstanceIdEnvVarName, "12345");
-        Environment.SetEnvironmentVariable(CloudOtlpExporter.ZoneEnvVarName, "test-example-0");
-        var settings = new CloudOtlpExporter();
+        [Fact]
+        public void CloudOtlpExporterEnvVars()
+        {
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.ApiKeyEnvVarName, "a_secret");
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.InstanceIdEnvVarName, "12345");
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.ZoneEnvVarName, "test-example-0");
+            var settings = new CloudOtlpExporter();
 
-        Assert.Equal("a_secret", settings.ApiKey);
-        Assert.Equal("12345", settings.InstanceId);
-        Assert.Equal("test-example-0", settings.Zone);
+            Assert.Equal("a_secret", settings.ApiKey);
+            Assert.Equal("12345", settings.InstanceId);
+            Assert.Equal("test-example-0", settings.Zone);
+        }
     }
 }
