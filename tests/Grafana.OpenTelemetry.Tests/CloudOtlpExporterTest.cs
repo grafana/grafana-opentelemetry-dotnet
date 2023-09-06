@@ -17,5 +17,17 @@ namespace Grafana.OpenTelemetry.Tests
             Assert.Equal("12345", settings.InstanceId);
             Assert.Equal("test-example-0", settings.Zone);
         }
+
+        [Theory]
+        [InlineData(null, "12345", "test-example-0")]
+        [InlineData("a_secret", null, "test-example-0")]
+        [InlineData("a_secret", "12345", null)]
+        public void CloudOtlpExporterAnyEnvVarUnset(string apiKey, string instanceId, string zone)
+        {
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.ApiKeyEnvVarName, apiKey);
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.InstanceIdEnvVarName, instanceId);
+            Environment.SetEnvironmentVariable(CloudOtlpExporter.ZoneEnvVarName, zone);
+            Assert.Throws<ArgumentNullException>(() => new CloudOtlpExporter());
+        }
     }
 }
