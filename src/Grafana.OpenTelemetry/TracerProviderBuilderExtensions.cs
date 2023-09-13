@@ -48,10 +48,10 @@ namespace Grafana.OpenTelemetry
                 switch (instrumentation)
                 {
                     case Instrumentation.HttpClient:
-                    {
-                        builder.AddHttpClientInstrumentation();
-                        break;
-                    }
+                        {
+                            builder.AddHttpClientInstrumentation();
+                            break;
+                        }
                     default:
                         break;
                 }

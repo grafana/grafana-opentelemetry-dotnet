@@ -48,20 +48,20 @@ namespace Grafana.OpenTelemetry
                 switch (instrumentation)
                 {
                     case Instrumentation.NetRuntime:
-                    {
-                        builder.AddRuntimeInstrumentation();
-                        break;
-                    }
+                        {
+                            builder.AddRuntimeInstrumentation();
+                            break;
+                        }
                     case Instrumentation.Process:
-                    {
-                        builder.AddProcessInstrumentation();
-                        break;
-                    }
+                        {
+                            builder.AddProcessInstrumentation();
+                            break;
+                        }
                     case Instrumentation.HttpClient:
-                    {
-                        builder.AddHttpClientInstrumentation();
-                        break;
-                    }
+                        {
+                            builder.AddHttpClientInstrumentation();
+                            break;
+                        }
                     default:
                         break;
                 }
