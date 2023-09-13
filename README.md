@@ -46,3 +46,36 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     })
     .Build();
 ```
+
+## Supported instrumentation libraries
+
+At the moment, the following instrumentation libraries are supported:
+
+| Identifier | Library name |
+| ---------- | ------------ |
+| `HttpClient` | [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) |
+| `NetRuntime` | [OpenTelemetry.Instrumentation.Runtime](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) |
+| `Process`    | [OpenTelemetry.Instrumentation.Process](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Process) |
+
+By default, all supported instrumentation libraries are enabled. Instrumentation
+libraries can be disabled by removing them vom the `Instrumentations` set in the
+configuration:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.Instrumentations.Remove(Instrumentation.Process);
+        config.Instrumentations.Remove(Instrumentation.NetRuntime);
+    })
+    .Build();
+```
+
+Alternatively, instrumentation libraries can be disabled by the environment
+variable `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`. This variable can be
+populated with a comma-separated list of instrumentation library identifiers
+from the table above:
+
+```sh
+export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
+```

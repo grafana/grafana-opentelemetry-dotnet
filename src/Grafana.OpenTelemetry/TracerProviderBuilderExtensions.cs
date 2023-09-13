@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
@@ -23,12 +24,38 @@ namespace Grafana.OpenTelemetry
                 configure?.Invoke(settings);
             }
 
-            return builder.AddGrafanaExporter(settings?.ExporterSettings);
+            return builder
+                .AddGrafanaExporter(settings?.ExporterSettings)
+                .AddInstrumentations(settings?.Instrumentations);
         }
 
         internal static TracerProviderBuilder AddGrafanaExporter(this TracerProviderBuilder builder, ExporterSettings settings)
         {
             settings?.Apply(builder);
+
+            return builder;
+        }
+
+        internal static TracerProviderBuilder AddInstrumentations(this TracerProviderBuilder builder, HashSet<Instrumentation> instrumentations)
+        {
+            if (instrumentations == null)
+            {
+                return builder;
+            }
+
+            foreach (var instrumentation in instrumentations)
+            {
+                switch (instrumentation)
+                {
+                    case Instrumentation.HttpClient:
+                        {
+                            builder.AddHttpClientInstrumentation();
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
 
             return builder;
         }
