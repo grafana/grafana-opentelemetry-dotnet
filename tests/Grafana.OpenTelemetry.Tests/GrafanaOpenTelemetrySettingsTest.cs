@@ -32,5 +32,18 @@ namespace Grafana.OpenTelemetry.Tests
 
             Assert.Equal(expected, settings.Instrumentations);
         }
+
+        [Fact]
+        public void DisableInstrumentationsColon()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, "Process:NetRuntime");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            var expected = new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
+            expected.ExceptWith(new Instrumentation[] { Instrumentation.Process, Instrumentation.NetRuntime });
+
+            Assert.Equal(expected, settings.Instrumentations);
+        }
     }
 }

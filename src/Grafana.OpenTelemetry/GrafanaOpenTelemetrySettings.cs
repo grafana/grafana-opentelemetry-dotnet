@@ -52,9 +52,9 @@ namespace Grafana.OpenTelemetry
 
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
 
-            if (disableInstrumentations != null)
+            if (!string.IsNullOrEmpty(disableInstrumentations))
             {
-                foreach (var instrumentationStr in disableInstrumentations.Split(','))
+                foreach (var instrumentationStr in disableInstrumentations.Split(new char[] { ',', ':' }))
                 {
                     if (Enum.TryParse<Instrumentation>(instrumentationStr, out var instrumentation))
                     {
