@@ -9,6 +9,14 @@
     -->
   </PropertyGroup>
 
+  <!--
+    Avoid problems with reflection when running in AOT mode
+    See https://github.com/dotnet/corert/blob/master/Documentation/using-corert/rd-xml-format.md
+  -->
+  <ItemGroup>
+    <RdXmlFile Include="rd.xml" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="[3.1.0,)" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="[3.1.0,)" />
