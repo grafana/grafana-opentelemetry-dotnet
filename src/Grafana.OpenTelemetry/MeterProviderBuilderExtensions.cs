@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using OpenTelemetry.Metrics;
 
 namespace Grafana.OpenTelemetry
@@ -60,6 +61,15 @@ namespace Grafana.OpenTelemetry
                     case Instrumentation.HttpClient:
                         {
                             builder.AddHttpClientInstrumentation();
+                            break;
+                        }
+                    case Instrumentation.AspNetCore:
+                        {
+                            ReflectionHelper.CallStaticMethod(
+                                "OpenTelemetry.Instrumentation.AspNetCore",
+                                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                                "AddAspNetCoreInstrumentation",
+                                new object[] { builder });
                             break;
                         }
                     default:
