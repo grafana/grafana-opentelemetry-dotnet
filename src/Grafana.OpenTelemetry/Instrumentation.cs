@@ -18,6 +18,11 @@ namespace Grafana.OpenTelemetry
         /// <summary>
         /// HttpClient metrics and traces (OpenTelemetry.Instrumentation.Http)
         /// </summary>
-        HttpClient
+        HttpClient,
+
+        /// <summary>
+        /// ASP.NET Core and traces (OpenTelemetry.Instrumentation.AspNetCore)
+        /// </summary>
+        AspNetCore
     }
 }

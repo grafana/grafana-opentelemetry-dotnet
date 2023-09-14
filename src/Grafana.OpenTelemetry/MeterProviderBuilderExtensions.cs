@@ -62,6 +62,15 @@ namespace Grafana.OpenTelemetry
                             builder.AddHttpClientInstrumentation();
                             break;
                         }
+                    case Instrumentation.AspNetCore:
+                        {
+                            ReflectionHelper.CallStaticMethod(
+                                "OpenTelemetry.Instrumentation.AspNetCore",
+                                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                                "AddAspNetCoreInstrumentation",
+                                new object[] { builder });
+                            break;
+                        }
                     default:
                         break;
                 }

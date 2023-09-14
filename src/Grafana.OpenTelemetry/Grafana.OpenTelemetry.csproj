@@ -4,7 +4,18 @@
     <TargetFrameworks>net6.0;netstandard2.0;net462</TargetFrameworks>
     <Description>The Grafana distribution of OpenTelemetry .NET</Description>
     <Nullable>disable</Nullable>
+    <!--
+      <MinimalInstrumentationDependencies>true</MinimalInstrumentationDependencies>
+    -->
   </PropertyGroup>
+
+  <!--
+    Avoid problems with reflection when running in AOT mode
+    See https://github.com/dotnet/corert/blob/master/Documentation/using-corert/rd-xml-format.md
+  -->
+  <ItemGroup>
+    <RdXmlFile Include="rd.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="[3.1.0,)" />
@@ -19,11 +30,15 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.5.1" />
   </ItemGroup>
 
-  <!-- Non-stable instrumentation packages -->
+  <!-- Non-stable instrumentation packages with no dependencies -->
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.5.1-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.3" />
   </ItemGroup>
+
+  <!-- Non-stable instrumentation packages with dependencies -->
+  <ItemGroup Condition="'$(MinimalInstrumentationDependencies)' != 'true'">
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" /> </ItemGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
