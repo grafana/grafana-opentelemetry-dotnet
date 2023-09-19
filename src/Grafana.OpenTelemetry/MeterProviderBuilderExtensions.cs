@@ -47,7 +47,8 @@ namespace Grafana.OpenTelemetry
 
             foreach (var instrumentation in instrumentations)
             {
-                try {
+                try
+                {
                     switch (instrumentation)
                     {
                         case Instrumentation.NetRuntime:
