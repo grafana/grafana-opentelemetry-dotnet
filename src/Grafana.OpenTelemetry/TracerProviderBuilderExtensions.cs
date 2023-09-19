@@ -24,6 +24,8 @@ namespace Grafana.OpenTelemetry
                 configure?.Invoke(settings);
             }
 
+            GrafanaOpenTelemetryEventSource.Log.InitializeDistribution(settings);
+
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations);
@@ -45,24 +47,32 @@ namespace Grafana.OpenTelemetry
 
             foreach (var instrumentation in instrumentations)
             {
-                switch (instrumentation)
+                try {
+                    switch (instrumentation)
+                    {
+                        case Instrumentation.HttpClient:
+                            {
+                                builder.AddHttpClientInstrumentation();
+                                break;
+                            }
+                        case Instrumentation.AspNetCore:
+                            {
+                                ReflectionHelper.CallStaticMethod(
+                                    "OpenTelemetry.Instrumentation.AspNetCore",
+                                    "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                                    "AddAspNetCoreInstrumentation",
+                                    new object[] { builder });
+                                break;
+                            }
+                        default:
+                            break;
+                    }
+
+                    GrafanaOpenTelemetryEventSource.Log.EnabledTracingInstrumentation(instrumentation.ToString());
+                }
+                catch (Exception ex)
                 {
-                    case Instrumentation.HttpClient:
-                        {
-                            builder.AddHttpClientInstrumentation();
-                            break;
-                        }
-                    case Instrumentation.AspNetCore:
-                        {
-                            ReflectionHelper.CallStaticMethod(
-                                "OpenTelemetry.Instrumentation.AspNetCore",
-                                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
-                                "AddAspNetCoreInstrumentation",
-                                new object[] { builder });
-                            break;
-                        }
-                    default:
-                        break;
+                    GrafanaOpenTelemetryEventSource.Log.FailureEnablingTracingInstrumentation(instrumentation.ToString(), ex);
                 }
             }
 
