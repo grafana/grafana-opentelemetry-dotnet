@@ -25,13 +25,16 @@ namespace Grafana.OpenTelemetry.Tests
         }
 
         [Fact]
-        public void CallStaticMethodNoThrow()
+        public void CallStaticMethodThrow()
         {
-            ReflectionHelper.CallStaticMethod(
-                typeof(ReflectionHelperTest).Assembly.GetName().Name,
-                "Not-exist",
-                "Not-exist",
-                new object[] { 4 });
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                ReflectionHelper.CallStaticMethod(
+                    typeof(ReflectionHelperTest).Assembly.GetName().Name,
+                    "Not-exist",
+                    "Not-exist",
+                    new object[] { 4 });
+            });
         }
     }
 }

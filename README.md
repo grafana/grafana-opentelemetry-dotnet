@@ -79,3 +79,22 @@ from the table above:
 ```sh
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 ```
+
+## Troubleshooting
+
+This project utilizes the [self-diagnostics feature of the .NET OpenTelemetry SDK](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry/README.md#self-diagnostics).
+
+To enable self-diagnostics, go to the
+[current working directory](https://en.wikipedia.org/wiki/Working_directory) of
+your process and create a configuration file named `OTEL_DIAGNOSTICS.json` with
+the following content:
+
+```json
+{
+    "LogDirectory": ".",
+    "FileSize": 32768,
+    "LogLevel": "Warning"
+}
+```
+
+To disable self-diagnostics, delete the above file.
