@@ -45,35 +45,11 @@ namespace Grafana.OpenTelemetry
                 return builder;
             }
 
-            foreach (var instrumentation in instrumentations)
+            foreach (var initializer in InstrumentationInitializer.Initializers)
             {
-                try
+                if (instrumentations.Contains(initializer.Id))
                 {
-                    switch (instrumentation)
-                    {
-                        case Instrumentation.HttpClient:
-                            {
-                                builder.AddHttpClientInstrumentation();
-                                break;
-                            }
-                        case Instrumentation.AspNetCore:
-                            {
-                                ReflectionHelper.CallStaticMethod(
-                                    "OpenTelemetry.Instrumentation.AspNetCore",
-                                    "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
-                                    "AddAspNetCoreInstrumentation",
-                                    new object[] { builder });
-                                break;
-                            }
-                        default:
-                            break;
-                    }
-
-                    GrafanaOpenTelemetryEventSource.Log.EnabledTracingInstrumentation(instrumentation.ToString());
-                }
-                catch (Exception ex)
-                {
-                    GrafanaOpenTelemetryEventSource.Log.FailureEnablingTracingInstrumentation(instrumentation.ToString(), ex);
+                    initializer.Initialize(builder);
                 }
             }
 
