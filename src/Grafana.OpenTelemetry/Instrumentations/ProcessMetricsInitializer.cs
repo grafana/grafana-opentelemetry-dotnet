@@ -8,9 +8,6 @@ namespace Grafana.OpenTelemetry
     {
         public override Instrumentation Id { get; } = Instrumentation.Process;
 
-        protected override void InitializeTracing(TracerProviderBuilder builder)
-        {}
-
         protected override void InitializeMetrics(MeterProviderBuilder builder)
         {
             builder.AddProcessInstrumentation();

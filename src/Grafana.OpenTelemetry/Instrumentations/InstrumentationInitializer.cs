@@ -1,4 +1,5 @@
 using System;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
@@ -44,7 +45,10 @@ namespace Grafana.OpenTelemetry
             }
         }
 
-        abstract protected void InitializeTracing(TracerProviderBuilder builder);
-        abstract protected void InitializeMetrics(MeterProviderBuilder builder);
+        protected virtual void InitializeTracing(TracerProviderBuilder builder)
+        {}
+
+        protected virtual void InitializeMetrics(MeterProviderBuilder builder)
+        {}
     }
 }

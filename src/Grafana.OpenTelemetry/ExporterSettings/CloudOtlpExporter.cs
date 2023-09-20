@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -97,23 +96,20 @@ namespace Grafana.OpenTelemetry
         }
 
         /// <inheritdoc/>
-        override internal void Apply(ILoggingBuilder builder)
+        override internal void Apply(OpenTelemetryLoggerOptions options)
         {
             if (EnableLogs == false)
             {
                 return;
             }
 
-            builder.AddOpenTelemetry(options =>
+            options.AddOtlpExporter(config =>
             {
-                options.AddOtlpExporter(config =>
-                {
-                    var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
+                var configurationHelper = new GrafanaCloudConfigurationHelper(Zone, InstanceId, ApiKey);
 
-                    config.Endpoint = configurationHelper.OtlpEndpointLogs;
-                    config.Headers = configurationHelper.OtlpAuthorizationHeader;
-                    config.Protocol = OtlpExportProtocol.HttpProtobuf;
-                });
+                config.Endpoint = configurationHelper.OtlpEndpointLogs;
+                config.Headers = configurationHelper.OtlpAuthorizationHeader;
+                config.Protocol = OtlpExportProtocol.HttpProtobuf;
             });
         }
     }

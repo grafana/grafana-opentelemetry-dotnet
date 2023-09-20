@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -47,17 +46,14 @@ namespace Grafana.OpenTelemetry
         }
 
         /// <inheritdoc/>
-        override internal void Apply(ILoggingBuilder builder)
+        override internal void Apply(OpenTelemetryLoggerOptions options)
         {
             if (EnableLogs == false)
             {
                 return;
             }
 
-            builder.AddOpenTelemetry(options =>
-            {
-                options.AddOtlpExporter(config => ApplyToConfig(config));
-            });
+            options.AddOtlpExporter(config => ApplyToConfig(config));
         }
 
         private void ApplyToConfig(OtlpExporterOptions options)
