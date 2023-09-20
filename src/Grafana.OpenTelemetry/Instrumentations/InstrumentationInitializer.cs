@@ -46,9 +46,9 @@ namespace Grafana.OpenTelemetry
         }
 
         protected virtual void InitializeTracing(TracerProviderBuilder builder)
-        {}
+        { }
 
         protected virtual void InitializeMetrics(MeterProviderBuilder builder)
-        {}
+        { }
     }
 }
