@@ -4,7 +4,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class HttpClientInitializer: InstrumentationInitializer
+    internal class HttpClientInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.HttpClient;
 
