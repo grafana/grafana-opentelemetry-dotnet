@@ -21,8 +21,6 @@
   <!-- Non-stable instrumentation packages with dependencies -->
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.1.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.2.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
