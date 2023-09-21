@@ -5,29 +5,35 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0687CB8-95E1-4372-9444-70676DE3A34A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafana.OpenTelemetry", "src\Grafana.OpenTelemetry\Grafana.OpenTelemetry.csproj", "{B4761520-2B6F-4605-BC3B-66710F7439EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grafana.OpenTelemetry", "src\Grafana.OpenTelemetry\Grafana.OpenTelemetry.csproj", "{B4761520-2B6F-4605-BC3B-66710F7439EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grafana.OpenTelemetry.Base", "src\Grafana.OpenTelemetry.Base\Grafana.OpenTelemetry.Base.csproj", "{8CA452C6-61DA-49A9-8AA7-909D48E7ACF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FB0399BE-6925-42B7-8431-C5A6E21DC8EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafana.OpenTelemetry.Tests", "tests\Grafana.OpenTelemetry.Tests\Grafana.OpenTelemetry.Tests.csproj", "{30810D69-3237-4260-93C2-DC601C5AC80F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grafana.OpenTelemetry.Tests", "tests\Grafana.OpenTelemetry.Tests\Grafana.OpenTelemetry.Tests.csproj", "{30810D69-3237-4260-93C2-DC601C5AC80F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4761520-2B6F-4605-BC3B-66710F7439EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA452C6-61DA-49A9-8AA7-909D48E7ACF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA452C6-61DA-49A9-8AA7-909D48E7ACF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA452C6-61DA-49A9-8AA7-909D48E7ACF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA452C6-61DA-49A9-8AA7-909D48E7ACF0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30810D69-3237-4260-93C2-DC601C5AC80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30810D69-3237-4260-93C2-DC601C5AC80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30810D69-3237-4260-93C2-DC601C5AC80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30810D69-3237-4260-93C2-DC601C5AC80F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B4761520-2B6F-4605-BC3B-66710F7439EA} = {F0687CB8-95E1-4372-9444-70676DE3A34A}
