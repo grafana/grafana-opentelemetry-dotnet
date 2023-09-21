@@ -1,6 +1,4 @@
-using Microsoft.Extensions.Logging;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
