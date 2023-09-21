@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;netstandard2.0;net462</TargetFrameworks>
-    <Description>The Grafana distribution of OpenTelemetry .NET</Description>
+    <Description>Full Grafana distribution of OpenTelemetry .NET</Description>
     <Nullable>disable</Nullable>
-    <!--
-      <MinimalInstrumentationDependencies>true</MinimalInstrumentationDependencies>
-    -->
   </PropertyGroup>
 
   <!--
@@ -18,27 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="[3.1.0,)" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="[3.1.0,)" />
-    <PackageReference Include="OpenTelemetry" Version="1.6.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.6.0" />
-    <PackageReference Include="System.Text.Json" Version="7.0.3" />
-  </ItemGroup>
-
-  <!-- Stable instrumentation packages -->
-  <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.5.1" />
-  </ItemGroup>
-
-  <!-- Non-stable instrumentation packages with no dependencies -->
-  <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.5.1-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.3" />
+    <ProjectReference Include="../Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with dependencies -->
-  <ItemGroup Condition="'$(MinimalInstrumentationDependencies)' != 'true'">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" /> </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.1.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.2.0-beta.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
