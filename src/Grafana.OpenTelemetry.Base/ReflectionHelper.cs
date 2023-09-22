@@ -8,11 +8,10 @@ namespace Grafana.OpenTelemetry
     {
         internal static void CallStaticMethod(string assemblyName, string typeName, string methodName, object[] arguments)
         {
-            Assembly
-                .Load(assemblyName)
-                .GetType(typeName)
-                .GetMethod(methodName, arguments.Select(obj => obj.GetType()).ToArray())
-                .Invoke(null, arguments);
+            var assembly = Assembly.Load(assemblyName);
+            var type = assembly.GetType(typeName);
+            var method = type.GetMethod(methodName, arguments.Select(obj => obj.GetType()).ToArray());
+            method.Invoke(null, arguments);
         }
     }
 }
