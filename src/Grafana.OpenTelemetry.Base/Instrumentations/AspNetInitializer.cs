@@ -3,25 +3,25 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AspNetCoreInitializer : InstrumentationInitializer
+    internal class AspNetInitializer : InstrumentationInitializer
     {
-        public override Instrumentation Id { get; } = Instrumentation.AspNetCore;
+        public override Instrumentation Id { get; } = Instrumentation.AspNet;
 
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(
-                "OpenTelemetry.Instrumentation.AspNetCore",
+                "OpenTelemetry.Instrumentation.AspNet",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
-                "AddAspNetCoreInstrumentation",
+                "AddAspNetInstrumentation",
                 new object[] { builder });
         }
 
         protected override void InitializeMetrics(MeterProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(
-                "OpenTelemetry.Instrumentation.AspNetCore",
-                "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
-                "AddAspNetCoreInstrumentation",
+                "OpenTelemetry.Instrumentation.AspNet",
+                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "AddAspNetInstrumentation",
                 new object[] { builder });
         }
     }

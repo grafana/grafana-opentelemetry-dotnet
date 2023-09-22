@@ -9,10 +9,26 @@ namespace Grafana.OpenTelemetry
     {
         public static InstrumentationInitializer[] Initializers = new InstrumentationInitializer[]
         {
+#if NETFRAMEWORK
+            new AspNetInitializer(),
+            new OwinInitializer(),
+#endif
             new AspNetCoreInitializer(),
+            new AWSInitializer(),
+            new AWSLambdaInitializer(),
+            new CassandraInitializer(),
+            new ElasticsearchClientInitializer(),
+            new EntityFrameworkCoreInitializer(),
+            new GrpcNetClientInitializer(),
+            new HangfireInitializer(),
+            new HttpClientInitializer(),
+            new MySqlDataInitializer(),
             new NetRuntimeMetricsInitializer(),
             new ProcessMetricsInitializer(),
-            new HttpClientInitializer()
+            new QuartzInitializer(),
+            new SqlClientInitializer(),
+            new StackExchangeRedisInitializer(),
+            new WcfInitializer()
         };
 
         abstract public Instrumentation Id { get; }
