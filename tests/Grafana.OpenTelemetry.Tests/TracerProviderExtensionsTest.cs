@@ -12,8 +12,8 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Sdk
                 .CreateTracerProviderBuilder()
-		.UseGrafana()
-		.Build();
+                .UseGrafana()
+                .Build();
         }
     }
 }
