@@ -10,7 +10,7 @@ namespace Grafana.OpenTelemetry
         {
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.Quartz",
-                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "OpenTelemetry.Trace.TraceProviderBuilderExtensions",
                 "AddQuartzInstrumentation",
                 new object[] { builder });
         }
