@@ -28,7 +28,8 @@ namespace Grafana.OpenTelemetry
 
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
-                .AddInstrumentations(settings?.Instrumentations);
+                .AddInstrumentations(settings?.Instrumentations)
+                .ConfigureResource(resourceBuilder => resourceBuilder.AddGrafanaResource(settings));
         }
 
         internal static TracerProviderBuilder AddGrafanaExporter(this TracerProviderBuilder builder, ExporterSettings settings)
