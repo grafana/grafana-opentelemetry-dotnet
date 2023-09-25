@@ -8,9 +8,6 @@ namespace Grafana.OpenTelemetry
     {
         internal const string ResourceKey_DistroName = "telemetry.distro.name";
         internal const string ResourceKey_DistroVersion = "telemetry.distro.version";
-        internal const string ResourceKey_ServiceName = "service.name";
-        internal const string ResourceKey_ServiceVersion = "service.version";
-        internal const string ResourceKey_ServiceInstanceId = "service.instance.id";
         internal const string ResourceKey_DeploymentEnvironment = "deployment.environment";
 
         private GrafanaOpenTelemetrySettings _settings;

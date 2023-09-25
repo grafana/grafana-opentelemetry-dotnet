@@ -6,6 +6,11 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry.Tests
 {
+    /// <summary>
+    /// The upstream `InMemoryExporter` doesn't capture resources.
+    ///
+    /// This implementation adds support for capturing the resource.
+    /// </summary>
     public class InMemoryResourceExporter<T> : BaseExporter<T>
         where T : class
     {
