@@ -14,6 +14,14 @@ namespace Grafana.OpenTelemetry
         internal const string DisableInstrumentationsEnvVarName = "GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS";
         internal const string ServiceNameEnvVarName = "OTEL_SERVICE_NAME";
 
+        // As a workaround, a static random service instance id is initialized and used as default.
+        // This is to avoid different instance ids to be created by provider builders for different
+        // signals.
+        //
+        // This can be removed once the related issue is resolved:
+        // https://github.com/open-telemetry/opentelemetry-dotnet/issues/4871
+        internal static string DefaultServiceInstanceId = Guid.NewGuid().ToString();
+
         /// <summary>
         /// Gets or sets the exporter settings for sending telemetry data to Grafana.
         ///
@@ -53,7 +61,7 @@ namespace Grafana.OpenTelemetry
         ///
         /// This corresponds to the `service.instance.id` resource attribute.
         /// </summary>
-        public string ServiceInstanceId { get; set; } = null;
+        public string ServiceInstanceId { get; set; } = DefaultServiceInstanceId;
 
         /// <summary>
         /// Gets or sets the name of the deployment environment ("staging" or "production").

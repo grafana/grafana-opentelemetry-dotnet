@@ -45,5 +45,14 @@ namespace Grafana.OpenTelemetry.Tests
 
             Assert.Equal(expected, settings.Instrumentations);
         }
+
+        [Fact]
+        public void StableServiceInstanceId()
+        {
+            var settings1 = new GrafanaOpenTelemetrySettings();
+            var settings2 = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(settings1.ServiceInstanceId, settings2.ServiceInstanceId);
+        }
     }
 }
