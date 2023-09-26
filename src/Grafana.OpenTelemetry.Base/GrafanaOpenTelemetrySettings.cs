@@ -50,6 +50,13 @@ namespace Grafana.OpenTelemetry
                 ExporterSettings = new AgentOtlpExporter();
             }
 
+
+            // Activating AWSLambda instrumentation by default causes the provider builder to bail in case certain
+            // Lambda-specific environment variables are missing.
+            //
+            // De-activate it until the related issue is resolved: https://github.com/grafana/app-o11y/issues/378
+            Instrumentations.Remove(Instrumentation.AWSLambda);
+
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
 
             if (!string.IsNullOrEmpty(disableInstrumentations))
