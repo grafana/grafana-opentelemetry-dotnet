@@ -12,7 +12,7 @@ namespace Grafana.OpenTelemetry.Tests
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
         }
 
-        [Fact (Skip = "provider builders crashes on enabling AWSLambda instrumentation by default")]
+        [Fact(Skip = "provider builders crashes on enabling AWSLambda instrumentation by default")]
         public void DefaultInstrumentations()
         {
             var settings = new GrafanaOpenTelemetrySettings();
