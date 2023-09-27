@@ -10,7 +10,7 @@ namespace Grafana.OpenTelemetry
         {
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.AWSLambda",
-                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "OpenTelemetry.Instrumentation.AWSLambda.TracerProviderBuilderExtensions",
                 "AddAWSLambdaConfigurations",
                 new object[] { builder });
         }
