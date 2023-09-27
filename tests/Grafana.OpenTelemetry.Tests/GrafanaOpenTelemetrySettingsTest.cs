@@ -55,5 +55,14 @@ namespace Grafana.OpenTelemetry.Tests
             Assert.False(settings.Instrumentations.Contains(Instrumentation.Process));
             Assert.False(settings.Instrumentations.Contains(Instrumentation.NetRuntime));
         }
+
+        [Fact]
+        public void StableServiceInstanceId()
+        {
+            var settings1 = new GrafanaOpenTelemetrySettings();
+            var settings2 = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(settings1.ServiceInstanceId, settings2.ServiceInstanceId);
+        }
     }
 }
