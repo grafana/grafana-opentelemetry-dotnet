@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net6.0", "net6.0", "{A9FD18
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetcore", "examples\net6.0\aspnetcore\aspnetcore.csproj", "{13045789-1D27-4694-BE88-B20534DD28EC}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-aspnetcore", "docker-compose-aspnetcore\docker-compose-aspnetcore.dcproj", "{A4C41298-ED4F-4A4C-9B18-014986186C71}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-aspnetcore", "docker\docker-compose-aspnetcore\docker-compose-aspnetcore.dcproj", "{A4C41298-ED4F-4A4C-9B18-014986186C71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{E63943FA-D9F6-4DC4-91EE-D0BD0BF8E324}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,5 +59,6 @@ Global
 		{30810D69-3237-4260-93C2-DC601C5AC80F} = {FB0399BE-6925-42B7-8431-C5A6E21DC8EC}
 		{A9FD1876-1DC6-49A8-9E81-A8DD3BBD03F9} = {2DC924CF-282A-446D-B94B-D2931E5C6130}
 		{13045789-1D27-4694-BE88-B20534DD28EC} = {A9FD1876-1DC6-49A8-9E81-A8DD3BBD03F9}
+		{A4C41298-ED4F-4A4C-9B18-014986186C71} = {E63943FA-D9F6-4DC4-91EE-D0BD0BF8E324}
 	EndGlobalSection
 EndGlobal
