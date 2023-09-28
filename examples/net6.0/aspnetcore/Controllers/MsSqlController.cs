@@ -19,6 +19,8 @@ public class MsSqlController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<string>>> Tables()
     {
+        this._db.Open();
+
         using (var command = _db.CreateCommand())
         {
             command.CommandText = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES";
@@ -38,6 +40,8 @@ public class MsSqlController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<string>>> ServerInfo()
     {
+        this._db.Open();
+
         using (var command = _db.CreateCommand())
         {
             command.CommandText = "sp_server_info";
