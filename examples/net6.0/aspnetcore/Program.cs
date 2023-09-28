@@ -16,7 +16,7 @@ builder.Services.AddScoped(
 // MSSQL
 builder.Services.AddTransient(sp =>
 {
-    var connectionString = "Server=mssql,1433;Database=master;User=sa;Password=Password12345%%;";
+    var connectionString = "Server=mssql,1433;Database=master;User=sa;Password=Password12345%%;Encrypt=False;TrustServerCertificate=True";
     return new SqlConnection(connectionString);
 });
 
