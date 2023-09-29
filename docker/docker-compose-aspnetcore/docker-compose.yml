@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  aspnetcore:
+    image: ${DOCKER_REGISTRY-}aspnetcore
+    build:
+      context: ../..
+      dockerfile: examples/net6.0/aspnetcore/Dockerfile
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379:6379"
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+    - ACCEPT_EULA=Y
+    - MSSQL_SA_PASSWORD=Password12345%%
