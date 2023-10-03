@@ -1,0 +1,15 @@
+docker-compose:
+  generator: lgtm
+  files:
+    - ../docker-compose.oats.yml
+input:
+  - path: /api/MsSql/ServerInfo
+expected:
+  traces:
+    - traceql: '{ name =~ "api/MsSql/ServerInfo"}'
+      spans:
+        - name: 'master'
+          attributes:
+            db.system: mssql
+            db.statement_type: StoredProcedure
+            otel.library.name: OpenTelemetry.Instrumentation.SqlClient
