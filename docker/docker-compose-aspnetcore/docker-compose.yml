@@ -6,6 +6,9 @@ services:
     build:
       context: ../..
       dockerfile: examples/net6.0/aspnetcore/Dockerfile
+    depends_on:
+      - redis
+      - mssql
   redis:
     image: redis:7.2
     ports:
