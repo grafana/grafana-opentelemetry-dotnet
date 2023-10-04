@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Grafana.OpenTelemetry;
 using Xunit;
 
@@ -63,6 +64,14 @@ namespace Grafana.OpenTelemetry.Tests
             var settings2 = new GrafanaOpenTelemetrySettings();
 
             Assert.Equal(settings1.ServiceInstanceId, settings2.ServiceInstanceId);
+        }
+
+        [Fact]
+        public void DefaultServiceName()
+        {
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(Assembly.GetEntryAssembly().GetName().Name, settings.ServiceName);
         }
     }
 }

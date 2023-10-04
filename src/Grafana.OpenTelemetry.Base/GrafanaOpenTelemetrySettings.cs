@@ -47,7 +47,7 @@ namespace Grafana.OpenTelemetry
         ///
         /// This corresponds to the `service.name` resource attribute.
         /// </summary>
-        public string ServiceName { get; set; } = Assembly.GetExecutingAssembly().GetName().Name;
+        public string ServiceName { get; set; } = Assembly.GetEntryAssembly().GetName().Name;
 
         /// <summary>
         /// Gets or sets the version of the service to be instrumented.
