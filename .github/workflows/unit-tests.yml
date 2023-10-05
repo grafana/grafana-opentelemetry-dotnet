@@ -33,5 +33,6 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
+    # A dummy environment variable is added, as this forces all tests to run in a separate process.
     - name: Test ${{ matrix.version }}
-      run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll --logger:"console;verbosity=detailed"
+      run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll --logger:"console;verbosity=detailed" -e dummyvar=0
