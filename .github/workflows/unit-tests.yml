@@ -35,4 +35,4 @@ jobs:
 
     # A dummy environment variable is added, as this forces all tests to run in a separate process.
     - name: Test ${{ matrix.version }}
-      run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll --logger:"console;verbosity=detailed" -e dummyvar=0
+      run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll --logger:"console;verbosity=detailed"
