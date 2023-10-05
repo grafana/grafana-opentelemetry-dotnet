@@ -71,7 +71,7 @@ namespace Grafana.OpenTelemetry.Tests
         {
             var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.Equal(Assembly.GetEntryAssembly().GetName().Name, settings.ServiceName);
+            Assert.Equal(Assembly.GetEntryAssembly()?.GetName().Name ?? System.Diagnostics.Process.GetCurrentProcess().ProcessName, settings.ServiceName);
         }
     }
 }
