@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Grafana.OpenTelemetry;
 using Xunit;
 
@@ -10,6 +11,7 @@ namespace Grafana.OpenTelemetry.Tests
         public GrafanaOpenTelemetrySettingsTest()
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ServiceNameEnvVarName, null);
         }
 
         [Fact(Skip = "provider builders crashes on enabling AWSLambda instrumentation by default")]
@@ -63,6 +65,14 @@ namespace Grafana.OpenTelemetry.Tests
             var settings2 = new GrafanaOpenTelemetrySettings();
 
             Assert.Equal(settings1.ServiceInstanceId, settings2.ServiceInstanceId);
+        }
+
+        [Fact]
+        public void DefaultServiceName()
+        {
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(Assembly.GetEntryAssembly()?.GetName().Name ?? System.Diagnostics.Process.GetCurrentProcess().ProcessName, settings.ServiceName);
         }
     }
 }

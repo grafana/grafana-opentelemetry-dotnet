@@ -63,7 +63,7 @@ namespace Grafana.OpenTelemetry
                 options.Endpoint = Endpoint;
             }
 
-            if (Protocol != null)
+            if (Protocol != default)
             {
                 options.Protocol = (OtlpExportProtocol)Protocol;
             }
