@@ -54,7 +54,7 @@ namespace Grafana.OpenTelemetry
         ///
         /// This corresponds to the `service.version` resource attribute.
         /// </summary>
-        public string ServiceVersion { get; set; } = Assembly.GetEntryAssembly()?.GetName().Version.ToString();
+        public string ServiceVersion { get; set; } = Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? "unknown";
 
         /// <summary>
         /// Gets or sets the string id of the service instance.
