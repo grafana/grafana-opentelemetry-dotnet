@@ -5,6 +5,7 @@
     <Description>Full Grafana distribution of OpenTelemetry .NET</Description>
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces</PackageTags>
   </PropertyGroup>
 
   <!--
