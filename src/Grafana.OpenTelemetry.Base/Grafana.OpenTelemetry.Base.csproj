@@ -6,6 +6,7 @@
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces</PackageTags>
+    <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
