@@ -8,6 +8,7 @@
     <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces</PackageTags>
     <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>NUGET.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

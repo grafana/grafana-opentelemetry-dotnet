@@ -7,6 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces</PackageTags>
     <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
+  <PackageReadmeFile>NUGET.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!--
