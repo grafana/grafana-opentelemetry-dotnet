@@ -1,3 +1,8 @@
+//
+// Copyright Grafana Labs
+// SPDX-License-Identifier: Apache-2.0
+//
+
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using StackExchange.Redis;
