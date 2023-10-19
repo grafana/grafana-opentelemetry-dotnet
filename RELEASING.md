@@ -11,12 +11,12 @@ To publish to the Grafana Labs NuGet organization, you must be added as a member
 ## Publication Steps
 
 1. Determine the version to be released, set a tag on `main` via git:
-  * `git checkout main`
-  * `git tag VERSION` where `VERSION` is an appropriate SemVer version
+    * `git checkout main`
+    * `git tag VERSION` where `VERSION` is an appropriate SemVer version
 2. Build both packages:
-  * `dotnet build ./src/Grafana.OpenTelemetry.Base --configuration Release -p:Deterministic=true`
-  * `dotnet build ./src/Grafana.OpenTelemetry --configuration Release -p:Deterministic=true`
+    * `dotnet build ./src/Grafana.OpenTelemetry.Base --configuration Release -p:Deterministic=true`
+    * `dotnet build ./src/Grafana.OpenTelemetry --configuration Release -p:Deterministic=true`
 3. [Open the NuGet package upload page](https://www.nuget.org/packages/manage/upload)
 4. Upload the two packages, checking that fields are populated as expected. The packages will be located at:
-  * `./src/Grafana.OpenTelemetry.Base/bin/Release/Grafana.OpenTelemetry.Base.VERSION.nupkg`
-  * `./src/Grafana.OpenTelemetry/bin/Release/Grafana.OpenTelemetry.VERSION.nupkg`
+    * `./src/Grafana.OpenTelemetry.Base/bin/Release/Grafana.OpenTelemetry.Base.VERSION.nupkg`
+    * `./src/Grafana.OpenTelemetry/bin/Release/Grafana.OpenTelemetry.VERSION.nupkg`
