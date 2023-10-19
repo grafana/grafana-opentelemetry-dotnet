@@ -20,13 +20,13 @@ member by an existing organization administrator.
     * `git checkout main`
     * `git tag VERSION` where `VERSION` is an appropriate SemVer version
 2. Build both packages:
-    * `dotnet build ./src/Grafana.OpenTelemetry.Base --configuration Release 
+    * `dotnet build ./src/Grafana.OpenTelemetry.Base --configuration Release
 -p:Deterministic=true`
-    * `dotnet build ./src/Grafana.OpenTelemetry --configuration Release 
+    * `dotnet build ./src/Grafana.OpenTelemetry --configuration Release
 -p:Deterministic=true`
 3. [Open the NuGet package upload page](
 https://www.nuget.org/packages/manage/upload)
-4. Upload the two packages, checking that fields are populated as expected. 
+4. Upload the two packages, checking that fields are populated as expected.
 The packages will be located at:
     * `./src/Grafana.OpenTelemetry.Base/bin/Release/
 Grafana.OpenTelemetry.Base.VERSION.nupkg`
