@@ -4,6 +4,10 @@
     <TargetFrameworks>net6.0;netstandard2.0;net462</TargetFrameworks>
     <Description>Full Grafana distribution of OpenTelemetry .NET</Description>
     <Nullable>disable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces;Observability;Monitoring</PackageTags>
+    <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <!--
