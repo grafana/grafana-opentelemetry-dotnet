@@ -11,10 +11,13 @@ namespace Grafana.OpenTelemetry.Tests
 {
     public class ReflectionHelperTest
     {
-        internal static int Counter = 0;
-        public static void Increment(int increment)
+        public class TestCounter
         {
-            Counter += increment;
+            internal static int Counter = 0;
+            public static void Increment(int increment)
+            {
+                Counter += increment;
+            }
         }
 
         [Fact]
@@ -22,11 +25,11 @@ namespace Grafana.OpenTelemetry.Tests
         {
             ReflectionHelper.CallStaticMethod(
                 typeof(ReflectionHelperTest).Assembly.GetName().Name,
-                "Grafana.OpenTelemetry.Tests.ReflectionHelperTest",
+                "Grafana.OpenTelemetry.Tests.ReflectionHelperTest.TestCounter",
                 "Increment",
                 new object[] { 4 });
 
-            Assert.Equal(4, Counter);
+            Assert.Equal(4, TestCounter.Counter);
         }
 
         [Fact]

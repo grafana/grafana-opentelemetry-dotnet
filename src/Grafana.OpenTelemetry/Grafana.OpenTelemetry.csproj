@@ -18,10 +18,8 @@
     <ProjectReference Include="../Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj" />
   </ItemGroup>
 
-  <!-- Non-stable instrumentation packages with dependencies -->
+  <!-- Non-stable instrumentation packages with dependencies, both .NET framework and .NET -->
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.0.0-rc9.9" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.1.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.2.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.1" />
@@ -30,10 +28,20 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.5.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.MassTransit" Version="1.0.0-beta.3" />
     <PackageReference Include="OpenTelemetry.Instrumentation.MySqlData" Version="1.0.0-beta.7" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.0.0-rc.3" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.0.0-alpha.3" />
     <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.0.0-rc9.10" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.0.0-rc.12" />
+  </ItemGroup>
+
+  <!-- Non-stable instrumentation packages with dependencies, only .NET -->
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
+  </ItemGroup>
+
+  <!-- Non-stable instrumentation packages with dependencies, only .NET framework -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.0.0-rc9.9" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.0.0-rc.3" />
   </ItemGroup>
 
   <ItemGroup>
