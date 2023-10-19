@@ -48,8 +48,8 @@ namespace Grafana.OpenTelemetry.Tests
 
             var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.False(settings.Instrumentations.Contains(Instrumentation.Process));
-            Assert.False(settings.Instrumentations.Contains(Instrumentation.NetRuntime));
+            Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
+            Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
         }
 
         [Fact]
@@ -59,8 +59,8 @@ namespace Grafana.OpenTelemetry.Tests
 
             var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.False(settings.Instrumentations.Contains(Instrumentation.Process));
-            Assert.False(settings.Instrumentations.Contains(Instrumentation.NetRuntime));
+            Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
+            Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
         }
 
         [Fact]
