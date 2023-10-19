@@ -4,7 +4,7 @@ This project relies on manual steps to publish the libraries in this repo as NuG
 
 MinVer finds the latest tag in the repo commit history and uses the tag as the version when building the libaries and packages.
 
-NuGet treats any package version containg `-alpha`, `-beta`, or `-rc` as a *pre-release* package.
+NuGet treats any package version containing `-alpha`, `-beta`, or `-rc` as a *pre-release* package.
 
 To publish to the Grafana Labs NuGet organization, you must be added as a member by an existing organization administrator.
 
