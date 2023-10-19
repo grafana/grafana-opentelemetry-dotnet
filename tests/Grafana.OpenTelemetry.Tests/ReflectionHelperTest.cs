@@ -13,12 +13,12 @@ namespace Grafana.OpenTelemetry.Tests
     {
         internal static int Counter = 0;
 
-        #pragma warning disable xUnit1013 // Allow public method that's not a [Theory]
+#pragma warning disable xUnit1013 // Allow public method that's not a [Theory]
         public static void Increment(int increment)
         {
             Counter += increment;
         }
-        #pragma warning restore xUnit1013 // Allow public method that's not a [Theory]
+#pragma warning restore xUnit1013 // Allow public method that's not a [Theory]
 
         [Fact]
         public void CallStaticMethod()
