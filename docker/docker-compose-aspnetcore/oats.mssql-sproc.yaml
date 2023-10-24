@@ -1,7 +1,7 @@
 docker-compose:
   generator: lgtm
   files:
-    - ../docker-compose.oats.yml
+    - ./docker-compose.oats.yml
 input:
   - path: /api/MsSql/ServerInfo
 expected:
