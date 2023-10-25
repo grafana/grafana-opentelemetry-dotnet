@@ -3,6 +3,7 @@
 * [About](#about)
 * [Getting Started](#getting-started)
 * [Installation](#getting-started)
+* [Configuration](#configuration)
 * [Supported instrumentations](#supported-instrumentations)
 * [Troubleshooting](#troubleshooting)
 
@@ -88,9 +89,83 @@ specifies what instrumentations are included in the base package.
 ## Configuration
 
 ### Configuring metrics
+
+The distribution can be initialized for metrics by calling the `UseGrafana`
+extension method on the `MeterProviderBuilder`.
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana()
+    .Build();
+```
+
 ### Configuring logs 
+
+The distribution can be initialized for logs by calling the `UseGrafana`
+extension method on the `OpenTelemetryLoggerOptionsExtensions`.
+
+```csharp
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddOpenTelemetry(logging =>
+    {
+        logging.UseGrafana();
+    });
+});
+ 
+var logger = loggerFactory.CreateLogger<Program>();
+```
+
 ### Configuring traces
+
+The distribution can be initialized for traces by calling the `UseGrafana`
+extension method on the `TracerProviderBuilder`.
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .Build();
+```
+
 ### Exporter configuration
+
+#### Sending an agent or collector via OTLP
+
+By default, telemetry data will be sent to a Grafana agent or an OTel collector
+that runs locally via the [default OTLP port for HTTP/Protobuf](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) 
+(4318).
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .Build();
+```
+
+The agent or collector address and protocol can be customized by initializing
+an `AgentOtlpExporter` and setting the attributes `Endpoint` and `Protocol`. 
+
+```csharp
+using var tracerProvider = Sdk.CreatetracerProviderBuilder()
+    .UseGrafana(config => {
+       var agentExporter = new AgentOtlpExporter();
+
+       agentExporter.Endpoint = new Uri("http://grafana-agent:4318");
+
+       config.ExporterSettings = agentExporter;
+    })
+    .Build();
+```
+
+Alternatively, the OTLP endpoint and protocol can be customized via default
+OpenTelemetry environment variables `OTEL_EXPORTER_OTLP_ENDPOINT` and
+`OTEL_EXPORTER_OTLP_PROTOCOL`.
+
+```sh
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://grafana-agent:4318
+export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+```
+
+For further details on environment variables, see the  [OTLP exporter documentation](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpoint-urls-for-otlphttp).
 
 #### Sending data directly to Grafana Cloud via OTLP
 
@@ -111,7 +186,9 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-### Instrumentation library configuration
+### Instrumentation configuration
+
+#### Disabling instrumentations 
 
 By default, all supported instrumentation libraries except `AWSLambda` are
 enabled. Instrumentation libraries can be disabled by removing them from the
@@ -136,7 +213,33 @@ from the table above:
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 ```
 
-### Disable signals
+#### Adding instrumentations
+
+Instrumentations not included in the distribution can easily be added by
+extension methods on the tracer and meter provider.
+
+For example, it is desired to use the `AspNetCore` instrumentation in
+combination with the [base package](#install-the-base-package) (which doesn't
+include the `AspNetCore` package), you can install the `AspNetCore`
+instrumentation library along with the base package.
+
+```sh
+dotnet add package --prerelease Grafana.OpenTelemetry.Base
+dotnet add package --prerelease OpenTelemetry.Instrumentation.AspNetCore
+```
+
+Then, the `AspNetCore` instrumentation can be enabled via the [`AddAspNetCoreInstrumentation`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry.Instrumentation.AspNetCore#step-2-enable-aspnet-core-instrumentation-at-application-startup)
+extension method, alongside the `UseGrafana` method. 
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .AddAspNetCoreInstrumentation();
+```
+
+This way, any other instrumentation library can be added according the
+documentation provided with it.
+
 ### Supported environment variables
 
 | Variable                                  | Example value        | Description |
