@@ -9,10 +9,15 @@
     <DockerServiceName>aspnetcore</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="docker-compose.oats.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="oats.http-get.yaml" />
+    <None Include="oats.http-post.yaml" />
+    <None Include="oats.mssql-query.yaml" />
+    <None Include="oats.mssql-sproc.yaml" />
   </ItemGroup>
 </Project>
