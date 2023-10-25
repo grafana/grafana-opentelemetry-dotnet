@@ -69,7 +69,7 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry
 ```
 
-[The list of supported instrumentations](#supported-instrumentations)
+The list of [supported instrumentations](#supported-instrumentations)
 specifies what instrumentations are included in the full package.
 
 ### Install the base package 
@@ -82,11 +82,14 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
 ```
 
-[The list of supported instrumentations](#supported-instrumentations)
+The list of [supported instrumentations](#supported-instrumentations)
 specifies what instrumentations are included in the base package.
 
 ## Configuration
 
+### Configuring metrics
+### Configuring logs 
+### Configuring traces
 ### Exporter configuration
 
 #### Sending data directly to Grafana Cloud via OTLP
@@ -107,6 +110,38 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     })
     .Build();
 ```
+
+### Instrumentation library configuration
+
+By default, all supported instrumentation libraries except `AWSLambda` are
+enabled. Instrumentation libraries can be disabled by removing them from the
+`Instrumentations` set in the configuration:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.Instrumentations.Remove(Instrumentation.Process);
+        config.Instrumentations.Remove(Instrumentation.NetRuntime);
+    })
+    .Build();
+```
+
+Alternatively, instrumentation libraries can be disabled by the environment
+variable `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`. This variable can be
+populated with a comma-separated list of instrumentation library identifiers
+from the table above:
+
+```sh
+export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
+```
+
+### Disable signals
+### Supported environment variables
+
+| Variable                                  | Example value        | Description |
+| ----------------------------------------- |   ------------------ | ----------- |
+| `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
 
 ## Supported instrumentations
 
@@ -138,29 +173,6 @@ and [minimal](#install-the-base-package) dependencies:
 
 The `AWSLambda` instrumentation is included, but needs to be explicitly
 activated, as activating it in non-AWS scenarios causes errors.
-
-By default, all supported instrumentation libraries are enabled. Instrumentation
-libraries can be disabled by removing them vom the `Instrumentations` set in the
-configuration:
-
-```csharp
-using var tracerProvider = Sdk.CreateMeterProviderBuilder()
-    .UseGrafana(config =>
-    {
-        config.Instrumentations.Remove(Instrumentation.Process);
-        config.Instrumentations.Remove(Instrumentation.NetRuntime);
-    })
-    .Build();
-```
-
-Alternatively, instrumentation libraries can be disabled by the environment
-variable `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`. This variable can be
-populated with a comma-separated list of instrumentation library identifiers
-from the table above:
-
-```sh
-export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
-```
 
 ## Troubleshooting
 
