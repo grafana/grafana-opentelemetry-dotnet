@@ -1,4 +1,4 @@
-# <img src="https://github.com/grafana/grafana/blob/main/public/img/grafana_icon.svg" alt="Grafana Icon" width="45" height=""> Grafana distribution of OpenTelemetry .NET instrumentation <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry Icon" width="45" height="">
+# Grafana distribution of OpenTelemetry .NET instrumentation
 
 * [About](#about)
 * [Getting Started](#getting-started)
