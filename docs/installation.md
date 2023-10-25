@@ -21,6 +21,9 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry
 ```
 
+[The list of supported instrumentations](supported-instrumentations.md)
+specifies what instrumentations are included in the full package.
+
 ## Install the base package 
 
 For installing the distribution with a minimal set of dependencies, add a
@@ -30,3 +33,6 @@ package to your project.
 ```sh
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
 ```
+
+[The list of supported instrumentations](supported-instrumentations.md)
+specifies what instrumentations are included in the base package.
