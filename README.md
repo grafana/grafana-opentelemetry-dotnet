@@ -192,7 +192,9 @@ For details on how to obtain those values, refer to [Send data using
 OpenTelemetry
 Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
 
-Alternatively, these values can be set via the environment variables `GRAFANA_OTLP_CLOUD_ZONE`, `GRAFANA_OTLP_CLOUD_INSTANCE_ID`, and `GRAFANA_OTLP_CLOUD_API_KEY`.
+Alternatively, these values can be set via the environment variables
+`GRAFANA_OTLP_CLOUD_ZONE`, `GRAFANA_OTLP_CLOUD_INSTANCE_ID`, and
+`GRAFANA_OTLP_CLOUD_API_KEY`.
 
 ```sh
 export GRAFANA_OTLP_CLOUD_ZONE=prod-us-east-0
