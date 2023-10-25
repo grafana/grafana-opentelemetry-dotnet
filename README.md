@@ -3,7 +3,7 @@
 * [About](#about)
 * [Getting Started](#getting-started)
 * [Installation](#getting-started)
-* [Supported instrumentation libraries](#supported-instrumentation-libraries)
+* [Supported instrumentations](#supported-instrumentations)
 * [Troubleshooting](#troubleshooting)
 
 ## About
@@ -57,7 +57,7 @@ older Windows-based .NET implementation), except `.NET Framework 3.5`.
 
 Some instrumentations and instrumentation libraries referenced by the
 distribution don't support both .NET and .NET Framework, but only one of them.
-For details, refer to [Supported Instrumentations](supported-instrumentations.md).
+For details, refer to the list of [supported instrumentations](#supported-instrumentations).
 
 ### Install the full package with all available instrumentations
 
@@ -69,7 +69,7 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry
 ```
 
-[The list of supported instrumentations](supported-instrumentations.md)
+[The list of supported instrumentations](#supported-instrumentations)
 specifies what instrumentations are included in the full package.
 
 ### Install the base package 
@@ -82,14 +82,37 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
 ```
 
-[The list of supported instrumentations](supported-instrumentations.md)
+[The list of supported instrumentations](#supported-instrumentations)
 specifies what instrumentations are included in the base package.
+
+## Configuration
+
+### Exporter configuration
+
+#### Sending data directly to Grafana Cloud via OTLP
+
+Given the zone, instance id, and API token, telemetry data can be sent directly
+to the Grafana Cloud without involving an agent or collector:
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ExporterSettings = new CloudOtlpExporter
+        {
+            Zone = "prod-us-east-0",
+            InstanceId = "123456",
+            ApiKey = "a-secret-token"
+        };
+    })
+    .Build();
+```
 
 ## Supported instrumentation libraries
 
 At the moment, the following instrumentations are included in the distribution
-packages with [full](installation.md#install-the-full-package-with-all-available-instrumentations)
-and [minimal](installation.md#install-the-base-package) dependencies:
+packages with [full](#install-the-full-package-with-all-available-instrumentations)
+and [minimal](#install-the-base-package) dependencies:
 
 | Identifier            | Full               | Base               | Library name |
 | --------------------- | ------------------ | ------------------ | ------------ |
