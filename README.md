@@ -73,7 +73,7 @@ dotnet add package --prerelease Grafana.OpenTelemetry
 The list of [supported instrumentations](#supported-instrumentations)
 specifies what instrumentations are included in the full package.
 
-### Install the base package 
+### Install the base package
 
 For installing the distribution with a minimal set of dependencies, add a
 reference to the [`Grafana.OpenTelemetry.Base`](https://www.nuget.org/packages/Grafana.OpenTelemetry.Base)
@@ -99,7 +99,7 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
     .Build();
 ```
 
-### Configuring logs 
+### Configuring logs
 
 The distribution can be initialized for logs by calling the `UseGrafana`
 extension method on the `OpenTelemetryLoggerOptionsExtensions`.
@@ -112,7 +112,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
         logging.UseGrafana();
     });
 });
- 
+
 var logger = loggerFactory.CreateLogger<Program>();
 ```
 
@@ -132,7 +132,8 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 #### Sending to an agent or collector via OTLP
 
 By default, telemetry data will be sent to a Grafana agent or an OTel collector
-that runs locally via the [default OTLP port for HTTP/Protobuf](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) 
+that runs locally via the [default OTLP port for
+HTTP/Protobuf](https://opentelemetry.io/docs/specs/otel/protocol/exporter/)
 (4318).
 
 ```csharp
@@ -142,7 +143,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 ```
 
 The agent or collector address and protocol can be customized by initializing
-an `AgentOtlpExporter` and setting the attributes `Endpoint` and `Protocol`. 
+an `AgentOtlpExporter` and setting the attributes `Endpoint` and `Protocol`.
 
 ```csharp
 using var tracerProvider = Sdk.CreatetracerProviderBuilder()
@@ -165,7 +166,8 @@ export OTEL_EXPORTER_OTLP_ENDPOINT=http://grafana-agent:4318
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 ```
 
-For further details on environment variables, see the  [OTLP exporter documentation](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpoint-urls-for-otlphttp).
+For further details on environment variables, see the  [OTLP exporter
+documentation](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpoint-urls-for-otlphttp).
 
 #### Sending data directly to Grafana Cloud via OTLP
 
@@ -186,7 +188,9 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-For details on how to obtain those values, refer to [Send data using OpenTelemetry Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
+For details on how to obtain those values, refer to [Send data using
+OpenTelemetry
+Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
 
 Alternatively, these values can be set via the environment variables `GRAFANA_OTLP_CLOUD_ZONE`, `GRAFANA_OTLP_CLOUD_INSTANCE_ID`, and `GRAFANA_OTLP_CLOUD_API_KEY`.
 
@@ -198,7 +202,7 @@ export GRAFANA_OTLP_CLOUD_API_KEY=a-secret-token
 
 ### Instrumentation configuration
 
-#### Disabling instrumentations 
+#### Disabling instrumentations
 
 By default, all supported instrumentation libraries except `AWSLambda` are
 enabled. Instrumentation libraries can be disabled by removing them from the
@@ -239,7 +243,7 @@ dotnet add package --prerelease OpenTelemetry.Instrumentation.AspNetCore
 ```
 
 Then, the `AspNetCore` instrumentation can be enabled via the [`AddAspNetCoreInstrumentation`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry.Instrumentation.AspNetCore#step-2-enable-aspnet-core-instrumentation-at-application-startup)
-extension method, alongside the `UseGrafana` method. 
+extension method, alongside the `UseGrafana` method.
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
