@@ -108,7 +108,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-## Supported instrumentation libraries
+## Supported instrumentations
 
 At the moment, the following instrumentations are included in the distribution
 packages with [full](#install-the-full-package-with-all-available-instrumentations)
