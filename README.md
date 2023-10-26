@@ -250,7 +250,8 @@ extension method, alongside the `UseGrafana` method.
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .UseGrafana()
-    .AddAspNetCoreInstrumentation();
+    .AddAspNetCoreInstrumentation()
+    .Build();
 ```
 
 This way, any other instrumentation library can be added according the
