@@ -88,6 +88,20 @@ specifies what instrumentations are included in the base package.
 
 ## Configuration
 
+* [Configuring metrics](#configuring-metrics)
+* [Configuring logs](#configuring-logs)
+* [Configuring traces](#configuring-traces)
+* [Exporter configuration](#exporter-configuration)
+  - [Sending to an agent or collector via OTLP](#sending-to-an-agent-or-collector-via-otlp)
+  - [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
+* [Instrumentation configuration](#instrumentation-configuration)
+  - [Disabling instrumentations](#disabling-instrumentations)
+  - [Adding instrumentations](#adding-instrumentations)
+  - [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
+    * [ASP.NET (`AspNet`)](#aspnet-aspnet)
+    * [OWIN (`Owin`)](#owin-owin)
+* [Supported environment variables](#supported-environment-variables)
+
 ### Configuring metrics
 
 The distribution can be initialized for metrics by calling the `UseGrafana`
