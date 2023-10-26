@@ -1,4 +1,4 @@
-name: markdownlint
+name: markdown-link-check
 
 on:
   push:
