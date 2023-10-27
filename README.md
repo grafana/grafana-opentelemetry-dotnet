@@ -88,6 +88,20 @@ specifies what instrumentations are included in the base package.
 
 ## Configuration
 
+* [Configuring metrics](#configuring-metrics)
+* [Configuring logs](#configuring-logs)
+* [Configuring traces](#configuring-traces)
+* [Exporter configuration](#exporter-configuration)
+  * [Sending to an agent or collector via OTLP](#sending-to-an-agent-or-collector-via-otlp)
+  * [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
+* [Instrumentation configuration](#instrumentation-configuration)
+  * [Disabling instrumentations](#disabling-instrumentations)
+  * [Adding instrumentations](#adding-instrumentations)
+  * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
+    * [ASP.NET (`AspNet`)](#aspnet-aspnet)
+    * [OWIN (`Owin`)](#owin-owin)
+* [Supported environment variables](#supported-environment-variables)
+
 ### Configuring metrics
 
 The distribution can be initialized for metrics by calling the `UseGrafana`
@@ -256,6 +270,50 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 This way, any other instrumentation library can be added according the
 documentation provided with it.
+
+#### Extra steps to activate specific instrumentations
+
+##### ASP.NET (`AspNet`)
+
+To active ASP.NET instrumentation, it is necessary to add an additional HTTP
+module `OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule` to the web
+server. This module is shipped as dependency of the
+`OpenTelemetry.Instrumentation.AspNet` package. When using the IIS web server,
+the following changes to `Web.config` are required.
+
+```xml
+<system.webServer>
+  <modules>
+    <add name="TelemetryHttpModule"
+         type="OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule,
+               OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule"
+         preCondition="integratedMode,managedHandler" />
+  </modules>
+</system.webServer>
+```
+
+Refer to the [upstream
+documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.AspNet#step-2-modify-webconfig)
+for further details.
+
+##### OWIN (`Owin`)
+
+To activate OWIN instrumentation, it is necessary to register the OpenTelemetry
+middleware by calling `UseOpenTelemetry` on the `IAppBuilder`. This should be
+done before registering any other middleware.
+
+```csharp
+using var host = WebApp.Start(
+    "http://localhost:9000",
+    appBuilder =>
+    {
+        appBuilder.UseOpenTelemetry();
+    });
+```
+
+Refer to the [upstream
+documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Owin#step-2-configure-owin-middleware)
+for further details.
 
 ### Supported environment variables
 
