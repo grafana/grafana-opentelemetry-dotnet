@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using OpenTelemetry.Resources;
@@ -30,7 +31,7 @@ namespace Grafana.OpenTelemetry
             {
                 new KeyValuePair<string, object>(ResourceKey_DistroName, assembly.GetName().Name),
                 new KeyValuePair<string, object>(ResourceKey_DistroVersion, assembly.GetName().Version.ToString()),
-                new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, assembly.GetName().Version.ToString()),
+                new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
             });
         }
     }
