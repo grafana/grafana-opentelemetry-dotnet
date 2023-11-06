@@ -18,8 +18,8 @@ namespace Grafana.OpenTelemetry.Tests
             var resource = new GrafanaOpenTelemetryResourceDetector(settings).Detect();
             var resourceAttributes = new Dictionary<string, object>();
 
-            foreach (var attribute in resource.Attributes) 
-            { 
+            foreach (var attribute in resource.Attributes)
+            {
                 resourceAttributes[attribute.Key] = attribute.Value;
             }
 
@@ -35,8 +35,8 @@ namespace Grafana.OpenTelemetry.Tests
             var resource = new GrafanaOpenTelemetryResourceDetector(settings).Detect();
             var resourceAttributes = new Dictionary<string, object>();
 
-            foreach (var attribute in resource.Attributes) 
-            { 
+            foreach (var attribute in resource.Attributes)
+            {
                 resourceAttributes[attribute.Key] = attribute.Value;
             }
 
@@ -52,8 +52,8 @@ namespace Grafana.OpenTelemetry.Tests
             var resource = new GrafanaOpenTelemetryResourceDetector(settings).Detect();
             var resourceAttributes = new Dictionary<string, object>();
 
-            foreach (var attribute in resource.Attributes) 
-            { 
+            foreach (var attribute in resource.Attributes)
+            {
                 resourceAttributes[attribute.Key] = attribute.Value;
             }
 
