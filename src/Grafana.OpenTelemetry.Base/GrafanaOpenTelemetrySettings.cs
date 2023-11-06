@@ -117,6 +117,17 @@ namespace Grafana.OpenTelemetry
             {
                 ServiceName = serviceName;
             }
+
+            // Set deployment environment from known environment variables.
+            foreach (var envVarName in new string[] { "DOTNET_ENVIRONMENT", "ASPNETCORE_ENVIRONMENT" })
+            {
+                var deploymentEnvironment = Environment.GetEnvironmentVariable(envVarName);
+
+                if (deploymentEnvironment != null)
+                {
+                    DeploymentEnvironment = deploymentEnvironment.ToLower();
+                }
+            }
         }
     }
 }
