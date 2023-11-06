@@ -127,7 +127,7 @@ namespace Grafana.OpenTelemetry
                 {
                     DeploymentEnvironment = deploymentEnvironment.ToLower();
                 }
-	    }
+            }
         }
     }
 }
