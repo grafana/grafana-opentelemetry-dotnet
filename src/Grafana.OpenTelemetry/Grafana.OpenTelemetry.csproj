@@ -27,6 +27,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- This dependency is pulled in by `OpenTelemetry.Instrumentation.Cassandra` with a minimum
+       version of 3.16.0. We change this to 3.17.0, as the previous versions have dependency
+       requirements that conflict with recent .NET package versions. -->
+  <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="[3.17.0,)" />
+  </ItemGroup>
+
   <!-- Stable instrumentation packages with dependencies, only .NET -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.6.0" /> <!-- needed for AspNetCore -->
