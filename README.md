@@ -318,9 +318,13 @@ for further details.
 
 ### Custom configuration
 
-The distribution is designed to be easily extensible with components that it doesn't contain. This can be done by invoking additional extension methods on any of the provider builders in addition to the `UseGrafana` extension method.
+The distribution is designed to be easily extensible with components that it
+doesn't contain. This can be done by invoking additional extension methods on
+any of the provider builders in addition to the `UseGrafana` extension method.
 
-The example below initializes the distribution with default settings, but additionally also initializes a console exporter which prints traces to the console.
+The example below initializes the distribution with default settings, but
+additionally also initializes a console exporter which prints traces to the
+console.
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -329,7 +333,8 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-In the same way it is possible to add additional instrumentation libraries that are not contained in the distribution.
+In the same way it is possible to add additional instrumentation libraries that
+are not contained in the distribution.
 
 ### Supported environment variables
 
