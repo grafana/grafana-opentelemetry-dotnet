@@ -1,7 +1,15 @@
+<p align="center">
+  <a href="https://grafana.com/">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Grafana_icon.svg" alt="Grafana logo" height="50" />
+    <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry logo" width="50"/>
+  </a>
+</p>
+
 # Grafana distribution of OpenTelemetry .NET instrumentation
 
-[![Slack](https://img.shields.io/badge/join%20slack-%23application-observability-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
+[![Slack](https://img.shields.io/badge/join%20slack-%23application--observability-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 [![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
+[![SDK](https://img.shields.io/badge/otel--sdk-1.6.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml)
 
 * [About](#about)
@@ -14,7 +22,7 @@
 
 ## About
 
-This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet),
+This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet-contrib),
 optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
 ## Getting Started
