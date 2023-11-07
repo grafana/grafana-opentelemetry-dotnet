@@ -101,6 +101,7 @@ specifies what instrumentations are included in the base package.
   * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
     * [ASP.NET (`AspNet`)](#aspnet-aspnet)
     * [OWIN (`Owin`)](#owin-owin)
+* [Custom configuration](#custom-configuration)
 * [Supported environment variables](#supported-environment-variables)
 
 ### Configuring metrics
@@ -330,6 +331,26 @@ using var host = WebApp.Start(
 Refer to the [upstream
 documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Owin#step-2-configure-owin-middleware)
 for further details.
+
+### Custom configuration
+
+The distribution is designed to be easily extensible with components that it
+doesn't contain. This can be done by invoking additional extension methods on
+any of the provider builders in addition to the `UseGrafana` extension method.
+
+The example below initializes the distribution with default settings, but
+additionally also initializes a console exporter which prints traces to the
+console.
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .AddConsoleExporter()
+    .Build();
+```
+
+In the same way it is possible to add additional instrumentation libraries that
+are not contained in the distribution.
 
 ### Supported environment variables
 
