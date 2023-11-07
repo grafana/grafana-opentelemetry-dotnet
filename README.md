@@ -1,16 +1,21 @@
 # Grafana distribution of OpenTelemetry .NET instrumentation
 
+[![Slack](https://img.shields.io/badge/join%20slack-%23application-observability-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
+[![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
+[![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml)
+
 * [About](#about)
 * [Getting Started](#getting-started)
 * [Installation](#getting-started)
 * [Configuration](#configuration)
 * [Supported instrumentations](#supported-instrumentations)
 * [Troubleshooting](#troubleshooting)
+# [Community](#community)
 
 ## About
 
-This is a pre-configured and pre-packaged bundle of OpenTelemetry .NET
-components, optimized for the Grafana Stack.
+This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet),
+optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
 ## Getting Started
 
@@ -373,3 +378,14 @@ the following content:
 ```
 
 To disable self-diagnostics, delete the above file.
+
+## Community
+
+To engage with the Grafana Application Observability community:
+
+* Chat with us on our community Slack channel. To invite yourself to the
+  Grafana Slack, visit [https://slack.grafana.com/](https://slack.grafana.com)
+  and join the `#application-observability` channel.
+* Ask questions on the [Discussions page](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions).
+* [File an issue](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new)
+  for bugs, issues, and feature suggestions.
