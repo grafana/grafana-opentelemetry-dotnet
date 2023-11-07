@@ -91,6 +91,7 @@ specifies what instrumentations are included in the base package.
 * [Configuring metrics](#configuring-metrics)
 * [Configuring logs](#configuring-logs)
 * [Configuring traces](#configuring-traces)
+* [ASP.NET Core](#aspnet-core)
 * [Exporter configuration](#exporter-configuration)
   * [Sending to an agent or collector via OTLP](#sending-to-an-agent-or-collector-via-otlp)
   * [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
@@ -139,6 +140,21 @@ extension method on the `TracerProviderBuilder`.
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .UseGrafana()
     .Build();
+```
+
+### ASP.NET Core
+
+For ASP.NET Core applications, a `UseGrafana` extension method is provided on
+the `IServiceCollection`. Invoking this extension method configures both traces
+and metrics.
+
+Logging can be set up using the `ILoggingBuilder`, as described in [Configuring logs](#configuring-logs).
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddOpenTelemetry().UseGrafana();
+builder.Logging.AddOpenTelemetry(logging => logging.UseGrafana());
 ```
 
 ### Exporter configuration
