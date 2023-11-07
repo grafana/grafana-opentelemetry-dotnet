@@ -1,14 +1,15 @@
+<!-- markdownlint-disable -->
 <p>
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Grafana_icon.svg" alt="Grafana logo" height="70"/ >
   <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry logo" width="70"/ >
 </p>
+<!-- markdownlint-enable -->
 
-# Grafana distribution of OpenTelemetry .NET instrumentation
+# Grafana OpenTelemetry distribution for .NET
 
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml)
 [![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
 [![SDK](https://img.shields.io/badge/otel--sdk-1.6.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
-[![Slack](https://img.shields.io/badge/join%20slack-%23app--o11y-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 
 * [About](#about)
 * [Getting Started](#getting-started)
@@ -16,7 +17,6 @@
 * [Configuration](#configuration)
 * [Supported instrumentations](#supported-instrumentations)
 * [Troubleshooting](#troubleshooting)
-* [Community](#community)
 
 ## About
 
@@ -384,14 +384,3 @@ the following content:
 ```
 
 To disable self-diagnostics, delete the above file.
-
-## Community
-
-To engage with the Grafana Application Observability community:
-
-* Chat with us on our community Slack channel. To invite yourself to the
-  Grafana Slack, visit [https://slack.grafana.com/](https://slack.grafana.com)
-  and join the `#application-observability` channel.
-* Ask questions on the [Discussions page](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions).
-* [File an issue](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new)
-  for bugs, issues, and feature suggestions.
