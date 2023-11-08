@@ -10,7 +10,7 @@
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml)
 [![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
 [![SDK](https://img.shields.io/badge/otel--sdk-1.6.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
-[![Slack](https://img.shields.io/badge/join%20slack-%23application--observability-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
+[![Slack](https://img.shields.io/badge/join%20slack-%23app--o11y-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 
 ## About
 
