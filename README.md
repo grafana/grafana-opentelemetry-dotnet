@@ -77,6 +77,7 @@ the following content:
     "LogLevel": "Warning"
 }
 ```
+
 To disable self-diagnostics, delete the above file.
 
 ## Community
