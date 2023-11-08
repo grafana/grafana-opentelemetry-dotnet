@@ -17,9 +17,9 @@ namespace Grafana.OpenTelemetry
     /// </summary>
     public class CloudOtlpExporter : ExporterSettings
     {
-        internal const string ZoneEnvVarName = "GRAFANA_OTLP_CLOUD_ZONE";
-        internal const string InstanceIdEnvVarName = "GRAFANA_OTLP_CLOUD_INSTANCE_ID";
-        internal const string ApiKeyEnvVarName = "GRAFANA_OTLP_CLOUD_API_KEY";
+        internal const string ZoneEnvVarName = "GRAFANA_CLOUD_ZONE";
+        internal const string InstanceIdEnvVarName = "GRAFANA_CLOUD_INSTANCE_ID";
+        internal const string ApiKeyEnvVarName = "GRAFANA_CLOUD_API_KEY";
 
         /// <summary>
         /// Gets or sets the zone of the Grafana Cloud stack.

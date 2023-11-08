@@ -224,13 +224,13 @@ OpenTelemetry
 Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
 
 Alternatively, these values can be set via the environment variables
-`GRAFANA_OTLP_CLOUD_ZONE`, `GRAFANA_OTLP_CLOUD_INSTANCE_ID`, and
-`GRAFANA_OTLP_CLOUD_API_KEY`.
+`GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and
+`GRAFANA_CLOUD_API_KEY`.
 
 ```sh
-export GRAFANA_OTLP_CLOUD_ZONE=prod-us-east-0
-export GRAFANA_OTLP_CLOUD_INSTANCE_ID=123456
-export GRAFANA_OTLP_CLOUD_API_KEY=a-secret-token
+export GRAFANA_CLOUD_ZONE=prod-us-east-0
+export GRAFANA_CLOUD_INSTANCE_ID=123456
+export GRAFANA_CLOUD_API_KEY=a-secret-token
 ```
 
 ### Instrumentation configuration
@@ -357,9 +357,9 @@ are not contained in the distribution.
 | Variable                                  | Example value        | Description |
 | ----------------------------------------- |   ------------------ | ----------- |
 | `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
-| `GRAFANA_OTLP_CLOUD_ZONE`                 | "prod-us-east-0"     | Zone of the Grafana Cloud stack to send data to. |
-| `GRAFANA_OTLP_CLOUD_INSTANCE_ID`          | "123456"             | Instance id of the Grafana Cloud stack to send data to. |
-| `GRAFANA_OTLP_CLOUD_API_KEY`              |                      | API key of the Grafana Cloud Stack to send data to. |
+| `GRAFANA_CLOUD_ZONE`                      | "prod-us-east-0"     | Zone of the Grafana Cloud stack to send data to. |
+| `GRAFANA_CLOUD_INSTANCE_ID`               | "123456"             | Instance id of the Grafana Cloud stack to send data to. |
+| `GRAFANA_CLOUD_API_KEY`                   |                      | API key of the Grafana Cloud Stack to send data to. |
 
 ## Supported instrumentations
 
