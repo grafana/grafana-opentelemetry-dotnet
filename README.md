@@ -19,6 +19,9 @@
 This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet-contrib),
 optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
+It requires only minimal setup and configuration and makes it very easy to emit
+OpenTelemetry traces, logs, and metrics from your .NET application.
+
 ## Getting Started
 
 ### Step 1: Install package
@@ -36,22 +39,37 @@ dotnet add package --prerelease Grafana.OpenTelemetry
 The `UseGrafana` extension method on the `TracerProviderBuilder` or the
 `MetricProviderBuilder` can be used to set up the Grafana distribution. By
 default, telemetry data will be sent to a Grafana agent or an OTel collector
-that runs locally and listens to default OTLP ports:
+that runs locally and listens to default OTLP ports.
+
+Given the zone, instance id, and API token, telemetry data can be sent directly
+to the Grafana Cloud without involving an agent or collector:
 
 ```csharp
-using OpenTelemetry;
-using OpenTelemetry.Trace;
-using Grafana.OpenTelemetry;
-
-public class Program
-{
-    public static void Main(string[] args)
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana(config =>
     {
-        using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-            .UseGrafana()
-            .Build();
-    }
-}
+        config.ExporterSettings = new CloudOtlpExporter
+        {
+            Zone = "prod-us-east-0",
+            InstanceId = "123456",
+            ApiKey = "a-secret-token"
+        };
+    })
+    .Build();
+```
+
+For details on how to obtain those values, refer to [Send data using
+OpenTelemetry
+Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
+
+Alternatively, these values can be set via the environment variables
+`GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and
+`GRAFANA_CLOUD_API_KEY`.
+
+```sh
+export GRAFANA_CLOUD_ZONE=prod-us-east-0
+export GRAFANA_CLOUD_INSTANCE_ID=123456
+export GRAFANA_CLOUD_API_KEY=a-secret-token
 ```
 
 ## Documentation
