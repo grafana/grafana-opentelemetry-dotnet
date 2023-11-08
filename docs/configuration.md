@@ -1,4 +1,4 @@
-## Configuration
+# Configuring the Grafana OpenTelemetry distribution for .NET
 
 * [Configuring metrics](#configuring-metrics)
 * [Configuring logs](#configuring-logs)
@@ -16,7 +16,7 @@
 * [Custom configuration](#custom-configuration)
 * [Supported environment variables](#supported-environment-variables)
 
-### Configuring metrics
+## Configuring metrics
 
 The distribution can be initialized for metrics by calling the `UseGrafana`
 extension method on the `MeterProviderBuilder`.
@@ -27,7 +27,7 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
     .Build();
 ```
 
-### Configuring logs
+## Configuring logs
 
 The distribution can be initialized for logs by calling the `UseGrafana`
 extension method on the `OpenTelemetryLoggerOptionsExtensions`.
@@ -44,7 +44,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
 var logger = loggerFactory.CreateLogger<Program>();
 ```
 
-### Configuring traces
+## Configuring traces
 
 The distribution can be initialized for traces by calling the `UseGrafana`
 extension method on the `TracerProviderBuilder`.
@@ -55,7 +55,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-### ASP.NET Core
+## ASP.NET Core
 
 For ASP.NET Core applications, a `UseGrafana` extension method is provided on
 the `IServiceCollection`. Invoking this extension method configures both traces
@@ -70,9 +70,9 @@ builder.Services.AddOpenTelemetry().UseGrafana();
 builder.Logging.AddOpenTelemetry(logging => logging.UseGrafana());
 ```
 
-### Exporter configuration
+## Exporter configuration
 
-#### Sending to an agent or collector via OTLP
+### Sending to an agent or collector via OTLP
 
 By default, telemetry data will be sent to a Grafana agent or an OTel collector
 that runs locally via the [default OTLP port for
@@ -112,7 +112,7 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 For further details on environment variables, see the  [OTLP exporter
 documentation](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpoint-urls-for-otlphttp).
 
-#### Sending data directly to Grafana Cloud via OTLP
+### Sending data directly to Grafana Cloud via OTLP
 
 Given the zone, instance id, and API token, telemetry data can be sent directly
 to the Grafana Cloud without involving an agent or collector:
@@ -145,9 +145,9 @@ export GRAFANA_CLOUD_INSTANCE_ID=123456
 export GRAFANA_CLOUD_API_KEY=a-secret-token
 ```
 
-### Instrumentation configuration
+## Instrumentation configuration
 
-#### Disabling instrumentations
+### Disabling instrumentations
 
 By default, all supported instrumentation libraries except `AWSLambda` are
 enabled. Instrumentation libraries can be disabled by removing them from the
@@ -172,7 +172,7 @@ from the table above:
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 ```
 
-#### Adding instrumentations
+### Adding instrumentations
 
 Instrumentations not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
@@ -200,9 +200,9 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 This way, any other instrumentation library can be added according the
 documentation provided with it.
 
-#### Extra steps to activate specific instrumentations
+### Extra steps to activate specific instrumentations
 
-##### ASP.NET (`AspNet`)
+#### ASP.NET (`AspNet`)
 
 To active ASP.NET instrumentation, it is necessary to add an additional HTTP
 module `OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule` to the web
@@ -225,7 +225,7 @@ Refer to the [upstream
 documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.AspNet#step-2-modify-webconfig)
 for further details.
 
-##### OWIN (`Owin`)
+#### OWIN (`Owin`)
 
 To activate OWIN instrumentation, it is necessary to register the OpenTelemetry
 middleware by calling `UseOpenTelemetry` on the `IAppBuilder`. This should be
@@ -244,7 +244,7 @@ Refer to the [upstream
 documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Owin#step-2-configure-owin-middleware)
 for further details.
 
-### Custom configuration
+## Custom configuration
 
 The distribution is designed to be easily extensible with components that it
 doesn't contain. This can be done by invoking additional extension methods on
@@ -264,7 +264,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 In the same way it is possible to add additional instrumentation libraries that
 are not contained in the distribution.
 
-### Supported environment variables
+## Supported environment variables
 
 | Variable                                  | Example value        | Description |
 | ----------------------------------------- |   ------------------ | ----------- |

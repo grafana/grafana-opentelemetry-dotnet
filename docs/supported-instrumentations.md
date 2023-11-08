@@ -1,4 +1,4 @@
-## Supported instrumentations
+# Supported instrumentations
 
 At the moment, the following instrumentations are included in the distribution
 packages with [full](./installation.md#install-the-full-package-with-all-available-instrumentations)
