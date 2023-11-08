@@ -87,7 +87,7 @@ To engage with the Grafana Application Observability community:
 * Chat with us on our community Slack channel. To invite yourself to the
   Grafana Slack, visit [https://slack.grafana.com/](https://slack.grafana.com)
   and join the [#application-observability](https://grafana.slack.com/archives/C05E87XRK3J)
-channel.
+  channel.
 * Ask questions on the [Discussions page](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions).
 * [File an issue](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new)
   for bugs, issues, and feature suggestions.
