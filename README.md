@@ -10,6 +10,7 @@
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml)
 [![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
 [![SDK](https://img.shields.io/badge/otel--sdk-1.6.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
+[![Slack](https://img.shields.io/badge/join%20slack-%23app--o11y-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 
 ## About
 
@@ -78,3 +79,15 @@ the following content:
 ```
 
 To disable self-diagnostics, delete the above file.
+
+## Community
+
+To engage with the Grafana Application Observability community:
+
+* Chat with us on our community Slack channel. To invite yourself to the
+  Grafana Slack, visit [https://slack.grafana.com/](https://slack.grafana.com)
+  and join the [#application-observability](https://grafana.slack.com/archives/C05E87XRK3J)
+  channel.
+* Ask questions on the [Discussions page](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions).
+* [File an issue](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new)
+  for bugs, issues, and feature suggestions.
