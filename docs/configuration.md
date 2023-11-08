@@ -178,9 +178,9 @@ Instrumentations not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
 
 For example, it is desired to use the `AspNetCore` instrumentation in
-combination with the [base package](./installation.md#install-the-base-package) (which doesn't
-include the `AspNetCore` package), you can install the `AspNetCore`
-instrumentation library along with the base package.
+combination with the [base package](./installation.md#install-the-base-package)
+(which doesn't include the `AspNetCore` package), you can install the
+`AspNetCore` instrumentation library along with the base package.
 
 ```sh
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
