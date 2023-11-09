@@ -12,18 +12,8 @@ namespace AspNetExample
 {
     public partial class Startup
     {
-        private static MeterProvider meterProvider;
-        private static TracerProvider traceProvider;
-
         public void Configuration(IAppBuilder app)
         {
-            meterProvider = Sdk.CreateMeterProviderBuilder()
-                .UseGrafana()
-                .Build();
-            traceProvider = Sdk.CreateTracerProviderBuilder()
-                .UseGrafana()
-                .Build();
-
             app.UseOpenTelemetry();
 
             app.Use(async (ctx, next) =>
