@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 <p>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Grafana_icon.svg" alt="Grafana logo" height="70"/ >
+  <img src="internal/img/Grafana_icon.png" alt="Grafana logo" height="70"/ >
   <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry logo" width="70"/ >
 </p>
 <!-- markdownlint-enable -->
