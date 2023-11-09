@@ -25,7 +25,7 @@ namespace Grafana.OpenTelemetry
         {
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.AspNet",
-                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
                 "AddAspNetInstrumentation",
                 new object[] { builder });
         }
