@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "aspnetcore": "StartDebugging",
-        "aspnet": "StartDebugging"
+        "aspnet": "StartDebugging",
+        "aspnetexample": "StartDebugging"
       }
     }
   }
