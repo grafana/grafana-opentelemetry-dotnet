@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Populate `telemetry.distro.version` with the readable file version.
+* Improve accuracy of resource attributes `telemetry.distro.name` and `telemetry.distro.version`.
 
 ## 0.6.0-beta.1
 
