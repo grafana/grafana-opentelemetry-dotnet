@@ -16,7 +16,7 @@ namespace Grafana.OpenTelemetry
         internal const string ResourceKey_DistroName = "telemetry.distro.name";
         internal const string ResourceKey_DistroVersion = "telemetry.distro.version";
         internal const string ResourceKey_DeploymentEnvironment = "deployment.environment";
-	internal const string ResourceValue_DistroName = "grafana-opentelemetry-dotnet";
+        internal const string ResourceValue_DistroName = "grafana-opentelemetry-dotnet";
 
         private GrafanaOpenTelemetrySettings _settings;
 
