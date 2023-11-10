@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using OpenTelemetry.Resources;
 
@@ -15,6 +16,7 @@ namespace Grafana.OpenTelemetry
         internal const string ResourceKey_DistroName = "telemetry.distro.name";
         internal const string ResourceKey_DistroVersion = "telemetry.distro.version";
         internal const string ResourceKey_DeploymentEnvironment = "deployment.environment";
+        internal const string ResourceValue_DistroName = "grafana-opentelemetry-dotnet";
 
         private GrafanaOpenTelemetrySettings _settings;
 
@@ -29,8 +31,8 @@ namespace Grafana.OpenTelemetry
 
             return new Resource(new KeyValuePair<string, object>[]
             {
-                new KeyValuePair<string, object>(ResourceKey_DistroName, assembly.GetName().Name),
-                new KeyValuePair<string, object>(ResourceKey_DistroVersion, assembly.GetName().Version.ToString()),
+                new KeyValuePair<string, object>(ResourceKey_DistroName, ResourceValue_DistroName),
+                new KeyValuePair<string, object>(ResourceKey_DistroVersion, FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion),
                 new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
             });
         }

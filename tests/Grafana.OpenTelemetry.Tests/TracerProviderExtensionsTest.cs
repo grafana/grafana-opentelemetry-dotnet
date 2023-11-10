@@ -52,7 +52,7 @@ namespace Grafana.OpenTelemetry.Tests
                 resourceTags.Add(tag.Key, (string)tag.Value);
             }
 
-            Assert.Equal("Grafana.OpenTelemetry.Base", resourceTags["telemetry.distro.name"]);
+            Assert.Equal("grafana-opentelemetry-dotnet", resourceTags["telemetry.distro.name"]);
             Assert.NotNull(resourceTags["telemetry.distro.version"]);
 
             Assert.NotNull(resourceTags["service.name"]);
