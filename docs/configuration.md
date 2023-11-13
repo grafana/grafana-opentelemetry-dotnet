@@ -132,6 +132,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 ```
 
 Follow the following steps to obtain the zone, instance id, and an API token:
+
 1. Click **Details** in the **Grafana** section on
    <https://grafana.com/profile/org>.
 2. You will see values for **Instance ID** and **Zone** on this page.
