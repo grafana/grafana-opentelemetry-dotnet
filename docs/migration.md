@@ -16,7 +16,8 @@ previously set environment variables:
 [listed here](./supported-instrumentations.md)
 - Add `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to opt-in to the
 latest HTTP semantic conventions
-- [Add the recommended OpenTelemetry resource attributes](https://grafana.com/docs/opentelemetry/instrumentation/configuration/resource-attributes/)
+- [Add the recommended OpenTelemetry resource attributes](https://grafana.com/docs/opentelemetry/instrumentation/configuration/resource-attributes/) via the
+`OTEL_RESOURCE_ATTRIBUTES` environment variable
   - `service.name`
   - `service.namespace`
   - `service.instance.id`
