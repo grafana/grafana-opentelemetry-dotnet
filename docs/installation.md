@@ -44,19 +44,19 @@ specifies what instrumentations are included in the base package.
 
 ## Minimizing unneeded dependencies
 
-Users might utilize some instrumentation libraries the [full package](#install-the-full-package)
+Users might utilize some instrumentation libraries the [full package](#install-the-full-package-with-all-available-instrumentations)
 contains, while other contained libraries will not be needed. However, the
-[full package](#install-the-full-package) still pulls in those
+[full package](#install-the-full-package-with-all-available-instrumentations) still pulls in those
 unneeded instrumentations libraries with their dependencies.
 
 To mitigate this situation, [base package](#install-the-base-package)
 with a built-in lazy-loading mechanism can be used. This mechanism will
 initialize any known available instrumentation library assembly, regardless of
-whether it's added as dependency of the [full package](#install-the-full-package)
+whether it's added as dependency of the [full package](#install-the-full-package-with-all-available-instrumentations)
 or as part of the instrumented project.
 
 For example, if it is desired to use the `AspNetCore` instrumentation without
-pulling in any other dependencies from the [full package](#install-the-full-package),
+pulling in any other dependencies from the [full package](#install-the-full-package-with-all-available-instrumentations),
 it suffices to install the `AspNetCore` instrumentation library along with the
 base package.
 

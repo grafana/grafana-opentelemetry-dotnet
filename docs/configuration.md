@@ -9,7 +9,7 @@
   * [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
 * [Instrumentation configuration](#instrumentation-configuration)
   * [Disabling instrumentations](#disabling-instrumentations)
-  * [Adding instrumentations not supported by the distribution](#adding-instrumentations-not supported-by-the-distribution)
+  * [Adding instrumentations not supported by the distribution](#adding-instrumentations-not-supported-by-the-distribution)
   * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
     * [ASP.NET (`AspNet`)](#aspnet-aspnet)
     * [OWIN (`Owin`)](#owin-owin)
@@ -178,7 +178,7 @@ Instrumentations not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
 
 For example, if it is desired to use the `EventCounters` instrumentation, which is
-not included in the [full package](./installation.md#install-the-full-package),
+not included in the [full package](./installation.md#install-the-full-package-with-all-available-instrumentations),
 one install the `EventCounters` instrumentation library along with the base
 package.
 
