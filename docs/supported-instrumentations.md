@@ -26,5 +26,5 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
 | `StackExchangeRedis`  | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.StackExchangeRedis](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.StackExchangeRedis) |
 | `Wcf`                 | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.Wcf](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Wcf) |
 
-The `AWSLambda` instrumentation is included, but needs to be explicitly
+The `AWSLambda` instrumentation is included but needs to be explicitly
 activated, as activating it in non-AWS scenarios causes errors.
