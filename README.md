@@ -17,7 +17,7 @@
 ## About
 
 This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet-contrib),
-optimized for [Grafana Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
+optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
 It requires only minimal setup and configuration and makes it very easy to emit
 OpenTelemetry traces, logs, and metrics from your .NET application.
