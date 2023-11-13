@@ -1,7 +1,6 @@
 # Migrating to OpenTelemetry .NET
 
-Follow these steps if you want to migrate from this distribution to the
-upstream OpenTelemetry .NET project:
+All functionality provided by the distribution can also be utilized by manually installing and configuring upstream OpenTelemetry .NET packages. Follow these steps if you want to migrate from this distribution to the upstream OpenTelemetry .NET project.
 
 - Replace all environment variables or system properties with the "grafana"
 prefix as explained [here](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#push-directly-from-applications-using-the-opentelemetry-sdks).
