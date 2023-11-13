@@ -17,7 +17,7 @@
 ## About
 
 This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET components](http://github.com/open-telemetry/opentelemetry-dotnet-contrib),
-optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
+optimized for [Grafana Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
 It requires only minimal setup and configuration and makes it very easy to emit
 OpenTelemetry traces, logs, and metrics from your .NET application.
@@ -58,9 +58,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-For details on how to obtain those values, refer to [Send data using
-OpenTelemetry
-Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
+For details on how to obtain those values, refer to [Sending data directly to Grafana Cloud via OTLP](./docs/configuration.md#sending-data-directly-to-grafana-cloud-via-otlp).
 
 Alternatively, these values can be set via the environment variables
 `GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and
