@@ -46,8 +46,9 @@ specifies what instrumentations are included in the base package.
 
 Users might utilize some instrumentation libraries the [full package](#install-the-full-package-with-all-available-instrumentations)
 contains, while other contained libraries will not be needed. However, the
-[full package](#install-the-full-package-with-all-available-instrumentations) still pulls in those
-unneeded instrumentations libraries with their dependencies.
+[full package](#install-the-full-package-with-all-available-instrumentations)
+still pulls in those unneeded instrumentations libraries with their
+dependencies.
 
 To mitigate this situation, [base package](#install-the-base-package)
 with a built-in lazy-loading mechanism can be used. This mechanism will
@@ -77,4 +78,3 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 This way, any other instrumentation library [supported by the distribution](./supported-instrumentations.md)
 can be added via lazy loading.
-
