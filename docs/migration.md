@@ -12,11 +12,11 @@ as covered in the upstream [Getting Started](https://github.com/open-telemetry/o
 - Add `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to opt-in to the
 latest HTTP semantic conventions
 - [Add the recommended OpenTelemetry resource attributes](https://grafana.com/docs/opentelemetry/instrumentation/configuration/resource-attributes/)
-  - `service.namespace`
   - `service.name`
-  - `deployment.environment`
+  - `service.namespace`
   - `service.instance.id`
-  - `service.service`
+  - `service.version`
+  - `deployment.environment`
 
 ```shell
 export OTEL_SEMCONV_STABILITY_OPT_IN=http
