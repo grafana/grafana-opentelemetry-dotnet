@@ -9,7 +9,7 @@
   * [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
 * [Instrumentation configuration](#instrumentation-configuration)
   * [Disabling instrumentations](#disabling-instrumentations)
-  * [Adding instrumentations](#adding-instrumentations)
+  * [Adding instrumentations not supported by the distribution](#adding-instrumentations-not supported-by-the-distribution)
   * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
     * [ASP.NET (`AspNet`)](#aspnet-aspnet)
     * [OWIN (`Owin`)](#owin-owin)
@@ -172,33 +172,36 @@ from the table above:
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 ```
 
-### Adding instrumentations
+### Adding instrumentations not supported by the distribution
 
 Instrumentations not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
 
-For example, it is desired to use the `AspNetCore` instrumentation in
-combination with the [base package](./installation.md#install-the-base-package)
-(which doesn't include the `AspNetCore` package), you can install the
-`AspNetCore` instrumentation library along with the base package.
+For example, if it is desired to use the `EventCounters` instrumentation, which is
+not included in the [full package](./installation.md#install-the-full-package),
+one install the `EventCounters` instrumentation library along with the base
+package.
 
 ```sh
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
-dotnet add package --prerelease OpenTelemetry.Instrumentation.AspNetCore
+dotnet add package OpenTelemetry.Instrumentation.EventCounters --prerelease
 ```
 
-Then, the `AspNetCore` instrumentation can be enabled via the [`AddAspNetCoreInstrumentation`](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry.Instrumentation.AspNetCore#step-2-enable-aspnet-core-instrumentation-at-application-startup)
+Then, the `EventCounters` instrumentation can be enabled via the [`AddEventCountersInstrumentation`](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.EventCounters#step-2-enable-eventcounters-instrumentation)
 extension method, alongside the `UseGrafana` method.
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .UseGrafana()
-    .AddAspNetCoreInstrumentation()
+    .AddEventCountersInstrumentation(options => {
+        options.RefreshIntervalSecs = 1;
+        options.AddEventSources("MyEventSource");
+    })
     .Build();
 ```
 
-This way, any other instrumentation library can be added according the
-documentation provided with it.
+This way, any other instrumentation library [not supported by the distribution](./supported-instrumentations.md)
+can be added according to the documentation provided with it.
 
 ### Extra steps to activate specific instrumentations
 

@@ -1,5 +1,10 @@
 # Installing the Grafana OpenTelemetry distribution for .NET
 
+* [Supported .NET Versions](#supported-net-versions)
+* [Install the full package with all available instrumentations](#install-the-full-package-with-all-available-instrumentations)
+* [Install the base package](#install-the-base-package)
+* [Minimizing unneeded dependencies](#minimizing-unneeded-dependencies)
+
 ## Supported .NET Versions
 
 The packages shipped from this repository generally support all the officially
@@ -36,3 +41,40 @@ dotnet add package --prerelease Grafana.OpenTelemetry.Base
 
 The list of [supported instrumentations](./supported-instrumentations.md)
 specifies what instrumentations are included in the base package.
+
+## Minimizing unneeded dependencies
+
+Users might utilize some instrumentation libraries the [full package](#install-the-full-package)
+contains, while other contained libraries will not be needed. However, the
+[full package](#install-the-full-package) still pulls in those
+unneeded instrumentations libraries with their dependencies.
+
+To mitigate this situation, [base package](#install-the-base-package)
+with a built-in lazy-loading mechanism can be used. This mechanism will
+initialize any known available instrumentation library assembly, regardless of
+whether it's added as dependency of the [full package](#install-the-full-package)
+or as part of the instrumented project.
+
+For example, if it is desired to use the `AspNetCore` instrumentation without
+pulling in any other dependencies from the [full package](#install-the-full-package),
+it suffices to install the `AspNetCore` instrumentation library along with the
+base package.
+
+```sh
+dotnet add package --prerelease Grafana.OpenTelemetry.Base
+dotnet add package --prerelease OpenTelemetry.Instrumentation.AspNetCore
+```
+
+Then, the `AspNetCore` instrumentation will be lazy-loaded during the
+invocation of the `UseGrafana` extension method, no further code changes are
+necessary.
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .Build();
+```
+
+This way, any other instrumentation library [supported by the distribution](./supported-instrumentations.md)
+can be added via lazy loading.
+
