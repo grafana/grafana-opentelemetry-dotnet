@@ -114,7 +114,7 @@ documentation](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpo
 
 ### Sending data directly to Grafana Cloud via OTLP
 
-Given the zone, instance id, and API token, telemetry data can be sent directly
+Given the zone, instance ID, and API token, telemetry data can be sent directly
 to the Grafana Cloud without involving an agent or collector:
 
 ```csharp
@@ -209,7 +209,7 @@ can be added according to the documentation provided with it.
 
 To active ASP.NET instrumentation, it is necessary to add an additional HTTP
 module `OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule` to the web
-server. This module is shipped as dependency of the
+server. This module is shipped as a dependency of the
 `OpenTelemetry.Instrumentation.AspNet` package. When using the IIS web server,
 the following changes to `Web.config` are required.
 
@@ -253,9 +253,8 @@ The distribution is designed to be easily extensible with components that it
 doesn't contain. This can be done by invoking additional extension methods on
 any of the provider builders in addition to the `UseGrafana` extension method.
 
-The example below initializes the distribution with default settings, but
-additionally also initializes a console exporter which prints traces to the
-console.
+The example below initializes the distribution with default settings but
+also initializes a console exporter which prints traces to the console.
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -264,7 +263,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-In the same way it is possible to add additional instrumentation libraries that
+In the same way, it is possible to add additional instrumentation libraries that
 are not contained in the distribution.
 
 ## Supported environment variables
@@ -273,5 +272,5 @@ are not contained in the distribution.
 | ----------------------------------------- |   ------------------ | ----------- |
 | `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
 | `GRAFANA_CLOUD_ZONE`                      | "prod-us-east-0"     | Zone of the Grafana Cloud stack to send data to. |
-| `GRAFANA_CLOUD_INSTANCE_ID`               | "123456"             | Instance id of the Grafana Cloud stack to send data to. |
+| `GRAFANA_CLOUD_INSTANCE_ID`               | "123456"             | Instance ID of the Grafana Cloud stack to send data to. |
 | `GRAFANA_CLOUD_API_KEY`                   |                      | API key of the Grafana Cloud Stack to send data to. |

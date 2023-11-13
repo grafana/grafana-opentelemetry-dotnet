@@ -41,7 +41,7 @@ The `UseGrafana` extension method on the `TracerProviderBuilder` or the
 default, telemetry data will be sent to a Grafana agent or an OTel collector
 that runs locally and listens to default OTLP ports.
 
-Given the zone, instance id, and API token, telemetry data can be sent directly
+Given the zone, instance ID, and API token, telemetry data can be sent directly
 to the Grafana Cloud without involving an agent or collector:
 
 ```csharp
