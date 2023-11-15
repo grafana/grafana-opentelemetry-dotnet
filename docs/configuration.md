@@ -252,6 +252,44 @@ Refer to the [upstream
 documentation](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Owin#step-2-configure-owin-middleware)
 for further details.
 
+### Customizing resource attributes
+
+The type `GrafanaOpenTelemetrySettings` has dedicated fields for setting standard
+OpenTelemetry resource attributes for service name, service version, instance
+id, and deployment environment. Those fields are populated with reasonable
+default values, but can be customized.
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ServiceName = "service-name";
+        config.ServiceVersion= "1.0";
+        config.ServiceInstanceId = "instance-34532";
+        config.DeploymentEnvironment = "production";
+    })
+    .Build();
+```
+
+Custom resource attributes can be set via the `ResourceAttributes` dictionary:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ResourceAttributes["custom.key"] = "custom-value";
+    })
+    .Build();
+```
+
+Alternatively, those attributes can be set via standard OpenTelemetry
+environment variables.
+
+```sh
+export OTEL_SERVICE_NAME="service-name"
+export OTEL_RESOURCE_ATTRIBUTES="service.version=1.0,service.instance.id=instance=34531,deployment.environment=production,custom.key=custom-value"
+```
+
 ## Custom configuration
 
 The distribution is designed to be easily extensible with components that it

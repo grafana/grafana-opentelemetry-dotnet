@@ -29,12 +29,16 @@ namespace Grafana.OpenTelemetry
         {
             var assembly = typeof(GrafanaOpenTelemetryResourceDetector).Assembly;
 
-            return new Resource(new KeyValuePair<string, object>[]
+            var attributes = new List<KeyValuePair<string, object>>(new KeyValuePair<string, object>[]
             {
                 new KeyValuePair<string, object>(ResourceKey_DistroName, ResourceValue_DistroName),
                 new KeyValuePair<string, object>(ResourceKey_DistroVersion, FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion),
                 new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
             });
+
+            attributes.AddRange(_settings.ResourceAttributes);
+
+            return new Resource(attributes);
         }
     }
 }

@@ -74,6 +74,11 @@ namespace Grafana.OpenTelemetry
         public string DeploymentEnvironment { get; set; } = "production";
 
         /// <summary>
+        /// Gets a dictionary of custom resource attributes.
+        /// </summary>
+        public IDictionary<string, object> ResourceAttributes { get; } = new Dictionary<string, object>();
+
+        /// <summary>
         /// Initializes an instance of <see cref="GrafanaOpenTelemetrySettings"/>.
         /// </summary>
         public GrafanaOpenTelemetrySettings()
