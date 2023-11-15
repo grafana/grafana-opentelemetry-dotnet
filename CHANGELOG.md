@@ -4,7 +4,7 @@
 
 ### New features
 
-* Allow specifying custom resource attributes on `GrafanaOpenTelemetrySettings`.
+* Allow specifying custom resource attributes via `GrafanaOpenTelemetrySettings`.
 * Improve accuracy of resource attributes `telemetry.distro.name` and `telemetry.distro.version`.
 
 ### Bug fixes

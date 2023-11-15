@@ -70,9 +70,9 @@ namespace Grafana.OpenTelemetry.Tests
                 .CreateTracerProviderBuilder()
                 .UseGrafana(settings =>
                 {
-		    settings.ServiceName = "service-name";
-		    settings.ResourceAttributes["custom.attribute"] = "custom_value";
-		})
+                    settings.ServiceName = "service-name";
+                    settings.ResourceAttributes["custom.attribute"] = "custom_value";
+                })
                 .AddProcessor(new SimpleActivityExportProcessor(new InMemoryResourceExporter<Activity>(spans)))
                 .AddSource(activitySource.Name)
                 .Build();

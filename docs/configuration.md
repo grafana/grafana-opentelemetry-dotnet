@@ -282,6 +282,14 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
     .Build();
 ```
 
+Alternatively, those attributes can be set via standard OpenTelemetry
+environment variables.
+
+```sh
+export OTEL_SERVICE_NAME="service-name"
+export OTEL_RESOURCE_ATTRIBUTES="service.version=1.0,service.instance.id=instance=34531,deployment.environment=production,custom.key=custom-value"
+```
+
 ## Custom configuration
 
 The distribution is designed to be easily extensible with components that it

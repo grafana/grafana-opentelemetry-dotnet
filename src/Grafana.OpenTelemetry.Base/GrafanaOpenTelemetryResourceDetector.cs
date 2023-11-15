@@ -36,7 +36,7 @@ namespace Grafana.OpenTelemetry
                 new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
             });
 
-	    attributes.AddRange(_settings.ResourceAttributes);
+            attributes.AddRange(_settings.ResourceAttributes);
 
             return new Resource(attributes);
         }
