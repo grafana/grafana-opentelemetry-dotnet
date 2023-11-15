@@ -58,9 +58,9 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-For details on how to obtain those values, refer to [Send data using
-OpenTelemetry
-Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
+For details on how to obtain those values, refer to [Sending data directly to
+Grafana Cloud via
+OTLP](./docs/configuration.md#sending-data-directly-to-grafana-cloud-via-otlp).
 
 Alternatively, these values can be set via the environment variables
 `GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and

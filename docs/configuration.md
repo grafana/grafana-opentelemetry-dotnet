@@ -131,9 +131,14 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-For details on how to obtain those values, refer to [Send data using
-OpenTelemetry
-Protocol](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/otlp/send-data-otlp/).
+Follow the following steps to obtain the zone, instance id, and an API token:
+
+1. Click **Details** in the **Grafana** section on
+   <https://grafana.com/profile/org>.
+2. You will see values for **Instance ID** and **Zone** on this page.
+3. On the left menu, click on **Security** and then on **API Keys**
+4. Obtain a new API token by clicking on **Create API Key** (`MetricsPublisher`
+   role).
 
 Alternatively, these values can be set via the environment variables
 `GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and
