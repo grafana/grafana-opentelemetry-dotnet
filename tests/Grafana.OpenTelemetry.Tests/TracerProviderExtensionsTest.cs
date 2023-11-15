@@ -43,11 +43,11 @@ namespace Grafana.OpenTelemetry.Tests
             span.Stop();
             span.Dispose();
 
-            Assert.Single(spans);
+            var activity = Assert.Single(spans);
 
             var resourceTags = new Dictionary<string, string>();
 
-            foreach (var tag in spans[0].Item2.Attributes)
+            foreach (var tag in activity.Item2.Attributes)
             {
                 resourceTags.Add(tag.Key, (string)tag.Value);
             }
@@ -81,11 +81,11 @@ namespace Grafana.OpenTelemetry.Tests
             span.Stop();
             span.Dispose();
 
-            Assert.Single(spans);
+            var activity = Assert.Single(spans);
 
             var resourceTags = new Dictionary<string, string>();
 
-            foreach (var tag in spans[0].Item2.Attributes)
+            foreach (var tag in activity.Item2.Attributes)
             {
                 resourceTags.Add(tag.Key, (string)tag.Value);
             }
@@ -118,11 +118,11 @@ namespace Grafana.OpenTelemetry.Tests
             span.Stop();
             span.Dispose();
 
-            Assert.Single(spans);
+            var activity = Assert.Single(spans);
 
             var resourceTags = new Dictionary<string, string>();
 
-            foreach (var tag in spans[0].Item2.Attributes)
+            foreach (var tag in activity.Item2.Attributes)
             {
                 resourceTags.Add(tag.Key, (string)tag.Value);
             }
@@ -150,11 +150,11 @@ namespace Grafana.OpenTelemetry.Tests
             span.Stop();
             span.Dispose();
 
-            Assert.Single(spans);
+            var activity = Assert.Single(spans);
 
             var resourceTags = new Dictionary<string, string>();
 
-            foreach (var tag in spans[0].Item2.Attributes)
+            foreach (var tag in activity.Item2.Attributes)
             {
                 resourceTags.Add(tag.Key, (string)tag.Value);
             }

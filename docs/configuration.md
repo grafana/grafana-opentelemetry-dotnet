@@ -254,7 +254,7 @@ for further details.
 
 ### Customizing resource attributes
 
-The `GrafanaOpenTelemetrySettings` has dedicated fields for setting standard
+The type `GrafanaOpenTelemetrySettings` has dedicated fields for setting standard
 OpenTelemetry resource attributes for service name, service version, instance
 id, and deployment environment. Those fields are populated with reasonable
 default values, but can be customized.
