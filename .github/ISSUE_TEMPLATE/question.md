@@ -6,4 +6,4 @@ labels: question
 
 # Question
 
-Use [Github Discussions](https://github.com/open-telemetry/grafana-opentelemetry-dotnet/discussions/new).
+Use [Github Discussions](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions/new).

@@ -10,7 +10,7 @@ Before opening a feature request against this project, consider whether the feat
 should/could be implemented in the [upstream OpenTelemetry .NET components](https://github.com/open-telemetry/opentelemetry-dotnet)
 If so, please [open an issue open-telemetry/opentelemetry-dotnet](https://github.com/open-telemetry/opentelemetry-dotnet/issues/new).
 
-If the feature is relevant for OpenTelemetry implementations of all langauges,
+If the feature is relevant for OpenTelemetry implementations of all languages,
 please [open an issue on
 opentelemetry-specification](https://github.com/open-telemetry/opentelemetry-specification/issues/new).
 
