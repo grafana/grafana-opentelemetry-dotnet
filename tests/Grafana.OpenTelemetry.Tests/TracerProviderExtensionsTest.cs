@@ -28,7 +28,7 @@ namespace Grafana.OpenTelemetry.Tests
         }
 
         [Fact]
-        public void ResourceAttributes()
+        public void StandardResourceAttributes()
         {
             var spans = new List<(Activity, Resource)>();
 
@@ -59,6 +59,39 @@ namespace Grafana.OpenTelemetry.Tests
             Assert.NotNull(resourceTags["service.instance.id"]);
             Assert.NotNull(resourceTags["service.version"]);
             Assert.NotNull(resourceTags["deployment.environment"]);
+        }
+
+        [Fact]
+        public void CustomResourceAttributes()
+        {
+            var spans = new List<(Activity, Resource)>();
+
+            Sdk
+                .CreateTracerProviderBuilder()
+                .UseGrafana(settings =>
+                {
+		    settings.ServiceName = "service-name";
+		    settings.ResourceAttributes["custom.attribute"] = "custom_value";
+		})
+                .AddProcessor(new SimpleActivityExportProcessor(new InMemoryResourceExporter<Activity>(spans)))
+                .AddSource(activitySource.Name)
+                .Build();
+
+            var span = activitySource.StartActivity("root");
+            span.Stop();
+            span.Dispose();
+
+            Assert.Single(spans);
+
+            var resourceTags = new Dictionary<string, string>();
+
+            foreach (var tag in spans[0].Item2.Attributes)
+            {
+                resourceTags.Add(tag.Key, (string)tag.Value);
+            }
+
+            Assert.Equal("custom_value", resourceTags["custom.attribute"]);
+            Assert.Equal("service-name", resourceTags["service.name"]);
         }
 
         [Fact]
