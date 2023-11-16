@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  aspnetexample:
+    image: ${DOCKER_REGISTRY-}aspnetexample
+    build:
+      context: ../..
+      dockerfile: examples/netfx/aspnet/Dockerfile
