@@ -5,7 +5,8 @@
 ### New features
 
 * Allow specifying custom resource attributes via `GrafanaOpenTelemetrySettings`.
-* Support for .NET 8.
+* Run unit tests on .NET 8.
+* Use libraries released with .NET 8.
 * Improve accuracy of resource attributes `telemetry.distro.name` and `telemetry.distro.version`.
 
 ### Bug fixes
