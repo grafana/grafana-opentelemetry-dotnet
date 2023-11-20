@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.6.0-beta.2
+
 ### New features
 
 * Use 1.6.0-beta.3 of upstream instrumentation libraries.
