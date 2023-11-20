@@ -62,7 +62,7 @@
 
   <!-- Non-stable instrumentation packages with dependencies, only .NET -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.6.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.6.0-beta.3" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with dependencies, only .NET framework -->

@@ -4,6 +4,7 @@
 
 ### New features
 
+* Use 1.6.0-beta.3 of upstream instrumentation libraries.
 * Allow specifying custom resource attributes via `GrafanaOpenTelemetrySettings`.
 * Run unit tests on .NET 8.
 * Use libraries released with .NET 8.
