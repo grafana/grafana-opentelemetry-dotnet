@@ -16,7 +16,6 @@ WORKDIR "/src/examples/net6.0/aspnetcore"
 RUN dotnet build "aspnetcore.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN echo "/app/publish ${DOTNET_PUBLISH_ARGS}"
 RUN dotnet publish "aspnetcore.csproj" -c Release -o /app/publish ${DOTNET_PUBLISH_ARGS}
 
 FROM base AS final
