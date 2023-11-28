@@ -5,6 +5,9 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+ARG DOTNET_PUBLISH_ARGS=""
+
 WORKDIR /src
 COPY ["examples/net6.0/aspnetcore/aspnetcore.csproj", "examples/net6.0/aspnetcore/"]
 RUN dotnet restore "examples/net6.0/aspnetcore/aspnetcore.csproj"
@@ -13,7 +16,8 @@ WORKDIR "/src/examples/net6.0/aspnetcore"
 RUN dotnet build "aspnetcore.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "aspnetcore.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN echo "/app/publish ${DOTNET_PUBLISH_ARGS}"
+RUN dotnet publish "aspnetcore.csproj" -c Release -o /app/publish ${DOTNET_PUBLISH_ARGS}
 
 FROM base AS final
 WORKDIR /app

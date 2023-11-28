@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  aspnetcore:
+    image: ${DOCKER_REGISTRY-}aspnetcore
+    build:
+      context: ../..
+      dockerfile: examples/net6.0/aspnetcore/Dockerfile.self-contained
+      args:
+        DOTNET_PUBLISH_ARGS: "--self-contained true /p:PublishSingleFile=true"
+    depends_on:
+      - redis
+      - mssql
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379:6379"
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+    - ACCEPT_EULA=Y
+    - MSSQL_SA_PASSWORD=Password12345%%
