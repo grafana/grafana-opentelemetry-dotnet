@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Bug fixes
+
+* [#65](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/65):
+  Using the distribution broke self-contained applications. This has been fixed
+  by using a different way to determine the distribution version.
+* [#64](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/64): The
+  version in `telemetry.distro.version` contained a trailing commit hash. This
+  commit hash is removed now before populating the attribute.
+
 ## 0.6.0-beta.2
 
 ### New features
