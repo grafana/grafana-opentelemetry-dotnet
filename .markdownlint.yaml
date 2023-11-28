@@ -5,3 +5,7 @@ default: true
 MD013:
   code_blocks: false
   tables: false
+
+# Allow same headers for non-siblings, e. g. in the CHANGELOG
+MD024:
+  siblings_only: true
