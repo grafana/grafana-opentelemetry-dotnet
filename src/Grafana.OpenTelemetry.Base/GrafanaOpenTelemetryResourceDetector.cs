@@ -46,14 +46,14 @@ namespace Grafana.OpenTelemetry
                 .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
                 .InformationalVersion;
 
-            if (string.IsNullOrWhiteSpace(informationalVersion)) 
+            if (string.IsNullOrWhiteSpace(informationalVersion))
             {
                     informationalVersion = "0.0.0";
             }
-    
+
             // A Git hash is appended to the informational version after a "+" character. That's of limited use and
             // therefore removed here.
-            return informationalVersion.Split("+")[0];
+            return informationalVersion.Split('+')[0];
         }
     }
 }
