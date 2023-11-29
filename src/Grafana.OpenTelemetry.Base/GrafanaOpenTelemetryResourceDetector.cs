@@ -27,18 +27,33 @@ namespace Grafana.OpenTelemetry
 
         public Resource Detect()
         {
-            var assembly = typeof(GrafanaOpenTelemetryResourceDetector).Assembly;
-
             var attributes = new List<KeyValuePair<string, object>>(new KeyValuePair<string, object>[]
             {
                 new KeyValuePair<string, object>(ResourceKey_DistroName, ResourceValue_DistroName),
-                new KeyValuePair<string, object>(ResourceKey_DistroVersion, FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion),
+                new KeyValuePair<string, object>(ResourceKey_DistroVersion, GetDistroVersion()),
                 new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
             });
 
             attributes.AddRange(_settings.ResourceAttributes);
 
             return new Resource(attributes);
+        }
+
+        static internal string GetDistroVersion()
+        {
+            var informationalVersion = typeof(GrafanaOpenTelemetryResourceDetector)
+                .Assembly
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                .InformationalVersion;
+
+            if (string.IsNullOrWhiteSpace(informationalVersion))
+            {
+                informationalVersion = "0.0.0";
+            }
+
+            // A Git hash is appended to the informational version after a "+" character. That's of limited use and
+            // therefore removed here.
+            return informationalVersion.Split('+')[0];
         }
     }
 }
