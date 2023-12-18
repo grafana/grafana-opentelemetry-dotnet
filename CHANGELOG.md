@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0-beta.1
+* Use 1.7.0 of upstream SDK.
+* Use 1.7.0 of ASP.NET Core and HTTP instrumentations.
+
 ## 0.6.0-beta.3
 
 ### Bug fixes
