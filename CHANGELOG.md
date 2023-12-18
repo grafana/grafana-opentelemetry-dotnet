@@ -2,7 +2,7 @@
 
 ## 0.7.0-beta.1
 
-* Use 1.7.0 of upstream SDK.
+* [Use 1.7.0 of upstream SDK](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.7.0).
 * Use 1.7.0 of ASP.NET Core instrumentation.
   * Removes support for `OTEL_SEMCONV_STABILITY_OPT_IN`.
     [Instrumentation will only emit stable conventions](https://github.com/open-telemetry/semantic-conventions/tree/v1.23.0/docs/http).
