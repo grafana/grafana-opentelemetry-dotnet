@@ -3,7 +3,18 @@
 ## 0.7.0-beta.1
 
 * Use 1.7.0 of upstream SDK.
-* Use 1.7.0 of ASP.NET Core and HTTP instrumentations.
+* Use 1.7.0 of ASP.NET Core instrumentation.
+  * [Breaking change: option type renamed](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/1.6.0-rc.1).
+  * Removes support for `OTEL_SEMCONV_STABILITY_OPT_IN`.
+    [Instrumentation will only emit stable conventions](https://github.com/open-telemetry/semantic-conventions/tree/v1.23.0/docs/http).
+  * Defaults `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION`
+    to `true`. [gRPC instrumentation is experimental](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.6.0),
+    while HTTP is stable.
+* Use 1.7.0 of HTTP instrumentation.
+  * [Breaking change: option type renamed](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/1.6.0-rc.1).
+  * [Breaking change: `http.user_agent` Activity tag removed](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/1.6.0-rc.1).
+  * Removes support for `OTEL_SEMCONV_STABILITY_OPT_IN`.
+    [Instrumentation will only emit stable conventions](https://github.com/open-telemetry/semantic-conventions/tree/v1.23.0/docs/http).
 
 ## 0.6.0-beta.3
 
