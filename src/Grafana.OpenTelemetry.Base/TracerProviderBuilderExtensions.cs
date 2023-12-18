@@ -31,6 +31,12 @@ namespace Grafana.OpenTelemetry
 
             GrafanaOpenTelemetryEventSource.Log.InitializeDistribution(settings);
 
+            // Default to using experimental gRPC instrumentation
+            if (Environment.GetEnvironmentVariable("OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION") == null)
+            {
+                Environment.SetEnvironmentVariable("OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION", "true");
+            }
+
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations)
