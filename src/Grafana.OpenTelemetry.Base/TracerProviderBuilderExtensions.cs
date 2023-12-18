@@ -31,12 +31,6 @@ namespace Grafana.OpenTelemetry
 
             GrafanaOpenTelemetryEventSource.Log.InitializeDistribution(settings);
 
-            // Default to using stable HTTP semantic conventions
-            if (Environment.GetEnvironmentVariable("OTEL_SEMCONV_STABILITY_OPT_IN") == null)
-            {
-                Environment.SetEnvironmentVariable("OTEL_SEMCONV_STABILITY_OPT_IN", "http");
-            }
-
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations)
