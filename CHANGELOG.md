@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Bug fixes
+
+* [#71](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/71):
+  Lazy-loading of ASP.NET Core instrumentation was broken. This was fixed by
+  updateing changed class names of ASP.NET Core instrumentation library
+  extension classes.
+
 ## 0.7.0-beta.1
 
 ### BREAKING CHANGES

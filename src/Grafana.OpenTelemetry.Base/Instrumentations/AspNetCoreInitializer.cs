@@ -16,7 +16,7 @@ namespace Grafana.OpenTelemetry
         {
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.AspNetCore",
-                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "OpenTelemetry.Trace.AspNetCoreInstrumentationTracerProviderBuilderExtensions",
                 "AddAspNetCoreInstrumentation",
                 new object[] { builder });
         }
@@ -25,7 +25,7 @@ namespace Grafana.OpenTelemetry
         {
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.AspNetCore",
-                "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
+                "OpenTelemetry.Metrics.AspNetCoreInstrumentationMeterProviderBuilderExtensions",
                 "AddAspNetCoreInstrumentation",
                 new object[] { builder });
         }
