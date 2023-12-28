@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Sets `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION`
+  to `true` when enabling tracing. [gRPC instrumentation is experimental](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.6.0),
+  while HTTP is stable.
+
 ### Bug fixes
 
 * [#71](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/71):
