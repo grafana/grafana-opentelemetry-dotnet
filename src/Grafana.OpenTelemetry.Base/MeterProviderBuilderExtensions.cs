@@ -31,10 +31,10 @@ namespace Grafana.OpenTelemetry
 
             GrafanaOpenTelemetryEventSource.Log.InitializeDistribution(settings);
 
-            // Default to using stable HTTP semantic conventions
-            if (Environment.GetEnvironmentVariable("OTEL_SEMCONV_STABILITY_OPT_IN") == null)
+            // Default to using experimental gRPC instrumentation
+            if (Environment.GetEnvironmentVariable("OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION") == null)
             {
-                Environment.SetEnvironmentVariable("OTEL_SEMCONV_STABILITY_OPT_IN", "http");
+                Environment.SetEnvironmentVariable("OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION", "true");
             }
 
             return builder
