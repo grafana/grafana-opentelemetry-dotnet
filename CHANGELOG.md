@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.7.0-beta.2
+## 0.7.0-beta.3
+
+### Bug fixes
 
 * Sets `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_ENABLE_GRPC_INSTRUMENTATION`
   to `true` when enabling tracing. [gRPC instrumentation is experimental](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.6.0),
