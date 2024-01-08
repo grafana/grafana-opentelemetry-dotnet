@@ -8,6 +8,8 @@
   to `true` when enabling tracing. [gRPC instrumentation is experimental](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.6.0),
   while HTTP is stable.
 
+## 0.7.0-beta.2
+
 ### Bug fixes
 
 * [#71](https://github.com/grafana/grafana-opentelemetry-dotnet/issues/71):
