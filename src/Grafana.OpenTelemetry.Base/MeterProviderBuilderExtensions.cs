@@ -40,7 +40,8 @@ namespace Grafana.OpenTelemetry
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations)
-                .ConfigureResource(resourceBuilder => resourceBuilder.AddGrafanaResource(settings));
+                .ConfigureResource(resourceBuilder => resourceBuilder.AddGrafanaResource(settings))
+                .DropUnusedMetrics();
         }
 
         internal static MeterProviderBuilder AddGrafanaExporter(this MeterProviderBuilder builder, ExporterSettings settings)
@@ -66,6 +67,18 @@ namespace Grafana.OpenTelemetry
             }
 
             return builder;
+        }
+
+        internal static MeterProviderBuilder DropUnusedMetrics(this MeterProviderBuilder builder)
+        {
+            var allow = new MetricStreamConfiguration();
+
+            return builder.AddView("application", allow)
+                .AddView("process.cpu.time", allow)
+                .AddView("memory.usage", allow)
+                .AddView("process.threads", allow)
+                .AddView("process.runtime.dotnet.gc.objects.size", allow)
+                .AddView("*", MetricStreamConfiguration.Drop));
         }
     }
 }
