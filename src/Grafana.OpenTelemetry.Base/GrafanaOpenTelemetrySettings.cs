@@ -18,6 +18,7 @@ namespace Grafana.OpenTelemetry
     {
         internal const string DisableInstrumentationsEnvVarName = "GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS";
         internal const string ServiceNameEnvVarName = "OTEL_SERVICE_NAME";
+        internal const string DataSaverEnvVarName = "GRAFANA_OTEL_APPLICATION_OBSERVABILITY_METRICS";
 
         // As a workaround, a static random service instance id is initialized and used as default.
         // This is to avoid different instance ids to be created by provider builders for different
@@ -79,6 +80,13 @@ namespace Grafana.OpenTelemetry
         public IDictionary<string, object> ResourceAttributes { get; } = new Dictionary<string, object>();
 
         /// <summary>
+        /// Gets or sets whether "data saver" mode is enabled.
+        ///
+        /// When enabled, the distribution will only export metrics required for Grafana Application Observability.
+        /// </summary>
+        public bool DataSaverEnabled { get; set; } = false;
+
+        /// <summary>
         /// Initializes an instance of <see cref="GrafanaOpenTelemetrySettings"/>.
         /// </summary>
         public GrafanaOpenTelemetrySettings()
@@ -132,6 +140,13 @@ namespace Grafana.OpenTelemetry
                 {
                     DeploymentEnvironment = deploymentEnvironment.ToLower();
                 }
+            }
+
+            var dataSaver = configuration[DataSaverEnvVarName];
+
+            if (bool.TryParse(dataSaver, out var dataSaverEnabled))
+            {
+                DataSaverEnabled = dataSaverEnabled;
             }
         }
     }

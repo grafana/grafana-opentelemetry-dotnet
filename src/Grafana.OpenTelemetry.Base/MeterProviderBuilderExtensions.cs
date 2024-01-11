@@ -41,7 +41,7 @@ namespace Grafana.OpenTelemetry
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations)
                 .ConfigureResource(resourceBuilder => resourceBuilder.AddGrafanaResource(settings))
-                .DropUnusedMetrics();
+                .DropUnusedMetrics(settings);
         }
 
         internal static MeterProviderBuilder AddGrafanaExporter(this MeterProviderBuilder builder, ExporterSettings settings)
@@ -69,8 +69,13 @@ namespace Grafana.OpenTelemetry
             return builder;
         }
 
-        internal static MeterProviderBuilder DropUnusedMetrics(this MeterProviderBuilder builder)
+        internal static MeterProviderBuilder DropUnusedMetrics(this MeterProviderBuilder builder, GrafanaOpenTelemetrySettings settings)
         {
+            if (settings.DataSaverEnabled)
+            {
+                return builder;
+            }
+
             var allow = new MetricStreamConfiguration();
 
             return builder.AddView("application", allow)
