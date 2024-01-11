@@ -83,7 +83,7 @@ namespace Grafana.OpenTelemetry
                 .AddView("memory.usage", allow)
                 .AddView("process.threads", allow)
                 .AddView("process.runtime.dotnet.gc.objects.size", allow)
-                .AddView("*", MetricStreamConfiguration.Drop));
+                .AddView("*", MetricStreamConfiguration.Drop);
         }
     }
 }
