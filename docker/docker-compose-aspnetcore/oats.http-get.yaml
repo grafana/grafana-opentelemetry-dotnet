@@ -12,5 +12,5 @@ expected:
           attributes:
             http.method: GET
   metrics:
-    - promql: http_client_duration_count{}
+    - promql: http_client_request_duration_count{}
       value: '>= 0'
