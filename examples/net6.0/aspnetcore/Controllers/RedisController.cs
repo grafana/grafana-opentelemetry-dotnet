@@ -22,20 +22,22 @@ public class RedisController : ControllerBase
         _redisDb = database;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<string>> LeftPush([FromBody] LeftPushBody data)
+    [HttpGet]
+    // public async Task<ActionResult<string>> LeftPush([FromBody] LeftPushBody data)
+    public async Task<ActionResult<string>> LeftPush()
     {
         if (!ModelState.IsValid)
         {
             return StatusCode(500);
         }
 
+        var data = new LeftPushBody { Name = "test" };
         var length = await _redisDb.ListLeftPushAsync(LIST_KEY, data.Name);
         _logger.LogInformation($"LeftPush: {data.Name} - {length}");
         return Ok();
     }
 
-    [HttpPost]
+    [HttpGet]
     public async Task<ActionResult<string>> LeftPop()
     {
         var value = await _redisDb.ListLeftPopAsync(LIST_KEY);
