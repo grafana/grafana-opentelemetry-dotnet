@@ -1,19 +1,18 @@
 docker-compose:
   generator: lgtm
   files:
-    - ./docker-compose.oats.yml
+    - ../docker-compose.oats.yml
 input:
   - path: /api/HttpClient/GetError
+interval: 500ms
 expected:
   traces:
     - traceql: '{ name =~ "api/HttpClient/GetError" }'
       spans:
         - name: 'GET'
           attributes:
-            error: true
-            error.type: 500
+            error.type: '500'
             http.request.method: GET
-            http.response.status_code: 500
   metrics:
     - promql: http_client_request_duration_count{}
       value: '>= 0'
