@@ -8,9 +8,9 @@ expected:
   traces:
     - traceql: '{ name =~ "api/HttpClient/Get" }'
       spans:
-        - name: 'HTTP GET'
+        - name: 'GET'
           attributes:
-            http.method: GET
+            http.request.method: GET
   metrics:
     - promql: http_client_request_duration_count{}
       value: '>= 0'

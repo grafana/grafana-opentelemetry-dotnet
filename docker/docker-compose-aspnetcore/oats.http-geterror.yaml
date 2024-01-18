@@ -8,11 +8,11 @@ expected:
   traces:
     - traceql: '{ name =~ "api/HttpClient/GetError" }'
       spans:
-        - name: 'HTTP GET'
+        - name: 'GET'
           attributes:
             error: true
             error.type: 500
-            http.method: GET
+            http.request.method: GET
             http.response.status_code: 500
   metrics:
     - promql: http_client_request_duration_count{}
