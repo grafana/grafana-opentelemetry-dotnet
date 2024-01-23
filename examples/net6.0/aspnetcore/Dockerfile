@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["examples/net6.0/aspnetcore/aspnetcore.csproj", "examples/net6.0/aspnetcore/"]
 RUN dotnet restore "examples/net6.0/aspnetcore/aspnetcore.csproj"

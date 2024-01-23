@@ -30,7 +30,7 @@ public class HttpClientController : ControllerBase
     public async Task<ActionResult<IEnumerable<string>>> GetError()
     {
         var client = new HttpClient();
-        var response = await client.GetAsync("http://example.com");
+        var response = await client.GetAsync("http://postman-echo.com/status/500");
         var content = await response.Content.ReadAsStringAsync();
         return Ok(content);
     }
