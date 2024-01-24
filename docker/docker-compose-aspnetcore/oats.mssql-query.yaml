@@ -1,7 +1,5 @@
-docker-compose:
-  generator: lgtm
-  files:
-    - ./docker-compose.oats.yml
+include:
+  - ./oats-template.yml
 input:
   - path: /api/MsSql/Tables
 expected:

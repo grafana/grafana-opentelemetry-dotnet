@@ -1,10 +1,7 @@
-docker-compose:
-  generator: lgtm
-  files:
-    - ../docker-compose.oats.yml
+include:
+  - ./oats-template.yml
 input:
   - path: /api/HttpClient/GetError
-interval: 500ms
 expected:
   traces:
     - traceql: '{ name =~ "api/HttpClient/GetError" }'
