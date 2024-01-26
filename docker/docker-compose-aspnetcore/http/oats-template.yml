@@ -9,4 +9,9 @@ matrix:
       generator: lgtm
       files:
         - ../docker-compose.self-contained.oats.yml
+  - name: net8
+    docker-compose:
+      generator: lgtm
+      files:
+        - ../docker-compose.net8.oats.yml
 interval: 500ms
