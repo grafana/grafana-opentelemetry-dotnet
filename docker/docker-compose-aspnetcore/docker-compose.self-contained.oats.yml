@@ -21,6 +21,11 @@ services:
     image: redis:7.2
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      interval: 1s
+      timeout: 3s
+      retries: 5
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
