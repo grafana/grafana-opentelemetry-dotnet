@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### New features
+
+* [#81](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/81)
+  Adds a .NET 8 test project and integrates it into the OATS test matrix.
+
 ## 0.7.0-beta.3
 
 ### Bug fixes
