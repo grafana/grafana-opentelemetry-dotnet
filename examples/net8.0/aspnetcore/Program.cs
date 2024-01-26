@@ -4,8 +4,8 @@
 //
 
 using Grafana.OpenTelemetry;
-using OpenTelemetry.Trace;
 using Microsoft.Data.SqlClient;
+using OpenTelemetry.Trace;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
