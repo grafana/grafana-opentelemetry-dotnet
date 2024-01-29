@@ -1,5 +1,5 @@
 include:
-  - ./oats-template.yml
+  - ./oats-template.yaml
 input:
   - path: /api/Redis/LeftPush
 interval: 5000ms
