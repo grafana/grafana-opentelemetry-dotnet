@@ -1,11 +1,10 @@
 name: OATS Tests
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
+  push:
+    branches: [ 'main*' ]
+    paths-ignore:
+    - '**.md'
 
 jobs:
   acceptance-tests:
