@@ -98,6 +98,31 @@ namespace Grafana.OpenTelemetry
         /// <summary>
         /// WCF traces (OpenTelemetry.Instrumentation.Wcf)
         /// </summary>
-        Wcf
+        Wcf,
+
+        /// <summary>
+        /// Azure Resource Detector (OpenTelemetry.ResourceDetectors.Azure)
+        /// </summary>
+        AzureResource,
+
+        /// <summary>
+        /// Container Resource Detector (OpenTelemetry.ResourceDetectors.Container)
+        /// </summary>
+        ContainerResource,
+
+        /// <summary>
+        /// Host Resource Detector (OpenTelemetry.ResourceDetectors.Host)
+        /// </summary>
+        HostResource,
+
+        /// <summary>
+        /// Process Resource Detector (OpenTelemetry.ResourceDetectors.Process)
+        /// </summary>
+        ProcessResource,
+
+        /// <summary>
+        /// Process Runtime Resource Detector (OpenTelemetry.ResourceDetectors.ProcessRuntime)
+        /// </summary>
+        ProcessRuntimeResource
     }
 }
