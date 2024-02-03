@@ -1,0 +1,12 @@
+include:
+  - ./oats-template.yaml
+input:
+  - path: /api/EFCore/ListBlogs
+expected:
+  traces:
+    - traceql: '{ name =~ "api/EFCore/ListBlogs" }'
+      spans:
+        - name: 'GET'
+          attributes:
+            db.system: sqlite
+            otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore

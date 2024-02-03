@@ -17,6 +17,8 @@
     <None Include="docker-compose.self-contained.oats.yml" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="efcore\oats-template.yaml" />
+    <None Include="efcore\oats.efcore-blogs.yaml" />
     <None Include="redis\oats-template.yaml" />
     <None Include="redis\oats.redis-lpush.yaml" />
     <None Include="http\oats-template.yaml" />
