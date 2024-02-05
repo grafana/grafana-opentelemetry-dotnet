@@ -14,7 +14,7 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddDetector(new ContainerResourceDetector()); 
+            return builder.AddDetector(new ContainerResourceDetector());
         }
     }
 }
