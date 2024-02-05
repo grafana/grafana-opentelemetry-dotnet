@@ -1,7 +1,6 @@
-namespace aspnetcore;
-
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+
+namespace aspnetcore;
 
 public class BloggingContext : DbContext
 {
@@ -10,7 +9,7 @@ public class BloggingContext : DbContext
 
     public string DbPath { get; }
 
-    public BloggingContext(DbContextOptions<BloggingContext> dbContextOptions): base(dbContextOptions)
+    public BloggingContext(DbContextOptions<BloggingContext> dbContextOptions) : base(dbContextOptions)
     {
     }
 
