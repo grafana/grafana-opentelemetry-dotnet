@@ -101,6 +101,11 @@ namespace Grafana.OpenTelemetry
         Wcf,
 
         /// <summary>
+        /// AWS Resource Detector (OpenTelemetry.ResourceDetectors.AWS)
+        /// </summary>
+        AWSResource,
+
+        /// <summary>
         /// Azure Resource Detector (OpenTelemetry.ResourceDetectors.Azure)
         /// </summary>
         AzureResource,
