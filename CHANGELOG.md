@@ -7,8 +7,8 @@
 * [#81](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/81)
   Adds a .NET 8 test project and integrates it into the OATS test matrix.
 * [#85](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/85)
-  Adds resource detectors for host, process, process runtime, and container
-  resource attributes.
+  Adds resource detectors for Azure, host, process, process runtime, and
+  container resource attributes.
 
 ## 0.7.0-beta.3
 
