@@ -49,7 +49,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("grafana-opentelemetry-dotnet", resourceTags["telemetry.distro.name"]);
@@ -87,7 +90,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("custom_value", resourceTags["custom.attribute"]);
@@ -124,7 +130,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("a", resourceTags["service.name"]);
@@ -156,7 +165,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("service-name", resourceTags["service.name"]);
