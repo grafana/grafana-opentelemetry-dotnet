@@ -35,12 +35,12 @@ namespace Grafana.OpenTelemetry
             new SqlClientInitializer(),
             new StackExchangeRedisInitializer(),
             new WcfInitializer(),
-	    new AzureResourceInitializer(),
-	    new ContainerResourceInitializer(),
+            new AzureResourceInitializer(),
+            new ContainerResourceInitializer(),
 #if !NETSTANDARD
-	    new HostResourceInitializer(),
-	    new ProcessResourceInitializer(),
-	    new ProcessRuntimeResourceInitializer()
+            new HostResourceInitializer(),
+            new ProcessResourceInitializer(),
+            new ProcessRuntimeResourceInitializer()
 #endif
         };
 
@@ -77,14 +77,14 @@ namespace Grafana.OpenTelemetry
         }
 
         protected void InitializeResource(TracerProviderBuilder builder)
-        { 
-	    builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
-	}
+        {
+            builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
+        }
 
         protected void InitializeResource(MeterProviderBuilder builder)
-        { 
-	    builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
-	}
+        {
+            builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
+        }
 
         protected virtual void InitializeTracing(TracerProviderBuilder builder)
         { }
@@ -93,8 +93,8 @@ namespace Grafana.OpenTelemetry
         { }
 
         protected virtual ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
-        { 
-	    return builder;
-	}
+        {
+            return builder;
+        }
     }
 }

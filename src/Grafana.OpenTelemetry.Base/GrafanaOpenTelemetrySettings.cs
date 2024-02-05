@@ -104,7 +104,7 @@ namespace Grafana.OpenTelemetry
             Instrumentations.Remove(Instrumentation.AWSLambda);
 
             // Activating the container resource detector by default always populates a `container.id` attribute,
-	    // even when running in a non-container Linux setting.
+            // even when running in a non-container Linux setting.
             Instrumentations.Remove(Instrumentation.ContainerResource);
 
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
