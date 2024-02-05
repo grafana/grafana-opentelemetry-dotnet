@@ -36,4 +36,4 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
   activated, as activating it in non-AWS scenarios causes errors.
 * The `ContainerResource` instrumentation is included but needs to be explicitly
   activated, as it currently adds container resource attributes for processes
-  running not in containers. 
+  running not in containers.
