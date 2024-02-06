@@ -45,20 +45,33 @@ namespace Grafana.OpenTelemetry.Tests
 
             var activity = Assert.Single(spans);
 
-            var resourceTags = new Dictionary<string, string>();
+            var resourceTags = new Dictionary<string, object>();
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                resourceTags.Add(tag.Key, tag.Value);
             }
 
-            Assert.Equal("grafana-opentelemetry-dotnet", resourceTags["telemetry.distro.name"]);
+            Assert.Equal("grafana-opentelemetry-dotnet", (string)resourceTags["telemetry.distro.name"]);
             Assert.NotNull(resourceTags["telemetry.distro.version"]);
 
             Assert.NotNull(resourceTags["service.name"]);
             Assert.NotNull(resourceTags["service.instance.id"]);
             Assert.NotNull(resourceTags["service.version"]);
+
             Assert.NotNull(resourceTags["deployment.environment"]);
+
+            Assert.NotNull(resourceTags["process.runtime.name"]);
+            Assert.NotNull(resourceTags["process.runtime.description"]);
+            Assert.NotNull(resourceTags["process.runtime.version"]);
+
+            Assert.NotNull(resourceTags["process.pid"]);
+
+            Assert.NotNull(resourceTags["host.name"]);
+
+            Assert.NotNull(resourceTags["telemetry.sdk.name"]);
+            Assert.NotNull(resourceTags["telemetry.sdk.language"]);
+            Assert.NotNull(resourceTags["telemetry.sdk.version"]);
         }
 
         [Fact]
@@ -87,7 +100,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("custom_value", resourceTags["custom.attribute"]);
@@ -124,7 +140,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("a", resourceTags["service.name"]);
@@ -156,7 +175,10 @@ namespace Grafana.OpenTelemetry.Tests
 
             foreach (var tag in activity.Item2.Attributes)
             {
-                resourceTags.Add(tag.Key, (string)tag.Value);
+                if (tag.Value is string val)
+                {
+                    resourceTags.Add(tag.Key, val);
+                }
             }
 
             Assert.Equal("service-name", resourceTags["service.name"]);

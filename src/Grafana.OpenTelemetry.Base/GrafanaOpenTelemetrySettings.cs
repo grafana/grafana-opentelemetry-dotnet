@@ -103,6 +103,10 @@ namespace Grafana.OpenTelemetry
             // De-activate it until the related issue is resolved: https://github.com/grafana/app-o11y/issues/378
             Instrumentations.Remove(Instrumentation.AWSLambda);
 
+            // Activating the container resource detector by default always populates a `container.id` attribute,
+            // even when running in a non-container Linux setting.
+            Instrumentations.Remove(Instrumentation.ContainerResource);
+
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
 
             if (!string.IsNullOrEmpty(disableInstrumentations))

@@ -106,7 +106,7 @@ To disable self-diagnostics, delete the above file.
 To engage with the Grafana Application Observability community:
 
 * Chat with us on our community Slack channel. To invite yourself to the
-  Grafana Slack, visit [https://slack.grafana.com/](https://slack.grafana.com)
+  Grafana Slack, visit [https://grafana.slack.com/](https://grafana.slack.com)
   and join the [#application-observability](https://grafana.slack.com/archives/C05E87XRK3J)
   channel.
 * Ask questions on the [Discussions page](https://github.com/grafana/grafana-opentelemetry-dotnet/discussions).
