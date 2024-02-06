@@ -7,8 +7,6 @@ public class BloggingContext : DbContext
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Post> Posts { get; set; }
 
-    public string DbPath { get; }
-
     public BloggingContext(DbContextOptions<BloggingContext> dbContextOptions) : base(dbContextOptions)
     {
     }
