@@ -15,6 +15,7 @@ namespace Grafana.OpenTelemetry
     /// <summary>
     /// Settings for exporting telemetry directly to Grafana Agent via OTLP.
     /// </summary>
+    [Obsolete("This class is obsolete. Use OtlpExporter instead.")]
     public class CloudOtlpExporter : ExporterSettings
     {
         internal const string ZoneEnvVarName = "GRAFANA_CLOUD_ZONE";
