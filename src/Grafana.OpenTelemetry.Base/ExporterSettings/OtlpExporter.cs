@@ -19,8 +19,8 @@ namespace Grafana.OpenTelemetry
     {
         /// <summary>
         /// Gets or sets the target to which the exporter is going to send telemetry.
-	/// Must be a valid Uri with scheme (http or https) and host, and
-	/// may contain a port and path.
+        /// Must be a valid Uri with scheme (http or https) and host, and
+        /// may contain a port and path.
         /// </summary>
         public Uri Endpoint { get; set; }
 
