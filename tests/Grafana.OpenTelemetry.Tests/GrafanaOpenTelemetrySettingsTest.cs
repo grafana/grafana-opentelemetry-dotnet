@@ -28,15 +28,17 @@ namespace Grafana.OpenTelemetry.Tests
         }
 
         [Fact]
-        public void DefaultInstrumentationsWithoutAWSLambda()
+        public void DefaultInstrumentationsWithout()
         {
             var settings = new GrafanaOpenTelemetrySettings();
 
             // De-activate AWSLambda instrumenation until this issue is resolved: https://github.com/grafana/app-o11y/issues/378
+            // De-activate the container resource detector until it correctly detects processes not running in containers
             //
             // Once it's resolved, this test can be removed and the `DefaultInstrumentation` test can be re-activated.
             var expectedSettings = new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
             expectedSettings.Remove(Instrumentation.AWSLambda);
+            expectedSettings.Remove(Instrumentation.ContainerResource);
 
             Assert.Equal(expectedSettings, settings.Instrumentations);
         }

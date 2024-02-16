@@ -9,12 +9,19 @@
     <DockerServiceName>aspnetcore</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="docker-compose.net8.oats.yml" />
     <None Include="docker-compose.oats.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
+    <None Include="docker-compose.self-contained.oats.yml" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="redis\oats-template.yaml" />
+    <None Include="redis\oats.redis-lpush.yaml" />
+    <None Include="http\oats-template.yaml" />
+    <None Include="http\oats.http-get.yaml" />
+    <None Include="http\oats.http-geterror.yaml" />
     <None Include="oats.http-get.yaml" />
     <None Include="oats.http-post.yaml" />
     <None Include="oats.mssql-query.yaml" />

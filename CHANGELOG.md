@@ -6,6 +6,9 @@
 
 * [#81](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/81)
   Adds a .NET 8 test project and integrates it into the OATS test matrix.
+* [#85](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/85)
+  Adds resource detectors for Azure, host, process, process runtime, and
+  container resource attributes.
 * [#87](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/87)
   Add a new `OtlpExporter` class supporting specifing OTLP protocol, endpoint,
   and header
