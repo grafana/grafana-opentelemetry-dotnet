@@ -10,7 +10,7 @@
   Adds resource detectors for Azure, host, process, process runtime, and
   container resource attributes.
 * [#87](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/87)
-  Add a new `OtlpExporter` class supporting specifing OTLP protocol, endpoint,
+  Add a new `OtlpExporter` class supporting specifying OTLP protocol, endpoint,
   and header
 
 ### Deprecation
