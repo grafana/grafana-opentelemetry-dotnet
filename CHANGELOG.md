@@ -9,6 +9,19 @@
 * [#85](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/85)
   Adds resource detectors for Azure, host, process, process runtime, and
   container resource attributes.
+* [#87](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/87)
+  Add a new `OtlpExporter` class supporting specifying OTLP protocol, endpoint,
+  and header
+
+### Deprecation
+
+* [#87](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/87)
+  Deprecate use of `GRAFANA_CLOUD_*` environment variables in code and documentation
+
+  The use of `CloudOtlpExporter` and `GRAFANA_CLOUD_*` environment variables is
+  deprecated. Instead use `OtlpExporter` for code-level configuration, and
+  `OTEL_EXPORTER_OTLP_PROTOCOL`, `OTEL_EXPORTER_OTLP_ENDPOINT`, and
+  `OTEL_EXPORTER_OTLP_HEADERS` for configuration via environment variables.
 
 ## 0.7.0-beta.3
 

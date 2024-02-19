@@ -42,35 +42,25 @@ The `UseGrafana` extension method on the `TracerProviderBuilder` or the
 default, telemetry data will be sent to a Grafana agent or an OTel collector
 that runs locally and listens to default OTLP ports.
 
-Given the zone, instance ID, and API token, telemetry data can be sent directly
-to the Grafana Cloud without involving an agent or collector:
-
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .UseGrafana(config =>
-    {
-        config.ExporterSettings = new CloudOtlpExporter
-        {
-            Zone = "prod-us-east-0",
-            InstanceId = "123456",
-            ApiKey = "a-secret-token"
-        };
-    })
+    .UseGrafana()
     .Build();
 ```
 
-For details on how to obtain those values, refer to [Sending data directly to
-Grafana Cloud via
-OTLP](./docs/configuration.md#sending-data-directly-to-grafana-cloud-via-otlp).
+Alternatively, you can send telemetry data directly to Grafana Cloud without
+involving an agent or collector. This can be configured via the environment
+variables `OTEL_EXPORTER_OTLP_PROTOCOL`, `OTEL_EXPORTER_OTLP_ENDPOINT`, and
+`OTEL_EXPORTER_OTLP_HEADERS`.
 
-Alternatively, these values can be set via the environment variables
-`GRAFANA_CLOUD_ZONE`, `GRAFANA_CLOUD_INSTANCE_ID`, and
-`GRAFANA_CLOUD_API_KEY`.
+For details on how to obtain those values, refer to [Push directly from
+applications using the OpenTelemetry
+SDKs](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#push-directly-from-applications-using-the-opentelemetry-sdks).
 
 ```sh
-export GRAFANA_CLOUD_ZONE=prod-us-east-0
-export GRAFANA_CLOUD_INSTANCE_ID=123456
-export GRAFANA_CLOUD_API_KEY=a-secret-token
+export OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
+export OTEL_EXPORTER_OTLP_ENDPOINT="https://otlp-gateway-prod-eu-west-0.grafana.net/otlp"
+export OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic a-secret-token"
 ```
 
 ## Documentation

@@ -89,7 +89,9 @@ namespace Grafana.OpenTelemetry
         {
             try
             {
+#pragma warning disable CS0618
                 ExporterSettings = new CloudOtlpExporter();
+#pragma warning restore CS0618
             }
             catch (Exception)
             {
