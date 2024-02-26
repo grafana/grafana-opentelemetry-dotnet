@@ -2,6 +2,36 @@
 
 ## Unreleased
 
+### Bug fixes
+
+* Use 1.7.1 of ASP.NET Core instrumentation.
+  * Fixed issue
+  [#4466](https://github.com/open-telemetry/opentelemetry-dotnet/issues/4466)
+  where the activity instance returned by `Activity.Current` was different than
+  instance obtained from `IHttpActivityFeature.Activity`.
+  ([#5136](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5136))
+
+  * Fixed an issue where the `http.route` attribute was not set on either the
+  `Activity` or `http.server.request.duration` metric generated from a
+  request when an exception handling middleware is invoked. One caveat is that
+  this fix does not address the problem for the `http.server.request.duration`
+  metric when running ASP.NET Core 8. ASP.NET Core 8 contains an equivalent fix
+  which should ship in version 8.0.2
+  (see: [dotnet/aspnetcore#52652](https://github.com/dotnet/aspnetcore/pull/52652)).
+  ([#5135](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5135))
+
+  * Fixes scenario when the `net6.0` target of this library is loaded into a
+  .NET 7+ process and the instrumentation does not behave as expected. This
+  is an unusual scenario that does not affect users consuming this package
+  normally. This fix is primarily to support the
+  [opentelemetry-dotnet-instrumentation](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5252)
+  project.
+  ([#5252](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5252))
+
+* Use 1.7.1 of HTTP instrumentation.
+  * .NET Framework - fix description for `http.client.request.duration` metric.
+  ([#5234](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5234))
+
 ### New features
 
 * [#81](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/81)
