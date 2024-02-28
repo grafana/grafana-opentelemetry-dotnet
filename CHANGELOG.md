@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.7.0-beta.4
 
 ### Bug fixes
 
@@ -42,6 +42,9 @@
 * [#87](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/87)
   Add a new `OtlpExporter` class supporting specifying OTLP protocol, endpoint,
   and header
+* Use 1.7.1 of Runtime instrumentation.
+  * Update `OpenTelemetry.Api` to `1.7.0`.
+  ([#1486](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1486))
 
 ### Deprecation
 
