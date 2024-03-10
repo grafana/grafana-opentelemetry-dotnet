@@ -124,7 +124,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
         config.ExporterSettings = new OtlpExporter
         {
             Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf,
-            Endpoint = Uri("https://otlp-gateway-prod-eu-west-0.grafana.net/otlp"),
+            Endpoint = new Uri("https://otlp-gateway-prod-eu-west-0.grafana.net/otlp"),
             Headers = "Authorization=Basic a-secret-token"
         };
     })
