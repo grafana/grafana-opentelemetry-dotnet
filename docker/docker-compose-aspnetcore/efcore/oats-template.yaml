@@ -1,0 +1,17 @@
+matrix:
+  - name: default
+    docker-compose:
+      generator: lgtm
+      files:
+        - ../docker-compose.oats.yml
+  - name: self-contained
+    docker-compose:
+      generator: lgtm
+      files:
+        - ../docker-compose.self-contained.oats.yml
+  - name: net8
+    docker-compose:
+      generator: lgtm
+      files:
+        - ../docker-compose.net8.oats.yml
+interval: 500ms
