@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+#if !NETSTANDARD
 using OpenTelemetry.ResourceDetectors.AWS;
 using OpenTelemetry.Resources;
 
@@ -15,7 +16,7 @@ namespace Grafana.OpenTelemetry
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
             return builder
-#if !NETFRAMEWORK && !NETSTANDARD
+#if !NETFRAMEWORK
                 .AddDetector(new AWSECSResourceDetector())
                 .AddDetector(new AWSEKSResourceDetector())
 #endif
@@ -24,3 +25,4 @@ namespace Grafana.OpenTelemetry
         }
     }
 }
+#endif
