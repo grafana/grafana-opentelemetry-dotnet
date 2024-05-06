@@ -35,10 +35,10 @@ namespace Grafana.OpenTelemetry
             new SqlClientInitializer(),
             new StackExchangeRedisInitializer(),
             new WcfInitializer(),
-            new AWSResourceInitializer(),
             new AzureResourceInitializer(),
             new ContainerResourceInitializer(),
 #if !NETSTANDARD
+            new AWSResourceInitializer(),
             new HostResourceInitializer(),
             new ProcessResourceInitializer(),
             new ProcessRuntimeResourceInitializer()
