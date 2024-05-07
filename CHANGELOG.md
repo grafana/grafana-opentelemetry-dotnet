@@ -36,24 +36,21 @@
   * Fix native AoT warnings in `OpenTelemetry.Exporter.OpenTelemetryProtocol`.
   ([#5520](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5520))
 
-* Use 1.8.1 of OpenTelemetry.Instrumentation.Http
-  * Includes fixes from [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.Http-1.8.0)
-
 * Use 1.8.1 of OpenTelemetry.Instrumentation.AspNetCore
   * Includes fixes from [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.8.0)
 
+* Use 1.8.1 of OpenTelemetry.Instrumentation.Http
+  * Includes fixes from [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.Http-1.8.0)
+
 ### New features
+
+* Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
 
 * Use 1.8.0 of OpenTelemetry.Instrumentation.Runtime
   * `Meter.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
   * Update `OpenTelemetry.Api` to `1.8.0`. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
 
-* Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
-
 * Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
-
-* Use 0.1.0-alpha.3 of OpenTelemetry.ResourceDetectors.ProcessRuntime
-  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
 
 * Use 0.5.0-beta.5 of OpenTelemetry.Instrumentation.Process
   * `Meter.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
@@ -63,6 +60,9 @@
   * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
 
 * Use 0.1.0-alpha.3 of OpenTelemetry.ResourceDetectors.Host
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
+
+* Use 0.1.0-alpha.3 of OpenTelemetry.ResourceDetectors.ProcessRuntime
   * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
 
 ## 0.7.0-beta.4
