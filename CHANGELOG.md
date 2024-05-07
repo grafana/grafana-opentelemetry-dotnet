@@ -44,6 +44,9 @@
 
 ### New features
 
+* Use 1.8.0 of OpenTelemetry.Exporter.Console
+  * Added support for `ActivitySource.Version` property. ([#5472](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5472))
+
 * Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
 
 * Use 1.8.0 of OpenTelemetry.Instrumentation.Runtime
