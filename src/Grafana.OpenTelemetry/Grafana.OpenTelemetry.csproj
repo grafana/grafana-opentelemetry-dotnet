@@ -43,7 +43,7 @@
 
   <!-- Stable instrumentation packages with dependencies, only .NET -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" /> <!-- needed for AspNetCore -->
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" /> <!-- needed for AspNetCore -->
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with dependencies, both .NET framework and .NET -->
@@ -52,7 +52,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.2.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.0.0-beta.5" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.8" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.11" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.5.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.MySqlData" Version="1.0.0-beta.7" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.0.0-alpha.3" />
@@ -62,7 +62,7 @@
 
   <!-- Non-stable instrumentation packages with dependencies, only .NET -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with dependencies, only .NET framework -->

@@ -1,5 +1,73 @@
 # Changelog
 
+## Unreleased
+
+### BREAKING CHANGES
+
+* Use 1.8.1 of OpenTelemetry.Instrumentation.Http
+  * **Breaking Change**: Fixed tracing instrumentation so that by default any
+  values detected in the query string component of requests are replaced with
+  the text `Redacted` when building the `url.full` tag. For example,
+  `?key1=value1&key2=value2` becomes `?key1=Redacted&key2=Redacted`. You can
+  disable this redaction by setting the environment variable
+  `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION` to `true`.
+  ([#5532](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5532))
+
+* Use 1.8.1 of OpenTelemetry.Instrumentation.AspNetCore
+  * **Breaking Change**: Fixed tracing instrumentation so that by default any
+  values detected in the query string component of requests are replaced with
+  the text `Redacted` when building the `url.full` tag. For example,
+  `?key1=value1&key2=value2` becomes `?key1=Redacted&key2=Redacted`. You can
+  disable this redaction by setting the environment variable
+  `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION` to `true`.
+  ([#5532](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5532))
+
+### Bug Fixes
+
+* Use 1.8.1 of OpenTelemetry
+  * Fixed an issue in Logging where unwanted objects (processors, exporters, etc.)
+  could be created inside delegates automatically executed by the Options API
+  during configuration reload.
+  ([#5514](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5514))
+  * Include changes from the following versions:
+    * [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/core-1.8.0)
+
+* Use 1.8.1 of OpenTelemetry.Exporter.OpenTelemetryProtocol
+  * Fix native AoT warnings in `OpenTelemetry.Exporter.OpenTelemetryProtocol`.
+  ([#5520](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5520))
+
+* Use 1.8.1 of OpenTelemetry.Instrumentation.AspNetCore
+  * Includes fixes from [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.AspNetCore-1.8.0)
+
+* Use 1.8.1 of OpenTelemetry.Instrumentation.Http
+  * Includes fixes from [1.8.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/Instrumentation.Http-1.8.0)
+
+### New features
+
+* Use 1.8.0 of OpenTelemetry.Exporter.Console
+  * Added support for `ActivitySource.Version` property. ([#5472](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5472))
+
+* Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
+
+* Use 1.8.0 of OpenTelemetry.Instrumentation.Runtime
+  * `Meter.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
+
+* Use 1.8.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
+
+* Use 0.5.0-beta.5 of OpenTelemetry.Instrumentation.Process
+  * `Meter.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
+
+* Use 1.0.0-beta.6 of OpenTelemetry.ResourceDetectors.Azure
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
+
+* Use 0.1.0-alpha.3 of OpenTelemetry.ResourceDetectors.Host
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
+
+* Use 0.1.0-alpha.3 of OpenTelemetry.ResourceDetectors.ProcessRuntime
+  * Update `OpenTelemetry.Api` to `1.8.0`. ([#1635](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1635))
+
 ## 0.7.0-beta.4
 
 ### Bug fixes

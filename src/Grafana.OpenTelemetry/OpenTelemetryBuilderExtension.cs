@@ -21,10 +21,10 @@ namespace Grafana.OpenTelemetry
         /// <summary>
         /// Sets up tracing and metrics with the OpenTelemetry .NET distribution for Grafana.
         /// </summary>
-        /// <param name="builder">A <see cref="OpenTelemetryBuilder"/></param>
+        /// <param name="builder">A <see cref="IOpenTelemetryBuilder"/></param>
         /// <param name="configure">A callback for customizing default Grafana OpenTelemetry settings</param>
-        /// <returns>A modified <see cref="OpenTelemetryBuilder"/> </returns>
-        public static OpenTelemetryBuilder UseGrafana(this OpenTelemetryBuilder builder, Action<GrafanaOpenTelemetrySettings> configure = default)
+        /// <returns>A modified <see cref="IOpenTelemetryBuilder"/> </returns>
+        public static IOpenTelemetryBuilder UseGrafana(this IOpenTelemetryBuilder builder, Action<GrafanaOpenTelemetrySettings> configure = default)
         {
             return builder
                 .WithTracing(tracerProviderBuilder => tracerProviderBuilder.UseGrafana(configure))
