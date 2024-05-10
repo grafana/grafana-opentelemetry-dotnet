@@ -70,6 +70,39 @@ builder.Services.AddOpenTelemetry().UseGrafana();
 builder.Logging.AddOpenTelemetry(logging => logging.UseGrafana());
 ```
 
+## .NET Framework
+
+For ASP.NET applications running on .NET Framework, modify `Application_Start`
+in Global.asax.cs to instaniate the desired providers, and `Application_End`
+to dispose of them properly. Failure to dispose providers may cause telemetry
+data to be lost when the process shuts down.
+
+```csharp
+public class WebApiApplication : System.Web.HttpApplication
+{
+    private TracerProvider tracerProvider;
+    private MeterProvider meterProvider;
+
+    protected void Application_Start()
+    {
+        // Existing MVC/Web API setup code
+
+        tracerProvider = Sdk.CreateTracerProviderBuilder()
+            .UseGrafana()
+            .Build();
+        meterProvider = Sdk.CreateMeterProviderBuilder()
+            .UseGrafana()
+            .Build();
+    }
+
+    protected void Application_End()
+    {
+        tracerProvider?.Dispose();
+        meterProvider?.Dispose();
+    }
+}
+```
+
 ## Exporter configuration
 
 ### Sending to an agent or collector via OTLP
