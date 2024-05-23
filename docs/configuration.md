@@ -22,7 +22,7 @@ The distribution can be initialized for metrics by calling the `UseGrafana`
 extension method on the `MeterProviderBuilder`.
 
 ```csharp
-using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+using var meterProvider = Sdk.CreateMeterProviderBuilder()
     .UseGrafana()
     .Build();
 ```
