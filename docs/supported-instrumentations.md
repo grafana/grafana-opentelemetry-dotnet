@@ -19,11 +19,11 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
 | `GrpcNetClient`       | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.GrpcNetClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.GrpcNetClient) |
 | `Hangfire`            | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.Hangfire](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Hangfire) |
 | `HttpClient`          | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) |
-| `HostResource`        | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.Host](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.ResourceDetectors.Host) |
+| `HostResource`        | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.Host](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Resources.Host) |
 | `NetRuntime`          | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Runtime](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) |
 | `Process`             | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Process](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Process) |
-| `ProcessResource`     | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.Process](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.ResourceDetectors.Process) |
-| `ProcessRuntimeResource`| :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.ProcessRuntime](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.ResourceDetectors.ProcessRuntime) |
+| `ProcessResource`     | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.Process](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Resources.Process) |
+| `ProcessRuntimeResource`| :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.ResourceDetectors.ProcessRuntime](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Resources.ProcessRuntime) |
 | `MySqlData`           | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.MySqlData](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.MySqlData) |
 |                       | :heavy_check_mark: |                    | [MySql.Data.OpenTelemetry](https://www.nuget.org/packages/MySql.Data.OpenTelemetry) |
 | `Owin`                | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.Owin](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Owin) |
