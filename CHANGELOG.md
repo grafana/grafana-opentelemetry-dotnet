@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.2-beta.1
+
+### Bug Fixes
+
+* Use 8.0.4 of System.Text.Json to remediate CVE-2024-30105
+  ([#102](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/102))
+
 ## 0.8.1-beta.1
 
 ### BREAKING CHANGES
