@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.2-beta.1
 
 ### Bug Fixes
 
