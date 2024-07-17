@@ -4,7 +4,6 @@
 //
 
 #if !NETSTANDARD
-using OpenTelemetry.ResourceDetectors.AWS;
 using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
@@ -17,11 +16,11 @@ namespace Grafana.OpenTelemetry
         {
             return builder
 #if !NETFRAMEWORK
-                .AddDetector(new AWSECSResourceDetector())
-                .AddDetector(new AWSEKSResourceDetector())
+                .AddAWSECSDetector()
+                .AddAWSEKSDetector()
 #endif
-                .AddDetector(new AWSEC2ResourceDetector())
-                .AddDetector(new AWSEBSResourceDetector());
+                .AddAWSEC2Detector()
+                .AddAWSEBSDetector();
         }
     }
 }

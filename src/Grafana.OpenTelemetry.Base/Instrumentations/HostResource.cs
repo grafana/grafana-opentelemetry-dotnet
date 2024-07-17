@@ -5,7 +5,6 @@
 
 #if !NETSTANDARD
 
-using OpenTelemetry.ResourceDetectors.Host;
 using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
@@ -16,7 +15,7 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddDetector(new HostDetector());
+            return builder.AddHostDetector();
         }
     }
 }
