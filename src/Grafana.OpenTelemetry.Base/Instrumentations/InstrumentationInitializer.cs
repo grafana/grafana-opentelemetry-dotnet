@@ -36,7 +36,9 @@ namespace Grafana.OpenTelemetry
             new StackExchangeRedisInitializer(),
             new WcfInitializer(),
             new AzureResourceInitializer(),
+#if NET6_0_OR_GREATER
             new ContainerResourceInitializer(),
+#endif
 #if !NETSTANDARD
             new AWSResourceInitializer(),
             new HostResourceInitializer(),
