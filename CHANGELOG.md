@@ -1,5 +1,174 @@
 # Changelog
 
+## Unreleased
+
+### BREAKING CHANGES
+
+* Use 0.5.0-beta.6 of OpenTelemetry.Instrumentation.Process
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Process`
+    to `OpenTelemetry.Resources.Process`.
+    ([#1717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1717))
+  * **Breaking Change**: `ProcessDetector` type is now internal, use `ResourceBuilder`
+    extension method `AddProcessDetector` to enable the detector.
+    ([#1717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1717))
+* Use 1.0.0-beta.8 of OpenTelemetry.Resources.Azure
+  * **Breaking Change**: Renamed method from `AddAppServiceDetector`
+    to `AddAzureAppServiceDetector`.
+    ([#1883](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1883))
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Azure`
+  to `OpenTelemetry.Resources.Azure`.
+  ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
+  * **Breaking Change**: `AppServiceResourceDetector` type is now internal, use `ResourceBuilder`
+    extension method `AddAppServiceDetector` to enable the detector.
+    ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
+  * **Breaking Change**: `AzureVMResourceDetector` type is now internal, use `ResourceBuilder`
+    extension method `AddAzureVMResourceDetector` to enable the detector.
+    ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
+  * **Breaking Change**: `AzureContainerAppsResourceDetector` type is now
+    internal, use `ResourceBuilder` extension method `AddAzureContainerAppsResourceDetector`
+    to enable the detector.
+    ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
+* Use 1.5.0-beta.1 of OpenTelemetry.Resources.AWS
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.AWS`
+    to `OpenTelemetry.Resources.AWS`.
+    ([#1839](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1839))
+  * **Breaking Change**: `AWSEBSResourceDetector`, `AWSEC2ResourceDetector`,
+  `AWSECSResourceDetector` and `AWSEKSResourceDetector` types are now internal,
+  use `ResourceBuilder` extension methods `AddAWSEBSDetector`,
+  `AddAWSEC2Detector`, `AddAWSECSDetector`
+  and `AddAWSEKSDetector` respectively to enable the detectors.
+    ([#1839](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1839))
+  * **Breaking Change**: Renamed EventSource
+  from `OpenTelemetry-ResourceDetectors-AWS`
+  to `OpenTelemetry-Resources-AWS`.
+    ([#1839](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1839))
+* Use 0.1.0-beta.2 of OpenTelemetry.Resources.Host
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Host`
+    to `OpenTelemetry.Resources.Host`.
+    ([#1820](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1820))
+  * **Breaking Change**: `HostDetector` type is now internal, use `ResourceBuilder`
+    extension method `AddHostDetector` to enable the detector.
+    ([#1820](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1820))
+* Use 0.1.0-beta.2 of OpenTelemetry.Resources.Process
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Process`
+  to `OpenTelemetry.Resources.Process`.
+  ([#1717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1717))
+  * **Breaking Change**: `ProcessDetector` type is now internal, use `ResourceBuilder`
+  extension method `AddProcessDetector` to enable the detector.
+  ([#1717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1717))
+* Use 0.1.0-beta.2 of OpenTelemetry.Resources.ProcessRuntime
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.ProcessRuntime`
+    to `OpenTelemetry.Resources.ProcessRuntime`.
+    ([#1767](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1767))
+  * **Breaking Change**: `ProcessRuntimeDetector` type is now internal, use `ResourceBuilder`
+    extension method `AddProcessRuntimeDetector` to enable the detector.
+    ([#1767](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1767))
+* Use 1.0.0-beta.9 of OpenTelemetry.Resources.Container
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Container`
+    to `OpenTelemetry.Resources.Container`.
+    ([#1849](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1849))
+  * **Breaking Change**: `ContainerResourceDetector` type is now internal,
+  use `ResourceBuilder` extension method `AddContainerDetector`
+  to enable the detector.
+    ([#1849](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1849))
+  * **Breaking Change**: Renamed EventSource
+  from `OpenTelemetry-ResourceDetectors-Container`
+  to `OpenTelemetry-Resources-Container`.
+    ([#1849](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1849))
+
+### Bug Fixes
+
+* Use 1.9.0 of OpenTelemetry
+  * Fixed a race condition for the experimental MetricPoint reclaim scenario
+    (enabled via `OTEL_DOTNET_EXPERIMENTAL_METRICS_RECLAIM_UNUSED_METRIC_POINTS`)
+    which could have led to a measurement being dropped.
+    ([#5546](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5546))
+  * Fixed the nullable annotations for the `SamplingResult` constructors
+    to allow `null` being supplied as `attributes` or `traceStateString`
+    which has always been supported.
+    ([#5614](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5614))
+* Use 1.0.0-rc.6 of OpenTelemetry.Instrumentation.Owin
+  * Massive memory leak in OwinInstrumentationMetrics addressed.
+    Made both Meter and Histogram singletons.
+    ([#1655](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1655))
+
+### New features
+
+* Use 1.9.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol
+  * `User-Agent` header format changed from
+    `OTel-OTLP-Exporter-Dotnet/{NuGet Package Version}+{Commit Hash}`
+    to `OTel-OTLP-Exporter-Dotnet/{NuGet Package Version}`.
+    ([#5528](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5528))
+  * Implementation of [OTLP
+    specification](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.2.0/opentelemetry/proto/trace/v1/trace.proto#L112-L133)
+    for propagating `Span` and `SpanLink` flags containing W3C trace flags and
+    `parent_is_remote` information.
+    ([#5563](https://github.com/open-telemetry/opentelemetry-dotnet/pull/5563))
+* Use 1.9.0 of OpenTelemetry.Instrumentation.Runtime
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0 of OpenTelemetry.Instrumentation.Http
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 0.5.0-beta.6 of OpenTelemetry.Instrumentation.Process
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.5.0-beta.1 of OpenTelemetry.Resources.AWS
+  * Implement support for cloud.{account.id,availability_zone,region} attributes in
+    AWS ECS detector.
+    ([#1552](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1552))
+  * Implement support for `cloud.resource_id` attribute in AWS ECS detector.
+    ([#1576](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1576))
+  * Update OpenTelemetry SDK version to `1.8.1`.
+    ([#1668](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1668))
+* Use 0.1.0-beta.2 of OpenTelemetry.Resources.Host
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * Adds support for `host.id` resource attribute on non-containerized systems.
+  `host.id` will be set per [semantic convention rules](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/resource/host.md)
+    ([#1631](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1631))
+* Use 0.1.0-beta.2 of OpenTelemetry.Resources.Process
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.0.0-beta.9 of OpenTelemetry.Resources.Container
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0 of OpenTelemetry.Extensions.Hosting
+* Use 1.1.0-beta.4 of OpenTelemetry.Instrumentation.AWS
+* Use 1.0.0-beta.12 of OpenTelemetry.Instrumentation.EntityFrameworkCore
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.6.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire
+* Use 1.0.0-beta.3 of OpenTelemetry.Instrumentation.Quartz
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.0.0-rc9.15 of OpenTelemetry.Instrumentation.StackExchangeRedis
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.0.0-rc.17 of OpenTelemetry.Instrumentation.Wcf
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0 of OpenTelemetry.Instrumentation.AspNetCore
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.AspNet
+  * Updated OpenTelemetry core component version(s) to `1.9.0`.
+    ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+* Use 1.3.0-beta.1 of OpenTelemetry.Instrumentation.AWSLambda
+
 ## 0.8.2-beta.1
 
 ### Bug Fixes
