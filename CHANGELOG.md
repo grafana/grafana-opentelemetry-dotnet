@@ -146,7 +146,7 @@
     ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
   * Add support for instrumenting `IConnectionMultiplexer`
     which is added with service key.
-    ([#1885](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1885))  
+    ([#1885](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1885))
 * Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
   * Updated OpenTelemetry core component version(s) to `1.9.0`.
     ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
