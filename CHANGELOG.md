@@ -98,6 +98,10 @@
   * Massive memory leak in OwinInstrumentationMetrics addressed.
     Made both Meter and Histogram singletons.
     ([#1655](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1655))
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis
+  * Update `StackExchange.Redis` version to `2.6.122`, resolving warnings about
+    [CVE-2021-24112](https://github.com/advisories/GHSA-rxg9-xrhp-64gj).
+    ([#1961](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1961))
 
 ### New features
 
@@ -137,9 +141,12 @@
 * Use 1.9.0 of OpenTelemetry.Instrumentation.Runtime
   * Updated OpenTelemetry core component version(s) to `1.9.0`.
     ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
-* Use 1.0.0-rc9.15 of OpenTelemetry.Instrumentation.StackExchangeRedis
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis
   * Updated OpenTelemetry core component version(s) to `1.9.0`.
     ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
+  * Add support for instrumenting `IConnectionMultiplexer`
+    which is added with service key.
+    ([#1885](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1885))  
 * Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
   * Updated OpenTelemetry core component version(s) to `1.9.0`.
     ([#1888](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1888))
