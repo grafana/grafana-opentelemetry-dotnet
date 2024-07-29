@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-using OpenTelemetry.ResourceDetectors.Azure;
 using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
@@ -14,7 +13,7 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddDetector(new AppServiceResourceDetector());
+            return builder.AddAzureAppServiceDetector();
         }
     }
 }

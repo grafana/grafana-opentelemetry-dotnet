@@ -3,8 +3,9 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-using OpenTelemetry.ResourceDetectors.Container;
 using OpenTelemetry.Resources;
+
+#if NET6_0_OR_GREATER
 
 namespace Grafana.OpenTelemetry
 {
@@ -14,7 +15,9 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddDetector(new ContainerResourceDetector());
+            return builder.AddContainerDetector();
         }
     }
 }
+
+#endif

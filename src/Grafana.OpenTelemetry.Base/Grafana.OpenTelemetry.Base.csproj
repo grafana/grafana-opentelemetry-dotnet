@@ -27,33 +27,32 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OpenTelemetry" Version="1.8.1" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.8.1" />
+    <PackageReference Include="OpenTelemetry" Version="1.9.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
   </ItemGroup>
 
   <!-- Stable instrumentation packages -->
   <ItemGroup>
     <PackageReference Include="MySql.Data.OpenTelemetry" Version="8.2.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with no dependencies -->
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.5" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.8.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.9.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.6" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.9.0-beta.1" />
 
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.Azure" Version="1.0.0-beta.4" />
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.Container" Version="1.0.0-beta.5" />
+    <PackageReference Include="OpenTelemetry.Resources.Azure" Version="1.0.0-beta.8" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with no dependencies, non netstandard2.0 -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.AWS" Version="1.4.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.Host" Version="0.1.0-alpha.2" />
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.Process" Version="0.1.0-alpha.2" />
-    <PackageReference Include="OpenTelemetry.ResourceDetectors.ProcessRuntime" Version="0.1.0-alpha.2" />
+    <PackageReference Include="OpenTelemetry.Resources.AWS" Version="1.5.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Resources.Host" Version="0.1.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Resources.Process" Version="0.1.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="0.1.0-beta.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +63,14 @@
 
   <ItemGroup>
     <None Include="../../internal/img/Grafana_icon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.0.0-beta.9" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.0.0-beta.9" />
   </ItemGroup>
 
 </Project>
