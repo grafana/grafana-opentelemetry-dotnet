@@ -11,12 +11,15 @@ namespace Grafana.OpenTelemetry
     {
         public static ResourceBuilder AddGrafanaResource(this ResourceBuilder resourceBuilder, GrafanaOpenTelemetrySettings settings)
         {
+            var serviceInstanceIdProvided = !string.IsNullOrEmpty(settings.ServiceInstanceId);
+
             return resourceBuilder
                 .AddDetector(new GrafanaOpenTelemetryResourceDetector(settings))
                 .AddService(
                     serviceName: settings.ServiceName,
                     serviceVersion: settings.ServiceVersion,
-                    serviceInstanceId: settings.ServiceInstanceId);
+                    serviceInstanceId: serviceInstanceIdProvided ? settings.ServiceInstanceId : null,
+                    autoGenerateServiceInstanceId: serviceInstanceIdProvided == false);
 
         }
     }

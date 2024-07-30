@@ -66,15 +66,6 @@ namespace Grafana.OpenTelemetry.Tests
         }
 
         [Fact]
-        public void StableServiceInstanceId()
-        {
-            var settings1 = new GrafanaOpenTelemetrySettings();
-            var settings2 = new GrafanaOpenTelemetrySettings();
-
-            Assert.Equal(settings1.ServiceInstanceId, settings2.ServiceInstanceId);
-        }
-
-        [Fact]
         public void DefaultServiceName()
         {
             var settings = new GrafanaOpenTelemetrySettings();
