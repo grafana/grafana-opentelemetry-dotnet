@@ -39,7 +39,7 @@ dotnet add package --prerelease Grafana.OpenTelemetry
 
 The `UseGrafana` extension method on the `TracerProviderBuilder` or the
 `MetricProviderBuilder` can be used to set up the Grafana distribution. By
-default, telemetry data will be sent to a Grafana agent or an OTel collector
+default, telemetry data will be sent to Grafana Alloy or an OTel collector
 that runs locally and listens to default OTLP ports.
 
 ```csharp
