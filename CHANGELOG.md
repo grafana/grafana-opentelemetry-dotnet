@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Remove workaround for stable `service.instance.id` across signals
+  ([#108](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/108))
+
 ## 0.9.0-beta.1
 
 ### BREAKING CHANGES
