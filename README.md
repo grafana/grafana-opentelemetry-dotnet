@@ -71,6 +71,7 @@ documents:
 * [Installation](./docs/installation.md)
 * [Configuration](./docs/configuration.md)
 * [Supported instrumentations](./docs/supported-instrumentations.md)
+* [Migrating to upstream](./docs/migration.md)
 
 ## Troubleshooting
 
