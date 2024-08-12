@@ -18,9 +18,7 @@ for details. The exporter will respect the previously set environment variables:
   - `OTEL_EXPORTER_OTLP_HEADERS`
 - Install and configure any desired instrumentation packages
 [listed here](./supported-instrumentations.md)
-- Add `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to opt-in to the
-latest HTTP semantic conventions
-- [Add the recommended OpenTelemetry resource attributes](https://grafana.com/docs/opentelemetry/instrumentation/configuration/resource-attributes/)
+- [Add the OpenTelemetry resource attributes](https://grafana.com/docs/opentelemetry/instrumentation/configuration/resource-attributes/)
 via the `OTEL_RESOURCE_ATTRIBUTES` environment variable
   - `service.name`
   - `service.namespace`
@@ -29,6 +27,5 @@ via the `OTEL_RESOURCE_ATTRIBUTES` environment variable
   - `deployment.environment`
 
 ```shell
-export OTEL_SEMCONV_STABILITY_OPT_IN=http
 export OTEL_RESOURCE_ATTRIBUTES=service.instance.id=<pod123>,deployment.environment=...
 ```
