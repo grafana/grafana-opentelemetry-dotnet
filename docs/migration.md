@@ -5,8 +5,8 @@ installing and configuring upstream OpenTelemetry .NET packages. Follow these
 steps if you want to migrate from this distribution to the upstream
 OpenTelemetry .NET project.
 
-- Replace all environment variables or web.config/app.config values with the
-"grafana" prefix as explained [here](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#push-directly-from-applications-using-the-opentelemetry-sdks)
+- Set appropriate environment variables or web.config/app.config values as
+explained [here](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#push-directly-from-applications-using-the-opentelemetry-sdks)
 - Install and activate the OpenTelemetry SDK,
 as covered in the upstream [Getting Started](https://github.com/open-telemetry/opentelemetry-dotnet#getting-started)
 guide
