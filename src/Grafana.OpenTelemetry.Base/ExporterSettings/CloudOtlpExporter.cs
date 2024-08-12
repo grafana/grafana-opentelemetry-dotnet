@@ -13,7 +13,7 @@ using OpenTelemetry.Trace;
 namespace Grafana.OpenTelemetry
 {
     /// <summary>
-    /// Settings for exporting telemetry directly to Grafana Agent via OTLP.
+    /// Settings for exporting telemetry directly to Grafana Alloy via OTLP.
     /// </summary>
     [Obsolete("This class is obsolete. Use OtlpExporter instead.")]
     public class CloudOtlpExporter : ExporterSettings

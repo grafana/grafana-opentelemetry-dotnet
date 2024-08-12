@@ -12,12 +12,12 @@ using OpenTelemetry.Trace;
 namespace Grafana.OpenTelemetry
 {
     /// <summary>
-    /// Settings for exporting telemetry to a Grafana Agent or collector.
+    /// Settings for exporting telemetry to a Grafana Alloy or collector.
     /// </summary>
     public class AgentOtlpExporter : ExporterSettings
     {
         /// <summary>
-        /// Gets or sets the address of the Grafana Agent or collector. If not set, the OpenTelemetry
+        /// Gets or sets the address of the Grafana Alloy or collector. If not set, the OpenTelemetry
         /// default is used (`http://localhost:4817` for http/protobuf, and `http://localhost:4818`
         /// for grpc).
         /// </summary>
