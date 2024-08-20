@@ -11,7 +11,7 @@
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml)
 [![OATS](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml)
 [![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
-[![SDK](https://img.shields.io/badge/otel--sdk-1.7.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
+[![SDK](https://img.shields.io/badge/otel--sdk-1.9.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
 [![Slack](https://img.shields.io/badge/join%20slack-%23app--o11y-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 <!-- markdown-link-check-enable -->
 
@@ -21,7 +21,7 @@ This is a pre-configured and pre-packaged bundle of [OpenTelemetry .NET componen
 optimized for [Grafana Cloud Application Observability](https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/).
 
 It requires only minimal setup and configuration and makes it very easy to emit
-OpenTelemetry traces, logs, and metrics from your .NET application.
+OpenTelemetry metrics, logs, and traces from your .NET application.
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ dotnet add package --prerelease Grafana.OpenTelemetry
 
 The `UseGrafana` extension method on the `TracerProviderBuilder` or the
 `MetricProviderBuilder` can be used to set up the Grafana distribution. By
-default, telemetry data will be sent to a Grafana agent or an OTel collector
+default, telemetry data will be sent to Grafana Alloy or an OTel collector
 that runs locally and listens to default OTLP ports.
 
 ```csharp
@@ -71,6 +71,7 @@ documents:
 * [Installation](./docs/installation.md)
 * [Configuration](./docs/configuration.md)
 * [Supported instrumentations](./docs/supported-instrumentations.md)
+* [Migrating to upstream](./docs/migration.md)
 
 ## Troubleshooting
 
