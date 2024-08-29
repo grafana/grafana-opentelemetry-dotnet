@@ -33,12 +33,10 @@ namespace Grafana.OpenTelemetry.Tests
             var settings = new GrafanaOpenTelemetrySettings();
 
             // De-activate AWSLambda instrumenation until this issue is resolved: https://github.com/grafana/app-o11y/issues/378
-            // De-activate the container resource detector until it correctly detects processes not running in containers
             //
             // Once it's resolved, this test can be removed and the `DefaultInstrumentation` test can be re-activated.
             var expectedSettings = new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
             expectedSettings.Remove(Instrumentation.AWSLambda);
-            expectedSettings.Remove(Instrumentation.ContainerResource);
 
             Assert.Equal(expectedSettings, settings.Instrumentations);
         }
@@ -52,6 +50,8 @@ namespace Grafana.OpenTelemetry.Tests
 
             Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
             Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
         }
 
         [Fact]
@@ -63,6 +63,35 @@ namespace Grafana.OpenTelemetry.Tests
 
             Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
             Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+        }
+
+        [Fact]
+        public void DisableResourceDetectors()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Host,Process");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
+            Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+        }
+
+        [Fact]
+        public void DisableResourceDetectorsColon()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Host:Process");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
+            Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+        }
         }
 
         [Fact]
