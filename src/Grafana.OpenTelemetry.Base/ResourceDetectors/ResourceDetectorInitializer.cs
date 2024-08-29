@@ -30,6 +30,7 @@ namespace Grafana.OpenTelemetry
 #endif
 #if !NETSTANDARD
             new HostResourceInitializer(),
+            new OperatingSystemResourceInitializer(),
             new ProcessResourceInitializer(),
             new ProcessRuntimeResourceInitializer()
 #endif

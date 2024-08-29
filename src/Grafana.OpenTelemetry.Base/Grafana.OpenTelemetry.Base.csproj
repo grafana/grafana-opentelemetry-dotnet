@@ -51,6 +51,7 @@
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
     <PackageReference Include="OpenTelemetry.Resources.AWS" Version="1.5.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.Host" Version="0.1.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="0.1.0-alpha.2" />
     <PackageReference Include="OpenTelemetry.Resources.Process" Version="0.1.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="0.1.0-beta.2" />
   </ItemGroup>
