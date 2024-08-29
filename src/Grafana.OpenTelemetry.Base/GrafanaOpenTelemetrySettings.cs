@@ -18,6 +18,7 @@ namespace Grafana.OpenTelemetry
     {
         internal const string DisableInstrumentationsEnvVarName = "GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS";
         internal const string DisableResourceDetectorsEnvVarName = "GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS";
+        internal const string ResourceDetectorsEnvVarName = "GRAFANA_DOTNET_RESOURCEDETECTORS";
         internal const string ServiceNameEnvVarName = "OTEL_SERVICE_NAME";
 
         /// <summary>
@@ -122,6 +123,21 @@ namespace Grafana.OpenTelemetry
                     if (Enum.TryParse<Instrumentation>(instrumentationStr, out var instrumentation))
                     {
                         Instrumentations.Remove(instrumentation);
+                    }
+                }
+            }
+
+            var resourceDetectors = configuration[ResourceDetectorsEnvVarName];
+
+            if (!string.IsNullOrEmpty(resourceDetectors))
+            {
+                ResourceDetectors.Clear();
+
+                foreach (var resourceDetectorStr in resourceDetectors.Split(new char[] { ',', ':' }))
+                {
+                    if (Enum.TryParse<ResourceDetector>(resourceDetectorStr, out var resourceDetector))
+                    {
+                        ResourceDetectors.Add(resourceDetector);
                     }
                 }
             }

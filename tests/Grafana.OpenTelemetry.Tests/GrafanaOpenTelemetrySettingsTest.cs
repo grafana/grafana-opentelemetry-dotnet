@@ -92,6 +92,61 @@ namespace Grafana.OpenTelemetry.Tests
 
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
         }
+
+        [Fact]
+        public void SetSingleResourceDetector()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Single(settings.ResourceDetectors);
+            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+        }
+
+        [Fact]
+        public void SetResourceDetectors()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container,Process");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(2, settings.ResourceDetectors.Count);
+            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+            Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+        }
+
+        [Fact]
+        public void SetResourceDetectorsColon()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container:Process");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Equal(2, settings.ResourceDetectors.Count);
+            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+            Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+        }
+
+        [Fact]
+        public void SetAndDisableResourceDetectors()
+        {
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Host,Container");
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Container");
+
+            var settings = new GrafanaOpenTelemetrySettings();
+
+            Assert.Single(settings.ResourceDetectors);
+            Assert.Contains(ResourceDetector.Host, settings.ResourceDetectors);
+
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
         }
 
         [Fact]
