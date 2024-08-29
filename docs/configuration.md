@@ -179,7 +179,7 @@ export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 
 ### Specifying resource detectors
 
-Default resource detectors can be overriden by removing them from the `ResourceDetectors`
+Default resource detectors can be overridden by removing them from the `ResourceDetectors`
 set in the configuration and specifying which resource detectors to enable:
 
 ```csharp
