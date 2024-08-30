@@ -17,6 +17,8 @@ namespace Grafana.OpenTelemetry
     public class GrafanaOpenTelemetrySettings
     {
         internal const string DisableInstrumentationsEnvVarName = "GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS";
+        internal const string DisableResourceDetectorsEnvVarName = "GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS";
+        internal const string ResourceDetectorsEnvVarName = "GRAFANA_DOTNET_RESOURCEDETECTORS";
         internal const string ServiceNameEnvVarName = "OTEL_SERVICE_NAME";
 
         /// <summary>
@@ -38,6 +40,21 @@ namespace Grafana.OpenTelemetry
         /// By default, all available instrumentations are activated.
         /// </summary>
         public HashSet<Instrumentation> Instrumentations { get; } = new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
+
+        /// <summary>
+        /// Gets the list of resource detectors to be activated.
+        ///
+        /// By default, all only resource detectors that do not impact application startup are activated.
+        /// </summary>
+        public HashSet<ResourceDetector> ResourceDetectors { get; } = new HashSet<ResourceDetector>(new ResourceDetector[]
+        {
+            // Activating the container resource detector by default always populates a `container.id` attribute,
+            // even when running in a non-container Linux setting.
+            // ResourceDetector.Container,
+            ResourceDetector.Host,
+            ResourceDetector.Process,
+            ResourceDetector.ProcessRuntime,
+        });
 
         /// <summary>
         /// Gets or sets the logical name of the service to be instrumented.
@@ -97,10 +114,6 @@ namespace Grafana.OpenTelemetry
             // De-activate it until the related issue is resolved: https://github.com/grafana/app-o11y/issues/378
             Instrumentations.Remove(Instrumentation.AWSLambda);
 
-            // Activating the container resource detector by default always populates a `container.id` attribute,
-            // even when running in a non-container Linux setting.
-            Instrumentations.Remove(Instrumentation.ContainerResource);
-
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
 
             if (!string.IsNullOrEmpty(disableInstrumentations))
@@ -110,6 +123,34 @@ namespace Grafana.OpenTelemetry
                     if (Enum.TryParse<Instrumentation>(instrumentationStr, out var instrumentation))
                     {
                         Instrumentations.Remove(instrumentation);
+                    }
+                }
+            }
+
+            var resourceDetectors = configuration[ResourceDetectorsEnvVarName];
+
+            if (!string.IsNullOrEmpty(resourceDetectors))
+            {
+                ResourceDetectors.Clear();
+
+                foreach (var resourceDetectorStr in resourceDetectors.Split(new char[] { ',', ':' }))
+                {
+                    if (Enum.TryParse<ResourceDetector>(resourceDetectorStr, out var resourceDetector))
+                    {
+                        ResourceDetectors.Add(resourceDetector);
+                    }
+                }
+            }
+
+            var disableResourceDetectors = configuration[DisableResourceDetectorsEnvVarName];
+
+            if (!string.IsNullOrEmpty(disableResourceDetectors))
+            {
+                foreach (var resourceDetectorStr in disableResourceDetectors.Split(new char[] { ',', ':' }))
+                {
+                    if (Enum.TryParse<ResourceDetector>(resourceDetectorStr, out var resourceDetector))
+                    {
+                        ResourceDetectors.Remove(resourceDetector);
                     }
                 }
             }

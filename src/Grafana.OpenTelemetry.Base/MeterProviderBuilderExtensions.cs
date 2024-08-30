@@ -40,6 +40,7 @@ namespace Grafana.OpenTelemetry
             return builder
                 .AddGrafanaExporter(settings?.ExporterSettings)
                 .AddInstrumentations(settings?.Instrumentations)
+                .AddResourceDetectors(settings?.ResourceDetectors)
                 .ConfigureResource(resourceBuilder => resourceBuilder.AddGrafanaResource(settings));
         }
 
@@ -60,6 +61,24 @@ namespace Grafana.OpenTelemetry
             foreach (var initializer in InstrumentationInitializer.Initializers)
             {
                 if (instrumentations.Contains(initializer.Id))
+                {
+                    initializer.Initialize(builder);
+                }
+            }
+
+            return builder;
+        }
+
+        internal static MeterProviderBuilder AddResourceDetectors(this MeterProviderBuilder builder, HashSet<ResourceDetector> resourceDetectors)
+        {
+            if (resourceDetectors == null)
+            {
+                return builder;
+            }
+
+            foreach (var initializer in ResourceDetectorInitializer.Initializers)
+            {
+                if (resourceDetectors.Contains(initializer.Id))
                 {
                     initializer.Initialize(builder);
                 }

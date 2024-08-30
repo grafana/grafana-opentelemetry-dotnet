@@ -4,9 +4,7 @@
 //
 
 using System;
-using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
@@ -35,16 +33,6 @@ namespace Grafana.OpenTelemetry
             new SqlClientInitializer(),
             new StackExchangeRedisInitializer(),
             new WcfInitializer(),
-            new AzureResourceInitializer(),
-#if NET6_0_OR_GREATER
-            new ContainerResourceInitializer(),
-#endif
-#if !NETSTANDARD
-            new AWSResourceInitializer(),
-            new HostResourceInitializer(),
-            new ProcessResourceInitializer(),
-            new ProcessRuntimeResourceInitializer()
-#endif
         };
 
         abstract public Instrumentation Id { get; }
@@ -54,7 +42,6 @@ namespace Grafana.OpenTelemetry
             try
             {
                 InitializeTracing(builder);
-                InitializeResource(builder);
 
                 GrafanaOpenTelemetryEventSource.Log.EnabledTracingInstrumentation(Id.ToString());
             }
@@ -69,7 +56,6 @@ namespace Grafana.OpenTelemetry
             try
             {
                 InitializeMetrics(builder);
-                InitializeResource(builder);
 
                 GrafanaOpenTelemetryEventSource.Log.EnabledMetricsInstrumentation(Id.ToString());
             }
@@ -79,25 +65,10 @@ namespace Grafana.OpenTelemetry
             }
         }
 
-        protected void InitializeResource(TracerProviderBuilder builder)
-        {
-            builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
-        }
-
-        protected void InitializeResource(MeterProviderBuilder builder)
-        {
-            builder.ConfigureResource(resourceBuilder => InitializeResourceDetector(resourceBuilder));
-        }
-
         protected virtual void InitializeTracing(TracerProviderBuilder builder)
         { }
 
         protected virtual void InitializeMetrics(MeterProviderBuilder builder)
         { }
-
-        protected virtual ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
-        {
-            return builder;
-        }
     }
 }

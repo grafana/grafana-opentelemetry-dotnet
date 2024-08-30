@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+### BREAKING CHANGES
+
+* Separates resource detectors and instrumentations. Removes resource detector
+  names from `Grafana.OpenTelemetry.Instrumentation` enumeration. Adds new
+  `Grafana.OpenTelemetry.ResourceDetectors` enumeration.
+  ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
+* Add new environment variable `GRAFANA_DOTNET_RESOURCEDETECTORS`. Setting this
+  will cause only the provided resource detectors to be enabled.
+  ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
+
+### Bug Fixes
+
 * Remove workaround for stable `service.instance.id` across signals
   ([#108](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/108))
 

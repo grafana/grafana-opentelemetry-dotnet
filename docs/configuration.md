@@ -13,6 +13,9 @@
   * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
     * [ASP.NET (`AspNet`)](#aspnet-aspnet)
     * [OWIN (`Owin`)](#owin-owin)
+* [Resource detector configuration](#resource-detector-configuration)
+  * [Specifying resource detectors](#specifying-resource-detectors)
+  * [Disabling resource detectors](#disabling-resource-detectors)
 * [Custom configuration](#custom-configuration)
 * [Supported environment variables](#supported-environment-variables)
 
@@ -172,6 +175,55 @@ from the table above:
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 ```
 
+## Resource detector configuration
+
+### Specifying resource detectors
+
+Default resource detectors can be overridden by removing them from the `ResourceDetectors`
+set in the configuration and specifying which resource detectors to enable:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ResourceDetectors.Clear(ResourceDetector.Host);
+        config.ResourceDetectors.Add(ResourceDetector.Process);
+    })
+    .Build();
+```
+
+Alternatively, resource detectors can be specified by the environment
+variable `GRAFANA_DOTNET_RESOURCEDETECTORS`. This variable can be
+populated with a comma-separated list of resource detector identifiers:
+
+```sh
+export GRAFANA_DOTNET_RESOURCEDETECTORS="Process"
+```
+
+### Disabling resource detectors
+
+By default, `Host`, `Process`, and `ProcessRuntime` resource detectors are enabled.
+Resource detectors can be disabled by removing them from the `ResourceDetectors`
+set in the configuration:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ResourceDetectors.Remove(ResourceDetector.Host);
+        config.ResourceDetectors.Remove(ResourceDetector.Process);
+    })
+    .Build();
+```
+
+Alternatively, resource detectors can be disabled by the environment
+variable `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`. This variable can be
+populated with a comma-separated list of resource detector identifiers:
+
+```sh
+export GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS="Host,Process"
+```
+
 ### Adding instrumentations not supported by the distribution
 
 Instrumentations not included in the distribution can easily be added by
@@ -309,3 +361,4 @@ are not contained in the distribution.
 | Variable                                  | Example value        | Description |
 | ----------------------------------------- |   ------------------ | ----------- |
 | `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
+| `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |
