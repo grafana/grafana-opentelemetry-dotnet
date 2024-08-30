@@ -29,6 +29,7 @@ namespace Grafana.OpenTelemetry.Tests
 #endif
 #if NETSTANDARD
             expected.Remove(ResourceDetector.Host);
+            expected.Remove(ResourceDetector.OperatingSystem);
             expected.Remove(ResourceDetector.Process);
             expected.Remove(ResourceDetector.ProcessRuntime);
 #endif

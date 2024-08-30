@@ -17,6 +17,11 @@
 * Remove workaround for stable `service.instance.id` across signals
   ([#108](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/108))
 
+### New features
+
+* Adds Operating System resource detector.
+  ([#113](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/113))
+
 ## 0.9.0-beta.1
 
 ### BREAKING CHANGES
