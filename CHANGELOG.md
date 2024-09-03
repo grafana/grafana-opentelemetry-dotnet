@@ -4,6 +4,8 @@
 
 ### BREAKING CHANGES
 
+* Drops supports for .NET 7. EOL was May 24 2024
+  ([#116](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/116))
 * Separates resource detectors and instrumentations. Removes resource detector
   names from `Grafana.OpenTelemetry.Instrumentation` enumeration. Adds new
   `Grafana.OpenTelemetry.ResourceDetectors` enumeration.
