@@ -51,7 +51,7 @@ namespace Grafana.OpenTelemetry
         Host,
 
         /// <summary>
-        /// Host Resource Detector (OpenTelemetry.ResourceDetectors.Host)
+        /// Operating System Resource Detector (OpenTelemetry.ResourceDetectors.OperatingSystem)
         /// </summary>
         OperatingSystem,
 
