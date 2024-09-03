@@ -11,7 +11,7 @@ namespace Grafana.OpenTelemetry
 {
     internal class OperatingSystemResourceInitializer : ResourceDetectorInitializer
     {
-        public override ResourceDetector Id { get; } = ResourceDetector.Process;
+        public override ResourceDetector Id { get; } = ResourceDetector.OperatingSystem;
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
