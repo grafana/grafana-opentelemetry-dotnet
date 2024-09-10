@@ -13,7 +13,12 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddAzureVMDetector();
+            ReflectionHelper.CallStaticMethod(
+                "OpenTelemetry.Resources.Azure",
+                "OpenTelemetry.Resources.AzureResourceBuilderExtensions",
+                "AddAzureVMDetector",
+                new object[] { builder });
+            return builder;
         }
     }
 }

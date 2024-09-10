@@ -4,6 +4,8 @@
 
 ### BREAKING CHANGES
 
+* Removes AWS and Azure resource detectors.
+  ([#114](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/114))
 * Drops supports for .NET 7. EOL was May 24 2024
   ([#116](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/116))
 * Separates resource detectors and instrumentations. Removes resource detector

@@ -14,7 +14,12 @@ namespace Grafana.OpenTelemetry
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
-            return builder.AddAWSEC2Detector();
+            ReflectionHelper.CallStaticMethod(
+                "OpenTelemetry.Resources.AWS",
+                "OpenTelemetry.Resources.AWSResourceBuilderExtensions",
+                "AddAWSEC2Detector",
+                new object[] { builder });
+            return builder;
         }
     }
 }

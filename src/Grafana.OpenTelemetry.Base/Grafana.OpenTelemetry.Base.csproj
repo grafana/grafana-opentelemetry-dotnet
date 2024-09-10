@@ -43,13 +43,10 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.6" />
     <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.9.0-beta.1" />
-
-    <PackageReference Include="OpenTelemetry.Resources.Azure" Version="1.0.0-beta.8" />
   </ItemGroup>
 
   <!-- Non-stable instrumentation packages with no dependencies, non netstandard2.0 -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
-    <PackageReference Include="OpenTelemetry.Resources.AWS" Version="1.5.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.Host" Version="0.1.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="0.1.0-alpha.2" />
     <PackageReference Include="OpenTelemetry.Resources.Process" Version="0.1.0-beta.2" />
