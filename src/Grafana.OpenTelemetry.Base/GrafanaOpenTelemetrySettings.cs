@@ -17,8 +17,8 @@ namespace Grafana.OpenTelemetry
     public class GrafanaOpenTelemetrySettings
     {
         internal const string DisableInstrumentationsEnvVarName = "GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS";
-        internal const string DisableResourceDetectorsEnvVarName = "GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS";
-        internal const string ResourceDetectorsEnvVarName = "GRAFANA_DOTNET_RESOURCEDETECTORS";
+        internal const string DisableResourceDetectorsEnvVarName = "GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS";
+        internal const string ResourceDetectorsEnvVarName = "GRAFANA_DOTNET_RESOURCE_DETECTORS";
         internal const string ServiceNameEnvVarName = "OTEL_SERVICE_NAME";
 
         /// <summary>
