@@ -193,11 +193,11 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
 ```
 
 Alternatively, resource detectors can be specified by the environment
-variable `GRAFANA_DOTNET_RESOURCEDETECTORS`. This variable can be
+variable `GRAFANA_DOTNET_RESOURCE_DETECTORS`. This variable can be
 populated with a comma-separated list of resource detector identifiers:
 
 ```sh
-export GRAFANA_DOTNET_RESOURCEDETECTORS="Process"
+export GRAFANA_DOTNET_RESOURCE_DETECTORS="Process"
 ```
 
 ### Disabling resource detectors
@@ -217,11 +217,11 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
 ```
 
 Alternatively, resource detectors can be disabled by the environment
-variable `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`. This variable can be
+variable `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`. This variable can be
 populated with a comma-separated list of resource detector identifiers:
 
 ```sh
-export GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS="Host,Process"
+export GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS="Host,Process"
 ```
 
 ### Adding resource detectors not supported by the distribution
@@ -350,4 +350,4 @@ are not contained in the distribution.
 | Variable                                  | Example value        | Description |
 | ----------------------------------------- |   ------------------ | ----------- |
 | `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
-| `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |
+| `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |
