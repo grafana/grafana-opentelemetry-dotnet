@@ -17,12 +17,12 @@ namespace Grafana.OpenTelemetry.Tests
         {
             var expected = new HashSet<ResourceDetector>((ResourceDetector[])Enum.GetValues(typeof(ResourceDetector)));
 #if NETSTANDARD
-            expected.Remove(ResourceDetector.AWSEBSDetector);
-            expected.Remove(ResourceDetector.AWSEC2Detector);
+            expected.Remove(ResourceDetector.AWSEBS);
+            expected.Remove(ResourceDetector.AWSEC2);
 #endif
 #if NETSTANDARD || NETFRAMEWORK
-            expected.Remove(ResourceDetector.AWSECSDetector);
-            expected.Remove(ResourceDetector.AWSEKSDetector);
+            expected.Remove(ResourceDetector.AWSECS);
+            expected.Remove(ResourceDetector.AWSEKS);
 #endif
 #if !NET6_0_OR_GREATER
             expected.Remove(ResourceDetector.Container);

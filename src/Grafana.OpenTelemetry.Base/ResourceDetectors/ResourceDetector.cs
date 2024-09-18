@@ -13,32 +13,32 @@ namespace Grafana.OpenTelemetry
         /// <summary>
         /// AWS EBS Resource Detector (OpenTelemetry.ResourceDetectors.AWS)
         /// </summary>
-        AWSEBSDetector,
+        AWSEBS,
         /// <summary>
         /// AWS EC2 Resource Detector (OpenTelemetry.ResourceDetectors.AWS)
         /// </summary>
-        AWSEC2Detector,
+        AWSEC2,
         /// <summary>
         /// AWS ECS Resource Detector (OpenTelemetry.ResourceDetectors.AWS)
         /// </summary>
-        AWSECSDetector,
+        AWSECS,
         /// <summary>
         /// AWS EKS Resource Detector (OpenTelemetry.ResourceDetectors.AWS)
         /// </summary>
-        AWSEKSDetector,
+        AWSEKS,
 
         /// <summary>
         /// Azure App Service Resource Detector (OpenTelemetry.ResourceDetectors.Azure)
         /// </summary>
-        AzureAppServiceDetector,
+        AzureAppService,
         /// <summary>
         /// Azure Virtual Machine Resource Detector (OpenTelemetry.ResourceDetectors.Azure)
         /// </summary>
-        AzureVMDetector,
+        AzureVM,
         /// <summary>
         /// Azure Container Apps Resource Detector (OpenTelemetry.ResourceDetectors.Azure)
         /// </summary>
-        AzureContainerAppsDetector,
+        AzureContainerApps,
 
         /// <summary>
         /// Container Resource Detector (OpenTelemetry.ResourceDetectors.Container)
