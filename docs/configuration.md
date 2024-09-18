@@ -168,60 +168,11 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
 
 Alternatively, instrumentation libraries can be disabled by the environment
 variable `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`. This variable can be
-populated with a comma-separated list of instrumentation library identifiers
-from the table above:
+populated with a comma-separated list of
+[instrumentation library identifiers](./supported-instrumentations.md):
 
 ```sh
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
-```
-
-## Resource detector configuration
-
-### Specifying resource detectors
-
-Default resource detectors can be overridden by removing them from the `ResourceDetectors`
-set in the configuration and specifying which resource detectors to enable:
-
-```csharp
-using var tracerProvider = Sdk.CreateMeterProviderBuilder()
-    .UseGrafana(config =>
-    {
-        config.ResourceDetectors.Clear(ResourceDetector.Host);
-        config.ResourceDetectors.Add(ResourceDetector.Process);
-    })
-    .Build();
-```
-
-Alternatively, resource detectors can be specified by the environment
-variable `GRAFANA_DOTNET_RESOURCEDETECTORS`. This variable can be
-populated with a comma-separated list of resource detector identifiers:
-
-```sh
-export GRAFANA_DOTNET_RESOURCEDETECTORS="Process"
-```
-
-### Disabling resource detectors
-
-By default, `Host`, `Process`, and `ProcessRuntime` resource detectors are enabled.
-Resource detectors can be disabled by removing them from the `ResourceDetectors`
-set in the configuration:
-
-```csharp
-using var tracerProvider = Sdk.CreateMeterProviderBuilder()
-    .UseGrafana(config =>
-    {
-        config.ResourceDetectors.Remove(ResourceDetector.Host);
-        config.ResourceDetectors.Remove(ResourceDetector.Process);
-    })
-    .Build();
-```
-
-Alternatively, resource detectors can be disabled by the environment
-variable `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`. This variable can be
-populated with a comma-separated list of resource detector identifiers:
-
-```sh
-export GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS="Host,Process"
 ```
 
 ### Adding instrumentations not supported by the distribution
@@ -253,6 +204,76 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 ```
 
 This way, any other instrumentation library [not supported by the distribution](./supported-instrumentations.md)
+can be added according to the documentation provided with it.
+
+## Resource detector configuration
+
+### Specifying resource detectors
+
+Default resource detectors can be overridden by removing them from the `ResourceDetectors`
+set in the configuration and specifying which resource detectors to enable:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ResourceDetectors.Clear(ResourceDetector.Host);
+        config.ResourceDetectors.Add(ResourceDetector.Process);
+    })
+    .Build();
+```
+
+Alternatively, resource detectors can be specified by the environment
+variable `GRAFANA_DOTNET_RESOURCE_DETECTORS`. This variable can be
+populated with a comma-separated list of
+[resource detector identifiers](./supported-resource-detectors.md):
+
+```sh
+export GRAFANA_DOTNET_RESOURCE_DETECTORS="Process"
+```
+
+### Disabling resource detectors
+
+By default, `Host`, `Process`, and `ProcessRuntime` resource detectors are enabled.
+Resource detectors can be disabled by removing them from the `ResourceDetectors`
+set in the configuration:
+
+```csharp
+using var tracerProvider = Sdk.CreateMeterProviderBuilder()
+    .UseGrafana(config =>
+    {
+        config.ResourceDetectors.Remove(ResourceDetector.Host);
+        config.ResourceDetectors.Remove(ResourceDetector.Process);
+    })
+    .Build();
+```
+
+Alternatively, resource detectors can be disabled by the environment
+variable `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`. This variable can be
+populated with a comma-separated list of resource detector identifiers:
+
+```sh
+export GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS="Host,Process"
+```
+
+### Adding resource detectors not supported by the distribution
+
+Resource detectors not included in the distribution can easily be added by
+extension methods on the tracer and meter provider.
+
+To enable an unsupported resource detector, call the `ConfigureResource`
+extension method, alongside the `UseGrafana` method.
+
+```csharp
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .UseGrafana()
+    .ConfigureResource(config => {
+        config.AddCustomResourceDetector();
+    })
+    .Build();
+```
+
+This way, any other resource detector library [not supported by the distribution](./supported-resource-detectors.md)
 can be added according to the documentation provided with it.
 
 ### Extra steps to activate specific instrumentations
@@ -361,4 +382,4 @@ are not contained in the distribution.
 | Variable                                  | Example value        | Description |
 | ----------------------------------------- |   ------------------ | ----------- |
 | `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
-| `GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |
+| `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |

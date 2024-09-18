@@ -10,7 +10,7 @@ namespace Grafana.OpenTelemetry
 {
     internal class AWSECSDetectorInitializer : ResourceDetectorInitializer
     {
-        public override ResourceDetector Id { get; } = ResourceDetector.AWSECSDetector;
+        public override ResourceDetector Id { get; } = ResourceDetector.AWSECS;
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {

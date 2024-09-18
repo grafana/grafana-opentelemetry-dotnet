@@ -39,8 +39,9 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
 ```
 
-The list of [supported instrumentations](./supported-instrumentations.md)
-specifies what instrumentations are included in the base package.
+The list of [supported instrumentations](./supported-instrumentations.md) and
+[supported resource detectors](./supported-resource-detectors.md)
+specify which are included in the base package and enabled by default.
 
 ## Minimizing unneeded dependencies
 
@@ -52,8 +53,8 @@ dependencies.
 
 To mitigate this situation, [base package](#install-the-base-package)
 with a built-in lazy-loading mechanism can be used. This mechanism will
-initialize any known available instrumentation library assembly, regardless of
-whether it's added as dependency of the [full package](#install-the-full-package-with-all-available-instrumentations)
+initialize known available instrumentation library or resource detectors
+assembly, regardless of whether it's added as dependency of the [full package](#install-the-full-package-with-all-available-instrumentations)
 or as part of the instrumented project.
 
 For example, if it is desired to use the `AspNetCore` instrumentation without
@@ -76,5 +77,6 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-This way, any other instrumentation library [supported by the distribution](./supported-instrumentations.md)
-can be added via lazy loading.
+This way, any other [instrumentation library](./supported-instrumentations.md)
+or [resource detector](./supported-resource-detectors.md) supported by the
+distribution can be added via lazy loading.

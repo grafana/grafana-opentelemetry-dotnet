@@ -9,7 +9,7 @@ namespace Grafana.OpenTelemetry
 {
     internal class AzureVMDetectorInitializer : ResourceDetectorInitializer
     {
-        public override ResourceDetector Id { get; } = ResourceDetector.AzureVMDetector;
+        public override ResourceDetector Id { get; } = ResourceDetector.AzureVM;
 
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
