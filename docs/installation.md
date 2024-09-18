@@ -39,7 +39,7 @@ package to your project.
 dotnet add package --prerelease Grafana.OpenTelemetry.Base
 ```
 
-The list of [supported instrumentations](./supported-instrumentations.md) and 
+The list of [supported instrumentations](./supported-instrumentations.md) and
 [supported resource detectors](./supported-resource-detectors.md)
 specify which are included in the base package and enabled by default.
 
