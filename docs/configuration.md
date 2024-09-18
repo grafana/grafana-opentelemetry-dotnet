@@ -168,8 +168,8 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
 
 Alternatively, instrumentation libraries can be disabled by the environment
 variable `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`. This variable can be
-populated with a comma-separated list of instrumentation library identifiers
-from the table above:
+populated with a comma-separated list of
+[instrumentation library identifiers](./supported-instrumentations.md):
 
 ```sh
 export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
@@ -194,7 +194,8 @@ using var tracerProvider = Sdk.CreateMeterProviderBuilder()
 
 Alternatively, resource detectors can be specified by the environment
 variable `GRAFANA_DOTNET_RESOURCE_DETECTORS`. This variable can be
-populated with a comma-separated list of resource detector identifiers:
+populated with a comma-separated list of
+[resource detector identifiers](./supported-resource-detectors.md):
 
 ```sh
 export GRAFANA_DOTNET_RESOURCE_DETECTORS="Process"
