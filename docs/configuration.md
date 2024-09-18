@@ -224,35 +224,24 @@ populated with a comma-separated list of resource detector identifiers:
 export GRAFANA_DOTNET_DISABLE_RESOURCEDETECTORS="Host,Process"
 ```
 
-### Adding instrumentations not supported by the distribution
+### Adding resource detectors not supported by the distribution
 
-Instrumentations not included in the distribution can easily be added by
+Resource detectors not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
 
-For example, if it is desired to use the `EventCounters` instrumentation, which is
-not included in the [full package](./installation.md#install-the-full-package-with-all-available-instrumentations),
-one install the `EventCounters` instrumentation library along with the base
-package.
-
-```sh
-dotnet add package --prerelease Grafana.OpenTelemetry.Base
-dotnet add package OpenTelemetry.Instrumentation.EventCounters --prerelease
-```
-
-Then, the `EventCounters` instrumentation can be enabled via the [`AddEventCountersInstrumentation`](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.EventCounters#step-2-enable-eventcounters-instrumentation)
+To enable an unsupported resource detector, call the `ConfigureResource`
 extension method, alongside the `UseGrafana` method.
 
 ```csharp
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .UseGrafana()
-    .AddEventCountersInstrumentation(options => {
-        options.RefreshIntervalSecs = 1;
-        options.AddEventSources("MyEventSource");
+    .ConfigureResource(config => {
+        config.AddCustomResourceDetector();
     })
     .Build();
 ```
 
-This way, any other instrumentation library [not supported by the distribution](./supported-instrumentations.md)
+This way, any other resource detector library [not supported by the distribution](./supported-resource-detectors.md)
 can be added according to the documentation provided with it.
 
 ### Extra steps to activate specific instrumentations
