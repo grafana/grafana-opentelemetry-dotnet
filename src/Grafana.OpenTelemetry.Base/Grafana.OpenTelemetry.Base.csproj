@@ -47,8 +47,8 @@
 
   <!-- Non-stable instrumentation packages with no dependencies, non netstandard2.0 -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
-    <PackageReference Include="OpenTelemetry.Resources.Host" Version="0.1.0-beta.2" />
-    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="0.1.0-alpha.2" />
+    <PackageReference Include="OpenTelemetry.Resources.Host" Version="0.1.0-beta.3" />
+    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="0.1.0-alpha.4" />
     <PackageReference Include="OpenTelemetry.Resources.Process" Version="0.1.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="0.1.0-beta.2" />
   </ItemGroup>

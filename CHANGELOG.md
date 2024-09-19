@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0
+## 1.0.1
 
 This is the first GA release of this distribution.
 
@@ -20,11 +20,15 @@ This is the first GA release of this distribution.
 
 * Remove workaround for stable `service.instance.id` across signals
   ([#108](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/108))
+* Use 0.1.0-beta.3 of OpenTelemetry.Resources.Host
+  * Fix the bug where macOS was detected as Linux
+  ([#1985](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1985))
 
 ### New features
 
 * Adds Operating System resource detector.
   ([#113](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/113))
+  ([#121](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/121))
 * Add new environment variable `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`.
   Setting this will cause the provided resource detectors to be disabled.
   ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
