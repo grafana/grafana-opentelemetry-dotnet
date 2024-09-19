@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
+
+This is the first GA release of this distribution.
 
 ### BREAKING CHANGES
 
@@ -12,9 +14,7 @@
   names from `Grafana.OpenTelemetry.Instrumentation` enumeration. Adds new
   `Grafana.OpenTelemetry.ResourceDetectors` enumeration.
   ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
-* Add new environment variable `GRAFANA_DOTNET_RESOURCEDETECTORS`. Setting this
-  will cause only the provided resource detectors to be enabled.
-  ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
+  ([#119](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/119))
 
 ### Bug Fixes
 
@@ -25,6 +25,16 @@
 
 * Adds Operating System resource detector.
   ([#113](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/113))
+* Add new environment variable `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`.
+  Setting this will cause the provided resource detectors to be disabled.
+  ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
+  ([#118](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/118))
+  ([#119](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/119))
+* Add new environment variable `GRAFANA_DOTNET_RESOURCE_DETECTORS`. Setting this
+  will cause only the provided resource detectors to be enabled.
+  ([#111](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/111))
+  ([#118](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/118))
+  ([#119](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/119))
 
 ## 0.9.0-beta.1
 
