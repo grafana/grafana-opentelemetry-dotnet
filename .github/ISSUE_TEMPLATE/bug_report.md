@@ -12,10 +12,10 @@ used, for example `Grafana.OpenTelemetry 0.6.0-beta.1`):
 
 *
 
-The .NET runtime version (e.g. `net462`, `net48`, `netcoreapp3.1`, `net6.0`
+The .NET runtime version (e.g. `net462`, `net48`, `netcoreapp3.1`, `net8.0`
 etc.). You can find this information in your `*.csproj` file):
 
-* 
+*
 
 ## Symptom
 

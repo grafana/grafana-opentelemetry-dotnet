@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### BREAKING CHANGES
+
+* Drop support for .NET 6. EOL was November 12 2024
+
 ## 1.0.1
 
 This is the first GA release of this distribution.

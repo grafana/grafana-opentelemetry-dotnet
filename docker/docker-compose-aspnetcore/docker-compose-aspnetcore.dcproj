@@ -9,7 +9,6 @@
     <DockerServiceName>aspnetcore</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.net8.oats.yml" />
     <None Include="docker-compose.oats.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
