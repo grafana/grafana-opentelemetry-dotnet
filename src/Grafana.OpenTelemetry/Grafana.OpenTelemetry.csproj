@@ -48,7 +48,7 @@
 
   <!-- Non-stable instrumentation packages with dependencies, both .NET framework and .NET -->
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.1.0-beta.4" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.10.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.0.0-beta.5" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.12" />
@@ -81,7 +81,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.1.0-beta.4" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.10.0-beta.1" />
   </ItemGroup>
 
 </Project>
