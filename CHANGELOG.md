@@ -8,8 +8,32 @@
 
 ### New features
 
-* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWS
-* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWSLambda
+* Use 3.22.0 of CassandraCSharpDriver
+* Use 9.0.0 of Microsoft.Extensions.Configuration
+* Use 9.0.0 of Microsoft.Extensions.Configuration.EnvironmentVariables
+* Use 9.0.0 of Microsoft.Extensions.Logging
+* Use 1.10.0 of OpenTelemetry
+* Use 1.10.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol
+* Use 1.10.0 of OpenTelemetry.Extensions.Hosting
+* Use 1.10.0 of OpenTelemetry.Instrumentation.Runtime
+* Use 1.10.0 of OpenTelemetry.Instrumentation.Http
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AspNet
+* Use 1.10.0-beta.2 of OpenTelemetry.Instrumentation.AWS
+* Use 1.10.0-beta.2 of OpenTelemetry.Instrumentation.AWSLambda
+* Use 1.10.0-beta.2 of OpenTelemetry.Instrumentation.Cassandra
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient
+* Use 1.9.0-beta.1 of OpenTelemetry.Instrumentation.HangFire
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.Process
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.Quartz
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.Wcf
+* Use 1.10.0-beta.1 of OpenTelemetry.Resources.Container
+* Use 1.10.0-beta.1 of OpenTelemetry.Resources.Host
+* Use 1.10.0-beta.1 of OpenTelemetry.Resources.OperatingSystem
+* Use 1.10.0-beta.1 of OpenTelemetry.Resources.Process
+* Use 1.10.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime
 
 ## 1.0.1
 
