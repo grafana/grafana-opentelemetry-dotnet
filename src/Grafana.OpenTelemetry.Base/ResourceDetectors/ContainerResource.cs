@@ -5,7 +5,7 @@
 
 using OpenTelemetry.Resources;
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
 
 namespace Grafana.OpenTelemetry
 {

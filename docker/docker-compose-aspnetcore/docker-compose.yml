@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}aspnetcore
     build:
       context: ../..
-      dockerfile: examples/net6.0/aspnetcore/Dockerfile
+      dockerfile: examples/net8.0/aspnetcore/Dockerfile
     depends_on:
       - redis
       - mssql

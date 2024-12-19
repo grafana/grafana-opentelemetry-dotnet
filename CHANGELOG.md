@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### BREAKING CHANGES
+
+* Drop support for .NET 6. EOL was November 12 2024
+
+### New features
+
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWS
+* Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWSLambda
+
 ## 1.0.1
 
 This is the first GA release of this distribution.

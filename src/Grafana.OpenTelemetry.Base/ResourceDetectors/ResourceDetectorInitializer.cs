@@ -25,7 +25,7 @@ namespace Grafana.OpenTelemetry
             new AzureAppServiceDetectorInitializer(),
             new AzureVMDetectorInitializer(),
             new AzureContainerAppsDetectorInitializer(),
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
             new ContainerResourceInitializer(),
 #endif
 #if !NETSTANDARD

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net6.0;netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks>net8.0;netstandard2.0;net462</TargetFrameworks>
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
@@ -48,7 +48,7 @@
 
   <!-- Non-stable instrumentation packages with dependencies, both .NET framework and .NET -->
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.1.0-beta.4" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.10.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.0.0-beta.5" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.12" />
@@ -70,14 +70,6 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.0.0-rc.6" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.3.0-beta.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.3.0-beta.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>Grafana.OpenTelemetry.Tests</_Parameter1>
@@ -86,6 +78,10 @@
 
   <ItemGroup>
     <None Include="../../internal/img/Grafana_icon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.10.0-beta.1" />
   </ItemGroup>
 
 </Project>

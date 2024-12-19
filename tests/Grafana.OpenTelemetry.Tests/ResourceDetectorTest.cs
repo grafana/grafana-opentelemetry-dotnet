@@ -24,7 +24,7 @@ namespace Grafana.OpenTelemetry.Tests
             expected.Remove(ResourceDetector.AWSECS);
             expected.Remove(ResourceDetector.AWSEKS);
 #endif
-#if !NET6_0_OR_GREATER
+#if !NET8_0_OR_GREATER
             expected.Remove(ResourceDetector.Container);
 #endif
 #if NETSTANDARD
