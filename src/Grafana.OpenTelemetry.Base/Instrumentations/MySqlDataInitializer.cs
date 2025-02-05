@@ -14,7 +14,11 @@ namespace Grafana.OpenTelemetry
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
             // MySQL.Data.OpenTelemetry
-            builder.AddConnectorNet();
+            ReflectionHelper.CallStaticMethod(
+                "MySQL.Data.OpenTelemetry",
+                "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
+                "AddConnectorNet",
+                new object[] { builder });
 
             // OpenTelemetry.Instrumentation.MySqlData
             ReflectionHelper.CallStaticMethod(
