@@ -1,15 +1,26 @@
 # Changelog
 
-## Unreleased
+## 1.1.0
 
 ### BREAKING CHANGES
 
+* Drop dependency on MySQL.Data.OpenTelemetry
+  ([#131](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/131))
 * Drop support for .NET 6. EOL was November 12 2024
+  ([#131](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/131))
 
 ### New features
 
+* Use 8.0.1 of Microsoft.Extensions.Logging
+  ([#128](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/128))
 * Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWS
+  ([#127](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/127))
 * Use 1.10.0-beta.1 of OpenTelemetry.Instrumentation.AWSLambda
+  ([#127](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/127))
+* Use 0.5.0-beta.7 of OpenTelemetry.Instrumentation.Process
+  ([#128](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/128))
+* Use 0.1.0-beta.3 of OpenTelemetry.Resources.Process
+  ([#128](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/128))
 
 ## 1.0.1
 
