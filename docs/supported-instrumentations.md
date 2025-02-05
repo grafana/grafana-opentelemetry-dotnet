@@ -37,4 +37,5 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
 * The `ContainerResource` instrumentation is included but needs to be explicitly
   activated, as it currently adds container resource attributes for processes
   running not in containers.
-* The `MySqlData` instrumentation does not include the MySql.Data.OpenTelemetry package. Install separately if needed.
+* The `MySqlData` instrumentation does not include the MySql.Data.OpenTelemetry
+  package. Install separately if needed.
