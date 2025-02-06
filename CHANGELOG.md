@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0
+## 1.2.0
 
 ### BREAKING CHANGES
 
@@ -21,6 +21,14 @@
   ([#128](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/128))
 * Use 0.1.0-beta.3 of OpenTelemetry.Resources.Process
   ([#128](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/128))
+
+## 1.1.0
+
+### Bug Fixes
+
+* Upgrade reference to System.Text.Json to version 8.0.5, resolving
+  [CVE-2024-43485](https://github.com/advisories/GHSA-8g4q-xg66-9fp4)
+  ([#123](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/123))
 
 ## 1.0.1
 
