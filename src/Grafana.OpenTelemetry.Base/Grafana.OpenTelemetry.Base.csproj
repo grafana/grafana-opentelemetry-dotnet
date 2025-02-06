@@ -33,7 +33,6 @@
 
   <!-- Stable instrumentation packages -->
   <ItemGroup>
-    <PackageReference Include="MySql.Data.OpenTelemetry" Version="8.4.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0" />
   </ItemGroup>
 
