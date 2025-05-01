@@ -9,14 +9,19 @@ on:
 jobs:
   acceptance-tests:
     runs-on: ubuntu-latest
+    permissions: {}
+
     steps:
       - name: Check out
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Check out oats
         uses: actions/checkout@v4
         with:
           repository: grafana/oats
           path: oats
+          persist-credentials: false
       - name: Set up Go
         uses: actions/setup-go@v5
         with:

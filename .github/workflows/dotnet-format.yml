@@ -15,10 +15,13 @@ on:
 jobs:
   check-format:
     runs-on: windows-latest
+    permissions: {}
 
     steps:
     - name: check out code
       uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - name: Install format tool
       run: dotnet tool install -g dotnet-format
