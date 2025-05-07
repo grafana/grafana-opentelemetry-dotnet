@@ -13,10 +13,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
     - name: check out code
       uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - name: install markdown-link-check
       run: sudo npm install -g markdown-link-check

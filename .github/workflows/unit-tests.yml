@@ -20,12 +20,14 @@ jobs:
         exclude:
         - os: ubuntu-latest
           version: net462
+    permissions: {}
 
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0 # fetching all
+        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3

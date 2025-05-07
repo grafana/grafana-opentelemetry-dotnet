@@ -13,10 +13,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
     - name: check out code
       uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - name: install markdownlint-cli
       run: sudo npm install -g markdownlint-cli
