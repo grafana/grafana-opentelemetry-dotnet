@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased version
+
+### Bug Fixes
+
+* Remove reference on System.Text.Json for `net8.0` target framework
+  ([#136](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/136))
+
 ## 1.2.0
 
 ### BREAKING CHANGES
