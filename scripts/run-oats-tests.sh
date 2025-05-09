@@ -3,8 +3,8 @@
 set -euo pipefail
 
 cd oats/yaml
-go mod tidy
 go install github.com/onsi/ginkgo/v2/ginkgo
+go mod tidy
 export TESTCASE_SKIP_BUILD=true
 export TESTCASE_TIMEOUT=5m
 export TESTCASE_BASE_PATH=../../docker
