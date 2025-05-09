@@ -3,6 +3,7 @@
 set -euo pipefail
 
 cd oats/yaml
+go mod tidy
 go install github.com/onsi/ginkgo/v2/ginkgo
 go mod tidy
 export TESTCASE_SKIP_BUILD=true
