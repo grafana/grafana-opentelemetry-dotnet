@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Grafana.OpenTelemetry;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
