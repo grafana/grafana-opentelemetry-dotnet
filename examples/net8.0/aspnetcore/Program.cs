@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddOpenTelemetry(builder => builder.UseGrafana());
 
 builder.Services.AddOpenTelemetry()
+    .WithLogging(builder => builder.AddOtlpExporter())
     .WithMetrics(builder => builder.UseGrafana())
     .WithTracing(builder => builder.UseGrafana().AddConsoleExporter());
 
