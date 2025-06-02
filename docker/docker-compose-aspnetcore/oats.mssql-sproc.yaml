@@ -9,5 +9,7 @@ expected:
         - name: 'master'
           attributes:
             db.system: mssql
-            db.statement_type: StoredProcedure
+            db.name: master
+            db.statement: sp_server_info
+            #db.statement_type: StoredProcedure
             otel.library.name: OpenTelemetry.Instrumentation.SqlClient
