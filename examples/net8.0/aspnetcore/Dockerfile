@@ -9,7 +9,7 @@ WORKDIR /source
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
-    dotnet publish "examples/net8.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app "${DOTNET_PUBLISH_ARGS}"
+    dotnet publish "examples/net8.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app ${DOTNET_PUBLISH_ARGS}
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS final
 WORKDIR /app
