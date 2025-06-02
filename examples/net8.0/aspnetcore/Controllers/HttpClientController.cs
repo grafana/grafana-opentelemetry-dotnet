@@ -6,30 +6,21 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetcore.Controllers;
+
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class HttpClientController : ControllerBase
+public class HttpClientController(HttpClient client) : ControllerBase
 {
-    private readonly ILogger<HttpClientController> _logger;
-
-    public HttpClientController(ILogger<HttpClientController> logger)
-    {
-        _logger = logger;
-    }
-
     [HttpGet]
     public async Task<ActionResult<IEnumerable<string>>> Get()
     {
-        var client = new HttpClient();
-        var response = await client.GetAsync("https://postman-echo.com/get?hello=world");
-        var content = await response.Content.ReadAsStringAsync();
+        var content = await client.GetStringAsync("https://postman-echo.com/get?hello=world");
         return Ok(content);
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<string>>> GetError()
     {
-        var client = new HttpClient();
         var response = await client.GetAsync("http://postman-echo.com/status/500");
         var content = await response.Content.ReadAsStringAsync();
         return Ok(content);
@@ -38,9 +29,11 @@ public class HttpClientController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<string>> Post()
     {
-        var client = new HttpClient();
-        var response = await client.PostAsync("https://postman-echo.com/post", new StringContent("Hello World"));
+        using var body = new StringContent("Hello World");
+        using var response = await client.PostAsync("https://postman-echo.com/post", body);
+
         var content = await response.Content.ReadAsStringAsync();
+
         return Ok(content);
     }
 }
