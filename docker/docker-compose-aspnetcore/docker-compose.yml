@@ -7,6 +7,8 @@ services:
     depends_on:
       - redis
       - mssql
+    ports:
+      - "8080:8080" # for OATs
   redis:
     image: redis:7.2
     ports:
