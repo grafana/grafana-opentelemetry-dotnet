@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-using Grafana.OpenTelemetry;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using Xunit;

@@ -4,7 +4,6 @@
 //
 
 using System;
-using Grafana.OpenTelemetry;
 using Xunit;
 
 namespace Grafana.OpenTelemetry.Tests

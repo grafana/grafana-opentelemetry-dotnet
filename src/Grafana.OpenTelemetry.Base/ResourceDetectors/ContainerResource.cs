@@ -3,9 +3,9 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-using OpenTelemetry.Resources;
-
 #if NET8_0_OR_GREATER
+
+using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {

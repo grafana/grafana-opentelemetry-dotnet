@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Grafana.OpenTelemetry;
 using Xunit;
 
 namespace Grafana.OpenTelemetry.Tests

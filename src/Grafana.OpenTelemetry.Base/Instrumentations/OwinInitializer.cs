@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-using System;
 using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry

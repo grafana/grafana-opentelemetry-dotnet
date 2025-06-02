@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using OpenTelemetry;
-using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry.Tests
