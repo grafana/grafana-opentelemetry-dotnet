@@ -5,7 +5,7 @@ input:
 interval: 5000ms
 expected:
   traces:
-    - traceql: '{ name =~ "api/Redis/LeftPush" }'
+    - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
       spans:
         - name: 'LPUSH'
           attributes:
