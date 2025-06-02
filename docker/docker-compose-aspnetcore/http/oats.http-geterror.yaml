@@ -4,9 +4,9 @@ input:
   - path: /api/HttpClient/GetError
 expected:
   traces:
-    - traceql: '{ name =~ "api/HttpClient/GetError" }'
+    - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
       spans:
-        - name: 'GET'
+        - name: 'GET api/HttpClient/GetError'
           attributes:
             error.type: '500'
             http.request.method: GET

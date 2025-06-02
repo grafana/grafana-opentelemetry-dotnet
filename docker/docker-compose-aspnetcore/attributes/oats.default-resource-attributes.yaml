@@ -4,9 +4,9 @@ input:
   - path: /api/HttpClient/Get
 expected:
   traces:
-    - traceql: '{ name =~ "api/HttpClient/Get" }'
+    - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
       spans:
-        - name: 'GET'
+        - name: 'GET api/HttpClient/Get'
           attributes:
             service.name: aspnetcore
             service.version: 1.0.0.0
