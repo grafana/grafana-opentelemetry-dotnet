@@ -7,8 +7,8 @@ services:
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://collector:4317
     ports:
-      - "5000:80"
-      - "8080:80" # for OATs
+      - "5000:8080"
+      - "8080:8080" # for OATs
     depends_on:
       - redis
       - mssql
