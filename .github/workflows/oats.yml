@@ -7,10 +7,9 @@ on:
       - '**/*.gitattributes'
       - '**/*.gitignore'
       - '**/*.md'
-  workflow_dispatch:
-  # TODO Remove once fixed
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions: {}
 
