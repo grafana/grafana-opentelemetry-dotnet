@@ -3,6 +3,10 @@ include:
 input:
   - path: /api/HttpClient/Get
 expected:
+  logs:
+    - logql: '{service_name="unknown_service:dotnet"} |~ `Application started.`'
+      contains:
+        - 'Application started'
   traces:
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
       spans:
