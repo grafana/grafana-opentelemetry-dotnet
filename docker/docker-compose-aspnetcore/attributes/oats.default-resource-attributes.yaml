@@ -4,7 +4,7 @@ input:
   - path: /api/HttpClient/Get
 expected:
   logs:
-    - logql: '{service_name="unknown_service:dotnet"} |~ `Application started.`'
+    - logql: '{service_name="aspnetcore"} |~ `Application started.`'
       contains:
         - 'Application started'
   traces:
