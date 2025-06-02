@@ -8,8 +8,12 @@ expected:
       spans:
         - name: 'GET api/HttpClient/GetError'
           attributes:
+            http.request.method: GET
+        - name: 'GET'
+          attributes:
             error.type: '500'
             http.request.method: GET
+            http.response.status_code: '500'
   metrics:
     - promql: http_client_request_duration_seconds_count{}
       value: '>= 0'
