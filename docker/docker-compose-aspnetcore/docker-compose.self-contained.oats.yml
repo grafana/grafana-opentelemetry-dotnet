@@ -8,7 +8,7 @@ services:
         DOTNET_PUBLISH_ARGS: "--self-contained true /p:PublishSingleFile=true"
     entrypoint: ./aspnetcore
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://collector:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4317
     ports:
       - "5000:8080"
       - "8080:8080" # for OATs
