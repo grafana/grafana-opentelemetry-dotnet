@@ -11,5 +11,5 @@ expected:
             error.type: '500'
             http.request.method: GET
   metrics:
-    - promql: http_client_request_duration_count{}
+    - promql: http_client_request_duration_seconds_count{}
       value: '>= 0'
