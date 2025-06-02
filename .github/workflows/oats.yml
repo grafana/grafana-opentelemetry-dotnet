@@ -39,11 +39,7 @@ jobs:
         run: go install "github.com/grafana/oats@${OATS_VERSION}"
 
       - name: Run acceptance tests
-        env:
-          TESTCASE_BASE_PATH: './docker'
-          TESTCASE_SKIP_BUILD: true
-          TESTCASE_TIMEOUT: 5m
-        run: oats ./docker/docker-compose-aspnetcore
+        run: oats --timeout=5m ./docker/docker-compose-aspnetcore
 
       - name: Upload log file
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
