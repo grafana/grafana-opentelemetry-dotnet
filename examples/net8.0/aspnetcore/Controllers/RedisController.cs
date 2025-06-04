@@ -41,7 +41,7 @@ public class RedisController(IDatabase database, ILogger<RedisController> logger
         return Ok(value);
     }
 
-    private class LeftPushBody
+    public class LeftPushBody
     {
         [Required]
         public string? Name { get; set; }
