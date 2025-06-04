@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   aspnetcore:
     image: ${DOCKER_REGISTRY-}aspnetcore
@@ -9,12 +7,16 @@ services:
     depends_on:
       - redis
       - mssql
+    ports:
+      - "8080:8080" # for OATs
   redis:
     image: redis:7.2
     ports:
       - "6379:6379"
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
     environment:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
