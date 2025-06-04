@@ -1,21 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;netstandard2.0;net462</TargetFrameworks>
-    <Nullable>disable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
-    <!-- NuGet packaging properties -->
     <Description>Full Grafana distribution of OpenTelemetry .NET</Description>
-    <Authors>Grafana Labs</Authors>
-    <Copyright>Copyright (c) Grafana Labs</Copyright>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageTags>OpenTelemetry;Grafana;Metrics;Logs;Traces;Observability;Monitoring</PackageTags>
-    <PackageIcon>Grafana_icon.png</PackageIcon>
-    <PackageReleaseNotes>https://github.com/grafana/grafana-opentelemetry-dotnet/blob/main/CHANGELOG.md</PackageReleaseNotes>
-    <PackageProjectUrl>https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <TargetFrameworks>net8.0;netstandard2.0;net462</TargetFrameworks>
   </PropertyGroup>
 
   <!--
@@ -70,18 +58,14 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.0.0-rc.6" />
   </ItemGroup>
 
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.10.0-beta.1" />
+  </ItemGroup>
+
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>Grafana.OpenTelemetry.Tests</_Parameter1>
     </AssemblyAttribute>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="../../internal/img/Grafana_icon.png" Pack="true" Visible="false" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.10.0-beta.1" />
   </ItemGroup>
 
 </Project>
