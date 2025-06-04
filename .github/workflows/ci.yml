@@ -1,0 +1,120 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
+  NUGET_XMLDOC_MODE: skip
+  TERM: xterm
+
+permissions: {}
+
+jobs:
+  build-test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    outputs:
+      dotnet-sdk-version: ${{ steps.setup-dotnet.outputs.dotnet-version }}
+
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        include:
+          - os: macos-latest
+            os-name: macos
+          - os: ubuntu-latest
+            os-name: linux
+          - os: windows-latest
+            os-name: windows
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        filter: 'tree:0'
+        show-progress: false
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+      id: setup-dotnet
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Test
+      run: dotnet test --configuration Release --logger:"GitHubActions;report-warnings=false"
+
+    - name: Generate SBOM
+      uses: anchore/sbom-action@9f7302141466aa6482940f15371237e9d9f4c34a # v0.19.0
+      with:
+        artifact-name: build-${{ matrix.os-name }}.spdx.json
+        output-file: ./artifacts/build.spdx.json
+        path: ./artifacts/bin
+        upload-release-assets: ${{ runner.os == 'Windows' }}
+
+    - name: Attest artifacts
+      uses: actions/attest-build-provenance@db473fddc028af60658334401dc6fa3ffd8669fd # v2.3.0
+      if: |
+        runner.os == 'Windows' &&
+        github.event.repository.fork == false &&
+        (github.ref_name == github.event.repository.default_branch || startsWith(github.ref, 'refs/tags/'))
+      with:
+        subject-path: |
+          ./artifacts/bin/Grafana.OpenTelemetry*/release*/Grafana.OpenTelemetry*.dll
+          ./artifacts/package/release/*
+
+    - name: Publish NuGet packages
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      with:
+        name: packages-${{ matrix.os-name }}
+        path: ./artifacts/package/release
+        if-no-files-found: error
+
+  validate-packages:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download packages
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      with:
+        name: packages-windows
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+      with:
+        dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
+
+    - name: Validate NuGet packages
+      shell: pwsh
+      run: |
+        dotnet tool install --global dotnet-validate --version 0.0.1-preview.304 --allow-roll-forward
+        $packages = Get-ChildItem -Filter "*.nupkg" | ForEach-Object { $_.FullName }
+        $invalidPackages = 0
+        foreach ($package in $packages) {
+          dotnet validate package local $package
+          if ($LASTEXITCODE -ne 0) {
+            $invalidPackages++
+          }
+        }
+        if ($invalidPackages -gt 0) {
+          Write-Output "::error::$invalidPackages NuGet package(s) failed validation."
+          exit 1
+        }
