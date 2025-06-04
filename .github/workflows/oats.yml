@@ -34,8 +34,8 @@ jobs:
 
       - name: Install OATS
         env:
-          # TODO Pin to specific version and then update with renovate
-          OATS_VERSION: latest
+          # renovate: datasource=github-releases depName=oats packageName=grafana/oats
+          OATS_VERSION: v0.3.2
         run: go install "github.com/grafana/oats@${OATS_VERSION}"
 
       - name: Run acceptance tests
