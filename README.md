@@ -32,7 +32,7 @@ reference to the [`Grafana.OpenTelemetry`](https://www.nuget.org/packages/Grafan
 package to your project.
 
 ```sh
-dotnet add package --prerelease Grafana.OpenTelemetry
+dotnet add package Grafana.OpenTelemetry
 ```
 
 ### Step 2: Enable the Grafana distribution at application startup
