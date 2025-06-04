@@ -20,8 +20,8 @@ permissions: {}
 
 jobs:
   build-test:
-    name: ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os-name }}
+    runs-on: ${{ matrix.runner }}
 
     outputs:
       dotnet-sdk-version: ${{ steps.setup-dotnet.outputs.dotnet-version }}
@@ -34,14 +34,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
         include:
-          - os: macos-latest
-            os-name: macos
-          - os: ubuntu-latest
-            os-name: linux
-          - os: windows-latest
-            os-name: windows
+          - os-name: macos
+            runner: macos-latest
+          - os-name: linux
+            runner: ubuntu-latest
+          - os-name: windows
+            runner: windows-latest
 
     steps:
 
