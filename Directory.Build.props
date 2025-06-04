@@ -21,6 +21,7 @@
     <RepositoryUrl>https://github.com/grafana/grafana-opentelemetry-dotnet</RepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)/internal/img/$(PackageIcon)" Pack="True" PackagePath="" />
