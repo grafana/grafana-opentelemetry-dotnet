@@ -10,7 +10,7 @@
 <!-- markdown-link-check-disable -->
 [![Build](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml)
 [![OATS](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main)](https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml)
-[![Nuget](https://img.shields.io/nuget/v/Grafana.OpenTelemetry.svg)](https://www.nuget.org/profiles/Grafana)
+[![NuGet](https://img.shields.io/nuget/v/Grafana.OpenTelemetry?logo=nuget&label=NuGet&color=blue)](https://www.nuget.org/profiles/Grafana)
 [![SDK](https://img.shields.io/badge/otel--sdk-1.9.0-blue?style=flat&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-dotnet)
 [![Slack](https://img.shields.io/badge/join%20slack-%23app--o11y-brightgreen.svg?logo=slack)](https://grafana.slack.com/archives/C05E87XRK3J)
 <!-- markdown-link-check-enable -->
@@ -32,7 +32,7 @@ reference to the [`Grafana.OpenTelemetry`](https://www.nuget.org/packages/Grafan
 package to your project.
 
 ```sh
-dotnet add package --prerelease Grafana.OpenTelemetry
+dotnet add package Grafana.OpenTelemetry
 ```
 
 ### Step 2: Enable the Grafana distribution at application startup
