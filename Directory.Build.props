@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Authors>Grafana Labs</Authors>
     <ChecksumAlgorithm>SHA256</ChecksumAlgorithm>
     <Company>Grafana Labs</Company>
