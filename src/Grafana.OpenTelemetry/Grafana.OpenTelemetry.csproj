@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj" />
-    <PackageReference Include="MinVer" Version="4.3.0">
+    <PackageReference Include="MinVer" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
