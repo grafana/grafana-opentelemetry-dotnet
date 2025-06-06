@@ -9,7 +9,7 @@ input:
   - path: /api/todo/items
 expected:
   logs:
-    - logql: '{service_name="aspnetcore"} |~ `Application started.`'
+    - logql: '{ service_name="aspnetcore" } |~ `Application started.`'
       contains:
         - 'Application started'
   metrics:
@@ -50,7 +50,7 @@ expected:
             error.type: '500'
             http.request.method: GET
             http.response.status_code: '500'
-    - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo"}'
+    - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
       spans:
         - name: 'master'
           attributes:
@@ -58,7 +58,7 @@ expected:
             db.name: master
             db.statement: sp_server_info
             otel.library.name: OpenTelemetry.Instrumentation.SqlClient
-    - traceql: '{ span.http.route =~ "api/MsSql/Tables"}'
+    - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
       spans:
         - name: 'master'
           attributes:
@@ -72,7 +72,7 @@ expected:
             db.statement: LPUSH
             db.system: redis
             net.peer.name: redis
-    - traceql: '{ span.http.route =~ "/api/todo/items"}'
+    - traceql: '{ span.http.route =~ "api/todo/items" }'
       spans:
         - name: 'main'
           attributes:
