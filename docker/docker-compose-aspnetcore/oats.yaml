@@ -6,6 +6,7 @@ input:
   - path: /api/MsSql/ServerInfo
   - path: /api/MsSql/Tables
   - path: /api/Redis/LeftPush
+  - path: /api/todo/items
 expected:
   logs:
     - logql: '{service_name="aspnetcore"} |~ `Application started.`'
@@ -71,3 +72,11 @@ expected:
             db.statement: LPUSH
             db.system: redis
             net.peer.name: redis
+    - traceql: '{ span.http.route =~ "/api/todo/items"}'
+      spans:
+        - name: 'main'
+          attributes:
+            db.system: sqlite
+            db.name: main
+            peer.service: /app/App_Data/TodoApp.db
+            otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
