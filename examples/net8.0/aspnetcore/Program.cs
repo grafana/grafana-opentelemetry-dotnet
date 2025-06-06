@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+using aspnetcore;
 using Grafana.OpenTelemetry;
 using Microsoft.Data.SqlClient;
 using OpenTelemetry.Logs;
@@ -31,6 +32,7 @@ builder.Services.AddTransient(sp =>
 builder.Services.AddHttpClient();
 
 builder.Services.AddControllers();
+builder.Services.AddTodoApp();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -43,6 +45,7 @@ app.UseSwaggerUI();
 
 app.UseAuthorization();
 app.MapControllers();
+app.MapTodoApp();
 
 app.MapGet("/", () => Results.Redirect("/swagger"));
 
