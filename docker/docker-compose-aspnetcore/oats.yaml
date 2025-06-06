@@ -72,7 +72,7 @@ expected:
             db.statement: LPUSH
             db.system: redis
             net.peer.name: redis
-    - traceql: '{ span.http.route =~ "api/todo/items" }'
+    - traceql: '{ span.http.route =~ "/api/todo/items/" }'
       spans:
         - name: 'main'
           attributes:
