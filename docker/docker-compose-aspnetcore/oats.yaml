@@ -13,6 +13,8 @@ expected:
       contains:
         - 'Application started'
   metrics:
+    - promql: db.client.operation.duration{}
+      value: '>= 0'
     - promql: http_client_request_duration_seconds_count{}
       value: '>= 0'
     - promql: http_client_request_duration_seconds_count{http_request_method="GET", http_response_status_code="200"}
