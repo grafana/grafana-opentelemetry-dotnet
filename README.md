@@ -101,8 +101,8 @@ To engage with the Grafana Application Observability community:
 * [File an issue][issues] for bugs, issues, and feature suggestions.
 
 [app-o11y]: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/
-[ci-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml/badge.svg?branch=main
-[ci-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/unit-tests.yml
+[ci-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml/badge.svg?branch=main
+[ci-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml
 [discussions]: https://github.com/grafana/grafana-opentelemetry-dotnet/discussions
 [issues]: https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new
 [oats-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main
