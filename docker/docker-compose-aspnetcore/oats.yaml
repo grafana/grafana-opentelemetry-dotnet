@@ -79,5 +79,5 @@ expected:
           attributes:
             db.system: sqlite
             db.name: main
-            peer.service: /app/App_Data/TodoApp.db
+            server.address: /app/App_Data/TodoApp.db
             otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
