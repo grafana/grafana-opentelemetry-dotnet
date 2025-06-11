@@ -6,6 +6,9 @@
 
 * Remove reference on System.Text.Json for `net8.0` target framework
   ([#136](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/136))
+* Add open telemetry resources packages to other targets ie net framework & net standard ([#152](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/152))
+* Add aws lamba package to other targets ie net framework & net standard ([#152](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/152))
+* Bump aws package to stable version ([#152](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/152))
 
 ## 1.2.0
 
