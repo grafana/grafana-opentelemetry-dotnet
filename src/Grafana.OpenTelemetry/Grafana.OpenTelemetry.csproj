@@ -29,11 +29,6 @@
     <PackageReference Include="CassandraCSharpDriver" Version="[3.17.0,)" />
   </ItemGroup>
 
-  <!-- OpenTelemetry.Instrumentation.MySqlData is deprecated -->
-  <ItemGroup>
-    <PackageReference Include="MySql.Data.OpenTelemetry" Version="9.3.0" />
-  </ItemGroup>
-
   <!-- Stable instrumentation packages with dependencies, only .NET -->
   <ItemGroup Condition=" '$(TargetFramework)' != 'net462' ">
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" /> <!-- needed for AspNetCore -->
