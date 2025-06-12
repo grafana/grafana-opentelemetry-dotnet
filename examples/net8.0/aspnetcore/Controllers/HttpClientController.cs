@@ -21,7 +21,7 @@ public class HttpClientController(HttpClient client) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<string>>> GetError()
     {
-        var response = await client.GetAsync("http://postman-echo.com/status/500");
+        var response = await client.GetAsync("https://postman-echo.com/status/500");
         var content = await response.Content.ReadAsStringAsync();
         return Ok(content);
     }
