@@ -1,6 +1,27 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": false,
+  "branchPrefix": "renovate/",
+  "dependencyDashboard": false,
   "extends": [
     "config:recommended"
-  ]
+  ],
+  "ignorePaths": [
+    "src/Grafana.OpenTelemetry.Base/",
+    "src/Grafana.OpenTelemetry/"
+  ],
+  "ignoreUnstable": true,
+  "packageRules": [
+    {
+      "matchPackageNames": ["dotnet monorepo"],
+      "matchUpdateTypes": [
+        "patch"
+      ]
+    }
+  ],
+  "platformCommit": "enabled",
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  }
 }
