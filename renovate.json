@@ -16,8 +16,8 @@
   ],
   "packageRules": [
     {
+      "extends": ["monorepo:dotnet"],
       "description": "Disable major version updates for .NET",
-      "matchPackageNames": ["monorepo:dotnet"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     }
