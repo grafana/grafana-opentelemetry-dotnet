@@ -6,8 +6,8 @@
     "config:recommended"
   ],
   "ignorePaths": [
-    "src/Grafana.OpenTelemetry.Base/",
-    "src/Grafana.OpenTelemetry/"
+    "src/Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj",
+    "src/Grafana.OpenTelemetry/Grafana.OpenTelemetry.csproj"
   ],
   "ignoreUnstable": true,
   "labels": [
