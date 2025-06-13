@@ -13,7 +13,7 @@
   "ignoreUnstable": true,
   "packageRules": [
     {
-      "matchPackageNames": ["dotnet monorepo"],
+      "matchPackageNames": ["dotnet"],
       "matchUpdateTypes": [
         "patch"
       ]
