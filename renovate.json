@@ -16,10 +16,10 @@
   ],
   "packageRules": [
     {
+      "description": "Disable major version updates for .NET",
       "matchPackageNames": ["monorepo:dotnet"],
-      "matchUpdateTypes": [
-        "patch"
-      ]
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ],
   "prConcurrentLimit": 10,
