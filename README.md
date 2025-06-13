@@ -58,8 +58,16 @@ For details on how to obtain those values, refer to
 ```sh
 export OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
 export OTEL_EXPORTER_OTLP_ENDPOINT="https://otlp-gateway-prod-eu-west-0.grafana.net/otlp"
-export OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic a-secret-token"
+export OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic base64-encoded-string"
 ```
+
+> [!TIP]
+> The token for `Basic` authentication is the base64-encoded value of a Grafana
+> Cloud Instance ID and an API key separated by a `:`.
+>
+> For example, if your Grafana Cloud Instance ID is `12345` and your API key is
+> `glc_secret`, the value for `OTEL_EXPORTER_OTLP_HEADERS` would be
+> `Authorization=Basic MTIzNDU6Z2xjX3NlY3JldA==`
 
 ## Documentation
 
