@@ -1,0 +1,35 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": false,
+  "extends": [
+    "config:recommended"
+  ],
+  "ignoreUnstable": true,
+  "labels": [
+    "dependencies",
+    "{{{manager}}}"
+  ],
+  "packageRules": [
+    {
+      "extends": ["monorepo:dotnet"],
+      "description": "Disable major version updates for .NET",
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "extends": ["monorepo:opentelemetry-dotnet"],
+      "description": "Disable version updates for opentelemetry-dotnet",
+      "enabled": false
+    },
+    {
+      "extends": ["monorepo:opentelemetry-dotnet-contrib"],
+      "description": "Disable version updates for opentelemetry-dotnet-contrib",
+      "enabled": false
+    }
+  ],
+  "prConcurrentLimit": 10,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  }
+}
