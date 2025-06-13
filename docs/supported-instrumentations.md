@@ -20,6 +20,7 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
 | `Hangfire`            | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.Hangfire](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Hangfire) |
 | `HttpClient`          | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) |
 | `HostResource`        | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Resources.Host](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Resources.Host) |
+| `MySqlData`           |                    |                    | [MySql.Data.OpenTelemetry](https://www.nuget.org/packages/MySql.Data.OpenTelemetry) |
 | `NetRuntime`          | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Runtime](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) |
 | `Owin`                | :heavy_check_mark: |                    | [OpenTelemetry.Instrumentation.Owin](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Owin) |
 | `Process`             | :heavy_check_mark: | :heavy_check_mark: | [OpenTelemetry.Instrumentation.Process](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Process) |
@@ -35,3 +36,5 @@ and [minimal](./installation.md#install-the-base-package) dependencies:
 * The `ContainerResource` instrumentation is included but needs to be explicitly
   activated, as it currently adds container resource attributes for processes
   running not in containers.
+* The `MySqlData` instrumentation is automatically enabled if it is present in
+  the application, but requires `MySql.Data.OpenTelemetry` to be manually installed.
