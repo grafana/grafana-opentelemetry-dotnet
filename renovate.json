@@ -10,14 +10,19 @@
     "src/Grafana.OpenTelemetry/"
   ],
   "ignoreUnstable": true,
+  "labels": [
+    "dependencies",
+    "{{{manager}}}"
+  ],
   "packageRules": [
     {
-      "matchPackageNames": ["dotnet"],
+      "matchPackageNames": ["monorepo:dotnet"],
       "matchUpdateTypes": [
         "patch"
       ]
     }
   ],
+  "prConcurrentLimit": 10,
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["security"]
