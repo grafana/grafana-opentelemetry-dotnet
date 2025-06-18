@@ -1,0 +1,65 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    "customManagers:dockerfileVersions",
+    "customManagers:githubActionsVersions",
+    ":disableRateLimiting",
+    ":enableVulnerabilityAlerts",
+    ":gitSignOff",
+    ":ignoreUnstable",
+    ":timezone(Europe/UTC)"
+  ],
+  "automerge": true,
+  "commitBodyTable": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update _VERSION variables in scripts",
+      "managerFilePatterns": ["*.ps1", "*.sh"],
+      "matchStrings": ["# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))?(?: packageName=(?<packageName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s.+?_version=(?<currentValue>.+?)\\s"],
+    }
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile"],
+      "addLabels": ["docker"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["github_actions"]
+    },
+    {
+      "matchManagers": ["nuget"],
+      "addLabels": [".NET"]
+    },
+    {
+      "description": ["Skip pinned NuGet package versions"],
+      "matchManagers": ["nuget"],
+      "matchCurrentValue": "^\\[[^,]+,\\)$",
+      "enabled": false
+    },
+    {
+      "extends": ["monorepo:dotnet"],
+      "description": "Disable major version updates for .NET",
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "extends": ["monorepo:opentelemetry-dotnet"],
+      "description": "Disable version updates for opentelemetry-dotnet",
+      "enabled": false
+    },
+    {
+      "extends": ["monorepo:opentelemetry-dotnet-contrib"],
+      "description": "Disable version updates for opentelemetry-dotnet-contrib",
+      "enabled": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "addLabels": ["security"]
+  }
+}
