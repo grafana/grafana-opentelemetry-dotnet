@@ -8,7 +8,7 @@
     ":enableVulnerabilityAlerts",
     ":gitSignOff",
     ":ignoreUnstable",
-    ":timezone(Europe/UTC)"
+    ":timezone(UTC)"
   ],
   "automerge": true,
   "commitBodyTable": true,
