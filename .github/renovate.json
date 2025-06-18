@@ -36,6 +36,12 @@
       "addLabels": [".NET"]
     },
     {
+      "description": ["Skip pinned NuGet package versions"],
+      "matchManagers": ["nuget"],
+      "matchCurrentValue": "^\\[[^,]+,\\)$",
+      "enabled": false
+    },
+    {
       "extends": ["monorepo:dotnet"],
       "description": "Disable major version updates for .NET",
       "matchUpdateTypes": ["major"],
