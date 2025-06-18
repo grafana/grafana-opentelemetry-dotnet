@@ -11,6 +11,7 @@
     ":timezone(Europe/UTC)"
   ],
   "automerge": true,
+  "commitBodyTable": true,
   "customManagers": [
     {
       "customType": "regex",
