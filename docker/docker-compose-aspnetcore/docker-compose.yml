@@ -10,11 +10,11 @@ services:
     ports:
       - "8080:8080" # for OATs
   redis:
-    image: redis:8.0
+    image: redis:8.0@sha256:1b835e5a8d5db58e8b718850bf43a68ef5a576fc68301fd08a789b20b4eecb61
     ports:
       - "6379:6379"
   mssql:
-    image: mcr.microsoft.com/mssql/server:2025-latest
+    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:e2e5bcfe395924ff49694542191d3aefe86b6b3bd6c024f9ea01bf5a8856c56e
     ports:
       - "1433:1433"
     environment:
