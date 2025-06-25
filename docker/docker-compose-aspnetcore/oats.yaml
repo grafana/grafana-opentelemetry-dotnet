@@ -1,7 +1,7 @@
 include:
   - ./oats-template.yml
 input:
-  - path: /api/Aws/ListFiles
+  - path: /api/Aws/ListBuckets
   - path: /api/HttpClient/Get
   - path: /api/HttpClient/GetError
   - path: /api/MsSql/ServerInfo
