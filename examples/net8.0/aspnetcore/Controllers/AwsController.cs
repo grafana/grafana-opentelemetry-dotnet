@@ -10,7 +10,7 @@ namespace aspnetcore.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class AwsController(AmazonS3Client client, ILogger<AwsController> logger) : ControllerBase
+public class AwsController(IAmazonS3 client, ILogger<AwsController> logger) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<string[]>> ListBuckets()
@@ -19,7 +19,7 @@ public class AwsController(AmazonS3Client client, ILogger<AwsController> logger)
 
         var buckets = response.Buckets.Select(o => o.BucketName).ToArray();
 
-        logger.LogInformation("Found {Count} buckets.", buckets);
+        logger.LogInformation("Found {Count} buckets.", buckets.Length);
 
         return this.Ok(buckets);
     }

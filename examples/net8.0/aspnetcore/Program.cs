@@ -31,7 +31,7 @@ builder.Services.AddTransient(sp =>
 });
 
 // AWS SDKs
-builder.Services.AddSingleton((_) => new AmazonS3Client(new AmazonS3Config() { ForcePathStyle = true }));
+builder.Services.AddSingleton<IAmazonS3>((_) => new AmazonS3Client(new AmazonS3Config() { ForcePathStyle = true }));
 
 builder.Services.AddHttpClient();
 
