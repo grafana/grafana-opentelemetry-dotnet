@@ -5,6 +5,10 @@ services:
       context: ../..
       dockerfile: examples/net8.0/aspnetcore/Dockerfile
     environment:
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+      - AWS_REGION=us-east-1
+      - AWS_ENDPOINT_URL_S3=http://localstack:4566
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4317
     ports:
       - "5000:8080"
@@ -28,3 +32,8 @@ services:
     environment:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
+  localstack:
+    image: localstack/localstack:4.5.0@sha256:9d4253786e0effe974d77fe3c390358391a56090a4fff83b4600d8a64404d95d
+    ports:
+      - "4510-4559:4510-4559"
+      - "4566:4566"
