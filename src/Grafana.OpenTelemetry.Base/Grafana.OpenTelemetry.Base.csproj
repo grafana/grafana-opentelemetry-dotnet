@@ -17,29 +17,20 @@
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
   </ItemGroup>
 
-  <!-- Stable instrumentation packages -->
-  <ItemGroup>
+  <ItemGroup Label="Stable Instrumentation Packages">
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0" />
   </ItemGroup>
 
-  <!-- Non-stable instrumentation packages with no dependencies -->
-  <ItemGroup>
+  <ItemGroup Label="Non-stable instrumentation packages">
     <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.12.0-beta.1" />
-  </ItemGroup>
-
-  <!-- Non-stable instrumentation packages with no dependencies, non netstandard2.0 -->
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
+    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.Host" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.Process" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="1.12.0-beta.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
-    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.12.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
