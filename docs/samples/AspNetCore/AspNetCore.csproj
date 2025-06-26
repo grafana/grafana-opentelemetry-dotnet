@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- snippet dotnet-add-package-references -->
+    <PackageReference Include="Grafana.OpenTelemetry" Version="1.2.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.9.0" />
+    <!-- snippet dotnet-add-package-references -->
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.17" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>
