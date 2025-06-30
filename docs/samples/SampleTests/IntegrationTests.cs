@@ -1,3 +1,8 @@
+//
+// Copyright Grafana Labs
+// SPDX-License-Identifier: Apache-2.0
+//
+
 using System.Diagnostics;
 using System.Net.Http.Json;
 using Grafana.OpenTelemetry.Sample;
@@ -13,7 +18,7 @@ using OpenTelemetry.Metrics;
 
 namespace SampleTests;
 
-public class SampleTests(ITestOutputHelper outputHelper)
+public class IntegrationTests(ITestOutputHelper outputHelper)
 {
     [Fact]
     public async Task Application_Generates_Telemetry()

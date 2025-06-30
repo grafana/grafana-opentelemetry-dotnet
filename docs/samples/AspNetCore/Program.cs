@@ -1,3 +1,8 @@
+//
+// Copyright Grafana Labs
+// SPDX-License-Identifier: Apache-2.0
+//
+
 using Grafana.OpenTelemetry;
 using Grafana.OpenTelemetry.Sample;
 using OpenTelemetry.Logs;
