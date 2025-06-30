@@ -11,6 +11,7 @@ namespace SampleTests;
 
 public class SnippetTests
 {
+    [Fact]
     public void Can_Register_Grafana_With_TracerProvider()
     {
         // Act

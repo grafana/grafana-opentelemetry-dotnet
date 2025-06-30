@@ -19,6 +19,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AspNetCore\AspNetCore.csproj" />
+    <ProjectReference Include="..\ConsoleApp\ConsoleApp.csproj" />
+    <ProjectReference Include="..\WebApp\WebApp.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
