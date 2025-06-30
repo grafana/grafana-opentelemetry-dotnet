@@ -43,6 +43,17 @@
       "enabled": false
     },
     {
+      "extends": ["monorepo:aws-sdk-net"],
+      "description": ["Only update the AWS SDK once a week"],
+      "schedule": ["* 5-21 * * MON"]
+    },
+    {
+      "extends": ["monorepo:aws-sdk-net"],
+      "description": ["Disable major version updates for the AWS SDK"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "extends": ["monorepo:dotnet"],
       "description": "Disable major version updates for .NET",
       "matchUpdateTypes": ["major"],

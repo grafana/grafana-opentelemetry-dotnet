@@ -1,6 +1,7 @@
 include:
   - ./oats-template.yml
 input:
+  - path: /api/Aws/ListBuckets
   - path: /api/HttpClient/Get
   - path: /api/HttpClient/GetError
   - path: /api/MsSql/ServerInfo
@@ -80,3 +81,12 @@ expected:
             db.name: main
             peer.service: /app/App_Data/TodoApp.db
             otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
+    - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
+      spans:
+        - name: 'S3.ListBuckets'
+          attributes:
+            aws.request_id: regex:.+
+            otel.library.name: AWSSDK.S3
+            rpc.method: ListBuckets
+            rpc.service: S3
+            rpc.system: aws-api

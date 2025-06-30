@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+using Amazon.S3;
 using aspnetcore;
 using Grafana.OpenTelemetry;
 using Microsoft.Data.SqlClient;
@@ -28,6 +29,9 @@ builder.Services.AddTransient(sp =>
     var connectionString = "Server=mssql,1433;Database=master;User=sa;Password=Password12345%%;Encrypt=False;TrustServerCertificate=True";
     return new SqlConnection(connectionString);
 });
+
+// AWS SDKs
+builder.Services.AddSingleton<IAmazonS3>((_) => new AmazonS3Client(new AmazonS3Config() { ForcePathStyle = true }));
 
 builder.Services.AddHttpClient();
 
