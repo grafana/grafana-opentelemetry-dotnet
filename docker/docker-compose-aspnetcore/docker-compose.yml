@@ -15,7 +15,7 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ENDPOINT_URL_S3=http://localstack:4566
   redis:
-    image: redis:8.0@sha256:071457f3d4d7bfa4c27408ade9596e6ace887515f2e03042384369279a4c68a1
+    image: redis:8.0@sha256:b43d2dcbbdb1f9e1582e3a0f37e53bf79038522ccffb56a25858969d7a9b6c11
     ports:
       - "6379:6379"
   mssql:
