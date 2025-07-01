@@ -6,6 +6,14 @@
 
 * Remove reference on System.Text.Json for `net8.0` target framework
   ([#136](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/136))
+* Remove dependency on `OpenTelemetry.Instrumentation.MySqlData`.
+  Add the [MySql.Data.OpenTelemetry](https://www.nuget.org/packages/MySql.Data.OpenTelemetry)
+  package to your project if you require MySQL instrumentation. **NOTE**: This
+  NuGet package is licensed under the GPL license which may not be suitable for
+  all projects.
+  ([#146](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/146))
+* Use 1.0.0-rc.18 of OpenTelemetry.Instrumentation.Wcf
+  ([#146](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/146))
 
 ## 1.2.0
 
