@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
     dotnet publish "examples/net8.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app ${DOTNET_PUBLISH_ARGS}
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0.18-noble-chiseled-extra@sha256:1f0890132c50c55879371a16261ef1a53d01c9bf14f9104f266eb91bb885e5d0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0.18-noble-chiseled-extra@sha256:479b9a3f71f169960d909f599f1b0da82af99bbd6b1179216923eb730217db0d AS final
 WORKDIR /app
 EXPOSE 8080
 
