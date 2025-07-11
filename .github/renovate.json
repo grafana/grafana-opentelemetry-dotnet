@@ -10,6 +10,11 @@
     ":ignoreUnstable",
     ":timezone(UTC)"
   ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/__fixtures__/**"
+  ],
   "automerge": true,
   "commitBodyTable": true,
   "customManagers": [
