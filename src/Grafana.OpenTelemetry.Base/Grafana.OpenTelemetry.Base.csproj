@@ -25,7 +25,7 @@
   <ItemGroup Label="Non-stable instrumentation packages">
     <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.12.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.12.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.Host" Version="1.12.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="1.12.0-beta.1" />
