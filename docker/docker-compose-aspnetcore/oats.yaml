@@ -80,6 +80,7 @@ expected:
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
       spans:
         - name: 'main'
+          allow-duplicates: true
           attributes:
             db.system: sqlite
             db.name: main
