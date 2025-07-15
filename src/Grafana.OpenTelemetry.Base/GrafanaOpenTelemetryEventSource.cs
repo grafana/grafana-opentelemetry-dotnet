@@ -7,10 +7,14 @@ using System;
 using System.Diagnostics.Tracing;
 using System.Text.Json;
 
+#if NET
+using System.Text.Json.Serialization;
+#endif
+
 namespace Grafana.OpenTelemetry
 {
     [EventSource(Name = "OpenTelemetry-Grafana-Distribution")]
-    internal sealed class GrafanaOpenTelemetryEventSource : EventSource
+    internal sealed partial class GrafanaOpenTelemetryEventSource : EventSource
     {
         public static GrafanaOpenTelemetryEventSource Log = new GrafanaOpenTelemetryEventSource();
 
@@ -53,7 +57,11 @@ namespace Grafana.OpenTelemetry
         [NonEvent]
         public void InitializeDistribution(GrafanaOpenTelemetrySettings settings)
         {
+#if NET
+            var settingsJson = JsonSerializer.Serialize(settings, GrafanaJsonSerializerContext.Default.GrafanaOpenTelemetrySettings);
+#else
             var settingsJson = JsonSerializer.Serialize(settings);
+#endif
 
             InitializeDistribution(settingsJson);
         }
@@ -75,5 +83,11 @@ namespace Grafana.OpenTelemetry
         {
             this.WriteEvent(3, signal, instrumentationLibrary, ex);
         }
+
+#if NET
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [JsonSerializable(typeof(GrafanaOpenTelemetrySettings))]
+        private sealed partial class GrafanaJsonSerializerContext : JsonSerializerContext;
+#endif
     }
 }
