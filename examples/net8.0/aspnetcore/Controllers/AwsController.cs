@@ -17,7 +17,7 @@ public class AwsController(IAmazonS3 client, ILogger<AwsController> logger) : Co
     {
         var response = await client.ListBucketsAsync();
 
-        var buckets = response.Buckets.Select(o => o.BucketName).ToArray();
+        var buckets = response.Buckets?.Select(o => o.BucketName).ToArray() ?? [];
 
         logger.LogInformation("Found {Count} buckets.", buckets.Length);
 
