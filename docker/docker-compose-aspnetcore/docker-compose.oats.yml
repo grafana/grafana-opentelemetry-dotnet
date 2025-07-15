@@ -4,6 +4,8 @@ services:
     build:
       context: ../..
       dockerfile: examples/net8.0/aspnetcore/Dockerfile
+      args:
+        DOTNET_PUBLISH_ARGS: "/p:BuildDistroFromSource=${BUILD_DISTRO_FROM_SOURCE:-true}"
     environment:
       - AWS_ACCESS_KEY_ID=localstack
       - AWS_SECRET_ACCESS_KEY=localstack

@@ -5,7 +5,7 @@ services:
       context: ../..
       dockerfile: examples/net8.0/aspnetcore/Dockerfile
       args:
-        DOTNET_PUBLISH_ARGS: "--self-contained true /p:PublishSingleFile=true"
+        DOTNET_PUBLISH_ARGS: "--self-contained true /p:PublishSingleFile=true /p:BuildDistroFromSource=${BUILD_DISTRO_FROM_SOURCE:-true}"
     entrypoint: ./aspnetcore
     environment:
       - AWS_ACCESS_KEY_ID=localstack

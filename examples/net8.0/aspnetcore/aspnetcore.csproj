@@ -19,8 +19,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition=" '$(BuildDistroFromSource)' != 'false' ">
     <ProjectReference Include="..\..\..\src\Grafana.OpenTelemetry\Grafana.OpenTelemetry.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(BuildDistroFromSource)' == 'false' ">
+    <PackageReference Include="Grafana.OpenTelemetry" Version="*-*" />
   </ItemGroup>
 
 </Project>
