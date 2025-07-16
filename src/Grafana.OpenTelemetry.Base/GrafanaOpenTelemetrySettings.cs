@@ -38,7 +38,12 @@ namespace Grafana.OpenTelemetry
         ///
         /// By default, all available instrumentations are activated.
         /// </summary>
-        public HashSet<Instrumentation> Instrumentations { get; } = new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
+        public HashSet<Instrumentation> Instrumentations { get; } =
+#if NET
+            [.. Enum.GetValues<Instrumentation>()];
+#else
+            new HashSet<Instrumentation>((Instrumentation[])Enum.GetValues(typeof(Instrumentation)));
+#endif
 
         /// <summary>
         /// Gets the list of resource detectors to be activated.
@@ -114,10 +119,11 @@ namespace Grafana.OpenTelemetry
             Instrumentations.Remove(Instrumentation.AWSLambda);
 
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
+            char[] separators = new char[] { ',', ':' };
 
             if (!string.IsNullOrEmpty(disableInstrumentations))
             {
-                foreach (var instrumentationStr in disableInstrumentations.Split(new char[] { ',', ':' }))
+                foreach (var instrumentationStr in disableInstrumentations.Split(separators))
                 {
                     if (Enum.TryParse<Instrumentation>(instrumentationStr, out var instrumentation))
                     {
@@ -132,7 +138,7 @@ namespace Grafana.OpenTelemetry
             {
                 ResourceDetectors.Clear();
 
-                foreach (var resourceDetectorStr in resourceDetectors.Split(new char[] { ',', ':' }))
+                foreach (var resourceDetectorStr in resourceDetectors.Split(separators))
                 {
                     if (Enum.TryParse<ResourceDetector>(resourceDetectorStr, out var resourceDetector))
                     {
@@ -145,7 +151,7 @@ namespace Grafana.OpenTelemetry
 
             if (!string.IsNullOrEmpty(disableResourceDetectors))
             {
-                foreach (var resourceDetectorStr in disableResourceDetectors.Split(new char[] { ',', ':' }))
+                foreach (var resourceDetectorStr in disableResourceDetectors.Split(separators))
                 {
                     if (Enum.TryParse<ResourceDetector>(resourceDetectorStr, out var resourceDetector))
                     {

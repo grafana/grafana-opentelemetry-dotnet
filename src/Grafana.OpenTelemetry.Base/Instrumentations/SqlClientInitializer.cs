@@ -7,6 +7,9 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
+#if NET
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Trimming is not yet supported with SqlClient instrumentation.")]
+#endif
     internal class SqlClientInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.SqlClient;
