@@ -32,4 +32,4 @@ export OTEL_RESOURCE_ATTRIBUTES=service.instance.id=<pod123>,deployment.environm
 [exporter-readme]: https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Exporter.OpenTelemetryProtocol/README.md
 [getting-started]: https://github.com/open-telemetry/opentelemetry-dotnet#getting-started
 [publish-otlp]: https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#quickstart-architecture
-[resource-attributes]: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/instrument/resource-attributes/
+[resource-attributes]: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/setup/resource-attributes/
