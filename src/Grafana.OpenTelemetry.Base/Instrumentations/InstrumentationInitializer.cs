@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
 {
     internal abstract class InstrumentationInitializer
     {
-        public static InstrumentationInitializer[] Initializers = GetDefaults();
+        public static readonly InstrumentationInitializer[] Initializers = GetDefaults();
 
         public abstract Instrumentation Id { get; }
 

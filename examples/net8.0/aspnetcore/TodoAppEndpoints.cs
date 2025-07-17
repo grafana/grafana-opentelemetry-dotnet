@@ -22,7 +22,7 @@ public static class TodoAppEndpoints
             if (string.IsNullOrEmpty(dataDirectory) || !Path.IsPathRooted(dataDirectory))
             {
                 var environment = serviceProvider.GetRequiredService<IHostEnvironment>();
-                dataDirectory = Path.Combine(environment.ContentRootPath, "App_Data");
+                dataDirectory = Path.Join(environment.ContentRootPath, "App_Data");
             }
 
             if (!Directory.Exists(dataDirectory))
@@ -30,7 +30,7 @@ public static class TodoAppEndpoints
                 Directory.CreateDirectory(dataDirectory);
             }
 
-            var databaseFile = Path.Combine(dataDirectory, "TodoApp.db");
+            var databaseFile = Path.Join(dataDirectory, "TodoApp.db");
 
             options.UseSqlite("Data Source=" + databaseFile);
         });
@@ -45,7 +45,7 @@ public static class TodoAppEndpoints
             todos.MapPost("/", async (CreateTodoItemModel model, TodoRepository repository) =>
             {
                 var id = await repository.AddItemAsync(model.Text);
-                return Results.Created($"/api/items/{id}", new { Id = id });
+                return Results.Created($"/api/items/{id.Id}", new { Id = id });
             });
 
             todos.MapGet("/", async (TodoRepository repository) => await repository.GetItemsAsync());

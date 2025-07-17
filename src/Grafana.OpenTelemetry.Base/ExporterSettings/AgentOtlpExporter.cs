@@ -29,36 +29,36 @@ namespace Grafana.OpenTelemetry
         public OtlpExportProtocol Protocol { get; set; }
 
         /// <inheritdoc/>
-        override internal void Apply(TracerProviderBuilder builder)
+        internal override void Apply(TracerProviderBuilder builder)
         {
-            if (EnableTraces == false)
+            if (!EnableTraces)
             {
                 return;
             }
 
-            builder.AddOtlpExporter(config => ApplyToConfig(config));
+            builder.AddOtlpExporter(ApplyToConfig);
         }
 
         /// <inheritdoc/>
-        override internal void Apply(MeterProviderBuilder builder)
+        internal override void Apply(MeterProviderBuilder builder)
         {
-            if (EnableMetrics == false)
+            if (!EnableMetrics)
             {
                 return;
             }
 
-            builder.AddOtlpExporter(config => ApplyToConfig(config));
+            builder.AddOtlpExporter(ApplyToConfig);
         }
 
         /// <inheritdoc/>
-        override internal void Apply(OpenTelemetryLoggerOptions options)
+        internal override void Apply(OpenTelemetryLoggerOptions options)
         {
-            if (EnableLogs == false)
+            if (!EnableLogs)
             {
                 return;
             }
 
-            options.AddOtlpExporter(config => ApplyToConfig(config));
+            options.AddOtlpExporter(ApplyToConfig);
         }
 
         private void ApplyToConfig(OtlpExporterOptions options)
@@ -70,7 +70,7 @@ namespace Grafana.OpenTelemetry
 
             if (Protocol != default)
             {
-                options.Protocol = (OtlpExportProtocol)Protocol;
+                options.Protocol = Protocol;
             }
         }
     }
