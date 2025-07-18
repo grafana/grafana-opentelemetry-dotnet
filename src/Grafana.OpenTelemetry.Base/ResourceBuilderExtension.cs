@@ -19,7 +19,7 @@ namespace Grafana.OpenTelemetry
                     serviceName: settings.ServiceName,
                     serviceVersion: settings.ServiceVersion,
                     serviceInstanceId: serviceInstanceIdProvided ? settings.ServiceInstanceId : null,
-                    autoGenerateServiceInstanceId: serviceInstanceIdProvided == false);
+                    autoGenerateServiceInstanceId: !serviceInstanceIdProvided);
 
         }
     }

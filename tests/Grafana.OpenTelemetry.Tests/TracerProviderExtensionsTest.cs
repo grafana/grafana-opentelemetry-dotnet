@@ -15,15 +15,14 @@ namespace Grafana.OpenTelemetry.Tests
 {
     public class TracerProviderExtensionsTest
     {
-        private static ActivitySource activitySource = new ActivitySource(typeof(TracerProviderExtensionsTest).Name);
+        private static readonly ActivitySource activitySource = new(typeof(TracerProviderExtensionsTest).Name);
 
         [Fact]
         public void EnableDefaultInstrumentations()
         {
-            Sdk
-                .CreateTracerProviderBuilder()
-                .UseGrafana()
-                .Build();
+            Sdk.CreateTracerProviderBuilder()
+               .UseGrafana()
+               .Build();
         }
 
         [Fact]
@@ -38,7 +37,7 @@ namespace Grafana.OpenTelemetry.Tests
                 .AddSource(activitySource.Name)
                 .Build();
 
-            var span = activitySource.StartActivity("root");
+            using var span = activitySource.StartActivity("root");
             span.Stop();
             span.Dispose();
 
@@ -89,7 +88,7 @@ namespace Grafana.OpenTelemetry.Tests
                 .AddSource(activitySource.Name)
                 .Build();
 
-            var span = activitySource.StartActivity("root");
+            using var span = activitySource.StartActivity("root");
             span.Stop();
             span.Dispose();
 
@@ -129,7 +128,7 @@ namespace Grafana.OpenTelemetry.Tests
                 .AddSource(activitySource.Name)
                 .Build();
 
-            var span = activitySource.StartActivity("root");
+            using var span = activitySource.StartActivity("root");
             span.Stop();
             span.Dispose();
 
@@ -164,7 +163,7 @@ namespace Grafana.OpenTelemetry.Tests
                 .AddSource(activitySource.Name)
                 .Build();
 
-            var span = activitySource.StartActivity("root");
+            using var span = activitySource.StartActivity("root");
             span.Stop();
             span.Dispose();
 

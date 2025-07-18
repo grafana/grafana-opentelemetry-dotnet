@@ -12,7 +12,7 @@ namespace Grafana.OpenTelemetry
 {
     internal abstract class ResourceDetectorInitializer
     {
-        public static ResourceDetectorInitializer[] Initializers = new ResourceDetectorInitializer[]
+        public static readonly ResourceDetectorInitializer[] Initializers = new ResourceDetectorInitializer[]
         {
 #if !NETSTANDARD
             new AWSEBSDetectorInitializer(),
@@ -36,7 +36,7 @@ namespace Grafana.OpenTelemetry
 #endif
         };
 
-        abstract public ResourceDetector Id { get; }
+        public abstract ResourceDetector Id { get; }
 
         public void Initialize(TracerProviderBuilder builder)
         {

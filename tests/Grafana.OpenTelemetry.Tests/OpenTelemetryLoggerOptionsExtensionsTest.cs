@@ -22,6 +22,8 @@ namespace Grafana.OpenTelemetry.Tests
             });
 
             var logger = loggerFactory.CreateLogger<OpenTelemetryLoggerOptionsExtensionsTest>();
+
+            logger.LogInformation("This is a test log message.");
         }
     }
 }
