@@ -2,6 +2,18 @@
 
 ## Unreleased version
 
+### BREAKING CHANGES
+
+* Update OpenTelemetry package versions to 1.12.0
+  ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
+
+### New features
+
+* Enable metrics for SQL Client instrumentation
+  ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
+* Use 1.0.0-beta.2 of OpenTelemetry.Instrumentation.Cassandra
+  ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
+
 ### Bug Fixes
 
 * Remove reference on System.Text.Json for `net8.0` target framework

@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
@@ -13,6 +14,11 @@ namespace Grafana.OpenTelemetry
     internal class SqlClientInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.SqlClient;
+
+        protected override void InitializeMetrics(MeterProviderBuilder builder)
+        {
+            builder.AddSqlClientInstrumentation();
+        }
 
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
