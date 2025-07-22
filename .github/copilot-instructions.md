@@ -2,6 +2,8 @@
 applyTo: "**/*.md"
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD041 MD051 MD059 -->
+
 ## Role
 
 Act as an experienced software engineer and technical writer for Grafana Labs.
