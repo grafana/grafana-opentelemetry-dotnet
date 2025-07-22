@@ -16,6 +16,9 @@ services:
       - AWS_SECRET_ACCESS_KEY=localstack
       - AWS_REGION=us-east-1
       - AWS_ENDPOINT_URL_S3=http://localstack:4566
+      - OTEL_BLRP_SCHEDULE_DELAY=5000
+      - OTEL_BSP_SCHEDULE_DELAY=5000
+      - OTEL_METRIC_EXPORT_INTERVAL=5000
   redis:
     image: redis:8.0@sha256:1c9b59dca4e846f9d5ca53b72523de0905bd65ae9d917f601ed9fe8c081ae3ef
     ports:
