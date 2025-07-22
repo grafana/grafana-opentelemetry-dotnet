@@ -53,7 +53,7 @@ use the full name on first use and short name after, for example:
 - Grafana Beyla (full), Beyla (short)
 
 Refer to the "OpenTelemetry Collector" as "Collector" after the first use.
-Still use "OpenTelemetry Collector" when refering to a distribution,
+Still use "OpenTelemetry Collector" when referring to a distribution,
 and for headings and links.
 
 Always use the full name for "Grafana Cloud".
@@ -92,7 +92,7 @@ Never remove front matter content at the start of the file.
 This includes all content from the start of the file,
 inbetween a pair of tripple dashes (---).
 
-Never removed YAML front matter meta data unless specifically asked to.
+Never remove YAML front matter meta data unless specifically asked to.
 
 For example, never remove or delete this or other front matter:
 
@@ -112,7 +112,7 @@ Markdown content...
 Only edit front matter copy if specifically asked to.
 When performing a copy edit task,
 ask the user if they'd like you to also edit the front matter copy.
-Still never remove front matter meta data properpties.
+Still never remove front matter meta data properties.
 
 ## Structure
 
@@ -213,7 +213,7 @@ Don't use filler words or phrases, for example:
 
 In most cases, use verbs and nouns without adverbs or adjectives.
 You may use minimal adverbs and adjectives,
-when introucing or overviewing a Grafana Labs product.
+when introducing or overviewing a Grafana Labs product.
 
 Don't use figures of speech.
 
@@ -225,7 +225,7 @@ Never use cultural references or charged language.
 
 Write in present simple tense.
 
-Avoid present continous tense.
+Avoid present continuous tense.
 
 Only write in future tense to show future actions.
 
@@ -526,7 +526,7 @@ An example configuration table:
 | `logging.level`<br>`LOG_LEVEL` | Sets the logging verbosity. Refer to [logging level](#logging-level) for details.                    | No       | String | `debug`, `info`, `warn`, `error`     | `info`  |
 ```
 
-In some ocassions you can drop the Values column, for example,
+In some occasions you can drop the Values column, for example,
 when all the configuration have a Boolean type (yes/no) or (1/0).
 
 After the table, for each configuration, add a sub-section.
