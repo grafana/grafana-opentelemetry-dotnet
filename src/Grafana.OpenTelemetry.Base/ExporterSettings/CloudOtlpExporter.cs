@@ -66,9 +66,9 @@ namespace Grafana.OpenTelemetry
         { }
 
         /// <inheritdoc/>
-        override internal void Apply(TracerProviderBuilder builder)
+        internal override void Apply(TracerProviderBuilder builder)
         {
-            if (EnableTraces == false)
+            if (!EnableTraces)
             {
                 return;
             }
@@ -84,9 +84,9 @@ namespace Grafana.OpenTelemetry
         }
 
         /// <inheritdoc/>
-        override internal void Apply(MeterProviderBuilder builder)
+        internal override void Apply(MeterProviderBuilder builder)
         {
-            if (EnableMetrics == false)
+            if (!EnableMetrics)
             {
                 return;
             }
@@ -102,9 +102,9 @@ namespace Grafana.OpenTelemetry
         }
 
         /// <inheritdoc/>
-        override internal void Apply(OpenTelemetryLoggerOptions options)
+        internal override void Apply(OpenTelemetryLoggerOptions options)
         {
-            if (EnableLogs == false)
+            if (!EnableLogs)
             {
                 return;
             }

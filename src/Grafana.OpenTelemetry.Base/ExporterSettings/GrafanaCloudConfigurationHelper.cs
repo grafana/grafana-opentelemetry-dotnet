@@ -16,9 +16,9 @@ namespace Grafana.OpenTelemetry
         private const string PathExtensionMetrics = "/v1/metrics";
         private const string PathExtensionLogs = "/v1/logs";
 
-        private string _zone;
-        private string _instanceId;
-        private string _apiKey;
+        private readonly string _zone;
+        private readonly string _instanceId;
+        private readonly string _apiKey;
 
         public GrafanaCloudConfigurationHelper(string zone, string instanceId, string apiKey)
         {
