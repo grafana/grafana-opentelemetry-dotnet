@@ -16,7 +16,7 @@ namespace Grafana.OpenTelemetry
     [EventSource(Name = "OpenTelemetry-Grafana-Distribution")]
     internal sealed partial class GrafanaOpenTelemetryEventSource : EventSource
     {
-        public static GrafanaOpenTelemetryEventSource Log = new GrafanaOpenTelemetryEventSource();
+        public static readonly GrafanaOpenTelemetryEventSource Log = new GrafanaOpenTelemetryEventSource();
 
         [NonEvent]
         public void EnabledMetricsInstrumentation(string instrumentationLibrary)
