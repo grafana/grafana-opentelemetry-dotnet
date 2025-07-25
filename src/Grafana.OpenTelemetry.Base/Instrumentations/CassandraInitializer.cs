@@ -4,6 +4,7 @@
 //
 
 using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
@@ -18,6 +19,14 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
                 "AddCassandraInstrumentation",
                 new object[] { builder });
+        }
+
+        protected override void InitializeTracing(TracerProviderBuilder builder)
+        {
+            // TODO Update upstream to use CassandraCSharpDriver.OpenTelemetry and
+            // the this can be changed to .AddSource(CassandraActivitySourceHelper.ActivitySourceName)
+            // and then also the user doesn't need to manually install the package.
+            builder.AddSource("CassandraCSharpDriver.OpenTelemetry");
         }
     }
 }

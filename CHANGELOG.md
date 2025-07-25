@@ -210,6 +210,11 @@
   ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
 * Use 1.0.0-beta.2 of OpenTelemetry.Instrumentation.Cassandra
   ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
+* Use 3.22.0 of CassandraCSharpDriver
+  ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Enable tracing for Cassandra instrumentation (requires the
+  `CassandraCSharpDriver.OpenTelemetry` NuGet package to be installed)
+  ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
 
 ### Bug Fixes
 
