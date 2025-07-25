@@ -130,6 +130,10 @@ jobs:
     environment:
       name: feedz.io
 
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
 
     - name: Download packages
@@ -142,11 +146,17 @@ jobs:
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
-    # TODO Get the feedz.io token from Vault
+    # TODO Store the feedz.io token in Vault
+    - uses: grafana/shared-workflows/actions/get-vault-secrets@9f37f656e063f0ad0b0bfc38d49894b57d363936 # get-vault-secrets/v1.2.1
+      id: get-token
+      with:
+        export_env: false
+        repo_secrets: |
+          token=feedz-io:token
 
     - name: Push NuGet packages to feedz.io
       shell: bash
       env:
-        API_KEY: ${{ env.FEEDZ_IO_TOKEN }}
+        API_KEY: ${{ fromJSON(steps.get-token.outputs.secrets).token }}
         SOURCE: 'https://f.feedz.io/${{ github.repository }}/nuget/index.json'
       run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
