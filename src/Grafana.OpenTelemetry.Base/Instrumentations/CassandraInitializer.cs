@@ -26,6 +26,7 @@ namespace Grafana.OpenTelemetry
             // TODO Update upstream to use CassandraCSharpDriver.OpenTelemetry and
             // the this can be changed to .AddSource(CassandraActivitySourceHelper.ActivitySourceName)
             // and then also the user doesn't need to manually install the package.
+            // See https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2939.
             builder.AddSource("CassandraCSharpDriver.OpenTelemetry");
         }
     }
