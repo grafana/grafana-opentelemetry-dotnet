@@ -109,7 +109,7 @@
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * `ActivitySource.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
   * Added direct reference to `Newtonsoft.Json` with minimum version of `13.0.1`
-    [CVE-2024-21907](https://github.com/advisories/GHSA-5crp-9r3c-p9vr).
+    for [CVE-2024-21907](https://github.com/advisories/GHSA-5crp-9r3c-p9vr).
     ([#2058](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2058))
 * Use 1.12.0 of OpenTelemetry.Instrumentation.Http ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * Trace instrumentation no longer sets attributes when running on .NET 9 and
@@ -158,7 +158,7 @@
     Previously, it was written as a string. ([#2233](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2233))
   * The `EnableConnectionLevelAttributes` option is now enabled by default. ([#2249](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2249))
   * The following attributes are now provided when starting an activity for a
-  * database call: `db.system`, `db.name` (old conventions), `db.namespace` (new
+    database call: `db.system`, `db.name` (old conventions), `db.namespace` (new
     conventions), `server.address`, and `server.port`. These attributes are now
     available for sampling decisions. ([#2277](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2277))
   * The `SetDbStatementForStoredProcedure` option has been removed. ([#2284](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2284))
