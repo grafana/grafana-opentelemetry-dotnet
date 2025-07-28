@@ -186,11 +186,13 @@
     environment variable to propagate trace context to SQL Server databases.
     This will remain experimental while the specification remains in development.
     It is now only available on .NET 8 and newer. ([#2709](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2709))
-* Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
+* Use 1.12.0-beta.2 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * Rename span network attributes to comply with v1.23.0 of Semantic Conventions
     for Database Client Calls ([#2468](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2468))
   * `System.Reflection.Emit.Lightweight` is referenced only by `netstandard2.0`.
     ([#2667](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2667))
+  * Add support for early filtering of telemetry collection via a `Filter` option
+    ([#2804](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2804))
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * Added a `RecordException` property to specify if exceptions should be recorded
     (defaults to `false`). This is only supported by client instrumentation. ([#2271](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2271))
