@@ -15,9 +15,11 @@ expected:
         - 'Application started'
   metrics:
     - promql: http_client_request_duration_seconds_count{}
-      value: '>= 0'
+      value: '>= 1'
     - promql: http_client_request_duration_seconds_count{http_request_method="GET", http_response_status_code="200"}
-      value: '>= 0'
+      value: '>= 1'
+    - promql: http_server_request_duration_seconds_count{}
+      value: '>= 1'
   traces:
     - traceql: '{ resource.process.pid > 0 }'
       spans:
