@@ -14,6 +14,8 @@ expected:
       contains:
         - 'Application started'
   metrics:
+    - promql: db_client_operation_duration_seconds_count{}
+      value: '>= 0'
     - promql: http_client_request_duration_seconds_count{}
       value: '>= 1'
     - promql: http_client_request_duration_seconds_count{http_request_method="GET", http_response_status_code="200"}
@@ -74,14 +76,16 @@ expected:
           attributes:
             db.statement: LPUSH
             db.system: redis
-            net.peer.name: redis
+            db.redis.database_index: '0'
+            server.address: redis
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
       spans:
         - name: 'main'
+          allow-duplicates: true
           attributes:
             db.system: sqlite
             db.name: main
-            peer.service: /app/App_Data/TodoApp.db
+            server.address: /app/App_Data/TodoApp.db
             otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
     - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
       spans:
