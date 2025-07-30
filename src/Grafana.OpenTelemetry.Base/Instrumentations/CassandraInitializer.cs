@@ -4,6 +4,7 @@
 //
 
 using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
@@ -18,6 +19,11 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
                 "AddCassandraInstrumentation",
                 new object[] { builder });
+        }
+
+        protected override void InitializeTracing(TracerProviderBuilder builder)
+        {
+            builder.AddSource("CassandraCSharpDriver.OpenTelemetry");
         }
     }
 }
