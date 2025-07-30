@@ -165,7 +165,7 @@
 * Use 3.22.0 of CassandraCSharpDriver
   ([#202](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/202))
 * Enable tracing for Cassandra instrumentation (requires the
-  `CassandraCSharpDriver.OpenTelemetry` NuGet package to be installed)
+  `CassandraCSharpDriver.OpenTelemetry` NuGet package to be installed in your application)
   ([#202](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/202))
 
 ### Bug Fixes
