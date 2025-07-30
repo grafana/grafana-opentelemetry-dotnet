@@ -21,7 +21,7 @@
     {
       "customType": "regex",
       "description": "Update _VERSION variables in scripts",
-      "managerFilePatterns": ["*.ps1", "*.sh"],
+      "managerFilePatterns": ["/.*\\.ps1$/", "/.*\\.sh$/"],
       "matchStrings": ["# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))?(?: packageName=(?<packageName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s.+?_version=(?<currentValue>.+?)\\s"]
     }
   ],
