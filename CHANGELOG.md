@@ -93,6 +93,14 @@
   * Support use with SqlClient instrumentation.
     ([#2280](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2280),
     [#2829](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2829))
+* Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#208](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/208))
+  * Span status is set based on semantic convention for client spans.
+    ([#1538](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1538))
+  * ActivitySource.Version is set to NuGet package version.
+    ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
+  * Replace `db.url` attribute with `url.full` to comply with semantic conventions.
+    Redact `username` and `password` part of `url.full`.
+    ([#1684](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1684))
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * `ActivitySource.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
