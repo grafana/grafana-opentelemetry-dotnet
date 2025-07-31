@@ -21,6 +21,10 @@
 * Use 1.12.0 of OpenTelemetry.Instrumentation.AWS ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * Change default Semantic Convention to 1.28.
   * Update AWSSDK dependencies to v4. ([#2720](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2720))
+* Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#208](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/208))
+  * Replace `db.url` attribute with `url.full` to comply with semantic conventions.
+    Redact `username` and `password` part of `url.full`.
+    ([#1684](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1684))
 * Use 1.12.0-beta.2 of OpenTelemetry.Instrumentation.SqlClient ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * The `peer.service` and `server.socket.address` attributes are no longer emitted.
     Users should rely on the `server.address` attribute for the same information.
@@ -98,9 +102,6 @@
     ([#1538](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1538))
   * ActivitySource.Version is set to NuGet package version.
     ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
-  * Replace `db.url` attribute with `url.full` to comply with semantic conventions.
-    Redact `username` and `password` part of `url.full`.
-    ([#1684](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1684))
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
 * Use 1.12.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * `ActivitySource.Version` is set to NuGet package version. ([#1624](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1624))
