@@ -53,7 +53,7 @@ For detailed documentation and setup instructions, refer to [our documentation][
 [app-o11y]: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/
 [docs]: https://github.com/grafana/grafana-opentelemetry-dotnet/tree/main/docs
 [otel]: https://github.com/open-telemetry/opentelemetry-dotnet
-[otel-badge]: https://img.shields.io/badge/OTel--SDK-1.9.0-blue?style=flat&logo=opentelemetry
+[otel-badge]: https://img.shields.io/badge/OTel--SDK-1.12.0-blue?style=flat&logo=opentelemetry
 [otel-contrib]: http://github.com/open-telemetry/opentelemetry-dotnet-contrib
 [package]: https://www.nuget.org/packages/Grafana.OpenTelemetry
 [package-badge-version]: https://img.shields.io/nuget/v/Grafana.OpenTelemetry?logo=nuget&label=NuGet&color=blue
