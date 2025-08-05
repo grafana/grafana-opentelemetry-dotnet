@@ -119,3 +119,35 @@ jobs:
           Write-Output "::error::$invalidPackages NuGet package(s) failed validation."
           exit 1
         }
+
+  test-secrets:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+
+    - uses: grafana/shared-workflows/actions/get-vault-secrets@9f37f656e063f0ad0b0bfc38d49894b57d363936 # get-vault-secrets/v1.2.1
+      id: get-tokens
+      with:
+        export_env: false
+        repo_secrets: |
+          feedz-io-token=feedz-io:token
+          nuget-token=nuget:token
+
+    - name: Check secrets exist
+      shell: pwsh
+      env:
+        FEEDZ_IO_TOKEN: ${{ fromJSON(steps.get-tokens.outputs.secrets).feedz-io-token }}
+        NUGET_TOKEN: ${{ fromJSON(steps.get-tokens.outputs.secrets).nuget-token }}
+      run: |
+        if ([string]::IsNullOrEmpty(${env:FEEDZ_IO_TOKEN})) {
+          echo "::error::Failed to retrieve feedz.io token."
+          exit 1
+        }
+        if ([string]::IsNullOrEmpty(${env:NUGET_TOKEN})) {
+          echo "::error::Failed to retrieve NuGet token."
+          exit 1
+        }
