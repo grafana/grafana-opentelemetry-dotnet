@@ -147,7 +147,6 @@ jobs:
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
-    # TODO Store the NuGet token in Vault
     - uses: grafana/shared-workflows/actions/get-vault-secrets@9f37f656e063f0ad0b0bfc38d49894b57d363936 # get-vault-secrets/v1.2.1
       id: get-token
       with:
