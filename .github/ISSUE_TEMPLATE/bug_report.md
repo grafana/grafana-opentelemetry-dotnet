@@ -8,12 +8,12 @@ labels: bug
 
 A list of [Grafana](https://www.nuget.org/profiles/Grafana) and
 [OpenTelemetry](https://www.nuget.org/profiles/OpenTelemetry) NuGet packages
-used, for example `Grafana.OpenTelemetry 0.6.0-beta.1`):
+used, for example `Grafana.OpenTelemetry 0.6.0-beta.1`:
 
 *
 
-The .NET runtime version (e.g. `net462`, `net48`, `netcoreapp3.1`, `net8.0`
-etc.). You can find this information in your `*.csproj` file):
+The .NET runtime version (e.g. `net462`, `net48`, `net8.0` etc.).
+You can find this information in your `*.csproj` file:
 
 *
 
