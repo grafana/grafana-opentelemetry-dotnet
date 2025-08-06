@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/docker/">
+    <Project Path="docker/docker-compose-aspnetcore/docker-compose-aspnetcore.dcproj">
+      <Build />
+    </Project>
+  </Folder>
+  <Folder Name="/examples/" />
+  <Folder Name="/examples/net10.0/">
+    <Project Path="examples/net10.0/aspnetcore/aspnetcore.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj" />
+    <Project Path="src/Grafana.OpenTelemetry/Grafana.OpenTelemetry.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Grafana.OpenTelemetry.Tests/Grafana.OpenTelemetry.Tests.csproj" />
+  </Folder>
+</Solution>
