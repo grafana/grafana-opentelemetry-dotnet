@@ -18,10 +18,16 @@ jobs:
     permissions: {}
 
     steps:
-    - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      with:
-        persist-credentials: false
 
-    - name: dotnet format
+    - name: Checkout code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        fetch-depth: 0
+        filter: 'tree:0'
+        show-progress: false
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+
+    - name: Run dotnet format
       run: dotnet format --verify-no-changes
