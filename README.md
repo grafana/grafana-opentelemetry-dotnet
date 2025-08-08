@@ -115,7 +115,7 @@ purposes from our repository's continuous integration in GitHub Actions.
 
 These package versions may contain new features or changes that are not yet
 available in a stable release, which you can use to test the latest functionality
-with your applications ahread of them being published as part of a stable release
+with your applications ahead of them being published as part of a stable release
 to NuGet.org.
 
 To install a prerelease version of our NuGet package, perform the following steps.
