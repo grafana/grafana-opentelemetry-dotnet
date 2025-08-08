@@ -138,7 +138,7 @@ prerelease version in feedz.io to the appropriate project(s) in your application
 dotnet add package Grafana.OpenTelemetry --prerelease
 ```
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Our prerelease package versions are provided solely for the purposes of early feedback.
 >
 > These package versions are not supported for use in production applications.
