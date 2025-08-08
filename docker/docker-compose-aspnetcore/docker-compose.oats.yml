@@ -3,7 +3,7 @@ services:
     image: ${DOCKER_REGISTRY-}aspnetcore
     build:
       context: ../..
-      dockerfile: examples/net8.0/aspnetcore/Dockerfile
+      dockerfile: examples/net10.0/aspnetcore/Dockerfile
       args:
         DOTNET_PUBLISH_ARGS: "/p:BuildDistroFromSource=${BUILD_DISTRO_FROM_SOURCE:-true}"
     environment:
