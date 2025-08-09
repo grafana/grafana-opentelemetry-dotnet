@@ -108,10 +108,46 @@ To engage with the Grafana Application Observability community:
 * Ask questions on the [Discussions page][discussions].
 * [File an issue][issues] for bugs, issues, and feature suggestions.
 
+## Prerelease Packages
+
+We publish prerelease packages to [feedz.io][feedz-io] for testing and feedback
+purposes from our repository's continuous integration in GitHub Actions.
+
+These package versions may contain new features or changes that are not yet
+available in a stable release, which you can use to test the latest functionality
+with your applications ahead of them being published as part of a stable release
+to NuGet.org.
+
+To install a prerelease version of our NuGet package, perform the following steps.
+
+First, add/update your NuGet configuration file (e.g., `NuGet.config`) to include
+our custom NuGet package source:
+
+```xml
+<configuration>
+  <packageSources>
+    <add key="grafana-opentelemetry-dotnet" value="https://f.feedz.io/grafana/grafana-opentelemetry-dotnet/nuget/index.json" />
+  </packageSources>
+</configuration>
+```
+
+Then, run the following command to add a package reference to the latest
+prerelease version in feedz.io to the appropriate project(s) in your application:
+
+```sh
+dotnet add package Grafana.OpenTelemetry --prerelease
+```
+
+> [!IMPORTANT]
+> Our prerelease package versions are provided solely for the purposes of early feedback.
+>
+> These package versions are not supported for use in production applications.
+
 [app-o11y]: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/
 [ci-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml/badge.svg?branch=main
 [ci-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml
 [discussions]: https://github.com/grafana/grafana-opentelemetry-dotnet/discussions
+[feedz-io]: https://github.com/grafana/grafana-opentelemetry-dotnet/deployments/feedz.io
 [issues]: https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new
 [oats-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main
 [oats-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml
