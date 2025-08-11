@@ -2,6 +2,8 @@
 
 ## Unreleased version
 
+## 1.3.0
+
 ### BREAKING CHANGES
 
 * Remove dependency on `OpenTelemetry.Instrumentation.MySqlData`.
