@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "authenticodelint": {
+      "version": "0.13.0",
+      "commands": [
+        "authlint"
+      ],
+      "rollForward": false
+    },
+    "dotnet-validate": {
+      "version": "0.0.1-preview.537",
+      "commands": [
+        "dotnet-validate"
+      ],
+      "rollForward": false
+    }
+  }
+}

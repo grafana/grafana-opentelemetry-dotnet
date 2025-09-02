@@ -25,7 +25,9 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     outputs:
+      authenticodelint-version: ${{ steps.get-dotnet-tools-versions.outputs.authenticodelint-version }}
       dotnet-sdk-version: ${{ steps.setup-dotnet.outputs.dotnet-version }}
+      dotnet-validate-version: ${{ steps.get-dotnet-tools-versions.outputs.dotnet-validate-version }}
 
     permissions:
       attestations: write
@@ -89,6 +91,24 @@ jobs:
         path: ./artifacts/package/release
         if-no-files-found: error
 
+    - name: Upload signing file list
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      if: runner.os == 'Windows'
+      with:
+        name: signing-config
+        path: internal/signing
+        if-no-files-found: error
+
+    - name: Get .NET tools versions
+      id: get-dotnet-tools-versions
+      shell: pwsh
+      run: |
+        $manifest = (Get-Content "./.config/dotnet-tools.json" | Out-String | ConvertFrom-Json)
+        $authenticodelintVersion = $manifest.tools.authenticodelint.version
+        $dotnetValidateVersion = $manifest.tools.'dotnet-validate'.version
+        "authenticodelint-version=${authenticodelintVersion}" >> ${env:GITHUB_OUTPUT}
+        "dotnet-validate-version=${dotnetValidateVersion}" >> ${env:GITHUB_OUTPUT}
+
   validate-packages:
     needs: build-test
     runs-on: ubuntu-latest
@@ -106,8 +126,10 @@ jobs:
 
     - name: Validate NuGet packages
       shell: pwsh
+      env:
+        DOTNET_VALIDATE_VERSION: ${{ needs.build-test.outputs.dotnet-validate-version }}
       run: |
-        dotnet tool install --global dotnet-validate --version 0.0.1-preview.304 --allow-roll-forward
+        dotnet tool install --global dotnet-validate --version ${env:DOTNET_VALIDATE_VERSION} --allow-roll-forward
         $packages = Get-ChildItem -Filter "*.nupkg" | ForEach-Object { $_.FullName }
         $invalidPackages = 0
         foreach ($package in $packages) {
@@ -121,15 +143,54 @@ jobs:
           exit 1
         }
 
-  publish-feedz-io:
+
+  sign:
     needs: [ build-test, validate-packages ]
-    runs-on: ubuntu-latest
-    if: |
-      github.event.repository.fork == false &&
-      (github.ref_name == github.event.repository.default_branch || startsWith(github.ref, 'refs/tags/'))
+    runs-on: windows-latest
 
     environment:
-      name: feedz.io
+      name: azure-trusted-signing
+
+    outputs:
+      artifact-name: ${{ steps.sign-artifacts.outputs.artifact-name }}
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+
+    - name: Download signing configuration
+      uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      with:
+        name: signing-config
+        path: signing-config
+
+    - uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
+      id: get-signing-secrets
+      with:
+        export_env: false
+        repo_secrets: |
+          client-id=azure-trusted-signing:client-id
+          subscription-id=azure-trusted-signing:subscription-id
+          tenant-id=azure-trusted-signing:tenant-id
+
+    - name: Sign artifacts
+      uses: grafana/shared-workflows/actions/azure-trusted-signing@5fbbfc6ce1a772fd960d02d2320a290e2e959b46
+      id: sign-artifacts
+      with:
+        application-description: 'Grafana OpenTelemetry distribution for .NET'
+        artifact-to-sign: 'packages-windows'
+        azure-client-id: ${{ fromJSON(steps.get-signing-secrets.outputs.secrets).client-id }}
+        azure-subscription-id: ${{ fromJSON(steps.get-signing-secrets.outputs.secrets).subscription-id }}
+        azure-tenant-id: ${{ fromJSON(steps.get-signing-secrets.outputs.secrets).tenant-id }}
+        file-filter: '**/*.nupkg'
+        file-list: '${{ env.GITHUB_WORKSPACE }}/signing-config/filelist.txt'
+        signed-artifact-name: 'signed-packages'
+
+  validate-signed-packages:
+    needs: [ build-test, sign ]
+    runs-on: windows-latest
 
     permissions:
       contents: read
@@ -140,64 +201,84 @@ jobs:
     - name: Download packages
       uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
       with:
-        name: packages-windows
+        name: ${{ needs.sign.outputs.artifact-name }}
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
-    - uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
-      id: get-token
-      with:
-        export_env: false
-        repo_secrets: |
-          token=feedz-io:token
-
-    - name: Push NuGet packages to feedz.io
-      shell: bash
+    - name: Validate NuGet packages
+      shell: pwsh
       env:
-        API_KEY: ${{ fromJSON(steps.get-token.outputs.secrets).token }}
-        SOURCE: 'https://f.feedz.io/${{ github.repository }}/nuget/index.json'
-      run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
+        DOTNET_VALIDATE_VERSION: ${{ needs.build-test.outputs.dotnet-validate-version }}
+      run: |
+        dotnet tool install --global dotnet-validate --version ${env:DOTNET_VALIDATE_VERSION} --allow-roll-forward
+        if ($LASTEXITCODE -ne 0) {
+          Write-Output "::error::Failed to install dotnet-validate tool."
+          exit 1
+        }
+        $packages = Get-ChildItem -Filter "*.nupkg" | ForEach-Object { $_.FullName }
+        $invalidPackages = 0
+        foreach ($package in $packages) {
+          dotnet validate package local $package
+          if ($LASTEXITCODE -ne 0) {
+            $invalidPackages++
+          }
+        }
+        if ($invalidPackages -gt 0) {
+          Write-Output "::error::$invalidPackages NuGet package(s) failed validation."
+          exit 1
+        }
 
-  publish-nuget:
-    needs: [ build-test, validate-packages ]
-    runs-on: ubuntu-latest
-    if: |
-      github.event.repository.fork == false &&
-      startsWith(github.ref, 'refs/tags/')
-
-    environment:
-      name: NuGet.org
-      url: https://www.nuget.org/profiles/Grafana
-
-    permissions:
-      contents: read
-      id-token: write
-
-    steps:
-
-    - name: Download packages
-      uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
-      with:
-        name: packages-windows
-
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
-      with:
-        dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
-
-    - uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
-      id: get-token
-      with:
-        export_env: false
-        repo_secrets: |
-          token=nuget:token
-
-    - name: Push NuGet packages to NuGet.org
-      shell: bash
+    - name: Validate signatures
+      shell: pwsh
       env:
-        API_KEY: ${{ fromJSON(steps.get-token.outputs.secrets).token }}
-        SOURCE: 'https://api.nuget.org/v3/index.json'
-      run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
+        AUTHENTICODELINT_VERSION: ${{ needs.build-test.outputs.authenticodelint-version }}
+      run: |
+        dotnet tool install --global AuthenticodeLint --version ${env:AUTHENTICODELINT_VERSION} --allow-roll-forward
+        if ($LASTEXITCODE -ne 0) {
+          Write-Output "::error::Failed to install AuthenticodeLint tool."
+          exit 1
+        }
+        $packages = Get-ChildItem -Filter "*.nupkg" | ForEach-Object { $_.FullName }
+        $invalidPackages = 0
+        foreach ($package in $packages) {
+          $packageName = Split-Path $package -Leaf
+          $extractedNupkg = Join-Path "." "extracted" $packageName
+          Expand-Archive -Path $package -DestinationPath $extractedNupkg -Force
+
+          $dlls = Get-ChildItem -Path $extractedNupkg -Filter "*.dll" -Recurse | ForEach-Object { $_.FullName }
+
+          $invalidDlls = 0
+          foreach ($dll in $dlls) {
+            authlint -in $dll -verbose
+            if ($LASTEXITCODE -ne 0) {
+              Write-Output "::warning::$dll in NuGet package $package failed signature validation."
+              $invalidDlls++
+            } else {
+              Write-Output "$dll in NuGet package $package has a valid signature."
+            }
+          }
+
+          if ($invalidDlls -gt 0) {
+            $invalidPackages++
+          } else {
+            Write-Output "All $($dlls.Length) DLLs in NuGet package $package have valid signatures."
+          }
+
+          dotnet nuget verify $package
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "::warning::$package failed signature validation."
+            $invalidPackages++
+          } else {
+            Write-Output "$package has a valid signature."
+          }
+        }
+        if ($invalidPackages -gt 0) {
+          Write-Output "::error::$invalidPackages NuGet package(s) failed signature validation."
+          exit 1
+        } else {
+          Write-Output "All $($packages.Length) NuGet packages have valid signatures."
+        }
