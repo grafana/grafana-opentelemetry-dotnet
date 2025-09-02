@@ -185,7 +185,7 @@ jobs:
         azure-subscription-id: ${{ fromJSON(steps.get-signing-secrets.outputs.secrets).subscription-id }}
         azure-tenant-id: ${{ fromJSON(steps.get-signing-secrets.outputs.secrets).tenant-id }}
         file-filter: '**/*.nupkg'
-        file-list: '${{ env.GITHUB_WORKSPACE }}/signing-config/filelist.txt'
+        file-list: '${{ github.workspace }}/signing-config/filelist.txt'
         signed-artifact-name: 'signed-packages'
 
   validate-signed-packages:
