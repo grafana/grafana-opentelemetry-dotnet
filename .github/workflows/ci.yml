@@ -176,7 +176,7 @@ jobs:
           tenant-id=azure-trusted-signing:tenant-id
 
     - name: Sign artifacts
-      uses: grafana/shared-workflows/actions/azure-trusted-signing@fa595aabd0bd2ca401d5021e4b8548391ecdf950
+      uses: grafana/shared-workflows/actions/azure-trusted-signing@2027ab3cbfeca10c6f237e9e5f834ceb86257d39
       id: sign-artifacts
       with:
         application-description: 'Grafana OpenTelemetry distribution for .NET'
