@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Full Grafana distribution of OpenTelemetry .NET</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <TargetFrameworks>net8.0;netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks>net10.0;net8.0;netstandard2.0;net462</TargetFrameworks>
   </PropertyGroup>
 
   <!--
