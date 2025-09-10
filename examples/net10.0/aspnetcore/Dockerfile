@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0.100-preview.7@sha256:3d69f7e851747ae8bd22509d7f54f036006edee67f73767213670fe570117d45 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0.100-rc.1@sha256:d599d654aa6fd7baabe54b4272dc475768307ef4d8a07d6e9f9b50b7b1758059 AS build
 ARG TARGETARCH
 ARG CONFIGURATION="Release"
 ARG DOTNET_PUBLISH_ARGS=""
@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
     dotnet publish "examples/net10.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app ${DOTNET_PUBLISH_ARGS}
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0.0-preview.7-noble-chiseled-extra@sha256:c3c8219bd68b8118c329ff2f4bb4c4c3f5481fa979ce1ebda4171c1196e040f7 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.0-rc.1-noble-chiseled-extra@sha256:83795c4b066ec5f0610d8c3fdd977b65e7536c9bbade4f594e80e5fa24fb533a AS final
 WORKDIR /app
 EXPOSE 8080
 
