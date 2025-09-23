@@ -9,11 +9,12 @@ WORKDIR /source
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
-    dotnet publish "examples/net8.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app ${DOTNET_PUBLISH_ARGS}
+    dotnet publish "examples/net8.0/aspnetcore/aspnetcore.csproj" --arch "${TARGETARCH}" --configuration "${CONFIGURATION}" --output /app --self-contained true ${DOTNET_PUBLISH_ARGS}
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0.20-noble-chiseled-extra@sha256:e396ddb631cb148b3db17b8a464e2a306f4e802381c14e779362fb44aeb3cf5c AS final
+FROM mcr.microsoft.com/dotnet/runtime:8.0.20-azurelinux3.0-distroless@sha256:f516a25cab5c5359fa0fe694e024e643a97d8b677a68322571c48916581c393f AS final
 WORKDIR /app
 EXPOSE 8080
+USER $APP_UID
 
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "aspnetcore.dll"]
