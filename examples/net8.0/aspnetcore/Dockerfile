@@ -16,5 +16,7 @@ WORKDIR /app
 EXPOSE 8080
 USER $APP_UID
 
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "aspnetcore.dll"]
