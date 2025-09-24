@@ -200,15 +200,21 @@ jobs:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
     - uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
-      id: get-token
+      id: get-user
       with:
         export_env: false
         repo_secrets: |
-          token=nuget:token
+          user=nuget:user
+
+    - name: NuGet log in
+      uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1.1.0
+      id: nuget-login
+      with:
+        user: ${{ fromJSON(steps.get-user.outputs.secrets).user }}
 
     - name: Push NuGet packages to NuGet.org
       shell: bash
       env:
-        API_KEY: ${{ fromJSON(steps.get-token.outputs.secrets).token }}
+        API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         SOURCE: 'https://api.nuget.org/v3/index.json'
       run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
