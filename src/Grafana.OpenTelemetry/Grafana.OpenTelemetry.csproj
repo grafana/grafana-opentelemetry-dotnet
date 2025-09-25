@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup Label="Stable instrumentation packages with dependencies">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.12.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.12.1" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' != '.NETFramework' ">
@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET Framework" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' == '.NETFramework' ">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.12.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.12.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.12.0-beta.1" />
   </ItemGroup>
 
