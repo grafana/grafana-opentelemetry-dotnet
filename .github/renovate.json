@@ -10,6 +10,9 @@
     ":ignoreUnstable",
     ":timezone(UTC)"
   ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
