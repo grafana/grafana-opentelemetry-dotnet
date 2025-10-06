@@ -2,6 +2,90 @@
 
 ## Unreleased version
 
+### BREAKING CHANGES
+
+* Use 1.12.0-beta.2 of OpenTelemetry.Instrumentation.AspNet ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Renamed `MeterProviderBuilderExtensions` and
+    `TracerProviderBuilderExtensions` to
+    `AspNetInstrumentationMeterProviderBuilderExtensions`
+    and `AspNetInstrumentationTracerProviderBuilderExtensions` respectively.
+    ([#2910](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2910))
+  * Made metrics generation independent from traces.
+    Tracing must no longer be enabled to calculate metrics. A compatible version
+    of `OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule` is required.
+    ([#2970](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2970))
+  * Metrics related option renamed:
+    * delegate `AspNetMetricsInstrumentationOptions.EnrichFunc` to
+      `AspNetMetricsInstrumentationOptions.EnrichWithHttpContextAction`,
+    * property `AspNetMetricsInstrumentationOptions.Enrich` to
+      `AspNetMetricsInstrumentationOptions.EnrichWithHttpContext`.
+    ([#3070](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3070))
+  * Change in public API contract.
+    All usages of `HttpRequest`, `HttpResponse` and `HttpContext` replaced by
+   `HttpRequestBase`, `HttpResponseBase` and `HttpContextBase` respectively.
+    ([#3110](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3110))
+* Use 1.12.0-beta.3 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * The `SetDbStatementForText` property has been removed.
+    Behaviors related to this option are now always enabled.
+    ([#3072](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3072))
+  * The `Enrich`, `Filter` and `RecordException` properties
+    have been removed for .NET Framework where they were non-functional.
+    ([#3079](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3079))
+  * The `Enrich` property has been renamed to
+    `EnrichWithSqlCommand` and no longer passes an event name to the delegate.
+    ([#3080](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3080))
+
+### New features
+
+* Use 1.13.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added a verification to ensure that a `MetricReader` can only be registered
+    to a single `MeterProvider`, as required by the OpenTelemetry specification.
+    ([#6458](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6458))
+  * Added `FormatMessage` configuration option to self-diagnostics feature. When
+    set to `true` (default is false), log messages will be formatted by replacing
+    placeholders with actual parameter values for improved readability.
+* Use 1.13.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * If `EventName` is specified either through `ILogger` or the experimental
+    log bridge API, it is exported as `EventName` by default instead of
+    `logrecord.event.name` which was previously behind the
+    `OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES` feature flag.
+    Note that exporting `logrecord.event.id` is still behind that same feature
+    flag. ([#6306](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6306))
+* Use 1.12.1 of OpenTelemetry.Instrumentation.AWS ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+* Use 1.12.1 of OpenTelemetry.Instrumentation.AWSLambda ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add `faas.instance` and `faas.max_memory` resource/span attributes.
+    ([#2928](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2928))
+* Use 1.13.0 of OpenTelemetry.Extensions.Hosting ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+* Use 1.12.0-beta.3 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add `db.query.parameter.<key>` attribute(s) to query spans if opted into using
+    the `OTEL_DOTNET_EXPERIMENTAL_SQLCLIENT_ENABLE_TRACE_DB_QUERY_PARAMETERS`
+    environment variable. Not supported on .NET Framework.
+    ([#3015](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3015),
+    [#3081](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3081))
+
+### Bug Fixes
+
+* Use 1.13.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fixed parsing of `OTEL_TRACES_SAMPLER_ARG` decimal values to always use `.`
+    as the delimiter when using the `traceidratio` sampler, preventing
+    locale-specific parsing issues.
+    ([#6444](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6444))
+* Use 1.13.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fixed an issue in .NET Framework where OTLP export of traces, logs, and
+    metrics using `OtlpExportProtocol.Grpc` did not correctly set the initial
+    write position, resulting in gRPC protocol errors.
+    ([#6280](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6280))
+  * gRPC calls to export traces, logs, and metrics using `OtlpExportProtocol.Grpc`
+    now set the `TE=trailers` HTTP request header to improve interoperability.
+    ([#6449](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6449))
+  * Improved performance exporting `byte[]` attributes as native binary format
+    instead of arrays.
+    ([#6534](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6534))
+* Use 1.12.0-beta.3 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fix activities not being stopped on .NET Framework when using a global activity
+    listener.
+    ([#3041](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3041))
+
 ## 1.3.0
 
 ### BREAKING CHANGES
