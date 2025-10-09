@@ -31,7 +31,7 @@ services:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
   localstack:
-    image: localstack/localstack:4.9.1@sha256:ef90c3d6d69e36752d0154f9bc21099fc70dfbffc99a0145a6d7d04a721a6124
+    image: localstack/localstack:4.9.2@sha256:59373b4a27dba3ec15c4db0b7455f0cb68c8a42300e2cbbe362b440f9a131697
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
