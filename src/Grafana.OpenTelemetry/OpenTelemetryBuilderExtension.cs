@@ -11,7 +11,7 @@ using OpenTelemetry;
 namespace Grafana.OpenTelemetry
 {
     /// <summary>
-    /// Extension for the <see cref="OpenTelemetry.OpenTelemetryBuilder"/> provided by the OpenTelemetry .NET distribution 
+    /// Extension for the <see cref="IOpenTelemetryBuilder"/> provided by the OpenTelemetry .NET distribution 
     /// for Grafana.
     ///
     /// This is used for easier configuration for ASP.NET Core projects.
