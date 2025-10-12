@@ -44,6 +44,9 @@
 
 ### New features
 
+* Include XML documentation in the `Grafana.OpenTelemetry` and
+  `Grafana.OpenTelemetry.Base` NuGet packages.
+  [#295](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/295)
 * Enable metrics for SQL Client instrumentation
   ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
 * Use 1.12.0 of OpenTelemetry ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))

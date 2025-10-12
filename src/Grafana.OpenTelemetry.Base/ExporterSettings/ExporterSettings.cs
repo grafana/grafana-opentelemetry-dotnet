@@ -45,7 +45,7 @@ namespace Grafana.OpenTelemetry
 
         /// <summary>
         /// Applies the exporter settings by initializing an exporter on the
-        /// given <see cref="ILoggingBuilder"/>.
+        /// given <see cref="Microsoft.Extensions.Logging.ILoggingBuilder"/>.
         /// </summary>
         /// <param name="options">A <see cref="OpenTelemetryLoggerOptions"/> instance.</param>
         internal abstract void Apply(OpenTelemetryLoggerOptions options);
