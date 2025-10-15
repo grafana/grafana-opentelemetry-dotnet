@@ -263,6 +263,7 @@ Use inline Markdown links, for example, [Link text](https://example.com).
 When linking to other sections within the same document,
 use a descriptive phrase that includes the section name,
 and a relative link to its heading anchor.
+<!-- markdown-link-check-disable-next-line -->
 For example, "For further details on setup, refer to the [Installation](#installation) section."
 
 Never remove links from copy unless specifically asked to.
