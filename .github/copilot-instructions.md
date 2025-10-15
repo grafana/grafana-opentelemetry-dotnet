@@ -263,6 +263,7 @@ Use inline Markdown links, for example, [Link text](https://example.com).
 When linking to other sections within the same document,
 use a descriptive phrase that includes the section name,
 and a relative link to its heading anchor.
+<!-- markdown-link-check-disable-next-line -->
 For example, "For further details on setup, refer to the [Installation](#installation) section."
 
 Never remove links from copy unless specifically asked to.
@@ -510,6 +511,7 @@ Use the following values for option:
 Use a short sentence for the summary.
 After the summary sentence and in the same cell,
 link to further details using the following format,
+<!-- markdown-link-check-disable-next-line -->
 "Refer to [option](#option-anchor) for details."
 
 In the values column, describe acceptable values

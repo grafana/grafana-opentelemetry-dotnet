@@ -147,6 +147,7 @@ dotnet add package Grafana.OpenTelemetry --prerelease
 [ci-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml/badge.svg?branch=main
 [ci-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/ci.yml
 [discussions]: https://github.com/grafana/grafana-opentelemetry-dotnet/discussions
+<!-- markdown-link-check-disable-next-line -->
 [feedz-io]: https://github.com/grafana/grafana-opentelemetry-dotnet/deployments/feedz.io
 [issues]: https://github.com/grafana/grafana-opentelemetry-dotnet/issues/new
 [oats-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main
