@@ -31,4 +31,8 @@
     <None Include="$(MSBuildThisFileDirectory)/internal/img/$(PackageIcon)" Pack="true" PackagePath="" />
     <None Include="$(MsBuildThisFileDirectory)/$(PackageReadmeFile)" Pack="true" PackagePath="" />
   </ItemGroup>
+  <!-- HACK Workaround for https://github.com/dotnet/sdk/issues/51265 -->
+  <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <RestoreEnablePackagePruning>false</RestoreEnablePackagePruning>
+  </PropertyGroup>
 </Project>
