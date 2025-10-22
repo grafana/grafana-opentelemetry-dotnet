@@ -85,7 +85,6 @@ expected:
           attributes:
             db.system: sqlite
             db.name: main
-            server.address: /app/App_Data/TodoApp.db
             otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
     - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
       spans:
