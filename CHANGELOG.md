@@ -2,6 +2,9 @@
 
 ## Unreleased version
 
+* Add `net10.0` target.
+  ([#219](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/219))
+
 ## 1.3.0
 
 ### BREAKING CHANGES
