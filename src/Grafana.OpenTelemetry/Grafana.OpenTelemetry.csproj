@@ -21,34 +21,34 @@
   </ItemGroup>
 
   <!-- This dependency is pulled in by `OpenTelemetry.Instrumentation.Cassandra` with a minimum
-       version of 3.16.0. We change this to 3.22.0 to add support for tracing. -->
+       version of 3.17.0. We change this to 3.22.0 to add support for tracing. -->
   <ItemGroup>
     <PackageReference Include="CassandraCSharpDriver" Version="[3.22.0,)" />
   </ItemGroup>
 
   <ItemGroup Label="Stable instrumentation packages with dependencies">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.14.0" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' != '.NETFramework' ">
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" /> <!-- Needed for ASP.NET Core -->
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0" /> <!-- Needed for ASP.NET Core -->
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies">
-    <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.2" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.12.0-beta.2" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.12.0-beta.2" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.12.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.4" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.14.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.14.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.14.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.14.0-beta.2" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.14.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.14.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET Framework" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' == '.NETFramework' ">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.12.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.12.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNet" Version="1.14.0-rc.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Owin" Version="1.14.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
