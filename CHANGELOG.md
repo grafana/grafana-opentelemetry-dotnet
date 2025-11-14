@@ -4,6 +4,8 @@
 
 ### BREAKING CHANGES
 
+* Add `net10.0` target.
+  ([#219](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/219))
 * Use 1.14.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
   * When targeting net8.0, the package now depends on version 8.0.0 of the
     Microsoft.Extensions.DependencyInjection.Abstractions,
