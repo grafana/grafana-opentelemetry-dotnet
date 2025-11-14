@@ -153,7 +153,7 @@ dotnet add package Grafana.OpenTelemetry --prerelease
 [oats-badge]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml/badge.svg?branch=main
 [oats-status]: https://github.com/grafana/grafana-opentelemetry-dotnet/actions/workflows/oats.yml
 [otel]: https://github.com/open-telemetry/opentelemetry-dotnet
-[otel-badge]: https://img.shields.io/badge/OTel--SDK-1.12.0-blue?style=flat&logo=opentelemetry
+[otel-badge]: https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fgrafana%2Fgrafana-opentelemetry-dotnet%2FHEAD%2Fsrc%2FGrafana.OpenTelemetry.Base%2FGrafana.OpenTelemetry.Base.csproj&query=%2F%2FPackageReference%5B%40Include%3D'OpenTelemetry'%5D%2F%40Version&logo=opentelemetry&label=OTel%20SDK&style=flat
 [otel-contrib]: http://github.com/open-telemetry/opentelemetry-dotnet-contrib
 [package]: https://www.nuget.org/packages/Grafana.OpenTelemetry
 [package-badge-version]: https://img.shields.io/nuget/v/Grafana.OpenTelemetry?logo=nuget&label=NuGet&color=blue
