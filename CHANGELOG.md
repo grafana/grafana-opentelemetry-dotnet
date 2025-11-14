@@ -224,7 +224,7 @@
 * Use 1.14.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
   * Add `net8.0` and `net10.0` targets.
     ([#3519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3519))
-* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273)))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.Quartz ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273)))
   * Add support for .NET 10.0.
     ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
 * Use 1.14.0 of OpenTelemetry.Instrumentation.Runtime ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
