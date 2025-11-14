@@ -2,6 +2,331 @@
 
 ## Unreleased version
 
+### BREAKING CHANGES
+
+* Use 1.14.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * When targeting net8.0, the package now depends on version 8.0.0 of the
+    Microsoft.Extensions.DependencyInjection.Abstractions,
+    Microsoft.Extensions.Diagnostics.Abstractions and
+    Microsoft.Extensions.Logging.Configuration NuGet packages.
+    ([#6667](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6327))
+  * Update Microsoft.Extensions.* dependencies to 10.0.0 for .NET Framework and
+    .NET Standard.
+    ([#6667](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6667))
+* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.AspNet ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Renamed `MeterProviderBuilderExtensions` and
+    `TracerProviderBuilderExtensions` to
+    `AspNetInstrumentationMeterProviderBuilderExtensions`
+    and `AspNetInstrumentationTracerProviderBuilderExtensions` respectively.
+    ([#2910](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2910))
+  * Made metrics generation independent from traces.
+    Tracing must no longer be enabled to calculate metrics. A compatible version
+    of `OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule` is required.
+    ([#2970](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2970))
+  * Metrics related option renamed:
+    * delegate `AspNetMetricsInstrumentationOptions.EnrichFunc` to
+      `AspNetMetricsInstrumentationOptions.EnrichWithHttpContextAction`,
+    * property `AspNetMetricsInstrumentationOptions.Enrich` to
+      `AspNetMetricsInstrumentationOptions.EnrichWithHttpContext`.
+    ([#3070](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3070))
+  * Change in public API contract.
+    All usages of `HttpRequest`, `HttpResponse` and `HttpContext` replaced by
+    `HttpRequestBase`, `HttpResponseBase` and `HttpContextBase` respectively.
+    ([#3110](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3110))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AspNetCore ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AWSLambda ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Update Amazon.Lambda.Core dependency from 2.2.0 to 2.8.0 which reworks the
+    internal logic for determining the trace id created by AWS Lambda.
+    ([#3410](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3410))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * The `SetDbStatementForStoredProcedure` and
+    `SetDbStatementForText` properties have been removed. Behaviors related to this
+    option are now always enabled.
+    ([#3072](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3072))
+  * `db.system.name` now only sets names that are explicitly
+    defined in the Semantic Conventions for databases.
+    ([#3075](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3075))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * The `SetDbStatementForText` property has been removed.
+    Behaviors related to this option are now always enabled.
+    ([#3072](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3072))
+  * The `Enrich`, `Filter` and `RecordException` properties
+    have been removed for .NET Framework where they were non-functional.
+    ([#3079](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3079))
+  * The `Enrich` property has been renamed to
+    `EnrichWithSqlCommand` and no longer passes an event name to the delegate.
+    ([#3080](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3080))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Introduce `RedisInstrumentationContext` and use it as context for `Filter`
+    ([#2977](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2977))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Adjust to breaking changes from `OpenTelemetry.Instrumentation.AspNet` version
+    `1.13.0-beta.1`. Fixing span hierarchy when hosted in ASP.NET.
+    ([#3151](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3151))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.Host ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Updated OpenTelemetry core component version(s) to `1.14.0`.
+    ([#3403](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3403))
+
+### New features
+
+* Use 1.14.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added a verification to ensure that a `MetricReader` can only be registered
+    to a single `MeterProvider`, as required by the OpenTelemetry specification.
+    ([#6458](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6458))
+  * Added `FormatMessage` configuration option to self-diagnostics feature. When
+    set to `true` (default is false), log messages will be formatted by replacing
+    placeholders with actual parameter values for improved readability.
+  * Add support for .NET 10.0.
+    ([#6307](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6307))
+* Use 1.14.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * If `EventName` is specified either through `ILogger` or the experimental
+    log bridge API, it is exported as `EventName` by default instead of
+    `logrecord.event.name` which was previously behind the
+    `OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES` feature flag.
+    Note that exporting `logrecord.event.id` is still behind that same feature
+    flag. ([#6306](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6306))
+  * Add support for .NET 10.0.
+    ([#6307](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6307))
+* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.AspNet ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Following attributes are available while sampling:
+    * `http.request.method`,
+    * `server.address`,
+    * `server.port`,
+    * `url.path`,
+    * `url.query`,
+    * `url.scheme`,
+    * `user_agent.original`.
+    ([#3151](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3151))
+  * Replace static routing tokens with actual values in the route template.
+    ([#3160](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3160))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AspNetCore ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added support for listening to ASP.NET Core Blazor activities.
+    Configurable with the
+    `AspNetCoreTraceInstrumentationOptions.EnableRazorComponentsSupport`
+    option which defaults to `true`. Only applies to .NET 10.0 or greater.
+    ([#3012](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3012))
+  * Following metrics will now be enabled by default when targeting `.NET10.0` or
+    newer framework:
+    * **Meter** : `Microsoft.AspNetCore.MemoryPool`
+      * `aspnetcore.memory_pool.pooled`
+      * `aspnetcore.memory_pool.evicted`
+      * `aspnetcore.memory_pool.allocated`
+      * `aspnetcore.memory_pool.rented`
+    * **Meter** : `Microsoft.AspNetCore.Authentication`
+      * `aspnetcore.authentication.authenticate.duration`
+      * `aspnetcore.authentication.challenges`
+      * `aspnetcore.authentication.forbids`
+      * `aspnetcore.authentication.sign_ins`
+      * `aspnetcore.authentication.sign_outs`
+    * **Meter** : `Microsoft.AspNetCore.Authorization`
+      * `aspnetcore.authorization.attempts`
+    * **Meter** : `Microsoft.AspNetCore.Identity`
+      * `aspnetcore.identity.user.create.duration`
+      * `aspnetcore.identity.user.update.duration`
+      * `aspnetcore.identity.user.delete.duration`
+      * `aspnetcore.identity.user.check_password_attempts`
+      * `aspnetcore.identity.user.generated_tokens`
+      * `aspnetcore.identity.user.verify_token_attempts`
+      * `aspnetcore.identity.sign_in.authenticate.duration`
+      * `aspnetcore.identity.sign_in.check_password_attempts`
+      * `aspnetcore.identity.sign_in.sign_ins`
+      * `aspnetcore.identity.sign_in.sign_outs`
+      * `aspnetcore.identity.sign_in.two_factor_clients_remembered`
+      * `aspnetcore.identity.sign_in.two_factor_clients_forgotten`
+    * **Meter** : `Microsoft.AspNetCore.Components`
+      * `aspnetcore.components.navigate`
+      * `aspnetcore.components.handle_event.duration`
+    * **Meter** : `Microsoft.AspNetCore.Components.Lifecycle`
+      * `aspnetcore.components.update_parameters.duration`
+      * `aspnetcore.components.render_diff.duration`
+      * `aspnetcore.components.render_diff.size`
+    * **Meter** : `Microsoft.AspNetCore.Components.Server.Circuits`
+      * `aspnetcore.components.circuit.active`
+      * `aspnetcore.components.circuit.connected`
+      * `aspnetcore.components.circuit.duration`
+    ([#3012](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3012))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet/pull/2822))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AWS ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AWSLambda ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.0.0-beta.4 of OpenTelemetry.Instrumentation.Cassandra ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added support for detecting Snowflake for the `db.system`/`db.system.name` attributes
+    when using `EFCore.Snowflake`.
+    ([#2980](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2980))
+  * Add the `server.port` resource attribute when following the new database semantic
+    conventions when opted into using the `OTEL_SEMCONV_STABILITY_OPT_IN` environment
+    variable.
+    ([#3011](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3011))
+  * Extend `db.system.name` values to identity additional providers related to Couchbase,
+    DB2, MongoDB, MySQL, Oracle, PostgreSQL and SQLite.
+    ([#3025](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3025))
+  * Add `db.query.parameter.<key>` attribute(s) to query spans if opted into using
+    the `OTEL_DOTNET_EXPERIMENTAL_EFCORE_ENABLE_TRACE_DB_QUERY_PARAMETERS`
+    environment variable.
+    ([#3015](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3015),
+    [#3081](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3081))
+  * Add the `db.query.summary` attribute and use it for the trace span name when
+    opted into using the `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable.
+    ([#3022](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3022))
+  * The `db.statement` and `db.query.text` attributes are now sanitized when using
+    specific SQL-like EFCore providers.
+    ([#3022](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3022))
+  * Add `net8.0` and `net10.0` targets.
+    ([#3519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3519))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0 of OpenTelemetry.Extensions.Hosting ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.Http ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.Process ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+  * Add `net8.0` and `net10.0` targets.
+    ([#3519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3519))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.Process ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add `net8.0` and `net10.0` targets.
+    ([#3519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3519))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add `net8.0` and `net10.0` targets.
+    ([#3519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3519))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.Quartz ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.Runtime ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add `db.query.parameter.<key>` attribute(s) to query spans if opted into using
+    the `OTEL_DOTNET_EXPERIMENTAL_SQLCLIENT_ENABLE_TRACE_DB_QUERY_PARAMETERS`
+    environment variable. Not supported on .NET Framework.
+    ([#3015](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3015),
+    [#3081](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3081))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Removed the `db.redis.flags` attribute from the implementation
+    as it is not part of the Semantic Conventions for Database Client Calls.
+    ([#2982](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2982))
+  * The new database semantic conventions can be opted in to by setting
+    the `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable. This allows for a
+    transition period for users to experiment with the new semantic conventions
+    and adapt as necessary. The environment variable supports the following
+    values:
+    * `database` - emit the new, frozen (proposed for stable) database
+      attributes, and stop emitting the old experimental database
+      attributes that the instrumentation emitted previously.
+    * `database/dup` - emit both the old and the frozen (proposed for stable) database
+      attributes, allowing for a more seamless transition.
+    * The default behavior (in the absence of one of these values) is to continue
+      emitting the same database semantic conventions that were emitted in
+      the previous version.
+    * Note: this option will be removed after the new database
+      semantic conventions are marked stable. At which time this
+      instrumentation can receive a stable release, and the old database
+      semantic conventions will no longer be supported. Refer to the
+      specification for more information regarding the new database
+      semantic conventions for
+      [spans](https://github.com/open-telemetry/semantic-conventions/blob/v1.28.0/docs/database/database-spans.md).
+    ([#3084](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3084))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.Container ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Resources.Host ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added support for the `host.arch` resource attribute in HostDetector for .NET
+    only.
+    ([#3147](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3147))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Added server instrumentation support for `RecordException` option.
+    ([#2880](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2880))
+  * Add support for .NET 10.0.
+    ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+
+### Bug Fixes
+
+* Use 1.14.0 of OpenTelemetry ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fixed parsing of `OTEL_TRACES_SAMPLER_ARG` decimal values to always use `.`
+    as the delimiter when using the `traceidratio` sampler, preventing
+    locale-specific parsing issues.
+    ([#6444](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6444))
+  * Fixed an issue where the Base2 Exponential Bucket Histogram did not reset its
+    scale to 20 after each collection cycle when using delta aggregation temporality.
+    ([#6557](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6557))
+* Use 1.14.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fixed an issue in .NET Framework where OTLP export of traces, logs, and
+    metrics using `OtlpExportProtocol.Grpc` did not correctly set the initial
+    write position, resulting in gRPC protocol errors.
+    ([#6280](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6280))
+  * gRPC calls to export traces, logs, and metrics using `OtlpExportProtocol.Grpc`
+    now set the `TE=trailers` HTTP request header to improve interoperability.
+    ([#6449](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6449))
+  * Improved performance exporting `byte[]` attributes as native binary format
+    instead of arrays.
+    ([#6534](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6534))
+  * Changed histogram protobuf serialization to use packed format for
+    `bucket_counts` and `explicit_bounds` to be specification-compliant and fix
+    issues with strict OTLP parsers. Lenient parsers should handle both formats.
+    ([#6567](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6567))
+* Use 1.0.0-beta.4 of OpenTelemetry.Instrumentation.Cassandra ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Updated `CassandraCSharpDriver` to `3.17.0`.
+    ([#2836](https://github.com/open-telemetry/opentelemetry-dotnet/pull/2836))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fix diacritic identifier parsing hang and improve FROM clause parsing.
+    ([#3368](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3368))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fix `FailedToInjectActivityContext` when no `ActivityContext` exists.
+    ([#2990](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2990))
+* Use 1.14.0 of OpenTelemetry.Instrumentation.Http ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Do not change activity status set by EnrichWithHttpWebResponse on .NET Framework.
+    ([#2988](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2988))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.SqlClient ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fix activities not being stopped on .NET Framework when using a global activity
+    listener.
+    ([#3041](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3041))
+  * Fix diacritic identifier parsing hang and improve FROM clause parsing.
+    ([#3368](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3368))
+* Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
+  * Fix possible infinite recursion when WCF is hosted in ASP.NET.
+    ([#3248](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3248))
+
 ## 1.3.0
 
 ### BREAKING CHANGES
