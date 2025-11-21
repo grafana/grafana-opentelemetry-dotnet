@@ -1,23 +1,26 @@
 # Configuring the Grafana OpenTelemetry distribution for .NET
 
-* [Configuring metrics](#configuring-metrics)
-* [Configuring logs](#configuring-logs)
-* [Configuring traces](#configuring-traces)
-* [ASP.NET Core](#aspnet-core)
-* [Exporter configuration](#exporter-configuration)
-  * [Sending to an agent or collector via OTLP](#sending-to-an-agent-or-collector-via-otlp)
-  * [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
-* [Instrumentation configuration](#instrumentation-configuration)
-  * [Disabling instrumentations](#disabling-instrumentations)
-  * [Adding instrumentations not supported by the distribution](#adding-instrumentations-not-supported-by-the-distribution)
-  * [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
-    * [ASP.NET (`AspNet`)](#aspnet-aspnet)
-    * [OWIN (`Owin`)](#owin-owin)
-* [Resource detector configuration](#resource-detector-configuration)
-  * [Specifying resource detectors](#specifying-resource-detectors)
-  * [Disabling resource detectors](#disabling-resource-detectors)
-* [Custom configuration](#custom-configuration)
-* [Supported environment variables](#supported-environment-variables)
+- [Configuring the Grafana OpenTelemetry distribution for .NET](#configuring-the-grafana-opentelemetry-distribution-for-net)
+  - [Configuring metrics](#configuring-metrics)
+  - [Configuring logs](#configuring-logs)
+  - [Configuring traces](#configuring-traces)
+  - [ASP.NET Core](#aspnet-core)
+  - [Exporter configuration](#exporter-configuration)
+    - [Sending to an agent or collector via OTLP](#sending-to-an-agent-or-collector-via-otlp)
+    - [Sending data directly to Grafana Cloud via OTLP](#sending-data-directly-to-grafana-cloud-via-otlp)
+  - [Instrumentation configuration](#instrumentation-configuration)
+    - [Disabling instrumentations](#disabling-instrumentations)
+    - [Adding instrumentations not supported by the distribution](#adding-instrumentations-not-supported-by-the-distribution)
+  - [Resource detector configuration](#resource-detector-configuration)
+    - [Specifying resource detectors](#specifying-resource-detectors)
+    - [Disabling resource detectors](#disabling-resource-detectors)
+    - [Adding resource detectors not supported by the distribution](#adding-resource-detectors-not-supported-by-the-distribution)
+    - [Extra steps to activate specific instrumentations](#extra-steps-to-activate-specific-instrumentations)
+      - [ASP.NET (`AspNet`)](#aspnet-aspnet)
+      - [OWIN (`Owin`)](#owin-owin)
+    - [Customizing resource attributes](#customizing-resource-attributes)
+  - [Custom configuration](#custom-configuration)
+  - [Supported environment variables](#supported-environment-variables)
 
 ## Configuring metrics
 
@@ -379,7 +382,7 @@ are not contained in the distribution.
 
 ## Supported environment variables
 
-| Variable                                  | Example value        | Description |
-| ----------------------------------------- |   ------------------ | ----------- |
-| `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS` | "Process,NetRuntime" | A comma-separated list of instrumentations to disable. |
-| `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`| "Host" | A comma-separated list of resource detectors to disable. |
+| Variable                                   | Example value        | Description                                              |
+| ------------------------------------------ | -------------------- | -------------------------------------------------------- |
+| `GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS`  | "Process,NetRuntime" | A comma-separated list of instrumentations to disable.   |
+| `GRAFANA_DOTNET_DISABLE_RESOURCE_DETECTORS`| "Host"               | A comma-separated list of resource detectors to disable. |
