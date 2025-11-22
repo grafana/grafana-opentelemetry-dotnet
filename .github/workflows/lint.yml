@@ -45,7 +45,7 @@ jobs:
     - name: Install markdown-link-check
       env:
         # renovate: datasource=npm depName=markdown-link-check packageName=markdown-link-check
-        MARKDOWN_LINK_CHECK_VERSION: 3.14.1
+        MARKDOWN_LINK_CHECK_VERSION: 3.14.2
       run: sudo npm install -g "markdown-link-check@${MARKDOWN_LINK_CHECK_VERSION}"
 
     - name: Check markdown links
