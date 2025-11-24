@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class ElasticsearchClientInitializer : InstrumentationInitializer
+    internal sealed class ElasticsearchClientInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.ElasticsearchClient;
 

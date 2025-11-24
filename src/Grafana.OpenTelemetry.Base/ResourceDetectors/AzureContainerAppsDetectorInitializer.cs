@@ -7,7 +7,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AzureContainerAppsDetectorInitializer : ResourceDetectorInitializer
+    internal sealed class AzureContainerAppsDetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AzureContainerApps;
 

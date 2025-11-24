@@ -10,7 +10,7 @@ namespace Grafana.OpenTelemetry
     /// <summary>
     /// Helper class for Grafana Cloud configuration.
     /// </summary>
-    internal class GrafanaCloudConfigurationHelper
+    internal sealed class GrafanaCloudConfigurationHelper
     {
         private const string PathExtensionTraces = "/v1/traces";
         private const string PathExtensionMetrics = "/v1/metrics";

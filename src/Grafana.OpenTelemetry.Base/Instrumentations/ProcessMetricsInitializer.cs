@@ -7,7 +7,7 @@ using OpenTelemetry.Metrics;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class ProcessMetricsInitializer : InstrumentationInitializer
+    internal sealed class ProcessMetricsInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Process;
 

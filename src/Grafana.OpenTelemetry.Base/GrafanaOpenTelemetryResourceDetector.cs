@@ -9,7 +9,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class GrafanaOpenTelemetryResourceDetector : IResourceDetector
+    internal sealed class GrafanaOpenTelemetryResourceDetector : IResourceDetector
     {
         internal const string ResourceKey_DistroName = "telemetry.distro.name";
         internal const string ResourceKey_DistroVersion = "telemetry.distro.version";

@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AWSInitializer : InstrumentationInitializer
+    internal sealed class AWSInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.AWS;
 

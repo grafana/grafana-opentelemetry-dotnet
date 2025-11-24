@@ -7,7 +7,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AzureAppServiceDetectorInitializer : ResourceDetectorInitializer
+    internal sealed class AzureAppServiceDetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AzureAppService;
 
