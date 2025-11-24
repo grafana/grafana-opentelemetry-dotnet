@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
         {
             var assembly = Assembly.Load(assemblyName);
             var type = assembly.GetType(typeName);
-            var method = type.GetMethod(methodName, arguments.Select(obj => obj is null ? null : obj.GetType()).ToArray());
+            var method = type.GetMethod(methodName, [.. arguments.Select(obj => obj?.GetType())]);
             method.Invoke(null, arguments);
         }
     }
