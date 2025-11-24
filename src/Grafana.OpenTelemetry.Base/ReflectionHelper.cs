@@ -10,6 +10,9 @@ namespace Grafana.OpenTelemetry
 {
     internal static class ReflectionHelper
     {
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
         internal static void CallStaticMethod(string assemblyName, string typeName, string methodName, object[] arguments)
         {
             var assembly = Assembly.Load(assemblyName);
