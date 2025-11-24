@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.ElasticsearchClient",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddElasticsearchClientInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

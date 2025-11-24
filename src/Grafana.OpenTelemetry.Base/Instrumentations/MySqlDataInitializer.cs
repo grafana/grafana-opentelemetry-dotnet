@@ -18,14 +18,14 @@ namespace Grafana.OpenTelemetry
                 "MySQL.Data.OpenTelemetry",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddConnectorNet",
-                new object[] { builder });
+                [builder]);
 
             // OpenTelemetry.Instrumentation.MySqlData
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.MySqlData",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddMySqlDataInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

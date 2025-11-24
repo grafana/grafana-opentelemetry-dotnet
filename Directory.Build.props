@@ -9,6 +9,7 @@
     <Deterministic>true</Deterministic>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <!-- Disable warning about stable packages depending on prerelease packages until all OpenTelemetry dependencies are stable -->
     <NoWarn>$(NoWarn);NU5104</NoWarn>

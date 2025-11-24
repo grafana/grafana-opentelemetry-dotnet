@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.AWS",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddAWSInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

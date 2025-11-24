@@ -18,7 +18,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Cassandra",
                 "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
                 "AddCassandraInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
 
         protected override void InitializeTracing(TracerProviderBuilder builder)

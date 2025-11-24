@@ -12,8 +12,8 @@ namespace Grafana.OpenTelemetry
 {
     internal abstract class ResourceDetectorInitializer
     {
-        public static readonly ResourceDetectorInitializer[] Initializers = new ResourceDetectorInitializer[]
-        {
+        public static readonly ResourceDetectorInitializer[] Initializers =
+        [
 #if !NETSTANDARD
             new AWSEBSDetectorInitializer(),
             new AWSEC2DetectorInitializer(),
@@ -34,7 +34,7 @@ namespace Grafana.OpenTelemetry
             new ProcessResourceInitializer(),
             new ProcessRuntimeResourceInitializer()
 #endif
-        };
+        ];
 
         public abstract ResourceDetector Id { get; }
 

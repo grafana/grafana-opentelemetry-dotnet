@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Hangfire",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddHangfireInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

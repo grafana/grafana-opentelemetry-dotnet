@@ -18,7 +18,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Resources.AWS",
                 "OpenTelemetry.Resources.AWSResourceBuilderExtensions",
                 "AddAWSECSDetector",
-                new object[] { builder });
+                [builder]);
             return builder;
         }
     }

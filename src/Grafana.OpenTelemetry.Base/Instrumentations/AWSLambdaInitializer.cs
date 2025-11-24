@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.AWSLambda",
                 "OpenTelemetry.Instrumentation.AWSLambda.TracerProviderBuilderExtensions",
                 "AddAWSLambdaConfigurations",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

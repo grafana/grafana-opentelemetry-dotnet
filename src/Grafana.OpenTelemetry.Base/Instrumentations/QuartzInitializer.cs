@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Quartz",
                 "OpenTelemetry.Trace.TraceProviderBuilderExtensions",
                 "AddQuartzInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

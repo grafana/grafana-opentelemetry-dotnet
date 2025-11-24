@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Owin",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddOwinInstrumentation",
-                new object[] { builder, null });
+                [builder, null]);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Wcf",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddWcfInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

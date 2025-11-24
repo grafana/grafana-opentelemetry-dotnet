@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.EntityFrameworkCore",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddEntityFrameworkCoreInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

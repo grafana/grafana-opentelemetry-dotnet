@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Resources.Azure",
                 "OpenTelemetry.Resources.AzureResourceBuilderExtensions",
                 "AddAzureContainerAppsDetector",
-                new object[] { builder });
+                [builder]);
             return builder;
         }
     }

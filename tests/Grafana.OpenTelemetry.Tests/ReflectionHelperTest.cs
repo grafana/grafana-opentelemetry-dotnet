@@ -26,7 +26,7 @@ namespace Grafana.OpenTelemetry.Tests
                 typeof(ReflectionHelperTest).Assembly.GetName().Name,
                 "Grafana.OpenTelemetry.Tests.ReflectionHelperTest",
                 "Increment",
-                new object[] { 4 });
+                [4]);
 
             Assert.Equal(4, Counter);
         }
@@ -40,7 +40,7 @@ namespace Grafana.OpenTelemetry.Tests
                     typeof(ReflectionHelperTest).Assembly.GetName().Name,
                     "Not-exist",
                     "Not-exist",
-                    new object[] { 4 });
+                    [4]);
             });
         }
     }

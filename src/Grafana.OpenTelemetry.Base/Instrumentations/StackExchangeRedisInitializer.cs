@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.StackExchangeRedis",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddRedisInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }
