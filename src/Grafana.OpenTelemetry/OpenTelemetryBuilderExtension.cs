@@ -24,6 +24,9 @@ namespace Grafana.OpenTelemetry
         /// <param name="builder">A <see cref="IOpenTelemetryBuilder"/></param>
         /// <param name="configure">A callback for customizing default Grafana OpenTelemetry settings</param>
         /// <returns>A modified <see cref="IOpenTelemetryBuilder"/> </returns>
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("The Grafana OpenTelemetry distribution for .NET does not support native AoT.")]
+#endif
         public static IOpenTelemetryBuilder UseGrafana(this IOpenTelemetryBuilder builder, Action<GrafanaOpenTelemetrySettings> configure = default)
         {
             return builder

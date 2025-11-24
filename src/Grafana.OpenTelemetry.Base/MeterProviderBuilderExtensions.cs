@@ -20,6 +20,9 @@ namespace Grafana.OpenTelemetry
         /// <param name="builder">A <see cref="MeterProviderBuilder"/></param>
         /// <param name="configure">A callback for customizing default Grafana OpenTelemetry settings</param>
         /// <returns>A modified <see cref="MeterProviderBuilder"/> </returns>
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("The Grafana OpenTelemetry distribution for .NET does not support native AoT.")]
+#endif
         public static MeterProviderBuilder UseGrafana(this MeterProviderBuilder builder, Action<GrafanaOpenTelemetrySettings> configure = default)
         {
             GrafanaOpenTelemetrySettings settings = new GrafanaOpenTelemetrySettings();
@@ -66,6 +69,9 @@ namespace Grafana.OpenTelemetry
             return builder;
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
         internal static MeterProviderBuilder AddResourceDetectors(this MeterProviderBuilder builder, HashSet<ResourceDetector> resourceDetectors)
         {
             if (resourceDetectors == null)

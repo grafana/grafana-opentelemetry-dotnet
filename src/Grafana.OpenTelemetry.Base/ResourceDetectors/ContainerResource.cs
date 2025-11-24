@@ -9,6 +9,9 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
     internal sealed class ContainerResourceInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.Container;
