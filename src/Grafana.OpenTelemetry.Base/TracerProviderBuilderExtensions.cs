@@ -24,10 +24,7 @@ namespace Grafana.OpenTelemetry
         {
             GrafanaOpenTelemetrySettings settings = new GrafanaOpenTelemetrySettings();
 
-            if (configure != null)
-            {
-                configure?.Invoke(settings);
-            }
+            configure?.Invoke(settings);
 
             GrafanaOpenTelemetryEventSource.Log.InitializeDistribution(settings);
 
