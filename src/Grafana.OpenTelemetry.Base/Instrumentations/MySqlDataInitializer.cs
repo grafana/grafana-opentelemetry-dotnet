@@ -12,8 +12,8 @@ namespace Grafana.OpenTelemetry
         public override Instrumentation Id { get; } = Instrumentation.MySqlData;
 
 #if NET8_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Instrumentation.MySqlData", "OpenTelemetry.Instrumentation.MySqlData")]
         [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Trace.TracerProviderBuilderExtensions", "MySQL.Data.OpenTelemetry")]
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Trace.TracerProviderBuilderExtensions", "OpenTelemetry.Instrumentation.MySqlData")]
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
 #endif
         protected override void InitializeTracing(TracerProviderBuilder builder)
