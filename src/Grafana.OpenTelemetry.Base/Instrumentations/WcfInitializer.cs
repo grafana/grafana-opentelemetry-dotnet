@@ -11,6 +11,10 @@ namespace Grafana.OpenTelemetry
     {
         public override Instrumentation Id { get; } = Instrumentation.Wcf;
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Trace.TracerProviderBuilderExtensions", "OpenTelemetry.Instrumentation.Wcf")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
+#endif
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(

@@ -12,6 +12,10 @@ namespace Grafana.OpenTelemetry
     {
         public override Instrumentation Id { get; } = Instrumentation.Cassandra;
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Metrics.MeterProviderBuilderExtensions", "OpenTelemetry.Instrumentation.Cassandra")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
+#endif
         protected override void InitializeMetrics(MeterProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(

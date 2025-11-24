@@ -12,6 +12,10 @@ namespace Grafana.OpenTelemetry
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AWSEBS;
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Resources.AWSResourceBuilderExtensions", "OpenTelemetry.Resources.AWS")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
+#endif
         protected override ResourceBuilder InitializeResourceDetector(ResourceBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(

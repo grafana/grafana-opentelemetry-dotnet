@@ -12,6 +12,10 @@ namespace Grafana.OpenTelemetry
     {
         public override Instrumentation Id { get; } = Instrumentation.AspNetCore;
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Trace.AspNetCoreInstrumentationTracerProviderBuilderExtensions", "OpenTelemetry.Instrumentation.AspNetCore")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
+#endif
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(
@@ -21,6 +25,10 @@ namespace Grafana.OpenTelemetry
                 [builder]);
         }
 
+#if NET8_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.DynamicDependency(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All, "OpenTelemetry.Metrics.AspNetCoreInstrumentationMeterProviderBuilderExtensions", "OpenTelemetry.Instrumentation.AspNetCore")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage(TrimWarnings.Category, TrimWarnings.CheckId, Justification = TrimWarnings.Justification)]
+#endif
         protected override void InitializeMetrics(MeterProviderBuilder builder)
         {
             ReflectionHelper.CallStaticMethod(
