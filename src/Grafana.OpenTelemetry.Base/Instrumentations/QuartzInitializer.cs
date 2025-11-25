@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class QuartzInitializer : InstrumentationInitializer
+    internal sealed class QuartzInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Quartz;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Quartz",
                 "OpenTelemetry.Trace.TraceProviderBuilderExtensions",
                 "AddQuartzInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

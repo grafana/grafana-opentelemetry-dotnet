@@ -8,7 +8,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AWSECSDetectorInitializer : ResourceDetectorInitializer
+    internal sealed class AWSECSDetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AWSECS;
 
@@ -18,7 +18,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Resources.AWS",
                 "OpenTelemetry.Resources.AWSResourceBuilderExtensions",
                 "AddAWSECSDetector",
-                new object[] { builder });
+                [builder]);
             return builder;
         }
     }

@@ -7,7 +7,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AzureVMDetectorInitializer : ResourceDetectorInitializer
+    internal sealed class AzureVMDetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AzureVM;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Resources.Azure",
                 "OpenTelemetry.Resources.AzureResourceBuilderExtensions",
                 "AddAzureVMDetector",
-                new object[] { builder });
+                [builder]);
             return builder;
         }
     }

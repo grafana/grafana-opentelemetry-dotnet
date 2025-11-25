@@ -8,7 +8,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AspNetCoreInitializer : InstrumentationInitializer
+    internal sealed class AspNetCoreInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.AspNetCore;
 
@@ -18,7 +18,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.AspNetCore",
                 "OpenTelemetry.Trace.AspNetCoreInstrumentationTracerProviderBuilderExtensions",
                 "AddAspNetCoreInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
 
         protected override void InitializeMetrics(MeterProviderBuilder builder)
@@ -27,7 +27,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.AspNetCore",
                 "OpenTelemetry.Metrics.AspNetCoreInstrumentationMeterProviderBuilderExtensions",
                 "AddAspNetCoreInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

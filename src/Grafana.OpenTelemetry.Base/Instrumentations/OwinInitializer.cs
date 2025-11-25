@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class OwinInitializer : InstrumentationInitializer
+    internal sealed class OwinInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Owin;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Owin",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddOwinInstrumentation",
-                new object[] { builder, null });
+                [builder, null]);
         }
     }
 }

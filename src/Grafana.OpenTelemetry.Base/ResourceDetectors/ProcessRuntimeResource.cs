@@ -9,7 +9,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class ProcessRuntimeResourceInitializer : ResourceDetectorInitializer
+    internal sealed class ProcessRuntimeResourceInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.ProcessRuntime;
 

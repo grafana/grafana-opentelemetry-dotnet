@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class EntityFrameworkCoreInitializer : InstrumentationInitializer
+    internal sealed class EntityFrameworkCoreInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.EntityFrameworkCore;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.EntityFrameworkCore",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddEntityFrameworkCoreInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

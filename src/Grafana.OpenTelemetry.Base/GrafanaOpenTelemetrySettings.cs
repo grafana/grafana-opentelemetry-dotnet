@@ -119,7 +119,7 @@ namespace Grafana.OpenTelemetry
             Instrumentations.Remove(Instrumentation.AWSLambda);
 
             var disableInstrumentations = configuration[DisableInstrumentationsEnvVarName];
-            char[] separators = new char[] { ',', ':' };
+            char[] separators = [',', ':'];
 
             if (!string.IsNullOrEmpty(disableInstrumentations))
             {

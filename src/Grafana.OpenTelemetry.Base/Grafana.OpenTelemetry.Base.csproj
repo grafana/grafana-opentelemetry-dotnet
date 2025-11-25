@@ -47,4 +47,9 @@
     </AssemblyAttribute>
   </ItemGroup>
 
+  <!-- Not supported due to extensive use of reflection https://github.com/grafana/grafana-opentelemetry-dotnet/issues/97 -->
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <IsAotCompatible>false</IsAotCompatible>
+  </PropertyGroup>
+
 </Project>

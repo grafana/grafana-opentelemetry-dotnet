@@ -7,7 +7,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class AzureContainerAppsDetectorInitializer : ResourceDetectorInitializer
+    internal sealed class AzureContainerAppsDetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AzureContainerApps;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Resources.Azure",
                 "OpenTelemetry.Resources.AzureResourceBuilderExtensions",
                 "AddAzureContainerAppsDetector",
-                new object[] { builder });
+                [builder]);
             return builder;
         }
     }

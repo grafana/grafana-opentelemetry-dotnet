@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class HangfireInitializer : InstrumentationInitializer
+    internal sealed class HangfireInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Hangfire;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Hangfire",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddHangfireInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

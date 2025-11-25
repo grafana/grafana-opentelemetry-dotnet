@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class MySqlDataInitializer : InstrumentationInitializer
+    internal sealed class MySqlDataInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.MySqlData;
 
@@ -18,14 +18,14 @@ namespace Grafana.OpenTelemetry
                 "MySQL.Data.OpenTelemetry",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddConnectorNet",
-                new object[] { builder });
+                [builder]);
 
             // OpenTelemetry.Instrumentation.MySqlData
             ReflectionHelper.CallStaticMethod(
                 "OpenTelemetry.Instrumentation.MySqlData",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddMySqlDataInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

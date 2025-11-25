@@ -7,7 +7,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class StackExchangeRedisInitializer : InstrumentationInitializer
+    internal sealed class StackExchangeRedisInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.StackExchangeRedis;
 
@@ -17,7 +17,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.StackExchangeRedis",
                 "OpenTelemetry.Trace.TracerProviderBuilderExtensions",
                 "AddRedisInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
     }
 }

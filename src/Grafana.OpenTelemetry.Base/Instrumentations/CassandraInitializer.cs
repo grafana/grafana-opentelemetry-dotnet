@@ -8,7 +8,7 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class CassandraInitializer : InstrumentationInitializer
+    internal sealed class CassandraInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Cassandra;
 
@@ -18,7 +18,7 @@ namespace Grafana.OpenTelemetry
                 "OpenTelemetry.Instrumentation.Cassandra",
                 "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
                 "AddCassandraInstrumentation",
-                new object[] { builder });
+                [builder]);
         }
 
         protected override void InitializeTracing(TracerProviderBuilder builder)

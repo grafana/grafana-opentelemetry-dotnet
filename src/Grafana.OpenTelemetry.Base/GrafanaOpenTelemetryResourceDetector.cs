@@ -9,7 +9,7 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
-    internal class GrafanaOpenTelemetryResourceDetector : IResourceDetector
+    internal sealed class GrafanaOpenTelemetryResourceDetector : IResourceDetector
     {
         internal const string ResourceKey_DistroName = "telemetry.distro.name";
         internal const string ResourceKey_DistroVersion = "telemetry.distro.version";
@@ -25,12 +25,12 @@ namespace Grafana.OpenTelemetry
 
         public Resource Detect()
         {
-            var attributes = new List<KeyValuePair<string, object>>(new KeyValuePair<string, object>[]
-            {
+            var attributes = new List<KeyValuePair<string, object>>(
+            [
                 new KeyValuePair<string, object>(ResourceKey_DistroName, ResourceValue_DistroName),
                 new KeyValuePair<string, object>(ResourceKey_DistroVersion, GetDistroVersion()),
                 new KeyValuePair<string, object>(ResourceKey_DeploymentEnvironment, _settings.DeploymentEnvironment)
-            });
+            ]);
 
             attributes.AddRange(_settings.ResourceAttributes);
 
