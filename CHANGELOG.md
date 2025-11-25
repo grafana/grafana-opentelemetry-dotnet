@@ -281,6 +281,8 @@
     ([#2880](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2880))
   * Add support for .NET 10.0.
     ([#2822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2822))
+* Add native AoT annotations.
+  ([#358](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/358))
 
 ### Bug Fixes
 
@@ -328,6 +330,8 @@
 * Use 1.14.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#273](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/273))
   * Fix possible infinite recursion when WCF is hosted in ASP.NET.
     ([#3248](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3248))
+* Address some AoT warnings
+  ([#356](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/356))
 
 ## 1.3.0
 
