@@ -10,6 +10,9 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
     internal abstract class ResourceDetectorInitializer
     {
         public static readonly ResourceDetectorInitializer[] Initializers =

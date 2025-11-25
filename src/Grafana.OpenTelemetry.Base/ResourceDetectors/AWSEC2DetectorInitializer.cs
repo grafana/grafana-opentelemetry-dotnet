@@ -8,6 +8,9 @@ using OpenTelemetry.Resources;
 
 namespace Grafana.OpenTelemetry
 {
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
     internal sealed class AWSEC2DetectorInitializer : ResourceDetectorInitializer
     {
         public override ResourceDetector Id { get; } = ResourceDetector.AWSEC2;

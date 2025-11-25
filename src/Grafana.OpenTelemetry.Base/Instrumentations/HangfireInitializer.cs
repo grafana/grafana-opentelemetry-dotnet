@@ -7,6 +7,9 @@ using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
 {
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Types might be removed")]
+#endif
     internal sealed class HangfireInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Hangfire;
