@@ -77,7 +77,6 @@ expected:
         server.address: redis
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
       equals: 'main'
-      allow-duplicates: true
       attributes:
         db.system: sqlite
         db.name: main
