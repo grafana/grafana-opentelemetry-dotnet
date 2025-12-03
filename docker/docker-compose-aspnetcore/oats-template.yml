@@ -1,3 +1,5 @@
+oats-schema-version: 2
+oats-template: true
 matrix:
   - name: default
     docker-compose:
