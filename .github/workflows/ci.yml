@@ -75,7 +75,7 @@ jobs:
         artifact-name: grafana-opentelemetry-dotnet.spdx.json
         output-file: ./artifacts/grafana-opentelemetry-dotnet.spdx.json
         path: ./artifacts/bin
-        upload-release-assets: true
+        upload-release-assets: false
 
     - name: Attest artifacts
       uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
@@ -87,6 +87,7 @@ jobs:
         subject-path: |
           ./artifacts/bin/Grafana.OpenTelemetry*/release*/Grafana.OpenTelemetry*.dll
           ./artifacts/package/release/*
+          ./artifacts/*.spdx.json
 
     - name: Publish NuGet packages
       uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
@@ -193,18 +194,19 @@ jobs:
       env:
         API_KEY: ${{ fromJSON(steps.get-token.outputs.secrets).token }}
         SOURCE: 'https://f.feedz.io/${{ github.repository }}/nuget/index.json'
-      run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
+      run: | # zizmor: ignore[use-trusted-publishing] feedz.io does not support trusted publishing
+        dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
 
-  publish-nuget:
+  draft-release:
     needs: [ build-test, validate-packages ]
     runs-on: ubuntu-latest
     if: |
       github.event.repository.fork == false &&
       startsWith(github.ref, 'refs/tags/')
 
-    environment:
-      name: NuGet.org
-      url: https://www.nuget.org/profiles/Grafana
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
 
     permissions:
       contents: read
@@ -216,28 +218,57 @@ jobs:
       uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
       with:
         name: packages-windows
+        path: ./dist
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@2016bd2012dba4e32de620c46fe006a3ac9f0602 # v5.0.1
+    - name: Download SBOM
+      uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
       with:
-        dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
+        name: grafana-opentelemetry-dotnet.spdx.json
+        path: ./dist
 
-    - uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
-      id: get-user
+    - name: Generate checksums
+      shell: bash
+      working-directory: ./dist
+      run: |
+        find "." -type f -name '*' | while read -r fname; do
+          echo "Generating checksum for ${fname}"
+          base_name="$(basename "${fname}")"
+          sha256sum "${base_name}" >> "./checksums.txt"
+        done
+        echo "Verifying checksums"
+        sha256sum "./checksums.txt" --check || exit 1
+
+    - name: Get GitHub token
+      id: get-token
+      uses: grafana/shared-workflows/actions/create-github-app-token@ae92934a14a48b94494dbc06d74a81d47fe08a40 # v0.2.2
       with:
-        export_env: false
-        repo_secrets: |
-          user=nuget:user
+        github_app: grafana-otel-bot
+        permission_set: default
 
-    - name: NuGet log in
-      uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1.1.0
-      id: nuget-login
+    - name: Draft release
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
       with:
-        user: ${{ fromJSON(steps.get-user.outputs.secrets).user }}
+        github-token: ${{ steps.get-token.outputs.token }}
+        script: |
+          const { repo, owner } = context.repo;
+          const tag_name = process.env.GITHUB_REF_NAME;
+          const name = tag_name;
 
-    - name: Push NuGet packages to NuGet.org
+          const { data: release } = await github.rest.repos.createRelease({
+            owner,
+            repo,
+            tag_name,
+            name,
+            draft: true,
+            generate_release_notes: true,
+            prerelease: tag_name.includes('-'),
+          });
+
+          core.notice(`Drafted release ${release.name}: ${release.html_url}`);
+
+    - name: Attach files to the release
       shell: bash
       env:
-        API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
-        SOURCE: 'https://api.nuget.org/v3/index.json'
-      run: dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}"
+        GH_TOKEN: ${{ steps.get-token.outputs.token }}
+      run: |
+        gh release upload "${GITHUB_REF_NAME}" "dist/*" --clobber --repo "${GITHUB_REPOSITORY}"
