@@ -39,11 +39,14 @@ jobs:
 
     permissions:
       attestations: read
+      contents: read
       id-token: write
 
     steps:
 
     - name: Download files from release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh release download "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}"
 
