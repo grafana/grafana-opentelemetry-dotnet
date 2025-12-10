@@ -7,7 +7,6 @@ on:
     - '**.cs'
     - '.editorconfig'
   pull_request:
-    branches: [ 'main*' ]
     paths:
     - '**.cs'
     - '.editorconfig'
