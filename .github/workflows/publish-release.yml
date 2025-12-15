@@ -1,8 +1,6 @@
 name: publish-release
 
 on:
-  # TODO Remove once app permissions tested
-  pull_request:
   workflow_dispatch:
     inputs:
       branch:
@@ -21,8 +19,6 @@ permissions: {}
 jobs:
   release:
     runs-on: [ ubuntu-latest ]
-    # TODO Remove once app permissions tested
-    if: false
 
     concurrency:
       group: ${{ github.workflow }}
@@ -99,20 +95,3 @@ jobs:
           TAG: ${{ steps.get-version.outputs.version }}
         run: |
           git tag "${TAG}" -m "Release ${TAG}" && git push origin "refs/tags/$TAG"
-
-  test-permissions:
-    runs-on: [ubuntu-latest]
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Get GitHub token
-        id: get-token
-        uses: grafana/shared-workflows/actions/create-github-app-token@ae92934a14a48b94494dbc06d74a81d47fe08a40 # v0.2.2
-        with:
-          github_app: grafana-otel-bot
-          permission_set: default
-      - name: Show token permissions
-        run: |
-          echo "${{ steps.get-token.outputs.token }}" | gh auth login --with-token
-          gh auth status
