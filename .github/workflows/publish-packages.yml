@@ -1,0 +1,104 @@
+name: publish-packages
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to publish'
+        required: true
+        type: string
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_GENERATE_ASPNET_CERTIFICATE: false
+  DOTNET_NOLOGO: true
+  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
+  FORCE_COLOR: 3
+  NUGET_XMLDOC_MODE: skip
+  TERM: xterm
+
+permissions: {}
+
+jobs:
+  publish-nuget:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      RELEASE_TAG: ${{ inputs.version || github.event.release.tag_name }}
+
+    environment:
+      name: NuGet.org
+      url: https://www.nuget.org/profiles/Grafana
+
+    permissions:
+      attestations: read
+      contents: read
+      id-token: write
+
+    steps:
+
+    - name: Download files from release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release download "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}"
+
+    - name: Verify release assets
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        sha256sum "./checksums.txt" --check || exit 1
+        for pkg in *.*nupkg; do
+          echo "Verifying attestation for ${pkg}"
+          gh attestation verify --repo "${GITHUB_REPOSITORY}" "${pkg}" || exit 1
+        done
+
+    - name: Get .NET SDK version
+      id: get-dotnet-sdk-version
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        dotnet_sdk_version="$(gh api -H "Accept: application/vnd.github.v3.raw" "repos/${GITHUB_REPOSITORY}/contents/global.json?ref=${RELEASE_TAG}" | jq -r .sdk.version)"
+        echo "dotnet-sdk-version=${dotnet_sdk_version}" >> "${GITHUB_OUTPUT}"
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@2016bd2012dba4e32de620c46fe006a3ac9f0602 # v5.0.1
+      with:
+        dotnet-version: ${{ steps.get-dotnet-sdk-version.outputs.dotnet-sdk-version }}
+
+    - name: Get NuGet package information
+      id: get-packages
+      run: |
+        packages="$(find . -type f -name '*.nupkg' -printf '%f\n' | sort | sed -E 's/\.nupkg$//' | sed -E 's/\.[0-9]+\.[0-9]+\.[0-9]+([-+].*)?$//' | paste -sd, -)"
+        echo "package-names=${packages}" >> "${GITHUB_OUTPUT}"
+        echo "package-version=${RELEASE_TAG#v}" >> "${GITHUB_OUTPUT}"
+
+    - name: Get NuGet user
+      uses: grafana/shared-workflows/actions/get-vault-secrets@a37de51f3d713a30a9e4b21bcdfbd38170020593 # get-vault-secrets/v1.3.0
+      id: get-user
+      with:
+        export_env: false
+        repo_secrets: |
+          user=nuget:user
+
+    - name: NuGet log in
+      uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1.1.0
+      id: nuget-login
+      with:
+        user: ${{ fromJSON(steps.get-user.outputs.secrets).user }}
+
+    - name: Push NuGet packages to NuGet.org
+      shell: bash
+      env:
+        API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+        PACKAGE_VERSION: ${{ steps.get-packages.outputs.package-version }}
+        SOURCE: https://api.nuget.org/v3/index.json
+      run: |
+        dotnet nuget push "*.nupkg" --api-key "${API_KEY}" --skip-duplicate --source "${SOURCE}" && echo "::notice title=nuget.org::Published version ${PACKAGE_VERSION} to NuGet.org."

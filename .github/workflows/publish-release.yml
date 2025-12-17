@@ -1,0 +1,97 @@
+name: publish-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'The branch to create the release from'
+        required: false
+        type: string
+        default: ''
+      version:
+        description: 'The version to tag the release as'
+        required: false
+        type: string
+        default: ''
+
+permissions: {}
+
+jobs:
+  release:
+    runs-on: [ ubuntu-latest ]
+
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
+
+    steps:
+
+      - name: Get GitHub token
+        id: get-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@ae92934a14a48b94494dbc06d74a81d47fe08a40 # v0.2.2
+        with:
+          github_app: grafana-otel-bot
+          permission_set: default
+
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true # zizmor: ignore[artipacked] Needed to push commits
+          ref: ${{ github.event.inputs.branch || github.event.repository.default_branch }}
+          show-progress: false
+          token: ${{ steps.get-token.outputs.token }}
+
+      - name: Determine next version
+        id: get-version
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ steps.get-token.outputs.token }}
+          NEXT_VERSION: ${{ inputs.version }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $ProgressPreference = "SilentlyContinue"
+
+          function Get-Next-Distro-Version {
+
+            param([string]$NextVersion)
+
+            # Use the version as provided
+            if (-Not [string]::IsNullOrEmpty($NextVersion)) {
+              [System.Version]::new($NextVersion.TrimStart('v')).ToString()
+              return
+            }
+
+            # Get the current release version from the latest GitHub release
+            $latest = (gh api "/repos/${env:GITHUB_REPOSITORY}/releases/latest" --jq .tag_name).TrimStart('v')
+
+            if ($LASTEXITCODE -ne 0) {
+              throw "Failed to get latest release version"
+            }
+
+            $currentVersion = [System.Version]::new($latest)
+            $nextVersion = [System.Version]::new($currentVersion.Major, $currentVersion.Minor, $currentVersion.Build + 1)
+
+            $nextVersion.ToString()
+          }
+
+          $releaseVersion = Get-Next-Distro-Version ${env:NEXT_VERSION}
+          "version=${releaseVersion}" >> ${env:GITHUB_OUTPUT}
+
+      - name: Configure Git
+        shell: bash
+        env:
+          GH_APP_NAME: grafana-otel-bot
+          GH_TOKEN: ${{ steps.get-token.outputs.token }}
+        run: |
+          GIT_COMMIT_USER_NAME="${GH_APP_NAME}[bot]"
+          GIT_COMMIT_USER_EMAIL="$(gh api "/users/${GIT_COMMIT_USER_NAME}" --jq ".id")+${GIT_COMMIT_USER_NAME}@users.noreply.github.com"
+          git config user.email "${GIT_COMMIT_USER_EMAIL}"
+          git config user.name "${GIT_COMMIT_USER_NAME}"
+
+      - name: Create and push release tag
+        shell: bash
+        env:
+          TAG: ${{ steps.get-version.outputs.version }}
+        run: |
+          git tag "${TAG}" -m "Release ${TAG}" && git push origin "refs/tags/$TAG"
