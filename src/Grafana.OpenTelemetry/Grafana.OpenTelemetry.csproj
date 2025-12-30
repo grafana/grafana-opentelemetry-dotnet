@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Grafana.OpenTelemetry.Base/Grafana.OpenTelemetry.Base.csproj" />
-    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="MinVer" Version="6.1.0" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- This dependency is pulled in by `OpenTelemetry.Instrumentation.Cassandra` with a minimum
