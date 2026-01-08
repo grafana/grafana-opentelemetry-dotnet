@@ -411,9 +411,10 @@
   * Introduce `AWSClientInstrumentationOptions.SemanticConventionVersion` which
     provides a mechanism for developers to opt-in to newer versions of the of the
     OpenTelemetry Semantic Conventions. ([#2367](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2367))
-  * Context propagation data is always added to SQS and SNS requests regardless of
-    sampling decision. This enables downstream services to make consistent sampling
-    decisions and prevents incomplete traces. ([#2447](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2447))
+  * Context propagation data is always added to SQS and SNS requests regardless
+    of sampling decision. This enables downstream services to make consistent
+    sampling decisions and prevents incomplete traces.
+    ([#2447](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2447))
 * Use 1.12.0 of OpenTelemetry.Instrumentation.AWSLambda ([#145](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/145))
   * Introduce `AWSClientInstrumentationOptions.SemanticConventionVersion` which
     provides a mechanism for developers to opt-in to newer versions of the of
@@ -692,8 +693,9 @@ This is the first GA release of this distribution.
   * **Breaking Change**: Renamed package from `OpenTelemetry.ResourceDetectors.Azure`
   to `OpenTelemetry.Resources.Azure`.
   ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
-  * **Breaking Change**: `AppServiceResourceDetector` type is now internal, use `ResourceBuilder`
-    extension method `AddAppServiceDetector` to enable the detector.
+  * **Breaking Change**: `AppServiceResourceDetector` type is now internal,
+    use `ResourceBuilder` extension method `AddAppServiceDetector` to enable the
+    detector.
     ([#1840](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/1840))
   * **Breaking Change**: `AzureVMResourceDetector` type is now internal, use `ResourceBuilder`
     extension method `AddAzureVMResourceDetector` to enable the detector.

@@ -67,7 +67,8 @@ For ASP.NET Core applications, a `UseGrafana` extension method is provided on
 the `IServiceCollection`. Invoking this extension method configures both traces
 and metrics.
 
-Logging can be set up using the `ILoggingBuilder`, as described in [Configuring logs](#configuring-logs).
+Logging can be set up using the `ILoggingBuilder`, as described in
+[Configuring logs](#configuring-logs).
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -183,8 +184,9 @@ export GRAFANA_DOTNET_DISABLE_INSTRUMENTATIONS="Process,NetRuntime"
 Instrumentations not included in the distribution can easily be added by
 extension methods on the tracer and meter provider.
 
-For example, if it is desired to use the `EventCounters` instrumentation, which is
-not included in the [full package](./installation.md#install-the-full-package-with-all-available-instrumentations),
+For example, if it is desired to use the `EventCounters` instrumentation,
+which is not included in the
+[full package](./installation.md#install-the-full-package-with-all-available-instrumentations),
 one install the `EventCounters` instrumentation library along with the base
 package.
 
