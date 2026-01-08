@@ -3,4 +3,5 @@ changelog:
     authors:
       - dependabot[bot]
       - github-actions[bot]
+      - renovate-sh-app[bot]
       - renovate[bot]
