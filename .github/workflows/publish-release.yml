@@ -24,6 +24,10 @@ jobs:
       group: ${{ github.workflow }}
       cancel-in-progress: false
 
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
 
       - name: Get GitHub token
