@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
 namespace Grafana.OpenTelemetry
@@ -13,6 +14,15 @@ namespace Grafana.OpenTelemetry
     internal sealed class HangfireInitializer : InstrumentationInitializer
     {
         public override Instrumentation Id { get; } = Instrumentation.Hangfire;
+
+        protected override void InitializeMetrics(MeterProviderBuilder builder)
+        {
+            ReflectionHelper.CallStaticMethod(
+                "OpenTelemetry.Instrumentation.Hangfire",
+                "OpenTelemetry.Metrics.MeterProviderBuilderExtensions",
+                "AddHangfireInstrumentation",
+                [builder]);
+        }
 
         protected override void InitializeTracing(TracerProviderBuilder builder)
         {
