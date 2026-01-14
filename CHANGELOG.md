@@ -2,6 +2,31 @@
 
 ## Unreleased version
 
+## 1.4.1
+
+### New features
+
+* Use 1.14.0 of OpenTelemetry.Instrumentation.AspNet ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.14.0-beta.2 of OpenTelemetry.Instrumentation.Hangfire ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Add metrics instrumentation support.
+    ([#3258](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3258))
+
+### Bug Fixes
+
+* Use 1.14.2 of OpenTelemetry.Instrumentation.AWS ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Update minimal supported version of AWSSDK.Core to 4.0.3.3 to resolve
+    [GHSA-9cvc-h2w8-phrp](https://github.com/advisories/GHSA-9cvc-h2w8-phrp).
+* Use 1.14.2 of OpenTelemetry.Instrumentation.AWSLambda ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Fix issue when using ADOT auto-instrumentation which includes a version
+    of OpenTelemetry.Instrumentation.AWSLambda in the Lambda layer.
+  * Update minimal supported version of AWSSDK.Core to 4.0.3.3 to resolve
+    [GHSA-9cvc-h2w8-phrp](https://github.com/advisories/GHSA-9cvc-h2w8-phrp).
+* Use 10.0.0 of Microsoft.Extensions.Configuration.EnvironmentVariables when
+  targeting .NET 10.
+  ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+
+## 1.4.0
+
 ### BREAKING CHANGES
 
 * Add `net10.0` target.
