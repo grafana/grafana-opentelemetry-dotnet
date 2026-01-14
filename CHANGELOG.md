@@ -2,6 +2,27 @@
 
 ## Unreleased version
 
+## 1.5.0
+
+### BREAKING CHANGES
+
+* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Remove support for the `OTEL_SEMCONV_STABILITY_OPT_IN` configuration option.
+    ([#3592](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3592))
+
+### New features
+
+* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Improve SQL parsing for sanitization and summary generation.
+    ([#3627](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3627),
+    [#3662](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3662),
+    [#3663](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3663),
+    [#3671](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3671))
+  * Make additional attributes available on Activity start.
+    ([#3675](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3675))
+  * Metrics and spans report telemetry schema URL v1.33.0.
+    ([#3680](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3680))
+
 ## 1.4.1
 
 ### New features

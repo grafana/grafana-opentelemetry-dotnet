@@ -56,17 +56,23 @@ expected:
         http.request.method: GET
         http.response.status_code: 500
     - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
-      equals: 'master'
+      equals: 'EXECUTE sp_server_info'
       attributes:
-        db.system: mssql
-        db.name: master
-        db.statement: sp_server_info
+        db.system.name: microsoft.sql_server
+        db.namespace: master
+        db.operation.name: EXECUTE
+        db.stored_procedure.name: sp_server_info
+        db.query.summary: EXECUTE sp_server_info
+        server.address: mssql
         otel.library.name: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
-      equals: 'master'
+      equals: 'SELECT INFORMATION_SCHEMA.TABLES'
       attributes:
-        db.system: mssql
-        db.name: master
+        db.system.name: microsoft.sql_server
+        db.namespace: master
+        db.query.text: SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+        db.query.summary: SELECT INFORMATION_SCHEMA.TABLES
+        server.address: mssql
         otel.library.name: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
       equals: 'LPUSH'
