@@ -1,0 +1,16 @@
+allow-dependencies-licenses:
+  - 'pkg:githubactions/grafana/shared-workflows/actions/create-github-app-token'
+  - 'pkg:githubactions/grafana/shared-workflows/actions/get-vault-secrets'
+  - 'pkg:nuget/Microsoft.Data.SqlClient.SNI.runtime@6.0.2'
+  - 'pkg:nuget/Microsoft.NETFramework.ReferenceAssemblies.net462@1.0.3'
+  - 'pkg:nuget/System.Collections.Concurrent@4.0.12'
+  - 'pkg:nuget/System.IO.Compression@4.3.0'
+  - 'pkg:nuget/System.Runtime.InteropServices.RuntimeInformation@4.0.0'
+  - 'pkg:nuget/System.Runtime.InteropServices.RuntimeInformation@4.3.0'
+  - 'pkg:nuget/System.Threading.Tasks.Dataflow@4.6.0'
+allow-licenses:
+  - 'Apache-2.0'
+  - 'BSD-3-Clause'
+  - 'MIT'
+  - 'LicenseRef-scancode-generic-cla AND MIT'
+  - 'LicenseRef-scancode-ms-typescript-msbuild-4.1.4'
