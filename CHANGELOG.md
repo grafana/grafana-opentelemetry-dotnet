@@ -34,7 +34,7 @@
   * Added `UserAgentProductIdentifier` property to `OtlpExporterOptions` to allow
     custom product identifiers to be prepended to the User-Agent header. When set,
     the custom identifier is prepended with a space separator to the default
-    User-Agent string (e.g., `MyApp/1.0 OTel-OTLP-Exporter-Dotnet/1.14.0`).
+    User-Agent string (e.g., `MyApp/1.0 OTel-OTLP-Exporter-Dotnet/1.15.0`).
     ([#6686](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6686))
   * Added support for `ActivitySource.TelemetrySchemaUrl` property.
     ([#6730](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6730))
@@ -54,7 +54,7 @@
 * Use 1.15.0 of OpenTelemetry.Instrumentation.AWS ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
 * Use 1.15.0 of OpenTelemetry.Instrumentation.AWSLambda ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
 * Use 1.0.0-beta.5 of OpenTelemetry.Instrumentation.Cassandra ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
-* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.ElasticSearchClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
   * Add `net8.0` and `net10.0` target frameworks.
     ([#3717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3717))
 * Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
