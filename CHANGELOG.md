@@ -6,13 +6,58 @@
 
 ### BREAKING CHANGES
 
-* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
   * Remove support for the `OTEL_SEMCONV_STABILITY_OPT_IN` configuration option.
     ([#3592](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3592))
 
 ### New features
 
-* Use 1.14.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Added support for the `OTEL_SDK_DISABLED` environment variable in TracerProvider,
+    MeterProvider, and LoggerProvider. When `OTEL_SDK_DISABLED=true`,
+    the SDK returns no-op implementations for all telemetry signals.
+    The `OTEL_SDK_DISABLED` environment variable is only evaluated upon application
+    startup, later changes have no effect.
+    ([#6568](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6568))
+  * Added support for `Meter.TelemetrySchemaUrl` property.
+    ([#6714](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6714))
+* Use 1.15.0 of OpenTelemetry.Api ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Added a new overload for `TracerProvider.GetTracer` which accepts an optional
+    `string? schemaUrl` parameter, allowing a schema URL to be set on the `Tracer`.
+    ([#6736](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6736))
+* Use 1.15.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Added mTLS configuration support for the OTLP exporter (client cert/key and
+    CA certificate options).
+    ([#6343](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6343))
+  * Added `LowMemory` temporality as an option in the OTLP metrics exporter.
+    ([#6648](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6648))
+  * Added `UserAgentProductIdentifier` property to `OtlpExporterOptions` to allow
+    custom product identifiers to be prepended to the User-Agent header. When set,
+    the custom identifier is prepended with a space separator to the default
+    User-Agent string (e.g., `MyApp/1.0 OTel-OTLP-Exporter-Dotnet/1.14.0`).
+    ([#6686](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6686))
+  * Added support for `ActivitySource.TelemetrySchemaUrl` property.
+    ([#6730](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6730))
+  * Added support for `Meter.TelemetrySchemaUrl` property.
+    ([#6731](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6731))
+  * Added support for `OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION`
+    environment variable to configure the default histogram aggregation for
+    histogram instruments. Valid values are `explicit_bucket_histogram` (default)
+    and `base2_exponential_bucket_histogram`. Explicit views configured via
+    `AddView` take precedence over this setting.
+    ([#6778](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6778))
+* Use 1.15.0 of OpenTelemetry.Extensions.Hosting ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.AspNet ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Metrics and spans report telemetry schema URL v1.36.0.
+    ([#3686](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3686))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.AspNetCore ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.AWS ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.AWSLambda ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.0.0-beta.5 of OpenTelemetry.Instrumentation.Cassandra ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.ElasticSearchClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Add `net8.0` and `net10.0` target frameworks.
+    ([#3717](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3717))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
   * Improve SQL parsing for sanitization and summary generation.
     ([#3627](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3627),
     [#3662](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3662),
@@ -22,6 +67,41 @@
     ([#3675](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3675))
   * Metrics and spans report telemetry schema URL v1.33.0.
     ([#3680](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3680))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.Http ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.Process ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0 of OpenTelemetry.Instrumentation.Runtime ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-rc.1 of OpenTelemetry.Instrumentation.SqlClient ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Improve SQL parsing for sanitization and summary generation.
+    ([#3627](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3627),
+    [#3662](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3662),
+    [#3663](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3663),
+    [#3671](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3671))
+  * Make additional attributes available on Activity start.
+    ([#3675](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3675))
+  * Metrics and spans report telemetry schema URL v1.33.0.
+    ([#3680](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3680))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Resources.Container ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Resources.Host ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Resources.Process ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+* Use 1.15.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+
+### Bug Fixes
+
+* Use 1.15.0 of OpenTelemetry ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Improve performance and reduce memory consumption for metrics histograms.
+    ([#6715](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6715))
+  * Decode `value` in OTEL_RESOURCE_ATTRIBUTES environment variable.
+    ([#6737](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6737))
+* Use 1.15.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#398](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/398))
+  * Fix `NullReferenceException` when no bucket boundaries configured for a view.
+    ([#6773](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6773))
 
 ## 1.4.1
 

@@ -21,24 +21,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OpenTelemetry" Version="1.14.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.15.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.0" />
   </ItemGroup>
 
   <ItemGroup Label="Stable Instrumentation Packages">
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.15.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages">
-    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.14.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.14.0-beta.2" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.14.0-rc.1" />
-    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.14.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Resources.Host" Version="1.14.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="1.14.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Resources.Process" Version="1.14.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="1.14.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.15.0-rc.1" />
+    <PackageReference Include="OpenTelemetry.Resources.Container" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Resources.Host" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Resources.Process" Version="1.15.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Resources.ProcessRuntime" Version="1.15.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
