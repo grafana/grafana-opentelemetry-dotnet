@@ -2,7 +2,9 @@
 
 ## Unreleased version
 
-### BREAKING CHANGES
+## 1.5.1
+
+### Bug Fixes
 
 * Use 1.15.0-beta.2 of OpenTelemetry.Resources.Host ([#417](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/417))
   * Fixed `host.arch` attribute to return `amd64` instead of `x64` for X64 architecture.
