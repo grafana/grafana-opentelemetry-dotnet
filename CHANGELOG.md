@@ -2,6 +2,12 @@
 
 ## Unreleased version
 
+## 1.5.2
+
+### Bug Fixes
+
+* Use 1.15.0 of OpenTelemetry.Instrumentation.SqlClient ([#418](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/418))
+
 ## 1.5.1
 
 ### Bug Fixes
