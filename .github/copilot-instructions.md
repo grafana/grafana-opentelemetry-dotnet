@@ -258,7 +258,7 @@ Use sentence case for titles and headings, for example:
 
 Use the exact page or section title for link text.
 
-Use inline Markdown links, for example, [Link text](https://example.com).
+Use inline Markdown links, for example: `[Link text](https://example.com)`.
 
 When linking to other sections within the same document,
 use a descriptive phrase that includes the section name,
