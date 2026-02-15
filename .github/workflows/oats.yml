@@ -69,7 +69,7 @@ jobs:
       - name: Install OATS
         env:
           # renovate: datasource=github-releases depName=oats packageName=grafana/oats
-          OATS_VERSION: v0.6.0
+          OATS_VERSION: v0.6.1
         run: go install "github.com/grafana/oats@${OATS_VERSION}"
 
       - name: Run acceptance tests
