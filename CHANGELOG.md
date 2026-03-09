@@ -2,6 +2,18 @@
 
 ## Unreleased version
 
+## 1.5.3
+
+### Bug Fixes
+
+* Use 1.15.1 of OpenTelemetry.Instrumentation.AspNet ([#473](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/473))
+  * Propagate baggage before `Activity` is created.
+    ([#3820](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3820))
+* Use 1.15.1 of OpenTelemetry.Instrumentation.SqlClient ([#473](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/473))
+  * Fix incorrect `db.query.summary` when table names include a schema and are
+    enclosed in brackets (e.g. `[dbo].[Person]`).
+    ([#3897](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3897))
+
 ## 1.5.2
 
 ### Bug Fixes
