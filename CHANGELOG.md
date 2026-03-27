@@ -12,6 +12,12 @@
     which disallows empty baggage names and treats baggage names and values as case
     sensitive.
     ([#6931](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6931))
+* Use 1.15.1 of OpenTelemetry.Instrumentation.AspNetCore ([#477](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/477))
+  * For gRPC server spans, span status is now follow the OpenTelemetry Semantic
+    Conventions. Only the following gRPC status codes set span status to `Error`:
+    `UNKNOWN`, `DEADLINE_EXCEEDED`, `UNIMPLEMENTED`, `INTERNAL`, `UNAVAILABLE`,
+    and `DATA_LOSS`. Previously, all non-OK status codes were treated as errors.
+    ([#3902](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3902))
 
 ### Bug Fixes
 
@@ -35,17 +41,6 @@
 * Use 1.15.1 of OpenTelemetry.Extensions.Hosting ([#496](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/496))
   * Fix NullReferenceException when `OTEL_SDK_DISABLED=true`.
     ([#6869](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6869))
-
-## 1.5.4
-
-### BREAKING CHANGES
-
-* Use 1.15.1 of OpenTelemetry.Instrumentation.AspNetCore ([#477](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/477))
-  * For gRPC server spans, span status is now follow the OpenTelemetry Semantic
-    Conventions. Only the following gRPC status codes set span status to `Error`:
-    `UNKNOWN`, `DEADLINE_EXCEEDED`, `UNIMPLEMENTED`, `INTERNAL`, `UNAVAILABLE`,
-    and `DATA_LOSS`. Previously, all non-OK status codes were treated as errors.
-    ([#3902](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3902))
 
 ## 1.5.3
 
