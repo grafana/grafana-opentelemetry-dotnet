@@ -6,7 +6,7 @@
 
 ### BREAKING CHANGES
 
-* Use 1.15.1 of OpenTelemetry.Api ([TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.1 of OpenTelemetry.Api ([#496](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/496))
   * The Baggage API implements the latest [Baggage API
     specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.36.0/specification/baggage/api.md),
     which disallows empty baggage names and treats baggage names and values as case
@@ -15,13 +15,13 @@
 
 ### Bug Fixes
 
-* Use 1.15.1 of OpenTelemetry ([TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.1 of OpenTelemetry ([#496](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/496))
   * Fixed `Tracer.StartSpan()` leaving the new span as `Activity.Current` when
     the previous activity was stopped by another thread during span creation.
     ([#6257](https://github.com/open-telemetry/opentelemetry-dotnet/issues/6257))
   * Fixed `OverflowException` in `TraceIdRatioBasedSampler` when trace ID bytes
     produced `long.MinValue`.
-    ([[#6928](https://github.com/open-telemetry/opentelemetry-dotnet/issues/6928)])
+    ([#6928](https://github.com/open-telemetry/opentelemetry-dotnet/issues/6928))
   * Fixed precision issues when using `Histogram<float>` with custom
     `HistogramBucketBoundaries`.
     ([#6866](https://github.com/open-telemetry/opentelemetry-dotnet/issues/6866))
@@ -31,10 +31,10 @@
     ObservableGauge) continuing to export stale data points after a callback
     stops reporting a series.
     ([#5950](https://github.com/open-telemetry/opentelemetry-dotnet/issues/5950))
-* Use 1.15.1 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
-* Use 1.15.1 of OpenTelemetry.Extensions.Hosting ([TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.1 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#496](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/496))
+* Use 1.15.1 of OpenTelemetry.Extensions.Hosting ([#496](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/496))
   * Fix NullReferenceException when `OTEL_SDK_DISABLED=true`.
-    ([#6869](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/6869))
+    ([#6869](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6869))
 
 ## 1.5.4
 
