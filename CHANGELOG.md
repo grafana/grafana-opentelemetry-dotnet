@@ -2,7 +2,7 @@
 
 ## Unreleased version
 
-## 1.5.5
+## 1.6.0
 
 ### BREAKING CHANGES
 
