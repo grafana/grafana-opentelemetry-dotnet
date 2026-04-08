@@ -30,7 +30,7 @@ jobs:
       run: echo "::add-matcher::.github/actionlint-matcher.json"
 
     - name: Lint workflows
-      uses: grafana/grafana-github-actions/actionlint@68748e22ff0d7135c13015fa331b773ca3ee22ce # actionlint 1.7.11
+      uses: grafana/grafana-github-actions/actionlint@dff5d93ed96d0ebc7022b7eb28b6a6fa638e0dc0 # actionlint/v1.7.11
       with:
         args: -color
 
