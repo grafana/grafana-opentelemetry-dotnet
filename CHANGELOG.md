@@ -2,6 +2,64 @@
 
 ## Unreleased version
 
+## 1.6.2
+
+### BREAKING CHANGES
+
+* Use 1.15.3 of OpenTelemetry.Api ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+  * Fixed `tracestate` parsing to reject keys that do not
+    begin with a lowercase letter, including keys beginning with digits, to
+    align with the W3C Trace Context specification.
+    ([#7065](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7065))
+* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+  * Fixed an insecure disk retry default. Disk retry now
+    requires `OTEL_DOTNET_EXPERIMENTAL_OTLP_DISK_RETRY_DIRECTORY_PATH` when
+    `OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY=disk` is configured.
+  ([#7106](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7106))
+
+### Bug Fixes
+
+* Use 1.15.3 of OpenTelemetry ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+  * Fix resource leak in batch and periodic exporting task workers for Blazor/WASM.
+    ([#7069](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7069))
+  * Fixed `LogRecord.LogLevel` to preserve `LogLevel.None` and handle
+    unspecified or out-of-range severities without returning invalid enum values.
+    ([#7092](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7092))
+  * Fixed `OTEL_TRACES_SAMPLER_ARG` handling to treat out-of-range, `NaN`, and
+    infinite values as invalid and fall back to the default ratio when using
+    `traceidratio` and `parentbased_traceidratio` samplers.
+    ([#7103](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7103))
+* Use 1.15.3 of OpenTelemetry.Api ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+  * Fix baggage and trace headers not respecting the maximum length in some cases.
+    ([#7061](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7061))
+  * Improve efficiency of parsing of baggage and B3 propagation headers.
+    ([#7061](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7061))
+  * Fixed `BaggagePropagator` to trim optional whitespace (OWS) around `=`
+    separators when parsing the `baggage` header, as required by the
+    [W3C Baggage specification](https://www.w3.org/TR/baggage/).
+    ([#7009](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7009))
+  * Fixed `BaggagePropagator` to strip baggage properties (e.g. `;metadata`)
+    from values when parsing the `baggage` header.
+    ([#7009](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7009))
+* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+  * `OtlpLogExporter` now uses `IHttpClientFactory` on .NET 8+, matching the
+    behaviour of the trace and metrics exporters.
+    ([#7109](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7109))
+  * Fixed an issue in persistent storage cleanup where malformed `.blob`, `.tmp`,
+    or `.lock` filenames could throw and interrupt maintenance.
+    ([#7108](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7108))
+  * Fixed an issue in OTLP/gRPC retry handling where parsing gRPC status.
+    ([#7064](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7064))
+  * Fixed an issue with OTLP disk retry storage where metrics and logs used the
+    traces storage directory. Disk retry storage is now separated by signal using
+    `traces`, `metrics`, and `logs` directories.
+    ([#7074](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7074))
+  * Fixed full OTLP endpoint being logged by internal diagnostics.
+    ([#7116](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7116))
+  * Fix `OTEL_SPAN_ATTRIBUTE_VALUE_LENGTH_LIMIT` not being applied.
+    ([#7115](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7115))
+* Use 1.15.3 of OpenTelemetry.Extensions.Hosting ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+
 ## 1.6.1
 
 ### Bug Fixes
