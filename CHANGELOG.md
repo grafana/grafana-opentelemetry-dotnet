@@ -21,7 +21,7 @@
 
 * Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * `OtlpLogExporter` now uses `IHttpClientFactory` on .NET 8+, matching the
-    behaviour of the trace and metrics exporters.
+    behavior of the trace and metrics exporters.
     ([#7109](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7109))
 * Use 1.15.1 of OpenTelemetry.Instrumentation.AWS ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * Add the `aws.s3.bucket` and `aws.s3.key` attributes to S3 spans.
