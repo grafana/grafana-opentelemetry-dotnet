@@ -6,20 +6,20 @@
 
 ### BREAKING CHANGES
 
-* Use 1.15.3 of OpenTelemetry.Api ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry.Api ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * Fixed `tracestate` parsing to reject keys that do not
     begin with a lowercase letter, including keys beginning with digits, to
     align with the W3C Trace Context specification.
     ([#7065](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7065))
-* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * Fixed an insecure disk retry default. Disk retry now
     requires `OTEL_DOTNET_EXPERIMENTAL_OTLP_DISK_RETRY_DIRECTORY_PATH` when
     `OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY=disk` is configured.
-  ([#7106](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7106))
+    ([#7106](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7106))
 
 ### Bug Fixes
 
-* Use 1.15.3 of OpenTelemetry ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * Fix resource leak in batch and periodic exporting task workers for Blazor/WASM.
     ([#7069](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7069))
   * Fixed `LogRecord.LogLevel` to preserve `LogLevel.None` and handle
@@ -29,7 +29,7 @@
     infinite values as invalid and fall back to the default ratio when using
     `traceidratio` and `parentbased_traceidratio` samplers.
     ([#7103](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7103))
-* Use 1.15.3 of OpenTelemetry.Api ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry.Api ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * Fix baggage and trace headers not respecting the maximum length in some cases.
     ([#7061](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7061))
   * Improve efficiency of parsing of baggage and B3 propagation headers.
@@ -41,7 +41,7 @@
   * Fixed `BaggagePropagator` to strip baggage properties (e.g. `;metadata`)
     from values when parsing the `baggage` header.
     ([#7009](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7009))
-* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
   * `OtlpLogExporter` now uses `IHttpClientFactory` on .NET 8+, matching the
     behaviour of the trace and metrics exporters.
     ([#7109](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7109))
@@ -58,7 +58,7 @@
     ([#7116](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7116))
   * Fix `OTEL_SPAN_ATTRIBUTE_VALUE_LENGTH_LIMIT` not being applied.
     ([#7115](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7115))
-* Use 1.15.3 of OpenTelemetry.Extensions.Hosting ([#TODO](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/TODO))
+* Use 1.15.3 of OpenTelemetry.Extensions.Hosting ([#528](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/528))
 
 ## 1.6.1
 
