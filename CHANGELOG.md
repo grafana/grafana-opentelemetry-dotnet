@@ -2,6 +2,21 @@
 
 ## Unreleased version
 
+## 1.6.1
+
+### Bug Fixes
+
+* Use 1.15.2 of OpenTelemetry ([#513](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/513))
+  * Added Task-based worker support for `BatchExportProcessor` and
+    `PeriodicExportingMetricReader` to enable OpenTelemetry to work in
+    single-threaded WebAssembly environments such as Blazor and Uno Platform.
+    ([#6379](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6379))
+* Use 1.15.2 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#513](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/513))
+  * Limit how much of the response body is read when export fails and
+    error logging is enabled.
+    ([#7017](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7017))
+* Use 1.15.2 of OpenTelemetry.Extensions.Hosting ([#513](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/513))
+
 ## 1.6.0
 
 ### BREAKING CHANGES
