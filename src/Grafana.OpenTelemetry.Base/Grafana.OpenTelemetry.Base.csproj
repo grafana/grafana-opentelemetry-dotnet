@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net11.0'))">
-    <PackageReference Update="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="[11.0.0-preview.1.26104.118,)" />
+    <PackageReference Update="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="[11.0.0-preview.3.26207.106,)" />
   </ItemGroup>
 
   <ItemGroup>
