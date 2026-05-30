@@ -24,7 +24,7 @@ services:
     ports:
       - "6379:6379"
   mssql:
-    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:320daf857745ef0092c6e53e82d0bf81ed6bca2794e6ccbffb72cf6a8d14a441
+    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:d975fb1ea4c25c95309d7813b9f9133cde880fda16da24ab1379e277a9b2395b
     ports:
       - "1433:1433"
     environment:
