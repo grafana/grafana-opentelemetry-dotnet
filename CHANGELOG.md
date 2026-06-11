@@ -2,6 +2,97 @@
 
 ## Unreleased version
 
+### BREAKING CHANGES
+
+* Use 1.16.0 of OpenTelemetry ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Explicit histogram boundaries no longer allow more than 10 million values.
+    ([#7165](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7165))
+
+### New features
+
+* Use 1.16.0 of OpenTelemetry ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Added an `ObservedTimestamp` property to `LogRecord`.
+    ([#6979](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6979))
+  * `OpenTelemetrySdkEventSource` now supports the W3C randomness flag.
+    ([#7301](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7301))
+  * Stop validating View-provided metric stream `Name` against the instrument
+    name syntax.
+    ([#7300](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7300))
+* Use 1.16.0 of OpenTelemetry.Api ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * `TraceContextPropagator` now supports the W3C randomness flag.
+    ([#7301](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7301))
+* Use 1.16.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Added opt-in support for gzip compression via the
+    `OtlpExporterOptions.Compression` property and the
+    `OTEL_EXPORTER_OTLP_COMPRESSION` environment variable.
+    ([#7055](https://github.com/open-telemetry/opentelemetry-dotnet/issues/7055))
+  * Handle `Retry-After` response headers that specify a date instead of a delay.
+    ([#7364](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7364))
+* Use 1.15.1-beta.2 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Add instrumentation scope version and schema URL to traces.
+    ([#4095](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4095))
+* Use 1.15.1-beta.2 of OpenTelemetry.Resources.Process ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Add new process resource attribute `process.creation.time`.
+    ([#4036](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4036))
+
+### Bug Fixes
+
+* Use 1.16.0 of OpenTelemetry ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Fixed incorrect validation of `OTEL_BSP_*` and `OTEL_BLRP_*` environment
+    variables.
+    ([#7187](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7187))
+  * Fixed observable instrument callbacks running once per reader instead of
+    once per collection cycle.
+    ([#7188](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7188))
+  * Added exception safety for user-supplied `ExemplarReservoir` implementations.
+    ([#7277](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7277))
+  * Fixed a circular reference which could cause a `LoggerProvider` to fail to
+    resolve.
+    ([#7308](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7308))
+* Use 1.16.0 of OpenTelemetry.Api ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Fixed `BaggagePropagator` to correctly follow key and value encoding rules
+    as per the W3C Baggage specification.
+    ([#7051](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7051))
+  * Fixed `TraceContextPropagator` to deduplicate duplicate `tracestate` keys
+    instead of discarding the entire `tracestate` header.
+    ([#7309](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7309))
+* Use 1.16.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Fixed `NullReferenceException` when exporting logs if the scope key is null.
+    ([#7186](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7186))
+  * Fixed disk retry data being stored incorrectly when using persistent storage
+    retry.
+    ([#7228](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7228))
+  * Reverted `OtlpLogExporter` from using `IHttpClientFactory` on .NET 8+ to
+    resolve circular dependency issues with certain DI containers, then re-enabled
+    it for named clients without triggering circular dependencies.
+    ([#7234](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7234),
+    [#7298](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7298))
+  * Reduced the overhead of GZip compression.
+    ([#7275](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7275))
+  * Cached pre-serialized resource bytes to avoid re-encoding on every OTLP
+    export.
+    ([#7303](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7303))
+  * Do not enable the integration with `IHttpClientFactory` when mTLS is enabled.
+    ([#7305](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7305))
+  * `observed_time_unix_nano` will no longer always be identical to
+    `time_unix_nano` when using the logs bridge API.
+    ([#6979](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6979))
+  * Fixed the retry deadline check so a `Retry-After` delay that would extend a
+    retry beyond the configured export timeout now correctly fails fast.
+    ([#7375](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7375))
+* Use 1.15.1-beta.2 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Fixed `db.query.text` not respecting `SetVerboseDatabaseStatements` when the
+    new database semantic conventions are enabled.
+    ([#4245](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4245))
+  * Flush commands on every `FlushInterval` tick regardless of parent `Activity`
+    completion when `Enrich` and `Filter` are unset.
+    ([#4398](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4398))
+* Use 1.15.1-beta.2 of OpenTelemetry.Instrumentation.Wcf ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+  * Revert the `System.Security.Cryptography.Xml` dependency version update for
+    .NET 8, 9, and 10 to `4.7.1` introduced in 1.15.1-beta.1.
+    ([#4266](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4266))
+* Use 1.16.0 of OpenTelemetry.Extensions.Hosting ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
+
 ## 1.7.0
 
 ### BREAKING CHANGES
