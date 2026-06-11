@@ -13,7 +13,7 @@ on:
 
 jobs:
   check-format:
-    runs-on: windows-24.04
+    runs-on: windows-2025
     permissions: {}
 
     steps:
