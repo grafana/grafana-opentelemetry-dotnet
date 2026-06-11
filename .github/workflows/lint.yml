@@ -22,9 +22,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       with:
+        fetch-depth: 2
         filter: 'tree:0'
         persist-credentials: false
         show-progress: false
+
+    - name: Determine changed Markdown files
+      id: changed-markdown
+      run: |
+        if [ "${GITHUB_EVENT_NAME}" = "pull_request" ] && \
+          ! git diff --name-only --diff-filter=d 'HEAD^1' HEAD | grep -qiE '\.md$'; then
+          echo "No Markdown files changed; Markdown linting will be skipped."
+          echo "changed=false" >> "${GITHUB_OUTPUT}"
+        else
+          echo "changed=true" >> "${GITHUB_OUTPUT}"
+        fi
 
     - name: Add actionlint problem matcher
       run: echo "::add-matcher::.github/actionlint-matcher.json"
@@ -35,6 +47,7 @@ jobs:
         args: -color
 
     - name: Lint markdown
+      if: steps.changed-markdown.outputs.any-changed == 'true'
       uses: DavidAnson/markdownlint-cli2-action@ded1f9488f68a970bc66ea5619e13e9b52e601cd # v23.2.0
       with:
         config: '.markdownlint.yaml'
@@ -42,10 +55,12 @@ jobs:
           **/*.md
 
     - name: Install markdown-link-check
+      if: steps.changed-markdown.outputs.changed == 'true'
       env:
         # renovate: datasource=npm depName=markdown-link-check packageName=markdown-link-check
         MARKDOWN_LINK_CHECK_VERSION: 3.14.2
       run: sudo npm install -g "markdown-link-check@${MARKDOWN_LINK_CHECK_VERSION}"
 
     - name: Check markdown links
+      if: steps.changed-markdown.outputs.changed == 'true'
       run: "find . -name '*.md' -print0 | xargs -0 -n1 markdown-link-check --config .markdown_link_check_config.json"
