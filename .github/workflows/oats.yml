@@ -15,7 +15,7 @@ permissions: {}
 jobs:
 
   package:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
 
@@ -41,7 +41,7 @@ jobs:
         if-no-files-found: error
 
   acceptance-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: package
     timeout-minutes: 20
 
