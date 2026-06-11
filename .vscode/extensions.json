@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "DavidAnson.vscode-markdownlint",
     "EditorConfig.EditorConfig",
     "github.vscode-github-actions",
     "ms-dotnettools.csharp"
