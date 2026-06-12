@@ -2,6 +2,8 @@
 
 ## Unreleased version
 
+## 1.8.0
+
 ### BREAKING CHANGES
 
 * Use 1.16.0 of OpenTelemetry ([#572](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/572))
