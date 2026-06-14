@@ -56,6 +56,12 @@ jobs:
         filter: 'tree:0'
         show-progress: false
 
+    - name: Get Git commit timestamp
+      id: get-commit-timestamp
+      shell: pwsh
+      run: |
+        "epoch=$(git log -1 --pretty=%ct)" >> ${env:GITHUB_OUTPUT}
+
     - name: Setup additional .NET SDKs
       uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
       with:
@@ -67,6 +73,8 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
+      env:
+        SOURCE_DATE_EPOCH: ${{ steps.get-commit-timestamp.outputs.epoch }}
 
     - name: Test
       run: dotnet test --configuration Release --logger:"GitHubActions;report-warnings=false"
