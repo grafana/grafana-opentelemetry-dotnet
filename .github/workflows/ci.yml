@@ -38,28 +38,31 @@ jobs:
       matrix:
         include:
           - os-name: macos
-            runner: macos-latest
+            # renovate: datasource=github-runners depType=github-runner
+            runner: macos-26
           - os-name: linux
-            runner: ubuntu-latest
+            # renovate: datasource=github-runners depType=github-runner
+            runner: ubuntu-24.04
           - os-name: windows
-            runner: windows-latest
+            # renovate: datasource=github-runners depType=github-runner
+            runner: windows-2025
 
     steps:
 
     - name: Checkout code
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       with:
         fetch-depth: 0
         filter: 'tree:0'
         show-progress: false
 
     - name: Setup additional .NET SDKs
-      uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
+      uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
       with:
         dotnet-version: '10.0.x'
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
+      uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
       id: setup-dotnet
 
     - name: Build
@@ -108,7 +111,7 @@ jobs:
 
   validate-packages:
     needs: build-test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
 
     - name: Download packages
@@ -117,7 +120,7 @@ jobs:
         name: packages-windows
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
+      uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
@@ -158,7 +161,7 @@ jobs:
 
   publish-feedz-io:
     needs: [ build-test, validate-packages ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: |
       github.event.repository.fork == false &&
       (github.ref_name == github.event.repository.default_branch || startsWith(github.ref, 'refs/tags/'))
@@ -178,7 +181,7 @@ jobs:
         name: packages-windows
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
+      uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
@@ -199,7 +202,7 @@ jobs:
 
   draft-release:
     needs: [ build-test, validate-packages ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: |
       github.event.repository.fork == false &&
       startsWith(github.ref, 'refs/tags/')

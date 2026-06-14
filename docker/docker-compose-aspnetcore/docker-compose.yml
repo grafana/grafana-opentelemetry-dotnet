@@ -20,11 +20,11 @@ services:
       - OTEL_BSP_SCHEDULE_DELAY=5000
       - OTEL_METRIC_EXPORT_INTERVAL=5000
   redis:
-    image: redis:8.6.2@sha256:832d7785830f3f4b559300e6191fc914b15642c1935252338825cf4332200148
+    image: redis:8.8.0@sha256:0a972391db0b24ec336e35d1bc98b237237e26f82bf5120cf2f6b1688d1df973
     ports:
       - "6379:6379"
   mssql:
-    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:a93989eebfb50ae37ee0bfecfaf03648421859558eef6cbff9dec0db3976f192
+    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:cee0f4db03b5192de777d37a22455949d1c2c230bb48c0a732b88b0933117a72
     ports:
       - "1433:1433"
     environment:
