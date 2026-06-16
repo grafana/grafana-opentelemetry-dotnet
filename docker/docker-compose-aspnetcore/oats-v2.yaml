@@ -1,0 +1,108 @@
+oats: 2
+name: aspnetcore distribution emits expected traces metrics and startup logs
+seed:
+  type: app
+input:
+  - path: /api/Aws/ListBuckets
+  - path: /api/HttpClient/Get
+  - path: /api/HttpClient/GetError
+  - path: /api/MsSql/ServerInfo
+  - path: /api/MsSql/Tables
+  - path: /api/Redis/LeftPush
+  - path: /api/todo/items
+expected:
+  logs:
+    - logql: '{ service_name="aspnetcore" } |~ `Application started.`'
+      match:
+        - match_type: regexp
+          name: Application started
+  metrics:
+    - promql: db_client_operation_duration_seconds_count{}
+      value: '>= 0'
+    - promql: http_client_request_duration_seconds_count{}
+      value: '>= 1'
+    - promql: http_client_request_duration_seconds_count{http_request_method="GET", http_response_status_code="200"}
+      value: '>= 1'
+    - promql: http_server_request_duration_seconds_count{}
+      value: '>= 1'
+  traces:
+    - traceql: '{ resource.process.pid > 0 }'
+      match:
+        - name: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
+      match:
+        - name: GET api/HttpClient/Get
+          attributes:
+            http.request.method: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
+      match:
+        - name: GET api/HttpClient/Get
+          attributes:
+            deployment.environment: production
+            process.runtime.name: .NET
+            service.name: aspnetcore
+            service.version: 1.0.0.0
+            telemetry.distro.name: grafana-opentelemetry-dotnet
+            telemetry.sdk.language: dotnet
+            telemetry.sdk.name: opentelemetry
+        - match_type: regexp
+          attributes:
+            host.name: .+
+            process.runtime.description: .NET.+
+            process.runtime.version: .+
+            telemetry.distro.version: .+
+            telemetry.sdk.version: .+
+    - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
+      match:
+        - name: GET api/HttpClient/GetError
+          attributes:
+            http.request.method: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
+      match:
+        - name: GET
+          attributes:
+            error.type: "500"
+            http.request.method: GET
+            http.response.status_code: "500"
+    - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
+      match:
+        - name: master
+          attributes:
+            db.name: master
+            db.statement: sp_server_info
+            db.system: mssql
+            otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+    - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
+      match:
+        - name: master
+          attributes:
+            db.name: master
+            db.system: mssql
+            otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+    - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
+      match:
+        - name: LPUSH
+          attributes:
+            db.redis.database_index: "0"
+            db.statement: LPUSH
+            db.system: redis
+            server.address: redis
+    - traceql: '{ span.http.route =~ "/api/todo/items/" }'
+      match:
+        - name: main
+          attributes:
+            db.name: main
+            db.system: sqlite
+            otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
+            peer.service: /app/App_Data/TodoApp.db
+    - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
+      match:
+        - name: S3.ListBuckets
+          attributes:
+            otel.library.name: AWSSDK.S3
+            rpc.method: ListBuckets
+            rpc.service: S3
+            rpc.system: aws-api
+        - match_type: regexp
+          attributes:
+            aws.request_id: .+
