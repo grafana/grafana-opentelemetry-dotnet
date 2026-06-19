@@ -27,15 +27,15 @@ expected:
       value: '>= 1'
   traces:
     - traceql: '{ resource.process.pid > 0 }'
-      match:
+      match_spans:
         - name: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
-      match:
+      match_spans:
         - name: GET api/HttpClient/Get
           attributes:
             http.request.method: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
-      match:
+      match_spans:
         - name: GET api/HttpClient/Get
           attributes:
             deployment.environment: production
@@ -53,19 +53,19 @@ expected:
             telemetry.distro.version: .+
             telemetry.sdk.version: .+
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
-      match:
+      match_spans:
         - name: GET api/HttpClient/GetError
           attributes:
             http.request.method: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
-      match:
+      match_spans:
         - name: GET
           attributes:
             error.type: "500"
             http.request.method: GET
             http.response.status_code: "500"
     - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
-      match:
+      match_spans:
         - name: master
           attributes:
             db.name: master
@@ -73,14 +73,14 @@ expected:
             db.system: mssql
             otel.library.name: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
-      match:
+      match_spans:
         - name: master
           attributes:
             db.name: master
             db.system: mssql
             otel.library.name: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
-      match:
+      match_spans:
         - name: LPUSH
           attributes:
             db.redis.database_index: "0"
@@ -88,7 +88,7 @@ expected:
             db.system: redis
             server.address: redis
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
-      match:
+      match_spans:
         - name: main
           attributes:
             db.name: main
@@ -96,7 +96,7 @@ expected:
             otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
             peer.service: /app/App_Data/TodoApp.db
     - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
-      match:
+      match_spans:
         - name: S3.ListBuckets
           attributes:
             otel.library.name: AWSSDK.S3
