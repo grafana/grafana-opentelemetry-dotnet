@@ -33,76 +33,113 @@ expected:
       match_spans:
         - name: GET api/HttpClient/Get
           attributes:
-            http.request.method: GET
+            - key: http.request.method
+              value: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
       match_spans:
         - name: GET api/HttpClient/Get
           attributes:
-            deployment.environment: production
-            process.runtime.name: .NET
-            service.name: aspnetcore
-            service.version: 1.0.0.0
-            telemetry.distro.name: grafana-opentelemetry-dotnet
-            telemetry.sdk.language: dotnet
-            telemetry.sdk.name: opentelemetry
+            - key: deployment.environment
+              value: production
+            - key: process.runtime.name
+              value: .NET
+            - key: service.name
+              value: aspnetcore
+            - key: service.version
+              value: 1.0.0.0
+            - key: telemetry.distro.name
+              value: grafana-opentelemetry-dotnet
+            - key: telemetry.sdk.language
+              value: dotnet
+            - key: telemetry.sdk.name
+              value: opentelemetry
         - match_type: regexp
           attributes:
-            host.name: .+
-            process.runtime.description: .NET.+
-            process.runtime.version: .+
-            telemetry.distro.version: .+
-            telemetry.sdk.version: .+
+            - key: host.name
+              value: .+
+            - key: process.runtime.description
+              value: .NET.+
+            - key: process.runtime.version
+              value: .+
+            - key: telemetry.distro.version
+              value: .+
+            - key: telemetry.sdk.version
+              value: .+
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
       match_spans:
         - name: GET api/HttpClient/GetError
           attributes:
-            http.request.method: GET
+            - key: http.request.method
+              value: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
       match_spans:
         - name: GET
           attributes:
-            error.type: "500"
-            http.request.method: GET
-            http.response.status_code: "500"
+            - key: error.type
+              value: "500"
+            - key: http.request.method
+              value: GET
+            - key: http.response.status_code
+              value: "500"
     - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
       match_spans:
         - name: master
           attributes:
-            db.name: master
-            db.statement: sp_server_info
-            db.system: mssql
-            otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+            - key: db.name
+              value: master
+            - key: db.statement
+              value: sp_server_info
+            - key: db.system
+              value: mssql
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
       match_spans:
         - name: master
           attributes:
-            db.name: master
-            db.system: mssql
-            otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+            - key: db.name
+              value: master
+            - key: db.system
+              value: mssql
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
       match_spans:
         - name: LPUSH
           attributes:
-            db.redis.database_index: "0"
-            db.statement: LPUSH
-            db.system: redis
-            server.address: redis
+            - key: db.redis.database_index
+              value: "0"
+            - key: db.statement
+              value: LPUSH
+            - key: db.system
+              value: redis
+            - key: server.address
+              value: redis
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
       match_spans:
         - name: main
           attributes:
-            db.name: main
-            db.system: sqlite
-            otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
-            peer.service: /app/App_Data/TodoApp.db
+            - key: db.name
+              value: main
+            - key: db.system
+              value: sqlite
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.EntityFrameworkCore
+            - key: peer.service
+              value: /app/App_Data/TodoApp.db
     - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
       match_spans:
         - name: S3.ListBuckets
           attributes:
-            otel.library.name: AWSSDK.S3
-            rpc.method: ListBuckets
-            rpc.service: S3
-            rpc.system: aws-api
+            - key: otel.library.name
+              value: AWSSDK.S3
+            - key: rpc.method
+              value: ListBuckets
+            - key: rpc.service
+              value: S3
+            - key: rpc.system
+              value: aws-api
         - match_type: regexp
           attributes:
-            aws.request_id: .+
+            - key: aws.request_id
+              value: .+
