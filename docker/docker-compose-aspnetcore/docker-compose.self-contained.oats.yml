@@ -23,7 +23,7 @@ services:
       - redis
       - mssql
   redis:
-    image: redis:8.8.0@sha256:8c1a48e2f0a32acc27ae5a292bc8a0ce3f6f1d1b4a124e0fd1344b9ecf1ec3ae
+    image: redis:8.8.0@sha256:6f3d962b7c275df5d1e3bb85aa46ddc7e36924137f11b841d779a1350cda5f80
     ports:
       - "6379:6379"
     healthcheck:
