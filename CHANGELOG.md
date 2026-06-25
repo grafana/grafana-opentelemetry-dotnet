@@ -2,6 +2,147 @@
 
 ## Unreleased version
 
+## 1.9.0
+
+### BREAKING CHANGES
+
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AWS ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Update AWS Semantic Conventions to version 1.40.0.
+    ([#4043](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4043))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Update to version 1.42.0 of the Semantic Conventions.
+    ([#4338](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4338),
+    [#4508](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4508))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Process ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Remove the `process.cpu.count` metric, which was not aligned with semantic
+    conventions. Use the `dotnet.process.cpu.count` metric as a replacement.
+    ([#4088](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4088))
+
+### New features
+
+* Use 1.16.0 of OpenTelemetry.Instrumentation.Http ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add instrumentation scope version and schema URL to metrics and traces.
+    ([#4082](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4082))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.SqlClient ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add native AOT support for .NET 8 and later.
+    ([#4062](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4062))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AspNetCore ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Avoid duplicative work to add tags to traces when they are already natively
+    supported by ASP.NET Core itself (opt-in for ASP.NET Core 10 via an
+    `AppContext` switch).
+    ([#3993](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3993))
+  * Add the instrumentation schema URL to traces when targeting `netstandard2.0`.
+    ([#4066](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4066))
+  * Add support for version 1.41.0 of the Semantic Conventions for RPC/gRPC.
+    ([#4370](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4370))
+  * Update to version 1.42.0 of the Semantic Conventions for RPC/gRPC and emit
+    the gRPC attributes that were missing when non-default propagators are
+    configured.
+    ([#4508](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4508))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AWS ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add instrumentation scope version and schema URL to metrics and traces, and
+    pass AWS attribute values to created meters as tags.
+    ([#4063](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4063))
+  * Capture the SNS `TopicArn` as the `aws.sns.topic.arn` span attribute, add the
+    `cloud.region` attribute to all AWS SDK client spans, and add messaging
+    attributes for AWS SNS and SQS.
+    ([#4043](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4043))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AWSLambda ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add instrumentation scope version and schema URL to traces.
+    ([#4063](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4063))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add instrumentation scope version and schema URL to traces.
+    ([#4338](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4338))
+  * Set the `error.type` attribute to the gRPC status code name on client spans
+    when the call fails.
+    ([#4508](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4508))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Process ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add instrumentation scope version and schema URL to metrics.
+    ([#4088](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4088))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Update the database semantic conventions to align with version 1.42.0 when
+    `OTEL_SEMCONV_STABILITY_OPT_IN` is configured for database scenarios.
+    ([#4519](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4519))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Add support for version 1.42.0 of the Semantic Conventions for RPC when
+    `OTEL_SEMCONV_STABILITY_OPT_IN` is set to `rpc` or `rpc/dup`, and add the
+    instrumentation scope version and schema URL to metrics and traces.
+    ([#4377](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4377))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Update to version 1.41.0 of the HTTP Semantic Conventions, and add the
+    instrumentation scope version and schema URL to metrics and traces.
+    ([#4375](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4375))
+
+### Bug Fixes
+
+* Use 1.16.0 of OpenTelemetry.Instrumentation.Http ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix enrich methods being called multiple times.
+    ([#4018](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4018))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.SqlClient ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix `SqlClientTraceInstrumentationOptions` leaking across multiple tracer
+    provider registrations.
+    ([#4267](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4267))
+  * Fix SQL query text sanitization for malformed bracketed identifiers in `FROM`
+    clauses to avoid leaking following literal values.
+    ([#4317](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4317))
+  * Fix SQL query text sanitization performance for malformed `FROM` clauses with
+    repeated unterminated bracketed identifiers.
+    ([#4339](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4339))
+  * Fix `SqlClientTraceInstrumentationOptions.EnableTraceContextPropagation`
+    behavior when `ActivityTraceFlags.RandomTraceId` is present.
+    ([#4397](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4397))
+  * Fix `db.query.parameter.<key>` attributes to always emit the value as a
+    string.
+    ([#4395](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4395))
+  * Fix `SqlConnectionDetails` to parse PostgreSQL data source URIs correctly.
+    ([#4444](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4444))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AspNet ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix route template token matching so short route parameters no longer throw
+    `IndexOutOfRangeException` during route extraction.
+    ([#4340](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4340))
+  * Fix route template extraction for routes with missing MVC route values or
+    `null` defaults.
+    ([#4344](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4344))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AspNetCore ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix enrichment methods being invoked multiple times during span processing.
+    ([#4015](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4015))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AWS ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix suppression scope leakage when `SuppressDownstreamInstrumentation` is
+    enabled.
+    ([#4304](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4304))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.AWSLambda ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Update `System.Text.Json` for `netstandard2.0` to `8.0.5`.
+    ([#4154](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4154))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix SQL query text sanitization for malformed bracketed identifiers in `FROM`
+    clauses to avoid leaking following literal values.
+    ([#4317](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4317))
+  * Fix SQL query text sanitization performance for malformed `FROM` clauses with
+    repeated unterminated bracketed identifiers.
+    ([#4339](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4339))
+  * Fix `db.query.parameter.<key>` attributes to always emit the value as a
+    string.
+    ([#4395](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4395))
+  * Fix `SqlConnectionDetails` to parse PostgreSQL data source URIs correctly.
+    ([#4444](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4444))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix baggage propagation cleanup so baggage extracted for one job is cleared
+    and the previous ambient baggage is restored after the job completes.
+    ([#4288](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4288))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#591](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/591))
+  * Fix server-side exception recording that could circumvent
+    `IncomingRequestFilter` for filtered faulting requests.
+    ([#4306](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4306))
+  * Fix `ArgumentNullException` thrown by `TelemetryEndpointBehavior` when an
+    endpoint operation has a `null` Action.
+    ([#4026](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4026))
+  * Fix non-session WCF client channels being wrapped in instrumented channel
+    types that incorrectly advertised session support.
+    ([#4368](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4368))
+  * Fix async WCF client operations throwing exceptions when `ExecutionContext`
+    flow was suppressed.
+    ([#4378](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4378))
+
 ## 1.8.0
 
 ### BREAKING CHANGES
