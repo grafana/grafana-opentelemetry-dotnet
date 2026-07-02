@@ -1,0 +1,22 @@
+[meta]
+version = 2
+
+[[suite]]
+name = "docker-compose-aspnetcore-default"
+cases = ["docker/docker-compose-aspnetcore/oats.yaml"]
+fixture = "docker-compose-aspnetcore-default"
+tags = ["traces", "metrics", "logs", "matrix-default"]
+
+[[suite]]
+name = "docker-compose-aspnetcore-self-contained"
+cases = ["docker/docker-compose-aspnetcore/oats.yaml"]
+fixture = "docker-compose-aspnetcore-self-contained"
+tags = ["traces", "metrics", "logs", "matrix-self-contained"]
+
+[fixture.docker-compose-aspnetcore-default]
+type = "compose"
+compose_file = "docker/docker-compose-aspnetcore/docker-compose.oats.yml"
+
+[fixture.docker-compose-aspnetcore-self-contained]
+type = "compose"
+compose_file = "docker/docker-compose-aspnetcore/docker-compose.self-contained.oats.yml"

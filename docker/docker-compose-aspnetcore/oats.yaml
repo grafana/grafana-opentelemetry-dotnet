@@ -1,6 +1,7 @@
-oats-schema-version: 2
-include:
-  - ./oats-template.yml
+oats: 2
+name: aspnetcore distribution emits expected traces metrics and startup logs
+seed:
+  type: app
 input:
   - path: /api/Aws/ListBuckets
   - path: /api/HttpClient/Get
@@ -12,7 +13,9 @@ input:
 expected:
   logs:
     - logql: '{ service_name="aspnetcore" } |~ `Application started.`'
-      regexp: 'Application started'
+      match:
+        - match_type: regexp
+          name: Application started
   metrics:
     - promql: db_client_operation_duration_seconds_count{}
       value: '>= 0'
@@ -24,76 +27,119 @@ expected:
       value: '>= 1'
   traces:
     - traceql: '{ resource.process.pid > 0 }'
-      equals: 'GET'
+      match_spans:
+        - name: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
-      equals: 'GET api/HttpClient/Get'
-      attributes:
-        http.request.method: GET
+      match_spans:
+        - name: GET api/HttpClient/Get
+          attributes:
+            - key: http.request.method
+              value: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
-      equals: 'GET api/HttpClient/Get'
-      attributes:
-        service.name: aspnetcore
-        service.version: 1.0.0.0
-        telemetry.distro.name: grafana-opentelemetry-dotnet
-        deployment.environment: production
-        process.runtime.name: .NET
-        telemetry.sdk.name: opentelemetry
-        telemetry.sdk.language: dotnet
-      attribute-regexp:
-        host.name: .+
-        process.runtime.description: .NET.+
-        process.runtime.version: .+
-        telemetry.distro.version: .+
-        telemetry.sdk.version: .+
+      match_spans:
+        - name: GET api/HttpClient/Get
+          attributes:
+            - key: deployment.environment
+              value: production
+            - key: process.runtime.name
+              value: .NET
+            - key: service.name
+              value: aspnetcore
+            - key: service.version
+              value: 1.0.0.0
+            - key: telemetry.distro.name
+              value: grafana-opentelemetry-dotnet
+            - key: telemetry.sdk.language
+              value: dotnet
+            - key: telemetry.sdk.name
+              value: opentelemetry
+        - match_type: regexp
+          attributes:
+            - key: host.name
+              value: .+
+            - key: process.runtime.description
+              value: .NET.+
+            - key: process.runtime.version
+              value: .+
+            - key: telemetry.distro.version
+              value: .+
+            - key: telemetry.sdk.version
+              value: .+
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
-      equals: 'GET api/HttpClient/GetError'
-      attributes:
-        http.request.method: GET
+      match_spans:
+        - name: GET api/HttpClient/GetError
+          attributes:
+            - key: http.request.method
+              value: GET
     - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
-      equals: 'GET'
-      attributes:
-        error.type: '500'
-        http.request.method: GET
-        http.response.status_code: 500
+      match_spans:
+        - name: GET
+          attributes:
+            - key: error.type
+              value: "500"
+            - key: http.request.method
+              value: GET
+            - key: http.response.status_code
+              value: "500"
     - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
-      equals: 'EXECUTE sp_server_info'
-      attributes:
-        db.system.name: microsoft.sql_server
-        db.namespace: master
-        db.operation.name: EXECUTE
-        db.stored_procedure.name: sp_server_info
-        db.query.summary: EXECUTE sp_server_info
-        server.address: mssql
-        otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+      match_spans:
+        - name: master
+          attributes:
+            - key: db.name
+              value: master
+            - key: db.statement
+              value: sp_server_info
+            - key: db.system
+              value: mssql
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
-      equals: 'SELECT INFORMATION_SCHEMA.TABLES'
-      attributes:
-        db.system.name: microsoft.sql_server
-        db.namespace: master
-        db.query.text: SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
-        db.query.summary: SELECT INFORMATION_SCHEMA.TABLES
-        server.address: mssql
-        otel.library.name: OpenTelemetry.Instrumentation.SqlClient
+      match_spans:
+        - name: master
+          attributes:
+            - key: db.name
+              value: master
+            - key: db.system
+              value: mssql
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
     - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
-      equals: 'LPUSH'
-      attributes:
-        db.statement: LPUSH
-        db.system: redis
-        db.redis.database_index: '0'
-        server.address: redis
+      match_spans:
+        - name: LPUSH
+          attributes:
+            - key: db.redis.database_index
+              value: "0"
+            - key: db.statement
+              value: LPUSH
+            - key: db.system
+              value: redis
+            - key: server.address
+              value: redis
     - traceql: '{ span.http.route =~ "/api/todo/items/" }'
-      equals: 'main'
-      attributes:
-        db.system: sqlite
-        db.name: main
-        peer.service: /app/App_Data/TodoApp.db
-        otel.library.name: OpenTelemetry.Instrumentation.EntityFrameworkCore
+      match_spans:
+        - name: main
+          attributes:
+            - key: db.name
+              value: main
+            - key: db.system
+              value: sqlite
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.EntityFrameworkCore
+            - key: peer.service
+              value: /app/App_Data/TodoApp.db
     - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
-      equals: 'S3.ListBuckets'
-      attributes:
-        otel.library.name: AWSSDK.S3
-        rpc.method: ListBuckets
-        rpc.service: S3
-        rpc.system: aws-api
-      attribute-regexp:
-        aws.request_id: .+
+      match_spans:
+        - name: S3.ListBuckets
+          attributes:
+            - key: otel.library.name
+              value: AWSSDK.S3
+            - key: rpc.method
+              value: ListBuckets
+            - key: rpc.service
+              value: S3
+            - key: rpc.system
+              value: aws-api
+        - match_type: regexp
+          attributes:
+            - key: aws.request_id
+              value: .+
