@@ -2,6 +2,38 @@
 
 ## Unreleased version
 
+## 1.10.0
+
+### BREAKING CHANGES
+
+* Use 1.16.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+  * Update to version 1.42.0 of the Semantic Conventions, renaming the
+    `process.cpu.state` attribute on the `process.cpu.time` metric to `cpu.mode`.
+    ([#4602](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4602))
+
+### New features
+
+* Use 1.16.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+  * Add the `process.uptime` metric, the `process.windows.handle.count` metric
+    (Windows only), and the `process.unix.file_descriptor.count` metric (Linux
+    only).
+    ([#4602](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4602))
+  * Update to version 1.43.0 of the Semantic Conventions and promote the package
+    to a release candidate.
+    ([#4675](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4675))
+* Use 1.16.0-rc.1 of OpenTelemetry.Resources.Process ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+  * Update to version 1.43.0 of the Semantic Conventions and promote the package
+    to a release candidate.
+    ([#4675](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4675))
+* Use 1.16.0 of OpenTelemetry.Instrumentation.Runtime ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.0.0-beta.7 of OpenTelemetry.Instrumentation.Cassandra ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Resources.Container ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Resources.Host ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+* Use 1.16.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#606](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/606))
+
 ## 1.9.0
 
 ### BREAKING CHANGES

@@ -41,11 +41,11 @@
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies">
-    <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.6" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.15.1-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.7" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.16.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.16.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.16.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.15.1-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.16.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.16.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.16.0-beta.1" />
   </ItemGroup>
