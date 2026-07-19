@@ -57,12 +57,12 @@ jobs:
         show-progress: false
 
     - name: Setup .NET 8 SDK
-      uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
       with:
         dotnet-version: '8.0.x'
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
       id: setup-dotnet
 
     - name: Build
@@ -120,7 +120,7 @@ jobs:
         name: packages-windows
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
@@ -181,7 +181,7 @@ jobs:
         name: packages-windows
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
       with:
         dotnet-version: ${{ needs.build-test.outputs.dotnet-sdk-version }}
 
