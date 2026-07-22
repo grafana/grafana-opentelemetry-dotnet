@@ -2,6 +2,111 @@
 
 ## Unreleased version
 
+## 1.11.0
+
+### New features
+
+* Use 1.17.0 of OpenTelemetry ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * The library is now marked as trim and native AOT compatible.
+    ([#7441](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7441))
+  * Add support for a schema URL on `Resource` instances.
+    ([#7472](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7472))
+  * Add the `ExcludedTagKeys` property to `MetricStreamConfiguration` to support
+    excluding specific tag keys from metric streams.
+    ([#7373](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7373))
+  * Add a verbose `OpenTelemetry-Sdk` self-diagnostics event that is emitted when
+    an activity is dropped because its local (in-process) parent is not recorded.
+    ([#7427](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7427))
+  * Replace the vendored copy of `EnvironmentVariablesConfigurationProvider` with
+    a direct dependency on the `Microsoft.Extensions.Configuration.EnvironmentVariables`
+    package. As a result, this distribution no longer references that package
+    explicitly, as it is now provided transitively by OpenTelemetry.
+    ([#7146](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7146))
+* Use 1.17.0 of OpenTelemetry.Api ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * The library is now marked as trim and native AOT compatible.
+    ([#7441](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7441))
+* Use 1.17.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * The library is now marked as trim and native AOT compatible.
+    ([#7441](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7441))
+  * The `Resource` schema URL is now exported on the OTLP `ResourceSpans`,
+    `ResourceMetrics`, and `ResourceLogs` messages.
+    ([#7472](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7472))
+  * Cache pre-serialized metric metadata (`Name`, `Description`, and `Unit`) to
+    avoid re-encoding it on every OTLP metric export.
+    ([#7307](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7307))
+* Use 1.17.0 of OpenTelemetry.Extensions.Hosting ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * The library is now marked as trim and native AOT compatible.
+    ([#7441](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7441))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.AspNet ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.AspNetCore ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.AWS ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * The `cloud.region` attribute is now emitted on AWS SDK client spans for all
+    `SemanticConventionVersion` values.
+    ([#4770](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4770))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.AWSLambda ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+* Use 1.0.0-beta.8 of OpenTelemetry.Instrumentation.Cassandra ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.Http ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.Runtime ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0 of OpenTelemetry.Instrumentation.SqlClient ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+* Use 1.17.0-beta.1 of OpenTelemetry.Resources.Container ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+* Use 1.17.0-beta.1 of OpenTelemetry.Resources.Host ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+* Use 1.17.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+* Use 1.17.0-rc.1 of OpenTelemetry.Resources.Process ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+* Use 1.17.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Add the schema URL to the resource detector.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+
+### Bug Fixes
+
+* Use 1.17.0 of OpenTelemetry ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Fixed a metric point reclaim data race on Arm CPU architectures.
+    ([#7401](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7401))
+  * Fixed a metric storage leak that occurred when meters and instruments were
+    repeatedly created and disposed.
+    ([#7466](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7466))
+* Use 1.17.0 of OpenTelemetry.Api ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Fixed `TraceContextPropagator` to normalize empty `tracestate` header values
+    to `null` when extracting trace context.
+    ([#7407](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7407),
+    [#7433](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7433))
+  * Updated `tracestate` key validation to comply with the W3C Trace Context
+    Level 2 grammar.
+    ([#7469](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7469))
+* Use 1.17.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Fixed `OtlpLogExporter` so `OtlpExporterOptions.ExportProcessorType` and
+    `OtlpExporterOptions.BatchExportProcessorOptions` are respected when
+    `LogRecordExportProcessorOptions` are not configured.
+    ([#7399](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7399))
+  * Fixed the OTLP exporter dropping retryable data instead of saving it to disk
+    when persistent storage retry is enabled and an export exceeds the configured
+    timeout.
+    ([#7447](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7447))
+  * Fixed the OTLP/HTTP exporter silently dropping data, and the OTLP/gRPC
+    exporter logging incorrectly, when an export timed out.
+    ([#7455](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7455))
+* Use 1.17.0-rc.1 of OpenTelemetry.Resources.Process ([#629](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/629))
+  * Fixed `process.creation.time` not being emitted as UTC.
+    ([#4775](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4775))
+
 ## 1.10.1
 
 ### Bug Fixes
