@@ -1,0 +1,161 @@
+name: aspnetcore distribution emits expected traces, metrics, and startup logs
+fixture:
+  compose:
+    file: docker-compose.oats.yml
+    app_service: aspnetcore
+    app_port: 8080
+seed:
+  type: app
+input:
+  - path: /api/Aws/ListBuckets
+  - path: /api/HttpClient/Get
+  - path: /api/HttpClient/GetError
+  - path: /api/MsSql/ServerInfo
+  - path: /api/MsSql/Tables
+  - path: /api/Redis/LeftPush
+  - path: /api/todo/items
+expected:
+  logs:
+    - logql: '{ service_name="aspnetcore" } |~ `Application started.`'
+      match:
+        - match_type: regexp
+          name: Application started
+  metrics:
+    - promql: db_client_operation_duration_seconds_count{}
+      value: '>= 0'
+    - promql: http_client_request_duration_seconds_count{}
+      value: '>= 1'
+    - promql: http_client_request_duration_seconds_count{http_request_method="GET", http_response_status_code="200"}
+      value: '>= 1'
+    - promql: http_server_request_duration_seconds_count{}
+      value: '>= 1'
+  traces:
+    - traceql: '{ resource.process.pid > 0 }'
+      match_spans:
+        - name: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
+      match_spans:
+        - name: GET api/HttpClient/Get
+          attributes:
+            - key: http.request.method
+              value: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/Get" }'
+      match_spans:
+        - name: GET api/HttpClient/Get
+          attributes:
+            - key: deployment.environment
+              value: production
+            - key: process.runtime.name
+              value: .NET
+            - key: service.name
+              value: aspnetcore
+            - key: service.version
+              value: 1.0.0.0
+            - key: telemetry.distro.name
+              value: grafana-opentelemetry-dotnet
+            - key: telemetry.sdk.language
+              value: dotnet
+            - key: telemetry.sdk.name
+              value: opentelemetry
+        - match_type: regexp
+          attributes:
+            - key: host.name
+              value: .+
+            - key: process.runtime.description
+              value: .NET.+
+            - key: process.runtime.version
+              value: .+
+            - key: telemetry.distro.version
+              value: .+
+            - key: telemetry.sdk.version
+              value: .+
+    - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
+      match_spans:
+        - name: GET api/HttpClient/GetError
+          attributes:
+            - key: http.request.method
+              value: GET
+    - traceql: '{ span.http.route =~ "api/HttpClient/GetError" }'
+      match_spans:
+        - name: GET
+          attributes:
+            - key: error.type
+              value: "500"
+            - key: http.request.method
+              value: GET
+            - key: http.response.status_code
+              value: "500"
+    - traceql: '{ span.http.route =~ "api/MsSql/ServerInfo" }'
+      match_spans:
+        - name: EXECUTE sp_server_info
+          attributes:
+            - key: db.namespace
+              value: master
+            - key: db.operation.name
+              value: EXECUTE
+            - key: db.query.summary
+              value: EXECUTE sp_server_info
+            - key: db.stored_procedure.name
+              value: sp_server_info
+            - key: db.system.name
+              value: microsoft.sql_server
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
+            - key: server.address
+              value: mssql
+    - traceql: '{ span.http.route =~ "api/MsSql/Tables" }'
+      match_spans:
+        - name: SELECT INFORMATION_SCHEMA.TABLES
+          attributes:
+            - key: db.namespace
+              value: master
+            - key: db.query.summary
+              value: SELECT INFORMATION_SCHEMA.TABLES
+            - key: db.query.text
+              value: SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+            - key: db.system.name
+              value: microsoft.sql_server
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.SqlClient
+            - key: server.address
+              value: mssql
+    - traceql: '{ span.http.route =~ "api/Redis/LeftPush" }'
+      match_spans:
+        - name: LPUSH
+          attributes:
+            - key: db.redis.database_index
+              value: "0"
+            - key: db.statement
+              value: LPUSH
+            - key: db.system
+              value: redis
+            - key: server.address
+              value: redis
+    - traceql: '{ span.http.route =~ "/api/todo/items/" }'
+      match_spans:
+        - name: main
+          attributes:
+            - key: db.name
+              value: main
+            - key: db.system
+              value: sqlite
+            - key: otel.library.name
+              value: OpenTelemetry.Instrumentation.EntityFrameworkCore
+            - key: peer.service
+              value: /app/App_Data/TodoApp.db
+    - traceql: '{ span.http.route =~ "api/Aws/ListBuckets" }'
+      match_spans:
+        - name: S3.ListBuckets
+          attributes:
+            - key: otel.library.name
+              value: AWSSDK.S3
+            - key: rpc.method
+              value: ListBuckets
+            - key: rpc.service
+              value: S3
+            - key: rpc.system
+              value: aws-api
+        - match_type: regexp
+          attributes:
+            - key: aws.request_id
+              value: .+
