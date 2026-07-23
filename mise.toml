@@ -2,9 +2,6 @@
 "aqua:grafana/gcx" = "v0.5.0"
 "aqua:grafana/oats" = "0.8.0"
 
-[settings]
-experimental = true
-
 [tasks.acceptance-test]
 description = "Run the OATS acceptance tests"
-run = "oats --config oats-config.yaml --container-runtime docker --no-cache --timeout=5m"
+run = "oats --no-cache --timeout 5m ."
