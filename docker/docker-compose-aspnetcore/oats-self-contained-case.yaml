@@ -1,4 +1,4 @@
-name: aspnetcore self-contained distribution emits expected traces, metrics, and startup logs
+name: ASP.NET Core self-contained distribution emits expected traces, metrics, and startup logs
 fixture:
   compose:
     file: docker-compose.self-contained.oats.yml

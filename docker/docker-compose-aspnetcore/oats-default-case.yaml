@@ -1,4 +1,4 @@
-name: aspnetcore distribution emits expected traces, metrics, and startup logs
+name: ASP.NET Core distribution emits expected traces, metrics, and startup logs
 fixture:
   compose:
     file: docker-compose.oats.yml
