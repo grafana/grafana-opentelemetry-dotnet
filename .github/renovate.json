@@ -4,6 +4,7 @@
     "config:best-practices",
     "customManagers:dockerfileVersions",
     "customManagers:githubActionsVersions",
+    "helpers:pinGitHubActionDigestsToSemver",
     ":disableRateLimiting",
     ":enableVulnerabilityAlerts",
     ":gitSignOff",
