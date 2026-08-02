@@ -1,0 +1,6 @@
+meta:
+  version: 3
+
+cases:
+  - docker/docker-compose-aspnetcore/oats-default-case.yaml
+  - docker/docker-compose-aspnetcore/oats-self-contained-case.yaml

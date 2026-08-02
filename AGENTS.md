@@ -31,9 +31,9 @@ dotnet test --framework net10.0 --filter "DisplayName~MyTestName"
 Build output goes to `./artifacts` (`UseArtifactsOutput` is enabled), not per-project `bin/obj`
 package output — built `.nupkg`/`.snupkg` files land in `./artifacts/package/release`.
 
-OATS acceptance tests (end-to-end, require Go and Docker) live under `docker/` and are launched by
-`scripts/run-oats-tests.ps1` / `scripts/run-oats-tests.sh`, which install the `grafana/oats` tool
-and run the compose scenarios.
+OATS acceptance tests (end-to-end, require Mise and Docker) live under `docker/` and are launched with
+`mise run acceptance-test`. Mise installs the pinned `grafana/oats` and `gcx` tools from
+`mise.toml` before running the compose scenarios.
 
 ## Target frameworks and SDK
 
