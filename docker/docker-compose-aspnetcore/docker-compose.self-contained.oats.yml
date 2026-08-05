@@ -20,17 +20,21 @@ services:
       - "5000:8080"
       - "8080:8080" # for OATs
     depends_on:
-      - redis
-      - mssql
+      floci:
+        condition: service_healthy
+      mssql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
   redis:
     image: redis:8.10.0@sha256:39353c6a2f310da333374e1290c91805d15a85def073b5090f58e4ac646d284c
     ports:
       - "6379:6379"
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
-      interval: 1s
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 30
       timeout: 3s
-      retries: 5
   mssql:
     image: mcr.microsoft.com/mssql/server:2025-latest@sha256:86cc6144ef39bb0fbed2329e1ad79b13ee82e7b2e4739213a0db0800e668a74a
     ports:
@@ -38,8 +42,20 @@ services:
     environment:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/1433' || exit 1"]
+      interval: 5s
+      retries: 30
+      timeout: 3s
   floci:
     image: floci/floci:1.5.34@sha256:b3b3a70a294b8ba8095385b8571ea1e4d44d494950d98de5e812cd9de02f506b
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
+    healthcheck:
+      test: >-
+          awslocal s3 list-buckets &&
+          awslocal iam list-users
+      interval: 5s
+      retries: 30
+      timeout: 3s
