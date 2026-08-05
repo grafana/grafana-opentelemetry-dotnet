@@ -7,10 +7,10 @@ services:
       args:
         DOTNET_PUBLISH_ARGS: "/p:BuildDistroFromSource=${BUILD_DISTRO_FROM_SOURCE:-true}"
     environment:
-      - AWS_ACCESS_KEY_ID=localstack
-      - AWS_SECRET_ACCESS_KEY=localstack
+      - AWS_ACCESS_KEY_ID=floci
+      - AWS_SECRET_ACCESS_KEY=floci
       - AWS_REGION=us-east-1
-      - AWS_ENDPOINT_URL_S3=http://localstack:4566
+      - AWS_ENDPOINT_URL_S3=http://floci:4566
       - OTEL_BLRP_SCHEDULE_DELAY=5000
       - OTEL_BSP_SCHEDULE_DELAY=5000
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4317
@@ -19,14 +19,14 @@ services:
       - "5000:8080"
       - "8080:8080" # for OATs
     depends_on:
-      localstack:
+      floci:
         condition: service_healthy
       mssql:
         condition: service_healthy
       redis:
         condition: service_healthy
   redis:
-    image: redis:8.8.1@sha256:c88d347edef6249a6d2293f926f1eeb48bd40c57cbcd02c07f52e7f1fd2cb46b
+    image: redis:8.10.0@sha256:39353c6a2f310da333374e1290c91805d15a85def073b5090f58e4ac646d284c
     ports:
       - "6379:6379"
     healthcheck:
@@ -46,8 +46,8 @@ services:
       interval: 5s
       retries: 30
       timeout: 3s
-  localstack:
-    image: localstack/localstack:4.14.0@sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a
+  floci:
+    image: floci/floci:1.5.34@sha256:b3b3a70a294b8ba8095385b8571ea1e4d44d494950d98de5e812cd9de02f506b
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
