@@ -29,7 +29,7 @@ dotnet test --framework net10.0 --filter "DisplayName~MyTestName"
 ```
 
 Build output goes to `./artifacts` (`UseArtifactsOutput` is enabled), not per-project `bin/obj`
-package output — built `.nupkg`/`.snupkg` files land in `./artifacts/package/release`.
+package output - built `.nupkg`/`.snupkg` files land in `./artifacts/package/release`.
 
 OATS acceptance tests (end-to-end, require Go and Docker) live under `docker/` and are launched by
 `scripts/run-oats-tests.ps1` / `scripts/run-oats-tests.sh`, which install the `grafana/oats` tool
@@ -39,10 +39,10 @@ and run the compose scenarios.
 
 - The libraries multi-target `net10.0;net8.0;netstandard2.0;net462`. The test project targets
   `net10.0;net8.0` plus `net481` on Windows only.
-- `global.json` pins the SDK to `10.0.300` (roll-forward `latestFeature`). CI also installs the
+- `global.json` pins the SDK to `10.0.xxx` (roll-forward `latestFeature`). CI also installs the
   .NET 8 SDK because builds touch `net8.0`.
 - `net8.0`+ builds set `IsAotCompatible`, but the public `UseGrafana` APIs are annotated
-  `RequiresUnreferencedCode` — the distribution does **not** support native AOT, because
+  `RequiresUnreferencedCode` - the distribution does **not** support native AOT, because
   instrumentation is wired up via reflection (see below).
 - `TreatWarningsAsErrors` is on and `Nullable` is **disabled** repo-wide (`Directory.Build.props`).
 
@@ -69,7 +69,7 @@ runtime through reflection rather than direct method calls:
 
 - Each instrumentation is an `InstrumentationInitializer` subclass (e.g. `StackExchangeRedisInitializer`)
   in `Base/Instrumentations/`. Its `InitializeTracing`/`InitializeMetrics` override calls
-  `ReflectionHelper.CallStaticMethod(...)` to invoke the upstream `Add*Instrumentation` extension —
+  `ReflectionHelper.CallStaticMethod(...)` to invoke the upstream `Add*Instrumentation` extension -
   so it no-ops gracefully (logged via `GrafanaOpenTelemetryEventSource`) when the package is absent.
 - `InstrumentationInitializer.Initializers` is the static registry of all initializers; framework
   conditionals (`#if NETFRAMEWORK`, AOT/`RuntimeFeature.IsDynamicCodeSupported` for SqlClient)
