@@ -8,10 +8,10 @@ services:
         DOTNET_PUBLISH_ARGS: "--self-contained true /p:PublishSingleFile=true /p:BuildDistroFromSource=${BUILD_DISTRO_FROM_SOURCE:-true}"
     entrypoint: ./aspnetcore
     environment:
-      - AWS_ACCESS_KEY_ID=localstack
-      - AWS_SECRET_ACCESS_KEY=localstack
+      - AWS_ACCESS_KEY_ID=floci
+      - AWS_SECRET_ACCESS_KEY=floci
       - AWS_REGION=us-east-1
-      - AWS_ENDPOINT_URL_S3=http://localstack:4566
+      - AWS_ENDPOINT_URL_S3=http://floci:4566
       - OTEL_BLRP_SCHEDULE_DELAY=5000
       - OTEL_BSP_SCHEDULE_DELAY=5000
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4317
@@ -23,7 +23,7 @@ services:
       - redis
       - mssql
   redis:
-    image: redis:8.8.0@sha256:0a972391db0b24ec336e35d1bc98b237237e26f82bf5120cf2f6b1688d1df973
+    image: redis:8.10.0@sha256:344e3945a0b431c8ff1eecd58c5573538126bd756f02fc7e218ddf1fc2546366
     ports:
       - "6379:6379"
     healthcheck:
@@ -32,14 +32,14 @@ services:
       timeout: 3s
       retries: 5
   mssql:
-    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:cee0f4db03b5192de777d37a22455949d1c2c230bb48c0a732b88b0933117a72
+    image: mcr.microsoft.com/mssql/server:2025-latest@sha256:4bab24f36c1ecd48e85f7d37df26e6bf301641d84c3fe652f9a0dcc947d512e1
     ports:
       - "1433:1433"
     environment:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
-  localstack:
-    image: localstack/localstack:4.14.0@sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a
+  floci:
+    image: floci/floci:1.6.0@sha256:eab36252ea43a4a73928423f0372219052c5c6f87207f6c4754db14b91d6ed30
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
