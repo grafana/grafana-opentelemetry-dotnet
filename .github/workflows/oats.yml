@@ -60,22 +60,13 @@ jobs:
           name: oats-packages
           path: ./.packages
 
-      - name: Set up Go
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
-        with:
-          cache: false
-          go-version: '1.25'
-
-      - name: Install OATS
-        env:
-          # renovate: datasource=github-releases depName=oats packageName=grafana/oats
-          OATS_VERSION: v0.7.0
-        run: go install "github.com/grafana/oats@${OATS_VERSION}"
+      - name: Set up OATS and gcx
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
 
       - name: Run acceptance tests
         env:
           BUILD_DISTRO_FROM_SOURCE: false
-        run: oats --timeout=5m ./docker/docker-compose-aspnetcore
+        run: mise run acceptance-test
 
       - name: Upload log file
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
