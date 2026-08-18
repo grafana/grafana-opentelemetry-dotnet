@@ -122,3 +122,4 @@ follow it: sentence-case headings, present-tense active voice, address the reade
 (never asterisks) for unordered lists, ordered lists that always start each item with `1.`, use full
 product names ("OpenTelemetry", not "OTel"), and never strip YAML front matter. Refer to that file
 before substantial documentation work.
+- Security issues should be reported via [Grafana's security issue reporting page](https://grafana.com/legal/report-a-security-issue/) and not directly in this repository.
