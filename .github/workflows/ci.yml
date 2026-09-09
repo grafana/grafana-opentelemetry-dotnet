@@ -80,7 +80,7 @@ jobs:
       run: dotnet test --configuration Release --logger:"GitHubActions;report-warnings=false"
 
     - name: Generate SBOM
-      uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+      uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
       if: runner.os == 'Windows'
       with:
         artifact-name: grafana-opentelemetry-dotnet.spdx.json
@@ -250,7 +250,7 @@ jobs:
 
     - name: Get GitHub token
       id: get-token
-      uses: grafana/shared-workflows/actions/create-github-app-token@ae92934a14a48b94494dbc06d74a81d47fe08a40 # v0.2.2
+      uses: grafana/shared-workflows/actions/create-github-app-token@46f48da11e78ebdba7a8747ae456b11062fac83e # create-github-app-token/v0.3.1
       with:
         github_app: grafana-otel-bot
         permission_set: default

@@ -2,6 +2,200 @@
 
 ## Unreleased version
 
+## 1.12.0
+
+### BREAKING CHANGES
+
+* Use 1.18.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * **Breaking:** The maximum size of a single export request is now 64 MiB by
+    default instead of 128 MiB to conform with the OpenTelemetry specification.
+    Raise the value of the `OtlpExporterOptions.MaxRequestSizeBytes` property to
+    increase the capacity.
+    ([#7584](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7584))
+
+### New features
+
+* Use 1.18.0 of OpenTelemetry ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Added the `otel.sdk.processor.log.processed` SDK self-observability metric.
+    ([#7486](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7486))
+  * Added the `otel.sdk.processor.span.processed` SDK self-observability metric.
+    ([#7598](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7598))
+  * `CircularBufferBuckets.Copy` optimized to use bulk array copies.
+    ([#7670](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7670))
+* Use 1.18.0 of OpenTelemetry.Api ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Avoid formatting exceptions and creating exception attributes when
+    `RecordException` is called on a span that is not recorded.
+    ([#7669](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7669))
+* Use 1.18.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Added support for serializing attribute values that are key/value lists
+    (`IEnumerable<KeyValuePair<string, object?>>`) as nested OTLP `kvlist` values.
+    Nesting is limited to a maximum recursion depth of 3; deeper values fall back
+    to their string representation.
+    ([#7015](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7015))
+  * A server-supplied throttle delay (OTLP/gRPC `RetryInfo.retry_delay` or
+    OTLP/HTTP `Retry-After`) is now clamped to a minimum of 100 milliseconds.
+    ([#7583](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7583))
+  * Added `OtlpExporterOptions.MaxResponseSizeBytes` to configure the maximum size
+    of a response the exporter will accept, as required by the OpenTelemetry
+    specification. The default is the recommended 4 MiB. A response exceeding the
+    limit is discarded and treated as a non-retryable failure.
+    ([#7583](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7583))
+  * Improved OTLP log attribute serialization performance by avoiding unnecessary
+    boxing.
+    ([#7645](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7645))
+  * Improved OTLP histogram serialization performance by avoiding a redundant
+    scan of explicit bucket bounds.
+    ([#7647](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7647))
+  * The OTLP exporter will now export logger version if it was specified. Log
+    records are grouped into `ScopeLogs` by logger name and version, so loggers
+    sharing a name but reporting different versions are exported as separate
+    scopes.
+    ([#7636](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7636))
+  * Improved OTLP/gRPC response status handling performance by avoiding
+    unnecessary header enumeration on .NET 8+.
+    ([#7659](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7659))
+  * Added `OtlpExporterOptions.MaxRequestSizeBytes` to configure the OTLP request
+    size limit, as required by the OpenTelemetry specification. The default is
+    the recommended 64 MiB. A batch whose serialized payload exceeds the limit is
+    not sent and is dropped in its entirety. The maximum supported value is
+    256 MiB.
+    ([#7584](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7584))
+* Use 1.18.0 of OpenTelemetry.Extensions.Hosting ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Add a new `ITelemetryHostInitializer` interface for applications that do not
+    support hosted services, such as Blazor, to use to manually initialize the
+    OpenTelemetry SDK as part of application startup.
+    ([#7641](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7641))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.AspNetCore ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.AWS ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.AWSLambda ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Query string values in the `url.query` and `http.target` span attributes are
+    now redacted by default for HTTP triggered functions, consistent with the
+    other OpenTelemetry HTTP instrumentations. Redaction can be disabled by
+    setting the `OTEL_DOTNET_EXPERIMENTAL_AWS_LAMBDA_DISABLE_URL_QUERY_REDACTION`
+    environment variable to `true`.
+    ([#4859](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4859))
+* Use 1.0.0-beta.9 of OpenTelemetry.Instrumentation.Cassandra ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Skip unnecessary OWIN processing when tracing is not enabled.
+    ([#4919](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4919))
+* Use 1.18.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.Runtime ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Use a direct call for the GC pause duration metric, instead of reflection,
+    to improve trimming and NativeAOT compatibility.
+    ([#4904](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4904))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.SqlClient ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Updated Semantic Conventions version to
+    [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/db/sql-server.md).
+    ([#4625](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4625))
+  * Add the `db.response.returned_rows` attribute to the spans for commands
+    executed with `ExecuteNonQuery()` or `ExecuteScalar()` when the
+    `OTEL_DOTNET_EXPERIMENTAL_SQLCLIENT_ENABLE_RECORD_RETURNED_ROWS` environment
+    variable is set to `true`. The value is derived from the SqlClient
+    connection statistics. Not supported on .NET Framework.
+    ([#4625](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4625))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Resources.Container ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Resources.Host ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-rc.1 of OpenTelemetry.Resources.Process ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+* Use 1.18.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+
+### Bug Fixes
+
+* Use 1.18.0 of OpenTelemetry ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed self-diagnostics log lines being silently dropped when an event message
+    or parameter contained enough 3-byte UTF-8 characters to overflow the internal
+    buffer estimate. Such content is now truncated.
+    ([#7543](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7543))
+  * Fixed activity creation throwing when multiple tracer providers return a
+    sampler attribute with the same key.
+    ([#7558](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7558))
+  * `BatchActivityExportProcessor` and `SimpleActivityExportProcessor` no longer
+    forward spans to the exporter once `Shutdown` has been called, and
+    `BatchActivityExportProcessor.Shutdown` now waits for in-flight `OnEnd` calls
+    to finish enqueueing before flushing.
+    ([#7598](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7598))
+  * Fix logger, meter and tracer providers leaking background threads if an
+    exception is thrown by their constructor after resource creation.
+    ([#7615](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7615))
+  * Restored configured `MaxScale` after delta exponential histogram collection.
+    ([#7671](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7671))
+* Use 1.18.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed `UseOtlpExporter` to respect options configured through
+    `services.Configure<OtlpExporterOptions>(...)`.
+    ([#7540](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7540))
+  * Clamped the server-supplied OTLP/gRPC retry delay (`RetryInfo.retry_delay`)
+    to a non-negative value. A negative delay previously caused the telemetry
+    batch to be dropped.
+    ([#7544](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7544))
+  * Fixed serialization failures leaving failed trace, metric, and log batches in
+    the serializer's per-thread state. For logs, this also leaked pooled instances.
+    ([#7579](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7579))
+  * Fixed the persistent-storage retry thread terminating permanently on an
+    unexpected exception, which silently disabled `disk` retry for the remaining
+    process lifetime while stored telemetry continued to accumulate and then
+    expire.
+    ([#7597](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7597))
+  * Fixed the OTLP exporter from retrying certain non-transient HTTP failures.
+    ([#7600](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7600))
+  * Fixed persistent storage allowing a blob write to exceed the configured
+    maximum storage size.
+    ([#7646](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7646))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.AspNet ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed duplicate `http.server.request.duration` metric recording for requests
+    that end with an unhandled exception while tracing is disabled.
+    ([#4902](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4902))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed query sanitization so that a `)` inside a value or a comment in an
+    `IN (...)` clause no longer causes the values which follow it to be left
+    unsanitized.
+    ([#4929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4929))
+  * Fixed query sanitization so that literals are still redacted after the
+    `db.query.summary` length limit is reached.
+    ([#4929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4929))
+  * Handle `CommandCanceled` to properly stop the `Activity`.
+    ([#5015](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5015))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.Http ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed duplicate `traceparent` header injection when only propagation is
+    enabled and a filtered request is redirected on .NET Framework.
+    ([#4917](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4917))
+  * Preserve the original request start timestamp when recording
+    `http.client.request.duration` for asynchronous .NET Framework
+    `HttpWebRequest` calls.
+    ([#5000](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5000))
+* Use 1.18.0 of OpenTelemetry.Instrumentation.SqlClient ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Fixed query sanitization so that a `)` inside a value or a comment in an
+    `IN (...)` clause no longer causes the values which follow it to be left
+    unsanitized.
+    ([#4929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4929))
+  * Fixed query sanitization so that literals are still redacted after the
+    `db.query.summary` length limit is reached.
+    ([#4929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4929))
+  * Fixed the `db.client.operation.duration` metric reporting an incorrect
+    duration for commands which are not recorded as spans.
+    ([#4625](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4625))
+* Use 1.18.0-beta.1 of OpenTelemetry.Instrumentation.StackExchangeRedis ([#673](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/673))
+  * Validate `FlushInterval` to prevent out-of-range values and zero-interval
+    spin loops.
+    ([#4860](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4860))
+  * Fixed exceptions thrown from a user-supplied `Enrich` callback preventing
+    the `Activity` from being stopped.
+    ([#4900](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4900))
+  * Fixed exceptions thrown by Redis profiler callbacks after instrumentation
+    is disposed.
+    ([#4905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4905))
+  * Fixed `Baggage.Current` being empty in samplers, processors and the
+    `Filter` and `Enrich` callbacks for Redis command activities.
+    ([#4927](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4927))
+  * Fixed the Redis command drain thread inheriting the execution context of
+    the thread that created the instrumentation, which leaked that context's
+    baggage onto every Redis command activity.
+    ([#4927](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/4927))
+
 ## 1.11.0
 
 ### New features
