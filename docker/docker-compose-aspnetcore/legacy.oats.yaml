@@ -3,12 +3,19 @@ include:
   - ./oats-template.yml
 input:
   - path: /api/Aws/ListBuckets
+    retry: {}
   - path: /api/HttpClient/Get
+    retry: {}
   - path: /api/HttpClient/GetError
+    retry: {}
   - path: /api/MsSql/ServerInfo
+    retry: {}
   - path: /api/MsSql/Tables
+    retry: {}
   - path: /api/Redis/LeftPush
+    retry: {}
   - path: /api/todo/items
+    retry: {}
 expected:
   logs:
     - logql: '{ service_name="aspnetcore" } |~ `Application started.`'
