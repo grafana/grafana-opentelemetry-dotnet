@@ -54,6 +54,7 @@
     ([#5180](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5180))
 * Use 1.0.0-beta.10 of OpenTelemetry.Instrumentation.Cassandra ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0 of OpenTelemetry.Instrumentation.Http ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
