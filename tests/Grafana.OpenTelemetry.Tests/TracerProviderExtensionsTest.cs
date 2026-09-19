@@ -17,6 +17,14 @@ namespace Grafana.OpenTelemetry.Tests
     {
         private static readonly ActivitySource activitySource = new(typeof(TracerProviderExtensionsTest).Name);
 
+#if NET8_0
+        // HACK Workaround for https://github.com/open-telemetry/opentelemetry-dotnet/issues/7787
+        static TracerProviderExtensionsTest()
+        {
+            AppContext.SetData("REGEX_NONBACKTRACKING_MAX_AUTOMATA_SIZE", 10000);
+        }
+#endif
+
         [Fact]
         public void EnableDefaultInstrumentations()
         {
