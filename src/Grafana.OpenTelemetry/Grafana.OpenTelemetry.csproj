@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup Label="Stable instrumentation packages with dependencies">
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.19.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWS" Version="1.19.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AWSLambda" Version="1.19.1" />
   </ItemGroup>
 
   <ItemGroup Label="Stable instrumentation packages with dependencies, only .NET Framework" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' == '.NETFramework' ">
@@ -42,12 +42,12 @@
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies">
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" Version="1.0.0-beta.10" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.19.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.ElasticsearchClient" Version="1.19.1-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.19.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Hangfire" Version="1.19.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Quartz" Version="1.19.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.19.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.19.0-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Wcf" Version="1.19.1-beta.1" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET Framework" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' == '.NETFramework' ">

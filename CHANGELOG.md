@@ -40,8 +40,8 @@
     `IServiceCollection` can contribute configuration sources during setup.
     ([#7723](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7723))
 * Use 1.19.0 of OpenTelemetry.Instrumentation.AspNetCore ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0 of OpenTelemetry.Instrumentation.AWS ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0 of OpenTelemetry.Instrumentation.AWSLambda ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Instrumentation.AWS ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Instrumentation.AWSLambda ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * The `faas.trigger` span attribute is now set to `pubsub` for functions
     triggered by SQS or SNS events, instead of `other`.
     ([#5146](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5146))
@@ -53,23 +53,23 @@
     event.
     ([#5180](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5180))
 * Use 1.0.0-beta.10 of OpenTelemetry.Instrumentation.Cassandra ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Instrumentation.ElasticsearchClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Instrumentation.GrpcNetClient ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0 of OpenTelemetry.Instrumentation.Http ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.Quartz ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
 * Use 1.19.0 of OpenTelemetry.Instrumentation.Runtime ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
-* Use 1.19.0-beta.1 of OpenTelemetry.Resources.Container ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Instrumentation.Wcf ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Resources.Container ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Added the `container.runtime.name` attribute, detected from the Docker
     (`/.dockerenv`) or Podman (`/run/.containerenv`) marker files.
     ([#5144](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5144))
   * Updated Semantic Conventions version to
     [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0).
     ([#5240](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5240))
-* Use 1.19.0-beta.1 of OpenTelemetry.Resources.Host ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Resources.Host ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Added the `host.ip` and `host.mac` resource attributes, emitted when the
     `OTEL_DOTNET_EXPERIMENTAL_HOST_RESOURCE_ENABLE_NETWORK_ADDRESSES`
     environment variable is set to `true`.
@@ -77,15 +77,15 @@
   * Updated Semantic Conventions version to
     [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/resource/host.md).
     ([#5172](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5172))
-* Use 1.19.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Updated Semantic Conventions version to
     [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0).
     ([#5240](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5240))
-* Use 1.19.0-rc.1 of OpenTelemetry.Resources.Process ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-rc.1 of OpenTelemetry.Resources.Process ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Updated Semantic Conventions version to
     [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0).
     ([#5240](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5240))
-* Use 1.19.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Updated Semantic Conventions version to
     [v1.44.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0).
     ([#5240](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5240))
