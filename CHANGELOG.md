@@ -6,7 +6,7 @@
 
 ### New features
 
-* Use 1.19.0 of OpenTelemetry ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Added Schema URL to internally created `Resource` instances.
     ([#7726](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7726))
   * Reduced allocations when formatting self-diagnostics events with up to
@@ -17,20 +17,20 @@
   * Improved wildcard source/meter name matching to avoid excessive matching
     time at runtime.
     ([#7760](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7760))
-* Use 1.19.0 of OpenTelemetry.Api ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Api ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Reduced allocations when creating log record attributes from an array.
     ([#7699](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7699))
   * Reduced allocations when setting baggage through the `params` overload.
     ([#7697](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7697))
   * Reduced allocations when constructing `SpanAttributes` from an array.
     ([#7698](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7698))
-* Use 1.19.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Extended key/value list attribute serialization to cover additional
     dictionary shapes (`IEnumerable<KeyValuePair<string, string?>>` and
     `IDictionary`). These attributes will be serialized as nested OTLP
     `kvlist` values.
     ([#7679](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7679))
-* Use 1.19.0 of OpenTelemetry.Extensions.Hosting ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Extensions.Hosting ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Added an `AddOpenTelemetry` extension method for `IHostApplicationBuilder`.
     It registers the OpenTelemetry SDK services and additionally seeds
     `service.name` from `IHostEnvironment.ApplicationName` and
@@ -92,19 +92,24 @@
 
 ### Bug Fixes
 
-* Use 1.19.0 of OpenTelemetry ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Fixed `CircularBufferBuckets` so the first delta histogram insertion after a
     reset does not result in an unnecessary scale reduction.
     ([#7749](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7749))
   * Fixed lazy logger provider builds after a failure from reusing partially
     initialized provider state.
     ([#7761](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7761))
-* Use 1.19.0 of OpenTelemetry.Api ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+  * Fixed `NotSupportedException` thrown when building a `TracerProvider` or
+    `MeterProvider` with a large number of wildcard source/meter patterns on
+    `net8.0`, and a related   `OutOfMemoryException` that could occur when many
+    such providers were built over the lifetime of a process.
+    ([#7788](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7788))
+* Use 1.19.1 of OpenTelemetry.Api ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * Fixed parsing of an inbound `tracestate` header whose member value trimmed
     to an empty value that previously threw an `IndexOutOfRangeException`
     internally and could silently truncate the tracestate.
     ([#7756](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7756))
-* Use 1.19.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
+* Use 1.19.1 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#703](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/703))
   * If an exception is thrown when serializing an attribute, the attribute
     will now be dropped instead of failing the whole export.
     ([#7688](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7688))
