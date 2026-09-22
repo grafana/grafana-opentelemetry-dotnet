@@ -37,9 +37,10 @@ namespace Grafana.OpenTelemetry.Tests
                 .AddSource(activitySource.Name)
                 .Build();
 
-            using var span = activitySource.StartActivity("root");
-            span.Stop();
-            span.Dispose();
+            using (var span = activitySource.StartActivity("root"))
+            {
+                span.Stop();
+            }
 
             var activity = Assert.Single(spans);
 
@@ -154,32 +155,39 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ServiceNameEnvVarName, "service-name");
 
-            var spans = new List<(Activity, Resource)>();
-
-            Sdk
-                .CreateTracerProviderBuilder()
-                .UseGrafana()
-                .AddProcessor(new SimpleActivityExportProcessor(new InMemoryResourceExporter<Activity>(spans)))
-                .AddSource(activitySource.Name)
-                .Build();
-
-            using var span = activitySource.StartActivity("root");
-            span.Stop();
-            span.Dispose();
-
-            var activity = Assert.Single(spans);
-
-            var resourceTags = new Dictionary<string, string>();
-
-            foreach (var tag in activity.Item2.Attributes)
+            try
             {
-                if (tag.Value is string val)
-                {
-                    resourceTags.Add(tag.Key, val);
-                }
-            }
+                var spans = new List<(Activity, Resource)>();
 
-            Assert.Equal("service-name", resourceTags["service.name"]);
+                Sdk
+                    .CreateTracerProviderBuilder()
+                    .UseGrafana()
+                    .AddProcessor(new SimpleActivityExportProcessor(new InMemoryResourceExporter<Activity>(spans)))
+                    .AddSource(activitySource.Name)
+                    .Build();
+
+                using var span = activitySource.StartActivity("root");
+                span.Stop();
+                span.Dispose();
+
+                var activity = Assert.Single(spans);
+
+                var resourceTags = new Dictionary<string, string>();
+
+                foreach (var tag in activity.Item2.Attributes)
+                {
+                    if (tag.Value is string val)
+                    {
+                        resourceTags.Add(tag.Key, val);
+                    }
+                }
+
+                Assert.Equal("service-name", resourceTags["service.name"]);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ServiceNameEnvVarName, null);
+            }
         }
     }
 }

@@ -48,16 +48,23 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "CustomEnv");
 
-            var settings = new GrafanaOpenTelemetrySettings();
-            var resource = new GrafanaOpenTelemetryResourceDetector(settings).Detect();
-            var resourceAttributes = new Dictionary<string, object>();
-
-            foreach (var attribute in resource.Attributes)
+            try
             {
-                resourceAttributes[attribute.Key] = attribute.Value;
-            }
+                var settings = new GrafanaOpenTelemetrySettings();
+                var resource = new GrafanaOpenTelemetryResourceDetector(settings).Detect();
+                var resourceAttributes = new Dictionary<string, object>();
 
-            Assert.Equal("customenv", resourceAttributes["deployment.environment"]);
+                foreach (var attribute in resource.Attributes)
+                {
+                    resourceAttributes[attribute.Key] = attribute.Value;
+                }
+
+                Assert.Equal("customenv", resourceAttributes["deployment.environment"]);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", null);
+            }
         }
     }
 }
