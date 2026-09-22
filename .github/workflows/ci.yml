@@ -69,7 +69,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Test
-      run: dotnet test --configuration Release --logger:"GitHubActions;report-warnings=false"
+      run: dotnet test --configuration Release --report-github
 
     - name: Generate SBOM
       uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
