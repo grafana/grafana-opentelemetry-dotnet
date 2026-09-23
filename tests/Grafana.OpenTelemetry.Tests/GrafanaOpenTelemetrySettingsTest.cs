@@ -16,6 +16,8 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ServiceNameEnvVarName, null);
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
         }
 
         [Fact(Skip = "provider builders crashes on enabling AWSLambda instrumentation by default")]
@@ -45,12 +47,17 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, "Process,NetRuntime");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
-            Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+                Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
+                Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -58,12 +65,17 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, "Process:NetRuntime");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
-            Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+                Assert.DoesNotContain(Instrumentation.Process, settings.Instrumentations);
+                Assert.DoesNotContain(Instrumentation.NetRuntime, settings.Instrumentations);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableInstrumentationsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -71,12 +83,17 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Host,Process");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
-            Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+                Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
+                Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -84,12 +101,17 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Host:Process");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
-            Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+                Assert.DoesNotContain(ResourceDetector.Host, settings.ResourceDetectors);
+                Assert.DoesNotContain(ResourceDetector.Process, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -97,12 +119,17 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.Single(settings.ResourceDetectors);
-            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+                Assert.Single(settings.ResourceDetectors);
+                Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -110,13 +137,18 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container,Process");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.Equal(2, settings.ResourceDetectors.Count);
-            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
-            Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+                Assert.Equal(2, settings.ResourceDetectors.Count);
+                Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+                Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -124,13 +156,18 @@ namespace Grafana.OpenTelemetry.Tests
         {
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Container:Process");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.Equal(2, settings.ResourceDetectors.Count);
-            Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
-            Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+                Assert.Equal(2, settings.ResourceDetectors.Count);
+                Assert.Contains(ResourceDetector.Container, settings.ResourceDetectors);
+                Assert.Contains(ResourceDetector.Process, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
@@ -139,13 +176,18 @@ namespace Grafana.OpenTelemetry.Tests
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, "Host,Container");
             Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, "Container");
 
-            var settings = new GrafanaOpenTelemetrySettings();
+            try
+            {
+                var settings = new GrafanaOpenTelemetrySettings();
 
-            Assert.Single(settings.ResourceDetectors);
-            Assert.Contains(ResourceDetector.Host, settings.ResourceDetectors);
-
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
-            Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+                Assert.Single(settings.ResourceDetectors);
+                Assert.Contains(ResourceDetector.Host, settings.ResourceDetectors);
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.ResourceDetectorsEnvVarName, null);
+                Environment.SetEnvironmentVariable(GrafanaOpenTelemetrySettings.DisableResourceDetectorsEnvVarName, null);
+            }
         }
 
         [Fact]
