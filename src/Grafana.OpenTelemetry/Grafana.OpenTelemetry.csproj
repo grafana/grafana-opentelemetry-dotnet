@@ -23,7 +23,7 @@
   <!-- This dependency is pulled in by `OpenTelemetry.Instrumentation.Cassandra` with a minimum
        version of 3.17.0. We change this to 3.22.0 to add support for tracing. -->
   <ItemGroup>
-    <PackageReference Include="CassandraCSharpDriver" Version="[3.22.0,)" />
+    <PackageReference Include="CassandraCSharpDriver" Version="[3.23.0,)" />
   </ItemGroup>
 
   <ItemGroup Label="Stable instrumentation packages with dependencies">
