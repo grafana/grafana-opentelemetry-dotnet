@@ -136,7 +136,7 @@
     `server.port` values for recently seen `Host` header values and making
     route-based span display name lookups cheaper.
     ([#5467](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5467))
-* Use 1.20.0 of OpenTelemetry.Instrumentation.AWS ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
+* Use 1.20.1 of OpenTelemetry.Instrumentation.AWS ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
 * Use 1.0.0-beta.11 of OpenTelemetry.Instrumentation.Cassandra ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
 * Use 1.20.0-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
 * Use 1.20.0-beta.1 of OpenTelemetry.Instrumentation.Owin ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
@@ -267,7 +267,7 @@
     the metric is only fixed when the `MeterProvider` is registered with the
     application's service collection.
     ([#5458](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5458))
-* Use 1.20.0 of OpenTelemetry.Instrumentation.AWSLambda ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
+* Use 1.20.1 of OpenTelemetry.Instrumentation.AWSLambda ([#749](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/749))
   * Fixed multiple invocations that start concurrently in a new execution
     environment being recorded as `faas.coldstart` as `true`.
     ([#5433](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5433))
