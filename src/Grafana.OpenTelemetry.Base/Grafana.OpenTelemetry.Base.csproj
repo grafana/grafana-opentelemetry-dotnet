@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup Label="Stable Instrumentation Packages">
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.19.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.19.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.20.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.20.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.20.0" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages">
