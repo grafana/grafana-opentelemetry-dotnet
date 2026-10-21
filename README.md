@@ -86,7 +86,6 @@ This project utilizes the [self-diagnostics feature of the .NET OpenTelemetry SD
 
 The quickest and easiest way to enable self-diagnostics is with environment variables:
 
-```sh
 # Write to rolling log files in ./otel-logs
 OTEL_DOTNET_SELF_DIAGNOSTICS_LOG_DIRECTORY=./otel-logs
 
