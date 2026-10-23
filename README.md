@@ -84,6 +84,28 @@ documents:
 
 This project utilizes the [self-diagnostics feature of the .NET OpenTelemetry SDK][self-diagnostics].
 
+The quickest and easiest way to enable self-diagnostics is with environment variables:
+
+```text
+# Write to rolling log files in ./otel-logs
+OTEL_DOTNET_SELF_DIAGNOSTICS_LOG_DIRECTORY=./otel-logs
+
+# Or write to stdout and stderr instead
+OTEL_DOTNET_SELF_DIAGNOSTICS_SINKS=stdout,stderr
+
+# Set the log level for self-diagnostics
+OTEL_LOG_LEVEL=debug
+```
+
+To disable self-diagnostics, unset the above environment variables.
+
+For more information see the upstream [self-diagnostics documentation][self-diagnostics].
+
+> [!NOTE]
+> Environment variables are only supported in version 1.20.0 (and later) of the
+> OpenTelemetry SDK and version 1.14.0 (and later) of the Grafana OpenTelemetry
+> .NET SDK. In earlier versions, self-diagnostics can be enabled as described below.
+
 To enable self-diagnostics, go to the [current working directory][working-dir] of
 your process and create a configuration file named `OTEL_DIAGNOSTICS.json` with
 the following content:
