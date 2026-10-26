@@ -15,7 +15,7 @@ permissions: {}
 jobs:
 
   package:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -41,7 +41,7 @@ jobs:
         if-no-files-found: error
 
   acceptance-tests:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: package
     timeout-minutes: 20
 
@@ -61,7 +61,7 @@ jobs:
           path: ./.packages
 
       - name: Set up OATS and gcx
-        uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
+        uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5.2.2
 
       - name: Run acceptance tests
         env:
