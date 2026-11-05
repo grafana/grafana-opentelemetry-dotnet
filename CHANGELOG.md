@@ -22,6 +22,9 @@
     `HangfireMetricsInstrumentationOptions`. Use them to add custom attributes to
     the metrics and to count jobs in custom Hangfire states.
     ([#5810](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5810))
+* Use 1.20.2 of OpenTelemetry.Instrumentation.Http ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
 * Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Owin ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Updated Semantic Conventions version to `1.45.0`.
     ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
@@ -51,6 +54,11 @@
     the time of other measurements of this instrumentation, for example the
     database query that `RecordQueueLatency` adds.
     ([#5810](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5810))
+* Use 1.20.2 of OpenTelemetry.Instrumentation.Http ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed an issue on .NET Framework where an asynchronous `HttpWebRequest`
+    (including `HttpClient`) that waited for a free connection could be sent with
+    the trace context and baggage of another request.
+    ([#5873](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5873))
 * Use 1.20.1-beta.2 of OpenTelemetry.Instrumentation.Wcf ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Fixed an issue where a late reply or the telemetry timeout for a failed
     outgoing duplex request could stop the client activity a second time and
