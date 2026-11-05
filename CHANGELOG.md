@@ -17,6 +17,11 @@
 * Use 1.20.3 of OpenTelemetry.Instrumentation.AspNet ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Updated Semantic Conventions version to `1.45.0`.
     ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Added `EnrichWithBackgroundJob` and `CustomStateMappings` to
+    `HangfireMetricsInstrumentationOptions`. Use them to add custom attributes to
+    the metrics and to count jobs in custom Hangfire states.
+    ([#5810](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5810))
 * Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Owin ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Updated Semantic Conventions version to `1.45.0`.
     ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
@@ -34,6 +39,18 @@
   * Fixed `server.address` and `server.port` not being recorded correctly for HTTP
     requests with an IPv6 address in the `Host` header (e.g. `[::1]:8080`).
     ([#5788](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5788))
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed failed jobs exporting the exception message as the span status
+    description. The message is now only recorded when `RecordException` is
+    enabled.
+    ([#5884](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5884))
+  * Fixed baggage from a job being visible to work started by other jobs
+    performed on the same worker.
+    ([#5886](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5886))
+  * Fixed `workflow.execution.duration` for the `executing` state. It included
+    the time of other measurements of this instrumentation, for example the
+    database query that `RecordQueueLatency` adds.
+    ([#5810](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5810))
 * Use 1.20.1-beta.2 of OpenTelemetry.Instrumentation.Wcf ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Fixed an issue where a late reply or the telemetry timeout for a failed
     outgoing duplex request could stop the client activity a second time and
