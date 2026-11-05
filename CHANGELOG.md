@@ -2,6 +2,61 @@
 
 ## Unreleased version
 
+## 1.14.1
+
+### BREAKING CHANGES
+
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Owin ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * **Breaking Change**: The `http.server.request.duration` metric no longer
+    includes the `http.request.method_original` tag, and records only the
+    normalized `http.request.method`.
+    ([#5880](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5880))
+
+### New features
+
+* Use 1.20.3 of OpenTelemetry.Instrumentation.AspNet ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Owin ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+
+### Bug Fixes
+
+* Use 1.20.3 of OpenTelemetry.Instrumentation.AspNet ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed `http.route` and the span name containing the `controller` and `action`
+    values from the request URL for conventional MVC and WebAPI routes. The names
+    are now only used once a request for them has completed successfully, otherwise
+    the `{controller}` and `{action}` tokens of the route template are reported.
+    ([#5858](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5858))
+* Use 1.20.3 of OpenTelemetry.Instrumentation.AWS ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+* Use 1.20.3 of OpenTelemetry.Instrumentation.AWSLambda ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed `server.address` and `server.port` not being recorded correctly for HTTP
+    requests with an IPv6 address in the `Host` header (e.g. `[::1]:8080`).
+    ([#5788](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5788))
+* Use 1.20.1-beta.2 of OpenTelemetry.Instrumentation.Wcf ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed an issue where a late reply or the telemetry timeout for a failed
+    outgoing duplex request could stop the client activity a second time and
+    record reply data on it.
+    ([#5791](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5791))
+  * Fixed an `ArgumentOutOfRangeException` from the telemetry timeout timer,
+    which could terminate the process, for outgoing duplex requests with a send
+    timeout longer than about 49 days, such as `TimeSpan.MaxValue`.
+    ([#5841](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5841))
+  * Fixed exceptions thrown while completing timed out outgoing duplex requests
+    escaping the timeout timer's thread, where they could terminate the process.
+    They are now reported through the `OpenTelemetry-Instrumentation-Wcf` event
+    source.
+    ([#5841](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5841))
+  * Fixed outgoing duplex requests that never received a reply, and their
+    activities, being tracked indefinitely when their channel was closed,
+    aborted or faulted. They are now completed when the channel goes away.
+    ([#5841](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5841))
+  * Fixed an issue where outgoing requests that share an
+    `HttpRequestMessageProperty` instance leaked `traceparent`, `tracestate` and
+    `baggage` HTTP headers from one call to later calls.
+    ([#5860](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5860))
+
 ## 1.14.0
 
 ### BREAKING CHANGES
