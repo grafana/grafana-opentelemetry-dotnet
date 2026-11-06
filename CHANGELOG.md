@@ -17,6 +17,27 @@
 * Use 1.20.3 of OpenTelemetry.Instrumentation.AspNet ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Updated Semantic Conventions version to `1.45.0`.
     ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Updated database Semantic Conventions to version `1.45.0` when
+    `OTEL_SEMCONV_STABILITY_OPT_IN` includes `database` or `database/dup`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+  * `db.query.summary` now captures delimited identifiers (for example
+    `[Orders]`) wherever undelimited identifiers are captured, not only after
+    `FROM`.
+    ([#5816](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5816))
+  * `db.query.summary` now captures multi-part names that mix delimited and
+    undelimited parts or contain whitespace around periods. Span names may change
+    as a result.
+    ([#5822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5822))
+  * `db.query.summary` now includes the table name for `TRUNCATE` statements,
+    with or without `TABLE`.
+    ([#5822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5822))
+  * Sanitized SQL statements longer than 8192 characters are no longer cached.
+    ([#5869](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5869))
+  * Extended login and user name redaction to more `CREATE`, `ALTER`, `DROP`,
+    MySQL account list and `RENAME USER` forms, and redacted Oracle passwords in
+    `IDENTIFIED BY` and `REPLACE` clauses and Teradata `PASSWORD =` values.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
 * Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Added `EnrichWithBackgroundJob` and `CustomStateMappings` to
     `HangfireMetricsInstrumentationOptions`. Use them to add custom attributes to
@@ -28,6 +49,29 @@
 * Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Owin ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Updated Semantic Conventions version to `1.45.0`.
     ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.20.2 of OpenTelemetry.Instrumentation.SqlClient ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+  * `db.query.summary` now captures delimited identifiers (for example
+    `[Orders]`) wherever undelimited identifiers are captured, not only after
+    `FROM`.
+    ([#5816](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5816))
+  * `db.query.summary` now captures multi-part names that mix delimited and
+    undelimited parts or contain whitespace around periods, and trailing periods
+    are removed from summaries. Span names may change as a result.
+    ([#5822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5822))
+  * `db.query.summary` now includes the table name for `TRUNCATE` statements,
+    with or without `TABLE`.
+    ([#5822](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5822))
+  * Sanitized SQL statements longer than 8192 characters are no longer cached.
+    ([#5869](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5869))
+  * `db.client.operation.duration` attributes are no longer affected by tags set
+    on the command's activity by processors or `EnrichWithSqlCommand`.
+    ([#5865](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5865))
+  * Extended login and user name redaction to more `CREATE`, `ALTER` and `DROP`
+    positions, including `FOR LOGIN` and `WITH NAME =`, and names with combining
+    marks.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
 
 ### Bug Fixes
 
@@ -42,6 +86,26 @@
   * Fixed `server.address` and `server.port` not being recorded correctly for HTTP
     requests with an IPv6 address in the `Host` header (e.g. `[::1]:8080`).
     ([#5788](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5788))
+* Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.EntityFrameworkCore ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed suppressed or unsampled nested commands enriching or stopping an outer
+    command's activity.
+    ([#5821](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5821))
+  * Fixed a bracketed identifier containing quotes and a comment marker (for
+    example `[Orders''--]`) being parsed as SQL, and sped up sanitizing
+    statements with many unterminated `IN (` lists. Literals in more bracketed
+    value lists are now sanitized.
+    ([#5827](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5827))
+  * Fixed `db.query.summary` for identifiers that begin with SQL keywords and
+    for login or user statements in multi-statement commands.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
+  * Fixed SQL sanitization for Cloud Spanner, Firebird, SQL Server, SQLite,
+    PostgreSQL, MySQL, MariaDB and Oracle, including dollar-prefixed identifiers
+    and parameters, binary, octal, hexadecimal and digit-separator literals,
+    comments, and executable comments.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
+  * Fixed literals in malformed SQL Server queries not being sanitized when
+    escaped brackets extend an identifier beyond 128 characters.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
 * Use 1.20.2-beta.1 of OpenTelemetry.Instrumentation.Hangfire ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Fixed failed jobs exporting the exception message as the span status
     description. The message is now only recorded when `RecordException` is
@@ -59,6 +123,33 @@
     (including `HttpClient`) that waited for a free connection could be sent with
     the trace context and baggage of another request.
     ([#5873](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5873))
+* Use 1.20.2 of OpenTelemetry.Instrumentation.SqlClient ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed a bracketed identifier containing quotes and a comment marker being
+    parsed as SQL, which truncated sanitized text, and sped up sanitizing
+    statements with many unterminated `IN (` lists. Literals in more bracketed
+    value lists are now sanitized.
+    ([#5827](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5827))
+  * Fixed a memory leak on .NET Framework when a command executed
+    asynchronously fails before it is sent.
+    ([#5872](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5872))
+  * An asynchronously executed command is no longer left as `Activity.Current`
+    after completion, so later commands are no longer nested under it. Use the
+    `activity` argument of `EnrichWithSqlCommand` instead.
+    ([#5866](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5866))
+  * Fixed a memory leak on .NET when an asynchronous command starts with an
+    already-cancelled `CancellationToken` and has no activity.
+    ([#5924](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5924))
+  * Fixed `db.query.summary` for identifiers that begin with SQL keywords and
+    for login or user statements in multi-statement commands.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
+  * Fixed sanitization after bracketed identifiers containing apostrophes and
+    after dollar signs in identifiers, temporary table names and variables.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
+  * Fixed sanitization of hexadecimal literals preceded by a unary plus.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
+  * Fixed literals in malformed SQL Server queries not being sanitized when
+    escaped brackets extend an identifier beyond 128 characters.
+    ([#5905](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5905))
 * Use 1.20.1-beta.2 of OpenTelemetry.Instrumentation.Wcf ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Fixed an issue where a late reply or the telemetry timeout for a failed
     outgoing duplex request could stop the client activity a second time and
