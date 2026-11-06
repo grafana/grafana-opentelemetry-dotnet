@@ -81,6 +81,16 @@
     are now only used once a request for them has completed successfully, otherwise
     the `{controller}` and `{action}` tokens of the route template are reported.
     ([#5858](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5858))
+* Use 1.20.2 of OpenTelemetry.Instrumentation.AspNetCore ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
+  * Fixed `http.route` and the span name being set to text taken from the
+    request path. Route values from endpoints without a route template, such as
+    `MapFallbackToController`, no longer feed these fields. The page route value
+    now applies only as a fallback for Razor Pages with an empty template.
+    ([#5929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5929))
+  * Routes longer than 256 characters are no longer added to the cache of span
+    display names, which stops request-derived routes from retaining unbounded
+    memory for the life of the process.
+    ([#5929](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5929))
 * Use 1.20.3 of OpenTelemetry.Instrumentation.AWS ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
 * Use 1.20.3 of OpenTelemetry.Instrumentation.AWSLambda ([#772](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/772))
   * Fixed `server.address` and `server.port` not being recorded correctly for HTTP

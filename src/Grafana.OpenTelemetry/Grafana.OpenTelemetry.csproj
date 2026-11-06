@@ -37,7 +37,7 @@
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies, only .NET" Condition=" '$([MSBuild]::GetTargetFrameworkIdentifier(`$(TargetFramework)`))' != '.NETFramework' ">
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.20.1" /> <!-- Needed for ASP.NET Core -->
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.20.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.20.2" />
   </ItemGroup>
 
   <ItemGroup Label="Non-stable instrumentation packages with dependencies">
