@@ -28,7 +28,7 @@ jobs:
         show-progress: false
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
 
     - name: Build NuGet packages
       run: dotnet build --configuration Release
@@ -61,7 +61,7 @@ jobs:
           path: ./.packages
 
       - name: Set up OATS and gcx
-        uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5.2.2
+        uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
 
       - name: Run acceptance tests
         env:
