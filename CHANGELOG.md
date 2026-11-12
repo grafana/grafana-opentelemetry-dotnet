@@ -2,6 +2,319 @@
 
 ## Unreleased version
 
+## 1.15.0
+
+### BREAKING CHANGES
+
+* Drop support for `net8.0` and add support for `net11.0` ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change**: The `Grafana.OpenTelemetry` and
+    `Grafana.OpenTelemetry.Base` packages now target `net11.0`, `net10.0`,
+    `netstandard2.0` and `net462`. The `net8.0` target is no longer included,
+    consistent with the upstream OpenTelemetry packages which have dropped
+    support for `net8.0` and `net9.0`.
+  * `Grafana.OpenTelemetry.Base` now depends on
+    `Microsoft.Extensions.Configuration.EnvironmentVariables` and requires
+    `System.Text.Json` 10.0.0 or later on `netstandard2.0` and `net462`.
+* Use 1.21.0 of OpenTelemetry ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change** Dropped support for `net8.0` and `net9.0`.
+    ([#6899](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6899))
+  * **Breaking Change** `OTEL_DIAGNOSTICS.json` now writes rolling
+    `otel-dotnet-*.log` files in the standard entry format instead of a circular
+    `{executable}.{pid}.log` file. `FileSize` is split evenly across two
+    retained files, so total disk usage stays close to the configured limit.
+    `FormatMessage` is now ignored; messages are always formatted.
+    Provider-configured sinks, including those enabled through environment
+    variables, override the JSON configuration with a warning event. Writes are
+    asynchronous and may drop entries when the bounded queue fills.
+    ([#7997](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7997))
+* Use 1.21.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change** Dropped support for `net8.0` and `net9.0`.
+    ([#6899](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6899))
+  * **Breaking:** The span status description (`Activity.StatusDescription` or
+    the `otel.status_description` tag) is now truncated to the configured span
+    attribute value length limit (for example
+    `OTEL_SPAN_ATTRIBUTE_VALUE_LENGTH_LIMIT`) instead of being exported in full.
+    ([#7995](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7995))
+  * **Breaking:** When running on .NET on non-Windows platforms, creating the
+    exporter with the experimental disk retry feature enabled now throws an
+    `UnauthorizedAccessException` if the retry directory could be changed by
+    another user. The retry directory must be owned by the current user and must
+    not be writable by its group or by other users. Each directory and symbolic
+    link in its path must be owned by the current user or by root, and those
+    directories must not be writable by their group or by other users unless
+    they have the sticky bit set (such as `/tmp`). These checks can be disabled
+    by setting the new `OTEL_DOTNET_EXPERIMENTAL_OTLP_DISK_RETRY_CHECK_PERMISSIONS`
+    setting to `false`.
+    ([#7964](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7964))
+* Use 1.21.0 of OpenTelemetry.Instrumentation.AWS ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change**: Update latest AWS Semantic Conventions to 1.45.0
+    (`SemanticConventionVersion.V1_45_0`). SNS and SQS spans now use
+    `messaging.system.name` instead of `messaging.system`, and SQS spans use the
+    value `aws.sqs` instead of `aws_sqs`. Spans for sending a single message
+    (`SQS.SendMessage` and `SNS.Publish`) now use `ActivityKind.Producer` when
+    their context is injected into the message. Messages with an existing
+    creation context retain `ActivityKind.Client` and link to that context.
+    Messages that the context cannot be injected into, such as those that
+    already have the maximum number of message attributes or an attribute with
+    the same name as one that would be injected, also use `ActivityKind.Client`,
+    with no link. Spans for `SendMessageBatch` and `PublishBatch` now set
+    `messaging.batch.message_count`, as do spans for `ReceiveMessage` with the
+    number of messages received.
+    ([#5832](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5832))
+  * **Breaking Change** Dropped support for `net8.0` and `net9.0`.
+    ([#3867](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3867))
+* Use 1.21.0 of OpenTelemetry.Instrumentation.AWSLambda ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change**: Update latest AWS Semantic Conventions to 1.45.0
+    (`SemanticConventionVersion.V1_45_0`). Spans now use `faas.invocation.id`
+    instead of `faas.invocation_id`.
+    ([#5832](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5832))
+  * **Breaking Change** Dropped support for `net8.0` and `net9.0`.
+    ([#3867](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3867))
+* Use 1.21.0 of OpenTelemetry.Extensions.Hosting ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * **Breaking Change** Dropped support for `net8.0` and `net9.0`.
+    ([#6899](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6899))
+* Dropped support for `net8.0` and `net9.0` in the following packages
+  ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449)):
+  * OpenTelemetry.Instrumentation.AspNet 1.21.0
+  * OpenTelemetry.Instrumentation.AspNetCore 1.21.0
+  * OpenTelemetry.Instrumentation.Cassandra 1.0.0-beta.13
+  * OpenTelemetry.Instrumentation.EntityFrameworkCore 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.GrpcNetClient 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.Hangfire 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.Http 1.21.0
+  * OpenTelemetry.Instrumentation.Owin 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.Process 1.21.0-rc.1
+  * OpenTelemetry.Instrumentation.Quartz 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.Runtime 1.21.0
+  * OpenTelemetry.Instrumentation.SqlClient 1.21.0
+  * OpenTelemetry.Instrumentation.StackExchangeRedis 1.21.0-beta.1
+  * OpenTelemetry.Instrumentation.Wcf 1.21.0-beta.1
+  * OpenTelemetry.Resources.Container 1.21.0-beta.1
+  * OpenTelemetry.Resources.Host 1.21.0-beta.1
+  * OpenTelemetry.Resources.OperatingSystem 1.21.0-beta.1
+  * OpenTelemetry.Resources.Process 1.21.0-rc.1
+  * OpenTelemetry.Resources.ProcessRuntime 1.21.0-beta.1
+
+### New features
+
+* Add support for .NET 11.0 ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Add `net11.0` as a target framework of `Grafana.OpenTelemetry` and
+    `Grafana.OpenTelemetry.Base`.
+  * Upstream packages now also include support for .NET 11.0
+    ([#6899](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6899),
+    [#3867](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/3867)).
+* Use 1.21.0 of OpenTelemetry ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Added support for enabling `ActivitySource`s from configuration using the
+    `Microsoft.Extensions.Diagnostics` tracing APIs introduced in .NET 11 (for
+    example, `services.AddTracing(b => b.AddConfiguration(section))`).
+    Activities from sources enabled this way are processed by the OpenTelemetry
+    `TracerProvider` registered through `AddOpenTelemetry().WithTracing()`.
+    Not supported when targeting `net10.0`.
+    ([#6899](https://github.com/open-telemetry/opentelemetry-dotnet/pull/6899))
+  * `OpenTelemetryLoggerOptions` is now bound from the `Logging:OpenTelemetry`
+    configuration section using the configuration binding source generator
+    instead of reflection, making it fully trim and Native AOT compatible. An
+    empty value for a boolean option is now ignored on all target frameworks
+    rather than throwing on some, depending on the version of
+    `Microsoft.Extensions.Configuration.Binder` in use.
+    ([#8100](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8100))
+  * `SelfDiagnosticsOptions` is now automatically bound from the
+    `OpenTelemetry:SelfDiagnostics` configuration section, when present.
+    ([#8008](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8008))
+  * `OTEL_DIAGNOSTICS.json` now uses the `SelfDiagnosticsOptions` pipeline,
+    adding configuration warnings and a redacted environment snapshot to each
+    file's preamble. `Verbose` and `LogAlways` also log loaded assemblies.
+    File-open failures are reported on standard error.
+    ([#7997](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7997))
+  * Added support for batching the metric points exported by
+    `PeriodicExportingMetricReader`. When a maximum export batch size is set,
+    using the new constructor overload or
+    `PeriodicExportingMetricReaderOptions.MaxExportBatchSize`, the metric points
+    of each collection are split into batches of at most that many metric
+    points, even if that splits up the metric points of a single metric. The
+    batches are exported serially with the export timeout applying to each
+    export. It can also be configured with the
+    `OTEL_METRIC_EXPORT_MAX_BATCH_SIZE` environment variable.
+    ([#8053](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8053))
+  * Added `Sampler.Shutdown` and the overridable `Sampler.OnShutdown` to allow
+    samplers to release resources. `TracerProvider` now calls `Shutdown` on its
+    sampler when it is shut down or disposed, and `ParentBasedSampler` and
+    `AlwaysRecordSampler` call `Shutdown` on the samplers they delegate to. The
+    `TracerProvider` now disposes of its sampler after its listener has stopped
+    calling the sampler, rather than before the processors are shut down.
+    ([#8060](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8060))
+  * The timeout passed to `MetricReader.Collect()` (for example by
+    `MeterProvider.ForceFlush()`), the `ExportTimeoutMilliseconds` of
+    `PeriodicExportingMetricReader` and the `ExporterTimeoutMilliseconds` of
+    `BatchExportProcessor<T>` are now made available to the exporter instead of
+    being ignored once the export has started, so that the OTLP exporter can
+    cancel an export which runs past the timeout.
+    ([#7996](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7996))
+  * Updated the schema URL of resources created by the SDK to use OpenTelemetry
+    Semantic Conventions version `1.45.0`.
+    ([#8079](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8079))
+* Use 1.21.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Added support for batching the metric points exported by the periodic
+    exporting metric reader. Set
+    `PeriodicExportingMetricReaderOptions.MaxExportBatchSize` to limit the
+    number of metric points in each exported batch. It can also be configured
+    with the `OTEL_METRIC_EXPORT_MAX_BATCH_SIZE` environment variable.
+    ([#8053](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8053))
+  * Attribute values implementing `IUtf8SpanFormattable` (.NET 10+) that are not
+    already handled as a built-in type are now formatted directly into the
+    export buffer with `TryFormat` and exported as string attributes, instead of
+    through `ToString()`.
+    ([#7929](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7929))
+  * Redacted nonstandard OTLP endpoint paths in internal diagnostic logs with
+    `[REDACTED]`, while retaining standard HTTP and gRPC service paths.
+    ([#8016](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8016))
+  * The retry delay in the `grpc-status-details-bin` trailer of a gRPC response
+    is now ignored if the status code in the details contradicts the
+    `grpc-status` of the response.
+    ([#8078](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8078))
+* Use 1.21.0 of OpenTelemetry.Extensions.Hosting ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * The OpenTelemetry providers are now initialized in
+    `IHostedLifecycleService.StartingAsync` instead of
+    `IHostedService.StartAsync` so that telemetry emitted by other hosted
+    services during `StartingAsync` is captured.
+    `ITelemetryHostInitializer.Initialize()` is invoked only once per host
+    start.
+    ([#7998](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7998))
+  * Updated the schema URL of resources created by the host environment resource
+    detector to use OpenTelemetry Semantic Conventions version `1.45.0`.
+    ([#8079](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8079))
+* Use 1.21.0-rc.1 of OpenTelemetry.Instrumentation.Process ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.21.0-beta.1 of OpenTelemetry.Resources.Container ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.21.0-beta.1 of OpenTelemetry.Resources.Host ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+  * Added `host.id` on FreeBSD.
+    ([#5943](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5943))
+* Use 1.21.0-beta.1 of OpenTelemetry.Resources.OperatingSystem ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.21.0-rc.1 of OpenTelemetry.Resources.Process ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+* Use 1.21.0-beta.1 of OpenTelemetry.Resources.ProcessRuntime ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Updated Semantic Conventions version to `1.45.0`.
+    ([#5833](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5833))
+
+### Bug Fixes
+
+* Use 1.21.0 of OpenTelemetry ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Fixed the self-diagnostics environment snapshot leaving a dangling comma in
+    a redacted `OTEL_RESOURCE_ATTRIBUTES` value when it contained empty
+    entries.
+    ([#8104](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8104))
+  * Fixed an exception when downscaling empty exponential histogram buckets
+    after a reset.
+    ([#8064](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8064))
+  * Fixed tracing callbacks continuing after provider shutdown or disposal on
+    older target frameworks.
+    ([#8065](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8065))
+  * Fixed initialization failures when environment variable access is denied.
+    Configuration reloads retain the last successful values when access is
+    denied.
+    ([#8070](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8070))
+  * Fixed a source, meter or legacy activity name with a trailing line feed
+    matching a wildcard pattern which does not end in a wildcard.
+    ([#8074](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8074))
+  * Fixed `OTEL_RESOURCE_ATTRIBUTES` values being decoded as form data, which
+    changed a `+` to a space. Values are now only percent-decoded, as defined by
+    the Resource SDK specification.
+    ([#8074](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8074))
+  * Fixed `PeriodicExportingMetricReader` exporting a collection which was still
+    in progress when `Shutdown()` timed out to its exporter after the exporter
+    had been shut down.
+    ([#8053](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8053))
+  * Fixed `PeriodicExportingMetricReader` not making its final collection when
+    `Shutdown()` was called before its background task had started running on
+    platforms where threading is not available, such as browsers.
+    ([#8053](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8053))
+  * Fixed a race in the self-diagnostics sink dispatcher where disposing it
+    while its pump thread was exiting could throw `ArgumentNullException` on
+    .NET Framework.
+    ([#7983](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7983))
+  * Fixed a race where collecting a metric with delta temporality concurrently
+    with the creation of a new `MetricPoint` could reclaim the `MetricPoint`
+    while it was being created, losing the measurement.
+    ([#8019](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8019))
+  * Fixed a race where collecting a metric with delta temporality could export
+    the same series twice in a single collection.
+    ([#8019](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8019))
+  * Fixed a race where collecting a cumulative metric concurrently with the
+    creation of a new `MetricPoint` could export a `MetricPoint` that was not
+    yet fully initialized, which could cause a `NullReferenceException` when
+    enumerating `Tags`.
+    ([#8018](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8018))
+  * Fixed wildcard matching timeouts that could prevent configured source,
+    meter, legacy activity, or metric view patterns from matching.
+    ([#8014](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8014))
+* Use 1.21.0 of OpenTelemetry.Exporter.OpenTelemetryProtocol ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Fixed unbounded resource serialization buffer growth and incorrect buffer
+    reuse after buffer allocation failures.
+    ([#8069](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8069))
+  * Fixed exporter option initialization failing when environment variable
+    access is denied.
+    ([#8070](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8070))
+  * Fixed `OTEL_EXPORTER_OTLP_HEADERS` (and the `Headers` option) being decoded
+    before it was split into headers, so that a percent-encoded `,` in a value
+    started a new header and encoded leading or trailing whitespace was removed.
+    ([#8075](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8075))
+  * Fixed the retry delay of a gRPC response being ignored or misread when a
+    length which does not fit in an `int` was truncated instead of being
+    rejected, when a field did not have the wire type that its number defines,
+    when the `retry_delay` field was repeated, or when the
+    `grpc-status-details-bin` trailer was Base64-encoded without padding, as
+    emitted by gRPC-Go.
+    ([#8075](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8075))
+  * An `OutOfMemoryException` thrown while converting an attribute value to a
+    string is no longer swallowed and the attribute dropped; it now propagates.
+    ([#7929](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7929))
+  * Fixed string attribute values truncated by an attribute value length limit
+    ending in half of a surrogate pair. The truncated value now ends before the
+    pair instead.
+    ([#7929](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7929))
+  * Fixed experimental in-memory retries exceeding the export timeout when a
+    retried request stalls.
+    ([#7977](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7977))
+  * Fixed exports continuing until `OtlpExporterOptions.TimeoutMilliseconds`
+    elapsed when a shorter timeout applied to them, such as the timeout passed
+    to `MeterProvider.ForceFlush()`,
+    `PeriodicExportingMetricReaderOptions.ExportTimeoutMilliseconds`
+    (`OTEL_METRIC_EXPORT_TIMEOUT`) or
+    `BatchExportProcessorOptions<T>.ExporterTimeoutMilliseconds`
+    (`OTEL_BSP_EXPORT_TIMEOUT`, `OTEL_BLRP_EXPORT_TIMEOUT`). The request is now
+    canceled when the shorter of the timeouts elapses. The time taken to
+    serialize the telemetry now counts towards the timeout, and no request is
+    sent once it has elapsed.
+    ([#7996](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7996))
+  * Fixed arrays of string-valued key/value pairs being exported as arrays of
+    strings instead of maps.
+    ([#7694](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7694))
+* Use 1.21.0 of OpenTelemetry.Extensions.Hosting ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Fixed host resource detection throwing `SecurityException` when
+    configuration values cannot be read.
+    ([#8070](https://github.com/open-telemetry/opentelemetry-dotnet/pull/8070))
+* Use 1.21.0 of OpenTelemetry.Instrumentation.AWS ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Fixed SQS and SNS `MessageAttributes` that are reused across sends carrying
+    the trace context and baggage of the first send. The instrumentation no
+    longer modifies the application's `MessageAttributes` dictionary, and the
+    request's `MessageAttributes` is now a different instance after a send.
+    ([#5867](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5867))
+* Use 1.21.0-beta.1 of OpenTelemetry.Resources.Container ([#449](https://github.com/grafana/grafana-opentelemetry-dotnet/pull/449))
+  * Fixed `container.id` being reported as the id of the pod sandbox rather than
+    the id of the container when running in Kubernetes with containerd and
+    cgroup v2. The id of the pod sandbox is shared by all containers in the pod,
+    so it is no longer used. The id is now only reported when it can be
+    determined reliably, which includes CRI-O and containerd cgroup paths.
+    ([#5947](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/5947))
+
 ## 1.14.1
 
 ### BREAKING CHANGES

@@ -7,6 +7,7 @@
     <ContinuousIntegrationBuild Condition=" '$(CI)' != '' ">true</ContinuousIntegrationBuild>
     <Copyright>Copyright (c) Grafana Labs</Copyright>
     <Deterministic>true</Deterministic>
+    <DeterministicTimestamp>true</DeterministicTimestamp>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>

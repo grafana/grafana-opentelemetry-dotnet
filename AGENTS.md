@@ -25,7 +25,7 @@ Run a single test or a subset with a filter:
 
 ```sh
 dotnet test --filter "FullyQualifiedName~InstrumentationTest"
-dotnet test --framework net10.0 --filter "DisplayName~MyTestName"
+dotnet test --framework net11.0 --filter "DisplayName~MyTestName"
 ```
 
 Build output goes to `./artifacts` (`UseArtifactsOutput` is enabled), not per-project `bin/obj`
@@ -37,11 +37,11 @@ OATS acceptance tests (end-to-end, require Mise and Docker) live under `docker/`
 
 ## Target frameworks and SDK
 
-- The libraries multi-target `net10.0;net8.0;netstandard2.0;net462`. The test project targets
-  `net10.0;net8.0` plus `net481` on Windows only.
-- `global.json` pins the SDK to `10.0.xxx` (roll-forward `latestFeature`). CI also installs the
-  .NET 8 SDK because builds touch `net8.0`.
-- `net8.0`+ builds set `IsAotCompatible`, but the public `UseGrafana` APIs are annotated
+- The libraries multi-target `net11.0;net10.0;netstandard2.0;net462`. The test project targets
+  `net11.0;net10.0` plus `net481` on Windows only.
+- `global.json` pins the SDK to `11.0.xxx` (roll-forward `latestFeature`). CI also installs the
+  .NET 10 SDK because builds touch `net10.0`.
+- `net10.0`+ builds set `IsAotCompatible`, but the public `UseGrafana` APIs are annotated
   `RequiresUnreferencedCode` - the distribution does **not** support native AOT, because
   instrumentation is wired up via reflection (see below).
 - `TreatWarningsAsErrors` is on and `Nullable` is **disabled** repo-wide (`Directory.Build.props`).
