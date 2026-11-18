@@ -38,7 +38,7 @@ services:
     - ACCEPT_EULA=Y
     - MSSQL_SA_PASSWORD=Password12345%%
   floci:
-    image: floci/floci:2.4.0@sha256:5ee85db604c4aa74ac76e07ea5cc83086f37bb472bf3dbb97e34019e48efae9c
+    image: floci/floci:2.5.0@sha256:a0fbf944d7f338cc0856f1ef83831ea749ff2be71956eb7a7fce08fc21458e19
     ports:
       - "4510-4559:4510-4559"
       - "4566:4566"
